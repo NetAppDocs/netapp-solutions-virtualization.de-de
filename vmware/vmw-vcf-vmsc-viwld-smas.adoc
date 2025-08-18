@@ -1,0 +1,64 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-vcf-vmsc-viwld-smas.html 
+keywords: netapp, vmware, cloud, foundation, vcf, asa, all-flash, array, ontap tools, otv, sddc, iscsi 
+summary:  
+---
+= Konfigurieren eines Stretch-Clusters für eine VI-Workloaddomäne mit SnapMirror Active Sync
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+In diesem Anwendungsfall beschreiben wir das Verfahren zum Konfigurieren eines Stretch-Clusters für eine Virtual Infrastructure (VI)-Workload-Domäne unter Verwendung von SnapMirror Active Sync mit ONTAP tools for VMware vSphere.  Dieses Verfahren umfasst das Erstellen einer VCF-Workload-Domäne mit VMFS auf Fibre Channel, das Registrieren des vCenter mit ONTAP Tools, das Registrieren von Speichersystemen und das Schützen des vSphere-Clusters.
+
+image:vmware-vcf-asa-mgmt-stretchcluster-001.png["Einzelne Instanz – mehrere Verfügbarkeitszonen"]
+
+
+
+== Szenarioübersicht
+
+Die Datenspeicher in der VCF-Workload-Domäne können mit SnapMirror Active Sync geschützt werden, um eine Stretch-Cluster-Lösung bereitzustellen.  Der Schutz wird auf vSphere-Clusterebene aktiviert und alle ONTAP Blockdatenspeicher im Cluster werden geschützt.
+
+.Hauptspeicher in der Workloaddomäne
+[%collapsible%open]
+====
+Die Workloaddomäne kann entweder durch Importieren mit dem VCF-Importtool oder durch Bereitstellen mit dem SDDC-Manager erstellt werden.  Die Bereitstellung mit dem SDDC-Manager bietet mehr Netzwerkoptionen als das Importieren einer vorhandenen Umgebung.
+
+. Erstellen Sie eine Workload-Domäne mit VMFS auf FC
+. link:https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/add-vcenter.html["Registrieren Sie das Workload-Domänen-vCenter beim ONTAP Tools-Manager, um das vCenter-Plugin bereitzustellen"]
+. link:https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/add-storage-backend.html["Registrieren Sie Speichersysteme auf ONTAP -Tools"]
+. link:https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/protect-cluster.html["Schützen Sie den vSphere-Cluster"]
+
+
+
+NOTE: Wenn der Cluster erweitert oder verkleinert wird, muss die Host-Cluster-Beziehung in den ONTAP Tools für den Cluster aktualisiert werden, um die an der Quelle oder dem Ziel vorgenommenen Änderungen anzuzeigen.
+
+====
+.Zusätzlicher Speicher in der Workloaddomäne
+[%collapsible%open]
+====
+Sobald die Workload-Domäne betriebsbereit ist, können mithilfe von ONTAP -Tools zusätzliche Datenspeicher erstellt werden, die die Erweiterung der Konsistenzgruppe auslösen.
+
+
+TIP: Wenn ein vSphere-Cluster geschützt ist, sind alle Datenspeicher im Cluster geschützt.
+
+====
+
+
+== Weitere Informationen
+
+Informationen zur Konfiguration von ONTAP Speichersystemen finden Sie imlink:https://docs.netapp.com/us-en/ontap["ONTAP 9 Dokumentation"] Center.
+
+Informationen zur Konfiguration von VCF finden Sie unterlink:https://techdocs.broadcom.com/us/en/vmware-cis/vcf.html["VMware Cloud Foundation-Dokumentation"] .
+
+
+
+== Videodemo für diese Lösung
+
+.Stretch-Cluster für VCF mit ONTAP -Tools
+video::569a91a9-2679-4414-b6dc-b25d00ff0c5a[panopto,width=360]

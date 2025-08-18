@@ -1,0 +1,31 @@
+---
+sidebar: sidebar 
+permalink: blogs.html 
+summary: Lesen Sie die Blogs, die praktische Anleitungen und Best Practices zur Integration von ONTAP Speicher mit NetApp Virtualisierungslösungen bieten. 
+keywords: netapp, solutions, blogs 
+---
+= Lesen Sie Blogs zu Virtualisierungslösungen von NetApp Experten
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Lesen Sie die Blogs, die praktische Anleitungen und Best Practices zur Integration von ONTAP Speicher mit NetApp Virtualisierungslösungen bieten.
+
+* NetApp und VMware Cloud Foundation (VCF)
++
+** link:https://www.netapp.com/blog/netapp-vmware-cloud-foundation-getting-started["Teil 1: Erste Schritte"]
+** link:https://www.netapp.com/blog/netapp-vmware-cloud-foundation-ontap-principal-storage["Teil 2: VCF und ONTAP -Hauptspeicher"]
+** link:https://www.netapp.com/blog/netapp-vmware-cloud-foundation-element-principal-storage["Teil 3: VCF und Element-Hauptspeicher"]
+** link:https://www.netapp.com/blog/netapp-vmware-cloud-foundation-supplemental-storage["Teil 4: ONTAP -Tools für VMware und zusätzlichen Speicher"]
+
+
+* link:https://cloud.netapp.com/blog/azure-blg-optimize-storage-for-cloud-based-vmware-deployments["Optimieren Sie den Speicher für Cloud-basierte VMware-Bereitstellungen"]
+* link:https://cloud.netapp.com/blog/azure-blg-netapp-cloud-offerings-with-azure-vmware-solution["Erste Schritte mit Azure VMware-Lösungen mithilfe von NetApp-basierten Cloud-Angeboten"]
+* link:https://community.netapp.com/t5/Tech-ONTAP-Blogs/NetApp-and-VMware-Better-than-ever/ba-p/445780["NetApp und VMware – Besser denn je"]
+* link:https://community.netapp.com/t5/Tech-ONTAP-Blogs/3-2-1-Data-Protection-for-VMware-with-SnapCenter-Plug-in-and-BlueXP-Backup-and/ba-p/446180["3-2-1-Datenschutz für VMware mit SnapCenter -Plug-in und BlueXP Backup und Recovery für VMs"]
+

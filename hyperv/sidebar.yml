@@ -1,0 +1,26 @@
+---
+section: hyperv
+title: Hyper-V-Virtualisierung
+url: "/hyperv/index.html"
+entries:
+- title: Bereitstellen von Hyper-V auf NetApp -Speicher
+  pdf-filename: Bereitstellen von Hyper-V auf NetApp Storage
+  entries:
+  - title: Informationen zur Hyper-V-Bereitstellung mit ONTAP
+    url: "/hyperv/hyperv-deploy.html"
+  - title: Bereitstellen
+    url: "/hyperv/hyperv-deploy-prereqs.html"
+  - title: Bereitstellungsrichtlinien
+    url: "/hyperv/hyperv-deploy-considerations.html"
+  - title: Bereitstellen von Hyper-V
+    url: "/hyperv/hyperv-deploy-data-protection.html"
+  - title: Zusammenfassung
+    url: "/hyperv/hyperv-deploy-conclusion.html"
+  - title: Migrieren Sie VMs zu Hyper-V
+    url: "/hyperv/hyperv-deploy-script.html"
+- title: Replikation mit SnapMirror Active Sync einrichten
+  pdf-filename: Replikation mit SnapMirror Active Sync einrichten
+  url: "/hyperv/hyperv-smas.html"
+- title: Verwenden Sie den SMI-S-Anbieter für Hyper-V
+  pdf-filename: Verwenden Sie den SMI-S-Anbieter für Microsoft Hyper-V
+  url: "/hyperv/hyperv-smis.html"

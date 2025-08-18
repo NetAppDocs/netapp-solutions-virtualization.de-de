@@ -1,0 +1,167 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-vcf-overview.html 
+keywords: netapp, vmware, cloud, foundation, vcf, flexpod 
+summary:  
+---
+= Vereinfachen Sie die Hybrid Cloud-Erfahrung mit VMware Cloud Foundation und ONTAP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp ONTAP lässt sich in VMware Cloud Foundation (VCF) integrieren, um eine einheitliche Speicherlösung bereitzustellen, die sowohl Block- als auch Dateiprotokolle unterstützt.  Diese Integration vereinfacht die Bereitstellung hybrider Clouds, verbessert die Datenverwaltung und -leistung und gewährleistet konsistente Datendienste in lokalen und Cloud-Umgebungen.
+
+
+
+= Einführung
+
+Die Verwendung von NetApp mit VCF verbessert die Datenverwaltung und Speichereffizienz durch die erweiterten Funktionen von NetApp wie Deduplizierung, Komprimierung und Snapshots.  Diese Kombination bietet nahtlose Integration, hohe Leistung und Skalierbarkeit für virtualisierte Umgebungen.  Darüber hinaus vereinfacht es die Bereitstellung hybrider Clouds, indem es konsistente Datendienste und -verwaltung über lokale und Cloud-Infrastrukturen hinweg ermöglicht.
+
+
+
+== Einführung in NetApp ONTAP
+
+NetApp ONTAP ist eine umfassende Datenverwaltungssoftware, die erweiterte Speicherfunktionen für eine breite Produktlinie bietet.  ONTAP ist als softwaredefinierter Speicher, als First-Party-Service über die großen Cloud-Anbieter und als Speicherbetriebssystem für NetApp ASA (All San Array), AFF (All-Flash FAS) und FAS Plattformen (Fabric-Attached Storage) verfügbar.  ONTAP bietet hohe Leistung und geringe Latenz für eine Vielzahl von Anwendungsfällen, einschließlich VMware-Virtualisierung, ohne Silos zu erstellen.
+
+
+
+== Einführung in VMware Cloud Foundation
+
+VCF integriert Rechen-, Netzwerk- und Speicherangebote mit VMware-Produkten und Integrationen von Drittanbietern und ermöglicht so sowohl native Kubernetes- als auch auf virtuellen Maschinen basierende Workloads.  Diese Softwareplattform umfasst Schlüsselkomponenten wie VMware vSphere, NSX, Aria Suite Enterprise, Tanzu Kubernetes Grid, HCX Enterprise, SDDC Manager und Speicherkapazität, die über vSAN mit Host-CPU-Kernen verbunden ist.  NetApp ONTAP lässt sich nahtlos in eine Vielzahl von VCF-Bereitstellungsmodellen sowohl vor Ort als auch in der öffentlichen Cloud integrieren.
+
+image:vmware-vcf-overview-components.png["VMware Cloud Foundation-Komponenten"]
+
+
+
+== VCF-Domänen
+
+Domänen sind ein grundlegendes Konstrukt innerhalb von VCF, das die Organisation von Ressourcen in eindeutige, unabhängige Gruppierungen ermöglicht.  Domänen helfen dabei, die Infrastruktur effektiver zu organisieren und sicherzustellen, dass die Ressourcen effizient genutzt werden.  Jede Domäne wird mit ihren eigenen Rechen-, Netzwerk- und Speicherelementen bereitgestellt.
+
+image:vmware-vcf-overview-domains.png["VMware Cloud-Domänen"]
+
+Es gibt zwei Haupttypen von Domänen mit VCF:
+
+* *Verwaltungsdomäne* – Die Verwaltungsdomäne umfasst Komponenten, die für die Kernfunktionen der VCF-Umgebung verantwortlich sind.  Die Komponenten übernehmen wichtige Aufgaben wie Ressourcenbereitstellung, Überwachung und Wartung und umfassen Plug-In-Integrationen von Drittanbietern wie NetApp ONTAP Tools für VMware.  Um die Einhaltung bewährter Methoden sicherzustellen, können Verwaltungsdomänen mithilfe der Cloud Builder Appliance bereitgestellt oder eine vorhandene vCenter-Umgebung in eine VCF-Verwaltungsdomäne umgewandelt werden.
+* *Virtual Infrastructure Workload Domain* – Virtual Infrastructure Workload Domains sind als Ressourcenpools konzipiert, die einem bestimmten Betriebsbedarf, einer bestimmten Arbeitslast oder Organisation gewidmet sind.  Workload-Domänen lassen sich problemlos über den SDDC Manager bereitstellen und tragen so zur Automatisierung einer Reihe komplexer Aufgaben bei.  Innerhalb einer VCF-Umgebung können bis zu 24 Workload-Domänen bereitgestellt werden, wobei jede eine Einheit anwendungsbereiter Infrastruktur darstellt.
+
+
+
+
+== Speicherung mit VCF
+
+Der von ihnen verbrauchte Speicherplatz ist für die Funktionalität von Domänen von zentraler Bedeutung.  Während VCF CPU-Core-basierte vSAN-Kapazität für hyperkonvergente Anwendungsfälle umfasst, unterstützt es auch eine breite Palette externer Speicherlösungen.  Diese Flexibilität ist entscheidend für Unternehmen, die erheblich in vorhandene Speicher-Arrays investiert haben oder Protokolle unterstützen müssen, die über die Möglichkeiten von vSAN hinausgehen.  VMware unterstützt mit VCF mehrere Speichertypen.
+
+Es gibt zwei Hauptspeichertypen mit VCF:
+
+* *Hauptspeicher* – Dieser Speichertyp wird bei der ersten Erstellung der Domäne zugewiesen.  Für Verwaltungsdomänen beherbergt dieser Speicher die Verwaltungs- und Betriebskomponenten von VCF.  Bei Workload-Domänen ist dieser Speicher darauf ausgelegt, die Workloads, VMs oder Container zu unterstützen, für die die Domäne bereitgestellt wurde.
+* *Zusätzlicher Speicher* – Nach der Bereitstellung kann jeder Workloaddomäne zusätzlicher Speicher hinzugefügt werden.  Dieser Speichertyp hilft Unternehmen, vorhandene Investitionen in die Speicherinfrastruktur zu nutzen und verschiedene Speichertechnologien zu integrieren, um Leistung, Skalierbarkeit und Kosteneffizienz zu optimieren.
+
+
+*Unterstützt VCF-Speichertypen*
+
+[cols="25%, 25%, 50%"]
+|===
+
+
+| *Domänentyp* | *Hauptspeicher* | *Zusätzlicher Speicher* 
+
+
+| Verwaltungsdomäne | vSAN FC* NFS* | vVols (FC, iSCSI oder NFS) FC NFS iSCSI NVMe/TCP NVMe/FC NVMe/RDMA 
+
+
+| Arbeitslastdomäne der virtuellen Infrastruktur | vSAN vVols (FC, iSCSI oder NFS) FC NFS | vVols (FC, iSCSI oder NFS) FC NFS iSCSI NVMe/TCP NVMe/FC NVMe/RDMA 
+|===
+Hinweis: * Spezifische Protokollunterstützung wird bei Verwendung des VCF-Importtools mit vorhandenen vSphere-Umgebungen bereitgestellt.
+
+
+
+== Warum ONTAP für VCF
+
+Neben Anwendungsfällen, die Investitionsschutz und Multiprotokollunterstützung beinhalten, gibt es viele weitere Gründe, die Vorteile externer gemeinsam genutzter Speicher innerhalb einer VCF-Workloaddomäne zu nutzen.  Es kann davon ausgegangen werden, dass der für eine Workload-Domäne bereitgestellte Speicher lediglich ein Repository zum Hosten von VMs und Containern ist.  Die Anforderungen der Organisation übersteigen jedoch häufig die Möglichkeiten der lizenzierten Kapazität und erfordern Unternehmensspeicher.  Der von ONTAP bereitgestellte Speicher, der Domänen innerhalb von VCF zugewiesen ist, lässt sich einfach bereitstellen und bietet eine zukunftssichere Shared-Storage-Lösung.
+
+image:why-ontap-for-vmware-002.png["Warum ONTAP für VCF"]
+
+Weitere Informationen zu den wichtigsten ONTAP Vorteilen für VMware VCF finden Sie unten unterlink:vmw-getting-started-overview.html#why-ontap-for-vmware["Warum ONTAP für VMware"] .
+
+* Flexibilität ab dem ersten Tag und bei der Skalierung
+* Lagern Sie Speicheraufgaben auf ONTAP aus
+* Klassenbeste Speichereffizienz
+* Datenverfügbarkeit auf Unternehmensniveau
+* Effiziente Backup- und Wiederherstellungsvorgänge
+* Ganzheitliche Geschäftskontinuitätsfunktionen
+
+
+
+
+== Weitere Informationen:
+
+* link:vmw-getting-started-ntap-options.html["NetApp Storage-Optionen"]
+* link:vmw-getting-started-vmsc.html["Unterstützung für vSphere Metro Storage Cluster (vMSC)"]
+* link:vmw-getting-started-otv.html["ONTAP Tools für VMware vSphere"]
+* link:vmw-getting-started-automation.html["VMware-Automatisierung mit ONTAP"]
+* link:vmw-getting-started-snapcenter.html["NetApp SnapCenter"]
+* link:vmw-getting-started-hmc.html["Hybrid Multicloud mit VMware und NetApp"]
+* link:vmw-getting-started-security.html["Sicherheit und Ransomware-Schutz"]
+* link:vmw-getting-started-migration.html["Einfache Migration von VMware-Workloads zu NetApp"]
+* link:vmw-dr-gs.html["BlueXP Notfallwiederherstellung"]
+* link:vmw-getting-started-dii.html["Einblicke in die Dateninfrastruktur"]
+* link:vmw-getting-started-vmdc.html["VM-Datensammler"]
+
+
+
+
+== Zusammenfassung
+
+ONTAP bietet eine Plattform, die alle Workload-Anforderungen erfüllt und maßgeschneiderte Blockspeicherlösungen sowie einheitliche Angebote bietet, um schnellere Ergebnisse für VMs und Anwendungen auf zuverlässige und sichere Weise zu ermöglichen.  ONTAP umfasst erweiterte Techniken zur Datenreduzierung und -verschiebung, um den Platzbedarf des Rechenzentrums zu minimieren und gleichzeitig eine Verfügbarkeit auf Unternehmensebene sicherzustellen, damit kritische Workloads online bleiben.  Darüber hinaus unterstützen AWS, Azure und Google im Rahmen ihrer VMware-in-the-Cloud-Angebote externen Speicher auf NetApp-Basis, um den vSAN-Speicher in Cloud-basierten VMware-Clustern zu verbessern.  Insgesamt ist NetApp aufgrund seiner überlegenen Funktionen eine effektivere Wahl für VMware Cloud Foundation-Bereitstellungen.
+
+
+
+== Dokumentationsressourcen
+
+Ausführliche Informationen zu den NetApp -Angeboten für VMware Cloud Foundation finden Sie hier:
+
+*VMware Cloud Foundation-Dokumentation*
+
+* link:https://techdocs.broadcom.com/us/en/vmware-cis/vcf.html["VMware Cloud Foundation-Dokumentation"]
+
+
+*Vier (4)-teilige Blogserie zu VCF mit NetApp*
+
+* link:https://www.netapp.com/blog/netapp-vmware-cloud-foundation-getting-started/["NetApp und VMware Cloud Foundation leicht gemacht Teil 1: Erste Schritte"]
+* link:https://www.netapp.com/blog/netapp-vmware-cloud-foundation-ontap-principal-storage/["NetApp und VMware Cloud Foundation leicht gemacht Teil 2: VCF und ONTAP Principal Storage"]
+* link:https://www.netapp.com/blog/netapp-vmware-cloud-foundation-element-principal-storage/["NetApp und VMware Cloud Foundation leicht gemacht Teil 3: VCF und Element Principal Storage"]
+* link:https://www.netapp.com/blog/netapp-vmware-cloud-foundation-supplemental-storage/["NetApp und VMware Cloud Foundation leicht gemacht – Teil 4: ONTAP Tools für VMware und zusätzlichen Speicher"]
+
+
+*VMware Cloud Foundation mit NetApp All-Flash SAN-Arrays*
+
+* link:vmw-getting-started-ntap-options.html#netapp-asa-all-san-array-benefits["VCF mit NetApp ASA Arrays, Einführung und Technologieübersicht"]
+* link:vmw-vcf-mgmt-principal-fc.html["Verwenden Sie ONTAP mit FC als Hauptspeicher für Verwaltungsdomänen"]
+* link:vmw-vcf-viwld-principal-fc.html["Verwenden Sie ONTAP mit FC als Hauptspeicher für VI-Workload-Domänen"]
+* link:vmw-vcf-mgmt-supplemental-iscsi.html["Verwenden Sie Ontap Tools, um iSCSI-Datenspeicher in einer VCF-Verwaltungsdomäne bereitzustellen"]
+* link:vmw-vcf-mgmt-supplemental-fc.html["Verwenden Sie Ontap Tools, um FC-Datenspeicher in einer VCF-Verwaltungsdomäne bereitzustellen"]
+* link:vmw-vcf-viwld-supp-iscsi-vvols.html["Verwenden Sie Ontap Tools, um vVols (iSCSI)-Datenspeicher in einer VI-Workload-Domäne bereitzustellen"]
+* link:vmw-vcf-viwld-supp-nvme.html["Konfigurieren Sie NVMe über TCP-Datenspeicher für die Verwendung in einer VI-Workloaddomäne"]
+* link:vmw-vcf-scv-viwld.html["Bereitstellen und Verwenden des SnapCenter Plug-in for VMware vSphere zum Schutz und zur Wiederherstellung von VMs in einer VI-Workloaddomäne"]
+* link:vmw-vcf-scv-nvme.html["Stellen Sie das SnapCenter Plug-in for VMware vSphere bereit und verwenden Sie es, um VMs in einer VI-Workloaddomäne (NVMe/TCP-Datenspeicher) zu schützen und wiederherzustellen."]
+
+
+*VMware Cloud Foundation mit NetApp All-Flash AFF -Arrays*
+
+* link:vmw-getting-started-ntap-options.html#netapp-aff-all-flash-fas-benefits["VCF mit NetApp AFF Arrays, Einführung und Technologieübersicht"]
+* link:vmw-vcf-mgmt-principal-nfs.html["Verwenden Sie ONTAP mit NFS als Hauptspeicher für Verwaltungsdomänen"]
+* link:vmw-vcf-viwld-principal-nfs.html["Verwenden Sie ONTAP mit NFS als Hauptspeicher für VI-Workloaddomänen"]
+* link:vmw-vcf-viwld-supp-nfs-vvols.html["Verwenden Sie ONTAP Tools, um vVols (NFS)-Datenspeicher in einer VI-Workload-Domäne bereitzustellen"]
+
+
+* NetApp FlexPod -Lösungen für VMware Cloud Foundation*
+
+* link:https://www.netapp.com/blog/expanding-flexpod-hybrid-cloud-with-vmware-cloud-foundation/["Erweiterung der FlexPod Hybrid Cloud mit VMware Cloud Foundation"]
+* link:https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_vcf.html["FlexPod als Workload-Domäne für VMware Cloud Foundation"]
+* link:https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_vcf_design.html["FlexPod als Workload-Domäne für VMware Cloud Foundation – Designhandbuch"]
+

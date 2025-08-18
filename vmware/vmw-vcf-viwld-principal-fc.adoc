@@ -1,0 +1,113 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-vcf-viwld-principal-fc.html 
+keywords: netapp, vmware, cloud, foundation, vcf, asa, all-flash, array, ontap tools, otv, sddc, fc 
+summary:  
+---
+= Verwenden Sie einen FC-basierten VMFS-Datenspeicher auf ONTAP als Hauptspeicher für eine VI-Workload-Domäne
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+In diesem Anwendungsfall beschreiben wir das Verfahren zum Einrichten eines Fibre Channel (FC) VMFS-Datenspeichers auf ONTAP als primäre Speicherlösung für eine VMware Cloud Foundation (VCF) Virtual Infrastructure (VI)-Workloaddomäne.  Dieses Verfahren fasst die erforderlichen Komponenten, Konfigurationsschritte und den Bereitstellungsprozess zusammen.
+
+
+
+== Vorteile von Fibre Channel
+
+*Hohe Leistung:* FC bietet Hochgeschwindigkeitsdatenübertragungsraten und ist daher ideal für Anwendungen, die einen schnellen und zuverlässigen Zugriff auf große Datenmengen erfordern.
+
+*Geringe Latenz:* Sehr geringe Latenz, die für leistungssensible Anwendungen wie Datenbanken und virtualisierte Umgebungen entscheidend ist.
+
+*Zuverlässigkeit:* FC-Netzwerke sind für ihre Robustheit und Zuverlässigkeit bekannt und verfügen über Funktionen wie integrierte Redundanz und Fehlerkorrektur.
+
+*Dedizierte Bandbreite:* FC bietet dedizierte Bandbreite für Speicherverkehr und reduziert so das Risiko einer Netzwerküberlastung.
+
+Weitere Informationen zur Verwendung von Fibre Channel mit NetApp -Speichersystemen finden Sie unter https://docs.netapp.com/us-en/ontap/san-admin/san-provisioning-fc-concept.html["SAN-Bereitstellung mit FC"] .
+
+
+
+== Szenarioübersicht
+
+Dieses Szenario umfasst die folgenden allgemeinen Schritte:
+
+* Erstellen Sie eine Storage Virtual Machine (SVM) mit logischen Schnittstellen (LIFs) für FC-Verkehr.
+* Sammeln Sie WWPN-Informationen der bereitzustellenden Hosts und erstellen Sie entsprechende Initiatorgruppen auf dem ONTAP Speichersystem.
+* Erstellen Sie ein FC-Volume auf dem ONTAP -Speichersystem.
+* Ordnen Sie Initiatorgruppen zu, um ein FC-Volume zu erstellen
+* Nutzen Sie Single-Initiator-Target-Zoning auf FC-Switches.  Erstellen Sie für jeden Initiator eine Zone (Einzelinitiatorzone).
++
+** Fügen Sie für jede Zone ein Ziel ein, das die logische ONTAP FC-Schnittstelle (WWPN) für die SVMs ist.  Es sollten mindestens zwei logische Schnittstellen pro Knoten und SVM vorhanden sein.  Verwenden Sie nicht die WWPN der physischen Ports.
+
+
+* Erstellen Sie im SDDC Manager einen Netzwerkpool für vMotion-Datenverkehr.
+* Beauftragen Sie Hosts in VCF zur Verwendung in einer VI-Workload-Domäne.
+* Stellen Sie eine VI-Workload-Domäne in VCF bereit, indem Sie einen FC-Datenspeicher als Hauptspeicher verwenden.
+
+
+
+NOTE: Diese Lösung ist für ONTAP -Plattformen anwendbar, die NFS-Speicher unterstützen, einschließlich NetApp AFF und FAS.
+
+
+
+== Voraussetzungen
+
+In diesem Szenario werden die folgenden Komponenten und Konfigurationen verwendet:
+
+* Ein ONTAP AFF oder ASA Speichersystem mit FC-Ports, die mit FC-Switches verbunden sind.
+* SVM mit FC-Lifs erstellt.
+* vSphere mit FC-HBAs, die mit FC-Switches verbunden sind.
+* Auf FC-Switches ist eine einzelne Initiator-Ziel-Zonierung konfiguriert.
+
+
+
+NOTE: NetApp empfiehlt Multipath für FC-LUNs.
+
+
+
+== Bereitstellungsschritte
+
+
+
+=== Verwaltungsdomäne – Standardcluster
+
+FC-Principal-Speicher auf dem ersten Cluster wird nur mit dem VCF-Brownfield-Importtool unterstützt.  Wenn VCF mit dem Cloudbuilder-Tool (bis Version 5.2.x) bereitgestellt wird, wird nur VSAN unterstützt.  Verweisen https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-5-2-and-earlier/5-2/map-for-administering-vcf-5-2/importing-existing-vsphere-environments-admin/convert-or-import-a-vsphere-environment-into-vmware-cloud-foundation-admin.html["Konvertieren der vorhandenen vSphere-Umgebung in eine Verwaltungsdomäne"] für weitere Informationen.
+
+
+
+=== Verwaltungsdomäne – Zusätzlicher Cluster
+
+Der zusätzliche vSphere-Cluster in der Verwaltungsdomäne kann mit den folgenden Optionen bereitgestellt werden: * Sorgen Sie für einen zusätzlichen Cluster in der vSphere-Umgebung und verwenden Sie das VCF-Brownfield-Importtool, um die vSphere-Umgebung in eine Verwaltungsdomäne zu konvertieren. https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/create-vvols-datastore.html["ONTAP tools for VMware vSphere"] , https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["System Manager oder ONTAP API"] kann verwendet werden, um den VMFS-Datenspeicher im vSphere-Cluster bereitzustellen.  * Verwenden Sie die SDDC-API, um zusätzliche Cluster bereitzustellen.  Auf den vSphere-Hosts sollte der VMFS-Datenspeicher konfiguriert sein.  Verwenden https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["System Manager oder ONTAP API"] um LUN auf vSphere-Hosts bereitzustellen.  * Verwenden Sie die SDDC Manager-Benutzeroberfläche, um zusätzliche Cluster bereitzustellen.  Diese Option erstellt jedoch nur VSAN-Datenspeicher bis Version 5.2.x.
+
+
+
+=== VI-Workloaddomäne – Standardcluster
+
+Nachdem die Verwaltungsdomäne eingerichtet und ausgeführt wird, kann die VI-Workloaddomäne erstellt werden:
+
+* Verwenden der SDDC Manager-Benutzeroberfläche.  Auf den vSphere-Hosts sollte der VMFS-Datenspeicher konfiguriert sein.  Verwenden Sie System Manager oder ONTAP API, um LUN auf vSphere-Hosts bereitzustellen.
+* Importieren Sie eine vorhandene vSphere-Umgebung als neue VI-Workload-Domäne.  ONTAP tools for VMware vSphere, System Manager oder ONTAP API können verwendet werden, um den VMFS-Datenspeicher im vSphere-Cluster bereitzustellen.
+
+
+
+
+=== VI-Workloaddomäne – Zusätzlicher Cluster
+
+Sobald die VI-Arbeitslast läuft, können mithilfe der folgenden Optionen zusätzliche Cluster mit VMFS auf FC LUN bereitgestellt werden.
+
+* Zusätzliche Cluster in der vSphere-Umgebung wurden mit dem VCF-Brownfield-Importtool importiert.  ONTAP tools for VMware vSphere, System Manager oder ONTAP API können verwendet werden, um den VMFS-Datenspeicher im vSphere-Cluster bereitzustellen.
+* Verwenden Sie die SDDC Manager-Benutzeroberfläche oder API, um zusätzliche Cluster bereitzustellen.  Auf den vSphere-Hosts sollte der VMFS-Datenspeicher konfiguriert sein.  Verwenden Sie System Manager oder ONTAP API, um LUN auf vSphere-Hosts bereitzustellen.
+
+
+
+
+== Weitere Informationen
+
+Informationen zur Konfiguration von ONTAP Speichersystemen finden Sie imlink:https://docs.netapp.com/us-en/ontap["ONTAP 9 Dokumentation"] Center.
+
+Informationen zur Konfiguration von VCF finden Sie unterlink:https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-5-2-and-earlier/5-2.html["VMware Cloud Foundation-Dokumentation"] .

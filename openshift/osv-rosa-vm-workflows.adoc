@@ -1,0 +1,55 @@
+---
+sidebar: sidebar 
+permalink: openshift/osv-rosa-vm-workflows.html 
+keywords: OpenShift, OCP, Trident, NetApp ONTAP, Red Hat OpenShift, OpenShift Virtualization, ROSA, CNV, Container Native Virtualization, Red Hat OpenShift Virtualization 
+summary: Red Hat OpenShift-Virtualisierung auf ROSA 
+---
+= Starten Sie VMs in Red Hat OpenShift Virtualization mit FSx für ONTAP auf einem ROSA-Cluster neu oder migrieren Sie sie
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Starten Sie eine VM neu oder führen Sie eine Live-Migration der VM zwischen zwei Knoten in OpenShift Virtualization mit Amazon FSx for ONTAP durch.
+
+Klicken Sie auf die Schaltfläche „Neustart“.image:redhat-openshift-ocpv-rosa-020.png["OCP-v VM-Neustart"]
+
+Die VM kehrt mit genau denselben Dateisystemen, PVCs und Dateien in den Dateisystemen in den laufenden Zustand zurückimage:redhat-openshift-ocpv-rosa-021.png["OCP-v VM startet Dateisysteme neu"]
+
+image:redhat-openshift-ocpv-rosa-022.png["OCP-v VM-Neustartdatenträger"]
+
+image:redhat-openshift-ocpv-rosa-023.png["OCP-v VM-Neustartdateien"]
+
+
+
+== VM-Livemigration
+
+In diesem Abschnitt führen wir eine VM-Livemigration durch und untersuchen dann den Inhalt der Festplatten.  Unter Livemigration versteht man den Vorgang, eine laufende virtuelle Maschine (VM) von einem physischen Host auf einen anderen Host zu verschieben, ohne den normalen Betrieb zu stören oder Ausfallzeiten oder andere negative Auswirkungen für den Endbenutzer zu verursachen.  Die Live-Migration gilt als wichtiger Schritt bei der Virtualisierung.  Es ermöglicht die Verschiebung einer gesamten VM mit laufendem Betriebssystem (OS), Arbeitsspeicher, Speicherplatz und Netzwerkkonnektivität von ihrem aktuellen Knoten zum Ziel.  Im Folgenden sehen wir, wie eine Live-Migration der VM vom aktuellen Knoten auf einen neuen Knoten durchgeführt wird.
+
+Notieren Sie den Knoten, auf dem die VM ausgeführt wirdimage:redhat-openshift-ocpv-rosa-024.png["OCP-v VM aktueller Knoten"]
+
+Klicken Sie auf die 3 Punkte und wählen Sie Migrierenimage:redhat-openshift-ocpv-rosa-025.png["OCP-v VM Live-Migration"]
+
+Auf der Übersichtsseite können Sie sehen, dass die Migration erfolgreich war und der Status sich in „Erfolgreich“ geändert hat.image:redhat-openshift-ocpv-rosa-026.png["Erfolgreiche OCP-v-VM-Migration"]
+
+Nach Abschluss der Live-Migration befindet sich die VM nun auf einem anderen Knoten.image:redhat-openshift-ocpv-rosa-027.png["OCP-v VM auf einem anderen Knoten"]
+
+Öffnen Sie die Webkonsole und zeigen Sie den Inhalt der Datenträger an.  Es sind immer noch dieselben 2 Dateien vorhanden, die wir vor der Live-Migration erstellt haben.image:redhat-openshift-ocpv-rosa-028.png["OCP-v VM gleiche Dateien nach Live-Migration1"] image:redhat-openshift-ocpv-rosa-029.png["OCP-v VM gleiche Dateien nach Live-Migration2"]
+
+Der Speicher für die VM auf dem neuen Knoten zeigt immer noch dieselben Datenträger animage:redhat-openshift-ocpv-rosa-030.png["OCP-v VM gleiche Festplatten nach Live-Migration"]
+
+Auch die PVCs sind dieselben.image:redhat-openshift-ocpv-rosa-031.png["OCP-v VM gleiche PVCs nach Live-Migration"]
+
+Die mit dem VM-Pod verknüpften Volumes sind ebenfalls dieselben (2 PVCs) wie zuvor.image:redhat-openshift-ocpv-rosa-032.png["OCP-v VM gleiche PVCs nach Live-Migration"]
+
+
+
+== Demo-Video
+
+.Live-Migration virtueller Maschinen in OpenShift Virtualization auf ROSA mit Amazon FSx for NetApp ONTAP
+video::4b3ef03d-7d65-4637-9dab-b21301371d7d[panopto,width=360]
+Weitere Videos zu Red Hat OpenShift und OpenShift-Virtualisierungslösungen finden Sielink:../videos/openshift-videos.html["hier,"] .

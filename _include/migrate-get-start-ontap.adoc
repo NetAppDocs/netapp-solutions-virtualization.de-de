@@ -1,0 +1,21 @@
+= Anwendungsfälle
+:allow-uri-read: 
+
+
+Diese Migration ermöglicht eine nahtlose Integration, verbesserten Datenschutz und größere Flexibilität bei der Verwaltung virtualisierter Umgebungen und gewährleistet einen reibungslosen Übergang mit minimalen Ausfallzeiten.
+
+
+
+== Anwendungsfälle
+
+Wenn Sie eine Migration auf ONTAP gestützte Datenspeicher in Erwägung ziehen, stehen Ihnen hinsichtlich Quelle und Ziel zahlreiche Migrationsoptionen zur Verfügung.
+
+* Migration von Speichersystemen von Drittanbietern (einschließlich vSAN) zu ONTAP -Datenspeichern.
+* Migration von VMs im selben vSphere-Cluster
+* Migration von VMs über mehrere vSphere-Cluster
+* Migration von VMs über vCenter-Server in derselben SSO-Domäne
+* Migration von VMs über vCenter-Server in verschiedenen SSO-Domänen
+* Migration von VMs zwischen Rechenzentrumsstandorten
+* Migration von Speichersystemen von Drittanbietern (einschließlich vSAN) zu ONTAP -Datenspeichern.
+* Migration von VMs in einer Hybrid-Cloud-Umgebung
+

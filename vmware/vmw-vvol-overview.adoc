@@ -1,0 +1,197 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-vvol-overview.html 
+keywords: netapp, vmware, getting, started, vvol, ONTAP tools 
+summary:  
+---
+= Erfahren Sie mehr über die Verwendung von VMware Virtual Volumes (vVols) mit ONTAP -Speicher
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Informieren Sie sich über die Vorteile von VMware Virtual Volumes (vVols), die Bereitstellung von ONTAP tools for VMware vSphere, Datenschutzstrategien und Richtlinien zur VM-Migration.
+
+
+
+== Überblick
+
+Die vSphere API for Storage Awareness (VASA) erleichtert einem VM-Administrator die Nutzung aller erforderlichen Speicherfunktionen zur Bereitstellung von VMs, ohne mit seinem Speicherteam interagieren zu müssen.  Vor VASA konnten VM-Administratoren VM-Speicherrichtlinien definieren, mussten jedoch mit ihren Speicheradministratoren zusammenarbeiten, um geeignete Datenspeicher zu identifizieren, häufig mithilfe von Dokumentationen oder Namenskonventionen.  Mit VASA können vCenter-Administratoren mit den entsprechenden Berechtigungen eine Reihe von Speicherfunktionen definieren, die vCenter-Benutzer dann zum Bereitstellen von VMs verwenden können.  Durch die Zuordnung zwischen VM-Speicherrichtlinie und Datenspeicher-Speicherfähigkeitsprofil kann vCenter eine Liste kompatibler Datenspeicher zur Auswahl anzeigen und anderen Technologien wie Aria (früher bekannt als vRealize) Automation oder Tanzu Kubernetes Grid ermöglichen, automatisch Speicher aus einer zugewiesenen Richtlinie auszuwählen.  Dieser Ansatz wird als speicherrichtlinienbasierte Verwaltung bezeichnet.  Obwohl Speicherkapazitätsprofile und -richtlinien auch mit herkömmlichen Datenspeichern verwendet werden können, liegt unser Schwerpunkt hier auf vVols Datenspeichern.  Der VASA-Anbieter für ONTAP ist Teil der ONTAP tools for VMware vSphere.
+
+Zu den Vorteilen eines VASA-Anbieters außerhalb des Speicherarrays gehören:
+
+* Eine einzelne Instanz kann mehrere Speicher-Arrays verwalten.
+* Der Veröffentlichungszyklus muss nicht von der Veröffentlichung des Storage OS abhängen.
+* Ressourcen auf Speicherarrays sind sehr teuer.
+
+
+Jeder vVol-Datenspeicher wird durch einen Speichercontainer unterstützt, der ein logischer Eintrag im VASA-Anbieter ist, um die Speicherkapazität zu definieren.  Der Speichercontainer mit ONTAP -Tools wird mit ONTAP -Volumes erstellt.  Der Speichercontainer kann durch Hinzufügen von ONTAP Volumes innerhalb desselben SVM erweitert werden.
+
+Der Protocol Endpoint (PE) wird größtenteils von ONTAP -Tools verwaltet.  Bei iSCSI-basierten vVols wird für jedes ONTAP Volume, das Teil dieses Speichercontainers oder vVol-Datenspeichers ist, ein PE erstellt.  Das PE für iSCSI ist ein kleines LUN (4 MiB für 9.x und 2 GiB für 10.x), das dem vSphere-Host präsentiert wird und auf das Multipathing-Richtlinien angewendet werden.
+
+image:vmware-vvol-overview-001.png["iSCSI PE-Architektur"]
+
+image:vmware-vvol-overview-005.png["iSCSI PE-Größe von CLI"]
+
+Für NFS wird ein PE für den Root-Dateisystemexport mit jedem NFS-Datenlebenszyklus auf SVM erstellt, auf dem sich der Speichercontainer oder der vVol-Datenspeicher befindet.
+
+image:vmware-vvol-overview-002.png["NFS PE-Architektur"]
+
+image:vmware-vvol-overview-006.png["NFS PE von der vSphere-Benutzeroberfläche"]
+
+ONTAP -Tools verwalten den Lebenszyklus von PE und auch die vSphere-Hostkommunikation mit der Erweiterung und Verkleinerung von vSphere-Clustern.  Die ONTAP -Tools-API ist zur Integration in vorhandene Automatisierungstools verfügbar.
+
+Derzeit sind ONTAP tools for VMware vSphere in zwei Versionen verfügbar.
+
+
+
+== ONTAP -Tools 9.x
+
+* Wenn vVol-Unterstützung für NVMe/FC erforderlich ist
+* US-Bundes- oder EU-Regulierungsanforderungen
+* Weitere Anwendungsfälle mit SnapCenter Plug-in for VMware vSphere integriert
+
+
+
+
+== ONTAP -Tools 10.x
+
+* Hohe Verfügbarkeit
+* Mandantenfähigkeit
+* Großformat
+* SnapMirror Active Sync-Unterstützung für VMFS-Datenspeicher
+* Kommende Integration für bestimmte Anwendungsfälle mit SnapCenter Plug-in for VMware vSphere
+
+
+
+
+== Warum vVols?
+
+VMware Virtual Volumes (vVols) bietet die folgenden Vorteile:
+
+* Vereinfachte Bereitstellung (Sie müssen sich keine Gedanken über maximale LUN-Grenzen pro vSphere-Host machen oder NFS-Exporte für jedes Volume erstellen)
+* Minimiert die Anzahl der iSCSI/FC-Pfade (für Block-SCSI-basiertes vVol)
+* Snapshots, Klone und andere Speichervorgänge werden normalerweise auf das Speicherarray ausgelagert und sind viel schneller.
+* Vereinfachte Datenmigrationen für die VMs (keine Koordination mit anderen VM-Besitzern im selben LUN erforderlich)
+* QoS-Richtlinien werden auf VM-Festplattenebene und nicht auf Volumeebene angewendet.
+* Einfache Bedienung (Speicheranbieter stellen ihre differenzierten Funktionen im VASA-Anbieter bereit)
+* Unterstützt große VM-Skalen.
+* vVol-Replikationsunterstützung zur Migration zwischen vCentern.
+* Speicheradministratoren haben die Möglichkeit, die Überwachung auf VM-Datenträgerebene durchzuführen.
+
+
+
+
+== Konnektivitätsoptionen
+
+Für Speichernetzwerke wird normalerweise eine Dual-Fabric-Umgebung empfohlen, um hohe Verfügbarkeit, Leistung und Fehlertoleranz zu gewährleisten.  Die vVols werden mit iSCSI, FC, NFSv3 und NVMe/FC unterstützt.  HINWEIS: Siehelink:https://imt.netapp.com/matrix["Interoperabilitätsmatrix-Tool (IMT)"] für unterstützte ONTAP Tool-Version
+
+Die Konnektivitätsoption bleibt mit den Optionen für VMFS-Datenspeicher oder NFS-Datenspeicher konsistent.  Unten wird ein Beispiel für ein vSphere-Referenznetzwerk für iSCSI und NFS angezeigt.
+
+image:vmware-vvol-overview-003.png["iSCSI-Netzwerk"]
+
+image:vmware-vvol-overview-004.png["NFS-Netzwerk"]
+
+
+
+== Bereitstellung mit ONTAP tools for VMware vSphere
+
+Der vVol-Datenspeicher kann mithilfe von ONTAP Tools ähnlich wie VMFS- oder NFS-Datenspeicher bereitgestellt werden.  Wenn das ONTAP Tools-Plug-In auf der vSphere-Client-Benutzeroberfläche nicht verfügbar ist, lesen Sie den Abschnitt „Erste Schritte“ weiter unten.
+
+
+
+=== Mit ONTAP -Tools 9.13
+
+. Klicken Sie mit der rechten Maustaste auf den vSphere-Cluster oder -Host und wählen Sie unter NetApp ONTAP Tools „Datastore bereitstellen“ aus.
+. Behalten Sie den Typ als vVols bei, geben Sie einen Namen für den Datenspeicher an und wählen Sie das gewünschte Protokoll ausimage:vmware-vvol-overview-007.png["iSCSI vVol-Datenspeicher mit 9.13"]
++
+image:vmware-vvol-overview-008.png["NFS vVol-Datenspeicher mit 9.13"]
+
+. Wählen Sie das gewünschte Speicherkapazitätsprofil aus und wählen Sie das Speichersystem und die SVM aus.image:vmware-vvol-overview-009.png["Speichersystem und SVM mit 9.13"]
+. Erstellen Sie neue ONTAP -Volumes oder wählen Sie ein vorhandenes für den vVol-Datenspeicher aus.image:vmware-vvol-overview-010.png["vVol-Volumes mit 9.13"]
++
+ONTAP Volumes können später über die Datenspeicheroption angezeigt oder geändert werden.
+
++
+image:vmware-vvol-overview-011.png["vVol-Erweiterung mit 9.13"]
+
+. Überprüfen Sie die Zusammenfassung und klicken Sie auf „Fertig stellen“, um den vVol-Datenspeicher zu erstellen.image:vmware-vvol-overview-012.png["iSCSI vVol-Datenspeicherübersicht mit 9.13"]
+. Sobald der vVol-Datenspeicher erstellt ist, kann er wie jeder andere Datenspeicher genutzt werden.  Hier ist ein Beispiel für die Zuweisung eines Datenspeichers basierend auf der VM-Speicherrichtlinie zu einer VM, die erstellt wird.image:vmware-vvol-overview-013.png["vVol VM-Speicherrichtlinie"]
+. vVol-Details können über die webbasierte CLI-Schnittstelle abgerufen werden.  Die URL des Portals ist dieselbe wie die URL des VASA-Anbieters ohne den Dateinamen version.xml.image:vmware-vvol-overview-014.png["VASA-Anbieterinformationen für 9.13"]
++
+Die Anmeldeinformationen sollten mit den Informationen übereinstimmen, die bei der Bereitstellung der ONTAP -Tools verwendet wurdenimage:vmware-vvol-overview-015.png["VASA-Client-Benutzeroberfläche"]
+
++
+oder verwenden Sie ein aktualisiertes Passwort mit der Wartungskonsole der ONTAP -Tools. image:vmware-vvol-overview-016.png["ONTAP Tools-Konsolen-UI"] Wählen Sie die webbasierte CLI-Schnittstelle. image:vmware-vvol-overview-017.png["ONTAP Tools-Steuerkonsole"] Geben Sie den gewünschten Befehl aus der Liste „Verfügbare Befehle“ ein.  Um die vVol-Details zusammen mit den zugrunde liegenden Speicherinformationen aufzulisten, versuchen Sie vvol list -verbose=trueimage:vmware-vvol-overview-018.png["vVol-Info mit 9.13"] Für LUN-basierte Systeme können auch die ONTAP CLI oder der System Manager verwendet werden. image:vmware-vvol-overview-019.png["vVol LUN-Informationen mit ONTAP CLI"] image:vmware-vvol-overview-020.png["vVol LUN-Informationen mit System Manager"] Bei NFS-basierten Systemen kann der System Manager zum Durchsuchen des Datenspeichers verwendet werden.image:vmware-vvol-overview-021.png["vVol NFS-Informationen mit System Manager"]
+
+
+
+
+
+=== Mit ONTAP Tools 10.1
+
+. Klicken Sie mit der rechten Maustaste auf den vSphere-Cluster oder -Host und wählen Sie unter NetApp ONTAP Tools „Datastore erstellen (10.1)“ aus.
+. Wählen Sie als Datenspeichertyp „vVols“ aus. image:vmware-vvol-overview-022.png["vVol-Datenspeicherauswahl mit 10.1"] Wenn die Option „vVols“ nicht verfügbar ist, stellen Sie sicher, dass der VASA-Anbieter registriert ist.image:vmware-vvol-overview-023.png["VASA-Registrierung mit 10.1"]
+. Geben Sie den Namen des vVol-Datenspeichers an und wählen Sie das Transportprotokoll aus.image:vmware-vvol-overview-024.png["vVol-Datenspeichername und Transportprotokoll mit 10.1"]
+. Wählen Sie Plattform und Speicher-VM aus.image:vmware-vvol-overview-025.png["vVol-Datenspeicher SVM-Auswahl mit 10.1"]
+. Erstellen oder verwenden Sie vorhandene ONTAP Volumes für den vVol-Datenspeicher. image:vmware-vvol-overview-026.png["vVol-Datenspeicher-Volume-Auswahl mit 10.1"] ONTAP -Volumes können später über die Datastore-Konfiguration angezeigt oder aktualisiert werden.image:vmware-vvol-overview-027.png["vVol-Datenspeichererweiterung mit 10.1"]
+. Nachdem der vVol-Datenspeicher bereitgestellt wurde, kann er wie jeder andere Datenspeicher genutzt werden.
+. ONTAP -Tools stellen den VM- und Datastore-Bericht bereit.image:vmware-vvol-overview-028.png["VM-Bericht mit 10.1"] image:vmware-vvol-overview-029.png["Datastore-Bericht mit 10.1"]
+
+
+
+
+== Datenschutz von VMs im vVol-Datenspeicher
+
+Eine Übersicht über den Datenschutz von VMs auf vVol-Datenspeichern finden Sie unterlink:https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vvols-protect.html["Schutz von vVols"] .
+
+. Registrieren Sie das Speichersystem, das den vVol-Datenspeicher und alle Replikationspartner hostet.image:vmware-vvol-overview-030.png["Speichersystemregistrierung mit SCV"]
+. Erstellen Sie eine Richtlinie mit den erforderlichen Attributen.image:vmware-vvol-overview-031.png["Richtlinienerstellung mit SCV"]
+. Erstellen Sie eine Ressourcengruppe und ordnen Sie sie einer Richtlinie (oder Richtlinien) zu. image:vmware-vvol-overview-032.png["Ressourcengruppenerstellung mit SCV"] HINWEIS: Für den vVol-Datenspeicher ist ein Schutz mit VM, Tag oder Ordner erforderlich. Der vVol-Datenspeicher kann nicht in die Ressourcengruppe aufgenommen werden.
+. Der spezifische Sicherungsstatus der VM kann auf der Registerkarte „Konfigurieren“ angezeigt werden.image:vmware-vvol-overview-033.png["Sicherungsstatus einer VM mit SCV"]
+. VM kann von ihrem primären oder sekundären Standort wiederhergestellt werden.
+
+
+Verweisenlink:https://docs.netapp.com/us-en/sc-plugin-vmware-vsphere/scpivs44_attach_vmdks_to_a_vm.html["SnapCenter -Plug-In-Dokumentation"] für zusätzliche Anwendungsfälle.
+
+
+
+== VM-Migration von herkömmlichen Datenspeichern zu vVol-Datenspeichern
+
+Um VMs von anderen Datenspeichern in einen vVol-Datenspeicher zu migrieren, stehen je nach Szenario verschiedene Optionen zur Verfügung.  Es kann von einem einfachen Storage-vMotion-Vorgang bis hin zur Migration mit HCX variieren.  Verweisenlink:../migration/migrate-vms-to-ontap-datastore.html["Migrieren Sie VMs zum ONTAP Datenspeicher"] für weitere Details.
+
+
+
+== VM-Migration zwischen vVol-Datenspeichern
+
+Für die Massenmigration von VMs zwischen vVol-Datenspeichern prüfen Sie bittelink:../migration/migrate-vms-to-ontap-datastore.html["Migrieren Sie VMs zum ONTAP Datenspeicher"] .
+
+
+
+== Beispielreferenzarchitektur
+
+ONTAP tools for VMware vSphere und SCV können auf demselben vCenter installiert werden, das sie verwalten, oder auf einem anderen vCenter-Server.  Es ist besser, das Hosten auf dem von ihm verwalteten vVol-Datenspeicher zu vermeiden.
+
+image:vmware-vvol-overview-034.png["ONTAP -Tools: eins pro vCenter"]
+
+Da viele Kunden ihre vCenter-Server auf einem anderen Server hosten, anstatt sie zu verwalten, wird ein ähnlicher Ansatz auch für ONTAP -Tools und SCV empfohlen.
+
+image:vmware-vvol-overview-035.png["ONTAP -Tools auf Management-vCenter"]
+
+Mit ONTAP Tools 10.x kann eine einzelne Instanz mehrere vCenter-Umgebungen verwalten.  Die Speichersysteme werden global mit Cluster-Anmeldeinformationen registriert und den vCenter-Servern jedes Mandanten werden SVMs zugewiesen.
+
+image:vmware-vvol-overview-036.png["Multi-vCenter-Unterstützung mit ONTAP -Tools 10.x"]
+
+Eine Mischung aus dediziertem und gemeinsam genutztem Modell wird ebenfalls unterstützt.
+
+image:vmware-vvol-overview-037.png["Mischung aus gemeinsam genutzten und dedizierten ONTAP -Tools"]
+
+
+
+== Erste Schritte
+
+Wenn ONTAP Tools in Ihrer Umgebung nicht installiert sind, laden Sie sie bitte vonlink:https://support.netapp.com["NetApp Support Site"] und befolgen Sie die Anweisungen unterlink:https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vvols-ontap.html["Verwenden von vVols mit ONTAP"] .

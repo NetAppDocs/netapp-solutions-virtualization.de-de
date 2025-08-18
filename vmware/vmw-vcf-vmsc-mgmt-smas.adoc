@@ -1,0 +1,74 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-vcf-vmsc-mgmt-smas.html 
+keywords: netapp, vmware, cloud, foundation, vcf, asa, all-flash, array, ontap tools, otv, sddc, iscsi 
+summary:  
+---
+= Konfigurieren eines Stretch-Clusters für eine VCF-Verwaltungsdomäne mit SnapMirror Active Sync
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+In diesem Anwendungsfall beschreiben wir das Verfahren zur Verwendung von ONTAP tools for VMware vSphere zum Konfigurieren eines Stretch-Clusters für eine VCF-Verwaltungsdomäne.  Dieses Verfahren umfasst die Bereitstellung von vSphere-Hosts und vCenter Server, die Installation von ONTAP Tools, den Schutz von Datenspeichern mit SnapMirror Active Sync, die Migration von VMs zu geschützten Datenspeichern und die Konfiguration von zusätzlichem Speicher.
+
+image:vmware-vcf-asa-mgmt-stretchcluster-001.png["Einzelne Instanz – mehrere Verfügbarkeitszonen"]
+
+
+
+== Szenarioübersicht
+
+Die Stretch-Cluster-Lösung kann auf einem Standardcluster oder einem zusätzlichen Cluster in VCF-Verwaltungs- oder Workloaddomänen implementiert werden.  VMFS auf FC wird sowohl auf dem Hauptdatenspeicher als auch auf zusätzlichen Datenspeichern unterstützt.  VMFS auf iSCSI wird nur mit zusätzlichen Datenspeichern unterstützt.  Informationen zur Unterstützung von VMFS auf NVMe-oF mit SnapMirror Active Sync erhalten Sie bei IMT .
+
+image:vmware-vcf-asa-mgmt-stretchcluster-002.png["Stretch Cluster mit ONTAP für die VCF-Verwaltungsdomäne"]
+
+.Hauptspeicher in der Verwaltungsdomäne
+[%collapsible%open]
+====
+Ab VCF 5.2 kann die Verwaltungsdomäne mithilfe des VCF-Importtools ohne VSAN bereitgestellt werden.  Die Konvertierungsoption des VCF-Importtools ermöglichtlink:vmw-vcf-mgmt-fc.html["eine vorhandene vCenter-Bereitstellung in eine Verwaltungsdomäne"] .  Alle Cluster in vCenter werden Teil der Verwaltungsdomäne.
+
+. Bereitstellen von vSphere-Hosts
+. Stellen Sie den vCenter-Server auf einem lokalen Datenspeicher bereit (vCenter muss auf vSphere-Hosts koexistieren, die in eine Verwaltungsdomäne umgewandelt werden).
+. Bereitstellen von ONTAP tools for VMware vSphere
+. SnapCenter -Plugin für VMware vSphere bereitstellen (optional)
+. Datenspeicher erstellen (FC-Zonenkonfiguration sollte vorhanden sein)
+. Schützen Sie den vSphere-Cluster
+. Migrieren Sie VMs in einen neu erstellten Datenspeicher
+
+
+
+NOTE: Wenn der Cluster erweitert oder verkleinert wird, muss die Host-Cluster-Beziehung in den ONTAP Tools für den Cluster aktualisiert werden, um die an der Quelle oder dem Ziel vorgenommenen Änderungen anzuzeigen.
+
+====
+.Zusätzlicher Speicher in der Verwaltungsdomäne
+[%collapsible%open]
+====
+Sobald die Verwaltungsdomäne betriebsbereit ist, können mithilfe von ONTAP -Tools zusätzliche Datenspeicher erstellt werden, die die Erweiterung der Konsistenzgruppe auslösen.
+
+
+TIP: Wenn ein vSphere-Cluster geschützt ist, sind alle Datenspeicher im Cluster geschützt.
+
+Wenn die VCF-Umgebung mit dem Cloud Builder-Tool bereitgestellt wird, stellen Sie zum Erstellen des zusätzlichen Speichers mit iSCSI ONTAP -Tools bereit, um den iSCSI-Datenspeicher zu erstellen und den vSphere-Cluster zu schützen.
+
+
+NOTE: Wenn der Cluster erweitert oder verkleinert wird, muss die Host-Cluster-Beziehung in den ONTAP Tools für den Cluster aktualisiert werden, um die an der Quelle oder dem Ziel vorgenommenen Änderungen anzuzeigen.
+
+====
+
+
+== Weitere Informationen
+
+Informationen zur Konfiguration von ONTAP Speichersystemen finden Sie imlink:https://docs.netapp.com/us-en/ontap["ONTAP 9 Dokumentation"] Center.
+
+Informationen zur Konfiguration von VCF finden Sie unterlink:https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-5-2-and-earlier/5-2.html["Dokumentation zu VMware Cloud Foundation 5.2"] .
+
+
+
+== Videodemo für diese Lösung
+
+.Stretch-Cluster für VCF mit ONTAP -Tools
+video::569a91a9-2679-4414-b6dc-b25d00ff0c5a[panopto,width=360]

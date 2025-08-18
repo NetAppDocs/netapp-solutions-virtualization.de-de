@@ -1,0 +1,46 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-dr-gs.html 
+keywords: vmware, getting, started, overview, netapp, bluexp, disaster, recovery, draas 
+summary:  
+---
+= Erfahren Sie mehr über die Notfallwiederherstellung virtueller Maschinen mit BlueXP disaster recovery
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+BlueXP disaster recovery automatisiert die Replikation und Wiederherstellung virtueller VMware-Maschinen mithilfe von ONTAP Speicher.  Es unterstützt die Wiederherstellung von der lokalen Einrichtung zu VMware Cloud auf AWS mit Amazon FSx for NetApp ONTAP oder einer anderen lokalen VMware-Umgebung.
+
+
+
+== Einführung
+
+Ein erfolgreicher Plan und eine Kombination von Technologien gewährleisten den Schutz kritischer Daten, Anwendungen und VMs.  Die Herausforderung bei DR besteht darin, das angemessene Schutzniveau und die damit verbundenen Kosten zu bestimmen.
+
+ONTAP -Arrays bieten integrierte Replikation zum Übertragen von Volume-Daten und damit der virtuellen Maschinen, die sich auf den angegebenen Datastore-LUNs befinden, von einem Standort zum anderen. BlueXP DRaaS lässt sich in vSphere integrieren und automatisiert den gesamten Workflow für nahtloses Failover und Failback im Katastrophenfall.
+
+Weitere Informationen zu BlueXP DRaaS finden Sie unterlink:https://docs.netapp.com/us-en/netapp-solutions-cloud/vmware/vmw-hybrid-dr-overview.html["Übersicht über BlueXP DRaaS"^] .
+
+
+
+== Überlegungen
+
+Der zeitaufwändigste Teil eines DR-Failovers in einer VMware vSphere-Umgebung ist die Ausführung der Schritte, die zum Inventarisieren, Registrieren, Neukonfigurieren und Einschalten der VMs am DR-Standort erforderlich sind. Eine ideale Lösung hat sowohl einen niedrigen RPO (gemessen in Minuten) als auch einen niedrigen RTO (gemessen in Minuten bis Stunden). Ein Faktor, der bei einer DR-Lösung oft übersehen wird, ist die Möglichkeit, die DR-Lösung in regelmäßigen Abständen effizient zu testen.
+
+Berücksichtigen Sie beim Entwerfen einer DR-Lösung die folgenden Faktoren:
+
+* Das Wiederherstellungszeitziel (RTO). Die RTO gibt an, wie schnell sich ein Unternehmen von einem Desaster erholen kann, oder genauer gesagt, wie lange es dauert, den Wiederherstellungsprozess auszuführen, um die Geschäftsdienste wieder verfügbar zu machen.
+* Das Wiederherstellungspunktziel (RPO). Das RPO gibt an, wie alt die wiederhergestellten Daten nach ihrer Bereitstellung im Verhältnis zum Zeitpunkt des Katastrophenfalls sind.
+* Skalierbarkeit und Anpassungsfähigkeit. Zu diesem Faktor gehört die Möglichkeit, die Speicherressourcen bei steigender Nachfrage schrittweise zu erweitern.
+
+
+Weitere technische Informationen zu den verfügbaren Lösungen finden Sie unter:
+
+* link:https://docs.netapp.com/us-en/netapp-solutions-cloud/vmware/vmw-hybrid-dr-nfs.html["DR mit BlueXP DRaaS für NFS-Datenspeicher"^]
+* link:https://docs.netapp.com/us-en/netapp-solutions-cloud/vmware/vmw-hybrid-dr-vmfs.html["DR mit BlueXP DRaaS für VMFS-Datenspeicher"^]
+

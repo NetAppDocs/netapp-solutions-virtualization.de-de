@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-vcf-protect-sc.html 
+keywords: vmware, vcf, protect, snapcenter 
+summary:  
+---
+= Erfahren Sie mehr über den Schutz von VCF-Workload-Domänen mit dem SnapCenter -Plug-in für VMware vSphere
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Informieren Sie sich über die NetApp -Lösungen, die Sie zum Schutz von VMware Cloud Foundation (VCF)-Workloads mit dem SnapCenter Plug-in for VMware vSphere verwenden können.  Dieses Plug-in vereinfacht die Sicherung und Wiederherstellung, gewährleistet anwendungskonsistente Sicherungen und optimiert den Speicher mit den Effizienztechnologien von NetApp.
+
+Es unterstützt automatisierte Arbeitsabläufe und skalierbare Vorgänge und bietet gleichzeitig eine nahtlose Integration mit dem vSphere-Client.  Mit der SnapMirror -Replikation, die eine sekundäre Sicherung vor Ort oder in der Cloud ermöglicht, bietet es robusten Datenschutz und betriebliche Effizienz in virtualisierten Umgebungen.
+
+Weitere Einzelheiten finden Sie in den folgenden Lösungen.
+
+* link:vmw-vcf-scv-viwld.html["Schützen der VCF-Workloaddomäne"]
+* link:vmw-vcf-scv-multiwkld-protection.html["Schützen Sie mehrere VCF-Workloaddomänen"]
+* link:vmw-vcf-scv-nvme.html["Schützen Sie die VCF-Workload-Domäne mit NVMe"]
+* link:vmw-vcf-321-data-protection.html["3-2-1-Datenschutz für VMware mit SnapCenter -Plug-in und BlueXP backup and recovery für VMs"]
+

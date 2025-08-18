@@ -1,0 +1,124 @@
+---
+sidebar: sidebar 
+permalink: openshift/osv-vm-restore-using-velero.html 
+keywords: OpenShift, OCP, Trident, NetApp ONTAP, Red Hat OpenShift, OpenShift Virtualization, CNV, Container Native Virtualization, Red Hat OpenShift Virtualization, OADP operator, Openshift Data Protection Application operator, velero 
+summary: Red Hat OpenShift-Virtualisierung mit NetApp ONTAP 
+---
+= Wiederherstellen einer VM aus einem Backup in Red Hat OpenShift Virtualization mit Velero
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Stellen Sie VMs in OpenShift Virtualization mit Velero und der OpenShift API for Data Protection (OADP) wieder her.  Dieses Verfahren umfasst das Erstellen einer benutzerdefinierten Wiederherstellungsressource (CR) zum Wiederherstellen von VMs und ihren persistenten Volumes aus Sicherungen mit Optionen zum Wiederherstellen im ursprünglichen Namespace, einem anderen Namespace oder unter Verwendung einer alternativen Speicherklasse.
+
+
+
+== Voraussetzungen
+
+Um eine Wiederherstellung aus einer Sicherung durchzuführen, gehen wir davon aus, dass der Namespace, in dem sich die virtuelle Maschine befand, versehentlich gelöscht wurde.
+
+.Wiederherstellen im selben Namespace
+[%collapsible%open]
+====
+Um die Wiederherstellung aus der gerade erstellten Sicherung durchzuführen, müssen wir eine benutzerdefinierte Wiederherstellungsressource (CR) erstellen. Wir müssen ihm einen Namen geben, den Namen des Backups angeben, aus dem wir wiederherstellen möchten, und die RestorePVs auf „true“ setzen. Weitere Parameter können wie in der Abbildung gezeigt eingestellt werden.link:https://docs.openshift.com/container-platform/4.14/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/restoring-applications.html["Dokumentation"] . Klicken Sie auf die Schaltfläche „Erstellen“.
+
+image:redhat-openshift-oadp-restore-001.png["Wiederherstellungs-CR erstellen"]
+
+....
+apiVersion: velero.io/v1
+kind: Restore
+metadata:
+  name: restore1
+  namespace: openshift-adp
+spec:
+  backupName: backup1
+  restorePVs: true
+....
+Wenn die Phase als abgeschlossen angezeigt wird, können Sie sehen, dass die virtuellen Maschinen in den Zustand zurückversetzt wurden, in dem sie sich zum Zeitpunkt der Snapshot-Erstellung befanden.  (Wenn die Sicherung erstellt wurde, als die VM ausgeführt wurde, wird durch die Wiederherstellung der VM aus der Sicherung die wiederhergestellte VM gestartet und in einen laufenden Zustand versetzt.)  Die VM wird im selben Namespace wiederhergestellt.
+
+image:redhat-openshift-oadp-restore-002.png["Wiederherstellung abgeschlossen"]
+
+====
+.Wiederherstellen in einem anderen Namespace
+[%collapsible%open]
+====
+Um die VM in einem anderen Namespace wiederherzustellen, können Sie in der YAML-Definition der Wiederherstellungs-CR ein NamespaceMapping angeben.
+
+Die folgende YAML-Beispieldatei erstellt eine Wiederherstellungs-CR, um eine VM und ihre Datenträger im Namespace „virtual-machines-demo“ wiederherzustellen, wenn die Sicherung in den Namespace „virtual-machines“ übernommen wurde.
+
+....
+apiVersion: velero.io/v1
+kind: Restore
+metadata:
+  name: restore-to-different-ns
+  namespace: openshift-adp
+spec:
+  backupName: backup
+  restorePVs: true
+  includedNamespaces:
+  - virtual-machines-demo
+  namespaceMapping:
+    virtual-machines-demo: virtual-machines
+....
+Wenn die Phase als abgeschlossen angezeigt wird, können Sie sehen, dass die virtuellen Maschinen in den Zustand zurückversetzt wurden, in dem sie sich zum Zeitpunkt der Snapshot-Erstellung befanden.  (Wenn die Sicherung erstellt wurde, als die VM ausgeführt wurde, wird durch die Wiederherstellung der VM aus der Sicherung die wiederhergestellte VM gestartet und in einen laufenden Zustand versetzt.)  Die VM wird in einem anderen Namespace wiederhergestellt, wie im YAML angegeben.
+
+image:redhat-openshift-oadp-restore-003.png["Wiederherstellung in einem neuen Namespace abgeschlossen"]
+
+====
+.Wiederherstellen in einer anderen Speicherklasse
+[%collapsible%open]
+====
+Velero bietet eine allgemeine Möglichkeit, die Ressourcen während der Wiederherstellung durch Angabe von JSON-Patches zu ändern. Die JSON-Patches werden auf die Ressourcen angewendet, bevor sie wiederhergestellt werden. Die JSON-Patches werden in einer Konfigurationszuordnung angegeben und auf die Konfigurationszuordnung wird im Wiederherstellungsbefehl verwiesen. Mit dieser Funktion können Sie die Wiederherstellung mithilfe einer anderen Speicherklasse durchführen.
+
+Im folgenden Beispiel verwendet die virtuelle Maschine während der Erstellung ontap-nas als Speicherklasse für ihre Festplatten.  Es wird eine Sicherung der virtuellen Maschine mit dem Namen „backup1“ erstellt.
+
+image:redhat-openshift-oadp-restore-004.png["VM mit ontap-nas"]
+
+image:redhat-openshift-oadp-restore-005.png["VM-Backup ontap-nas"]
+
+Simulieren Sie einen Verlust der VM, indem Sie die VM löschen.
+
+Um die VM mit einer anderen Speicherklasse wiederherzustellen, beispielsweise der Speicherklasse ontap-nas-eco, müssen Sie die folgenden zwei Schritte ausführen:
+
+**Schritt 1**
+
+Erstellen Sie wie folgt eine Konfigurationszuordnung (Konsole) im OpenShift-ADP-Namespace: Füllen Sie die Details wie im Screenshot gezeigt aus: Namespace auswählen: OpenShift-ADP Name: Change-Storage-Class-Config (kann ein beliebiger Name sein) Schlüssel: Change-Storage-Class-Config.yaml: Wert:
+
+....
+version: v1
+    resourceModifierRules:
+    - conditions:
+         groupResource: persistentvolumeclaims
+         resourceNameRegex: "^rhel*"
+         namespaces:
+         - virtual-machines-demo
+      patches:
+      - operation: replace
+        path: "/spec/storageClassName"
+        value: "ontap-nas-eco"
+....
+image:redhat-openshift-oadp-restore-006.png["Konfigurationskarten-Benutzeroberfläche"]
+
+Das resultierende Konfigurationszuordnungsobjekt sollte folgendermaßen aussehen (CLI):
+
+image:redhat-openshift-oadp-restore-007.png["Konfigurationszuordnungs-CLI"]
+
+Diese Konfigurationszuordnung wendet die Ressourcenmodifikatorregel an, wenn die Wiederherstellung erstellt wird. Es wird ein Patch angewendet, um den Speicherklassennamen für alle persistenten Volume-Ansprüche, die mit rhel beginnen, durch ontap-nas-eco zu ersetzen.
+
+**Schritt 2**
+
+Um die VM wiederherzustellen, verwenden Sie den folgenden Befehl aus der Velero-CLI:
+
+....
+#velero restore create restore1 --from-backup backup1 --resource-modifier-configmap change-storage-class-config -n openshift-adp
+....
+Die VM wird im selben Namespace wie die mit der Speicherklasse ontap-nas-eco erstellten Datenträger wiederhergestellt.
+
+image:redhat-openshift-oadp-restore-008.png["VM-Wiederherstellung ontap-nas-eco"]
+
+====

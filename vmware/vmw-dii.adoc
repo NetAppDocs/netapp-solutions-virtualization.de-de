@@ -1,0 +1,258 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-dii.html 
+keywords: vsphere, ontap, data infrastructure insights, asa, all-flash san array, 
+summary:  
+---
+= Überwachen Sie den lokalen Speicher mit Data Infrastructure Insights
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp Data Infrastructure Insights (ehemals Cloud Insights) ist eine Cloud-basierte Plattform zur Überwachung und Analyse der Leistung, des Zustands und der Kosten von IT-Infrastrukturen sowohl vor Ort als auch in der Cloud.  Erfahren Sie, wie Sie Datensammler bereitstellen, Leistungsmetriken analysieren und Dashboards verwenden, um Probleme zu identifizieren und Ressourcen zu optimieren.
+
+
+
+== Überwachung des lokalen Speichers mit Data Infrastructure Insights
+
+Data Infrastructure Insights funktioniert über die Acquisition Unit-Software, die mit Datensammlern für Assets wie VMware vSphere und NetApp ONTAP Speichersysteme eingerichtet ist.  Diese Collector sammeln Daten und übermitteln sie an Data Infrastructure Insights.  Die Plattform nutzt dann eine Vielzahl von Dashboards, Widgets und Metrikabfragen, um die Daten in aufschlussreiche Analysen zu organisieren, die die Benutzer interpretieren können.
+
+Architekturdiagramm von Data Infrastructure Insights :
+
+image:vmware-dii.png["Data Infrastructure Insights"]
+
+
+
+== Übersicht über die Lösungsbereitstellung
+
+Diese Lösung bietet eine Einführung in die Überwachung lokaler VMware vSphere- und ONTAP -Speichersysteme mithilfe von Data Infrastructure Insights.
+
+Diese Liste enthält die wichtigsten Schritte, die in dieser Lösung behandelt werden:
+
+. Konfigurieren Sie Data Collector für einen vSphere-Cluster.
+. Konfigurieren Sie Data Collector für ein ONTAP Speichersystem.
+. Verwenden Sie Anmerkungsregeln, um Assets zu markieren.
+. Erkunden und korrelieren Sie Vermögenswerte.
+. Verwenden Sie ein Top-VM-Latenz-Dashboard, um laute Nachbarn zu isolieren.
+. Identifizieren Sie Möglichkeiten zur richtigen Größe von VMs.
+. Verwenden Sie Abfragen, um Metriken zu isolieren und zu sortieren.
+
+
+
+
+== Voraussetzungen
+
+Diese Lösung verwendet die folgenden Komponenten:
+
+. NetApp All-Flash SAN Array A400 mit ONTAP 9.13.
+. VMware vSphere 8.0-Cluster.
+. NetApp BlueXP Konto.
+. Auf einer lokalen VM installierte NetApp Data Infrastructure Insights Acquisition Unit-Software mit Netzwerkkonnektivität zu Assets zur Datenerfassung.
+
+
+
+
+== Lösungsbereitstellung
+
+
+
+=== Konfigurieren von Datensammlern
+
+Führen Sie die folgenden Schritte aus, um Datenkollektoren für VMware vSphere- und ONTAP -Speichersysteme zu konfigurieren:
+
+.Fügen Sie einen Datensammler für ein ONTAP -Speichersystem hinzu
+[%collapsible%open]
+====
+. Navigieren Sie nach der Anmeldung bei Data Infrastructure Insights zu *Observability > Collectors > Data Collectors* und drücken Sie die Schaltfläche, um einen neuen Data Collector zu installieren.
++
+image:vmware-asa-031.png["Neuer Datensammler"]
+
+. Suchen Sie hier nach * ONTAP* und klicken Sie auf * ONTAP Data Management Software*.
++
+image:vmware-asa-030.png["Suche nach Datensammler"]
+
+. Geben Sie auf der Seite *Collector konfigurieren* einen Namen für den Collector ein, geben Sie die richtige *Erfassungseinheit* an und geben Sie die Anmeldeinformationen für das ONTAP -Speichersystem ein.  Klicken Sie auf *Speichern und fortfahren* und dann unten auf der Seite auf *Setup abschließen*, um die Konfiguration abzuschließen.
++
+image:vmware-asa-032.png["Collector konfigurieren"]
+
+
+
+====
+.Hinzufügen eines Datensammlers für einen VMware vSphere-Cluster
+[%collapsible%open]
+====
+. Navigieren Sie erneut zu *Observability > Collectors > Data Collectors* und drücken Sie die Schaltfläche, um einen neuen Data Collector zu installieren.
++
+image:vmware-asa-031.png["Neuer Datensammler"]
+
+. Suchen Sie hier nach *vSphere* und klicken Sie auf *VMware vSphere*.
++
+image:vmware-asa-033.png["Suche nach Datensammler"]
+
+. Geben Sie auf der Seite *Collector konfigurieren* einen Namen für den Collector ein, geben Sie die richtige *Erfassungseinheit* an und geben Sie die Anmeldeinformationen für den vCenter-Server ein.  Klicken Sie auf *Speichern und fortfahren* und dann unten auf der Seite auf *Setup abschließen*, um die Konfiguration abzuschließen.
++
+image:vmware-asa-034.png["Collector konfigurieren"]
+
+
+
+====
+
+
+=== Hinzufügen von Anmerkungen zu Assets
+
+Anmerkungen sind eine nützliche Methode zum Markieren von Assets, sodass sie in den verschiedenen in Cloud Insights verfügbaren Ansichten und Metrikabfragen gefiltert und anderweitig identifiziert werden können.
+
+In diesem Abschnitt werden Anmerkungen zu virtuellen Maschinenressourcen hinzugefügt, um sie nach *Rechenzentrum* zu filtern.
+
+.Verwenden Sie Anmerkungsregeln zum Markieren von Assets
+[%collapsible%open]
+====
+. Navigieren Sie im linken Menü zu *Observability > Enrich > Annotation Rules* und klicken Sie oben rechts auf die Schaltfläche *+ Rule*, um eine neue Regel hinzuzufügen.
++
+image:vmware-asa-035.png["Zugriff auf Anmerkungsregeln"]
+
+. Geben Sie im Dialogfeld *Regel hinzufügen* einen Namen für die Regel ein, suchen Sie eine Abfrage, auf die die Regel angewendet werden soll, das betroffene Anmerkungsfeld und den auszufüllenden Wert.
++
+image:vmware-asa-036.png["Regel hinzufügen"]
+
+. Klicken Sie abschließend in der oberen rechten Ecke der Seite *Annotation Rules* auf *Run All Rules*, um die Regel auszuführen und die Annotation auf die Assets anzuwenden.
++
+image:vmware-asa-037.png["Alle Regeln ausführen"]
+
+
+
+====
+
+
+=== Erkunden und Korrelieren von Assets
+
+Cloud Insights zieht logische Schlussfolgerungen über die Assets, die zusammen auf Ihren Speichersystemen und vSphere-Clustern ausgeführt werden.
+
+Dieser Abschnitt veranschaulicht, wie Sie Dashboards zum Korrelieren von Assets verwenden.
+
+.Korrelieren von Assets über ein Dashboard zur Speicherleistung
+[%collapsible%open]
+====
+. Navigieren Sie im linken Menü zu *Observability > Explore > All Dashboards*.
++
+image:vmware-asa-038.png["Zugriff auf alle Dashboards"]
+
+. Klicken Sie auf die Schaltfläche *+ Aus Galerie*, um eine Liste vorgefertigter Dashboards anzuzeigen, die importiert werden können.
++
+image:vmware-asa-039.png["Galerie-Dashboards"]
+
+. Wählen Sie aus der Liste ein Dashboard für die FlexVol -Leistung aus und klicken Sie unten auf der Seite auf die Schaltfläche *Dashboards hinzufügen*.
++
+image:vmware-asa-040.png["FlexVol -Leistungs-Dashboard"]
+
+. Öffnen Sie nach dem Import das Dashboard.  Von hier aus können Sie verschiedene Widgets mit detaillierten Leistungsdaten sehen.  Fügen Sie einen Filter hinzu, um ein einzelnes Speichersystem anzuzeigen, und wählen Sie ein Speichervolumen aus, um dessen Details zu untersuchen.
++
+image:vmware-asa-041.png["Drilldown in das Speichervolumen"]
+
+. In dieser Ansicht können Sie verschiedene Kennzahlen zu diesem Speichervolume und den am stärksten genutzten und korrelierten virtuellen Maschinen sehen, die auf dem Volume ausgeführt werden.
++
+image:vmware-asa-042.png["Top korrelierte VMs"]
+
+. Durch Klicken auf die VM mit der höchsten Auslastung können Sie die Metriken für diese VM genauer untersuchen, um mögliche Probleme anzuzeigen.
++
+image:vmware-asa-043.png["VM-Leistungsmetriken"]
+
+
+
+====
+
+
+=== Verwenden Sie Cloud Insights , um laute Nachbarn zu identifizieren
+
+Cloud Insights bietet Dashboards, mit denen sich Peer-VMs, die sich negativ auf andere VMs auswirken, die auf demselben Speichervolume ausgeführt werden, problemlos isolieren lassen.
+
+.Verwenden Sie ein Top VM Latency-Dashboard, um laute Nachbarn zu isolieren
+[%collapsible%open]
+====
+. Greifen Sie in diesem Beispiel auf ein in der *Galerie* verfügbares Dashboard mit dem Namen *VMware Admin – Wo habe ich VM-Latenz?* zu.
++
+image:vmware-asa-044.png["VM-Latenz-Dashboard"]
+
+. Filtern Sie als Nächstes nach der im vorherigen Schritt erstellten Anmerkung *Data Center*, um eine Teilmenge der Assets anzuzeigen.
++
+image:vmware-asa-045.png["Rechenzentrums-Anmerkung"]
+
+. Dieses Dashboard zeigt eine Liste der Top 10 VMs nach durchschnittlicher Latenz.  Klicken Sie hier auf die betreffende VM, um sich die Details anzusehen.
++
+image:vmware-asa-046.png["Top 10 VMs"]
+
+. Die VMs, die möglicherweise zu Workload-Konflikten führen, sind aufgelistet und verfügbar.  Untersuchen Sie die Leistungsmetriken dieser VMs, um mögliche Probleme zu untersuchen.
++
+image:vmware-asa-047.png["Workload-Konflikte"]
+
+
+
+====
+
+
+=== Zeigen Sie über- und unterausgelastete Ressourcen in Cloud Insights an
+
+Durch die Anpassung der VM-Ressourcen an die tatsächlichen Arbeitslastanforderungen kann die Ressourcennutzung optimiert werden, was zu Kosteneinsparungen bei Infrastruktur und Cloud-Diensten führt.  Daten in Cloud Insights können angepasst werden, um über- oder unterausgelastete VMs einfach anzuzeigen.
+
+.Identifizieren Sie Möglichkeiten zur richtigen VM-Größe
+[%collapsible%open]
+====
+. Greifen Sie in diesem Beispiel auf ein in der *Galerie* verfügbares Dashboard mit dem Namen *VMware Admin – Wo gibt es Möglichkeiten zur richtigen Dimensionierung?* zu.
++
+image:vmware-asa-048.png["Armaturenbrett in der richtigen Größe"]
+
+. Filtern Sie zunächst nach allen ESXi-Hosts im Cluster.  Sie können dann die Rangfolge der besten und schlechtesten VMs nach Speicher- und CPU-Auslastung sehen.
++
+image:vmware-asa-049.png["Armaturenbrett in der richtigen Größe"]
+
+. Tabellen ermöglichen das Sortieren und bieten basierend auf den ausgewählten Datenspalten mehr Details.
++
+image:vmware-asa-050.png["Metrische Tabellen"]
+
+. Ein weiteres Dashboard mit dem Namen *VMware Admin – Wo kann ich möglicherweise Abfall zurückgewinnen?* zeigt ausgeschaltete VMs sortiert nach ihrer Kapazitätsnutzung.
++
+image:vmware-asa-051.png["Ausgeschaltete VMs"]
+
+
+
+====
+
+
+=== Verwenden Sie Abfragen, um Metriken zu isolieren und zu sortieren
+
+Die von Cloud Insights erfasste Datenmenge ist recht umfangreich.  Metrikabfragen bieten eine leistungsstarke Möglichkeit, große Datenmengen auf nützliche Weise zu sortieren und zu organisieren.
+
+.Eine detaillierte VMware-Abfrage unter ONTAP Essentials anzeigen
+[%collapsible%open]
+====
+. Navigieren Sie zu * ONTAP Essentials > VMware*, um auf eine umfassende VMware-Metrikabfrage zuzugreifen.
++
+image:vmware-asa-052.png["ONTAP Essential – VMware"]
+
+. In dieser Ansicht werden Ihnen oben mehrere Optionen zum Filtern und Gruppieren der Daten angezeigt.  Alle Datenspalten sind anpassbar und zusätzliche Spalten können einfach hinzugefügt werden.
++
+image:vmware-asa-053.png["ONTAP Essential – VMware"]
+
+
+
+====
+
+
+== Abschluss
+
+Diese Lösung wurde als Einführung in die ersten Schritte mit NetApp Cloud Insights konzipiert und zeigt einige der leistungsstarken Funktionen, die diese Observability-Lösung bietet.  Das Produkt verfügt über Hunderte von Dashboards und Metrikabfragen, sodass Sie sofort loslegen können.  Die Vollversion von Cloud Insights ist als 30-tägige Testversion verfügbar und die Basisversion ist für NetApp -Kunden kostenlos erhältlich.
+
+
+
+== Weitere Informationen
+
+Weitere Informationen zu den in dieser Lösung vorgestellten Technologien finden Sie in den folgenden zusätzlichen Informationen.
+
+* https://bluexp.netapp.com/cloud-insights["Zielseite zu NetApp BlueXP und Data Infrastructure Insights"]
+* https://docs.netapp.com/us-en/data-infrastructure-insights/index.html/["Dokumentation zu NetApp Data Infrastructure Insights"]
+

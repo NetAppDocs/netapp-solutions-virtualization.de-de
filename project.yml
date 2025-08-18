@@ -1,0 +1,44 @@
+---
+settings:
+  name: NetApp virtualization solutions
+  internal:
+    pdf_enabled: true
+    lipi_enabled: true
+  prod:
+    pdf_enabled: true
+    harmony_enabled: false
+    lipi_enabled: true
+  pdf:
+    gen-type: named-only
+    zip-level: 1
+    zip-filename: netapp-solutions-virtualization.zip
+  langs: de-de,us-en,es-es,fr-fr,it-it,pt-br,ja-jp,ko-kr,zh-cn,zh-tw
+sidebar:
+  entries:
+  - title: Virtualisierungslösungen
+    url: "/index.html"
+  - title: Was ist neu
+    url: "/whats-new.html"
+  - section: virtualization
+  - section: vmware
+  - section: hyperv
+  - section: osv
+  - section: proxmox
+  - section: kvm
+  - section: migration
+  - title: Videos
+    url: "/videos/index.html"
+    entries:
+    - title: OpenShift-Virtualisierung
+      url: "/videos/openshift-videos.html"
+    - title: VMware-Virtualisierung
+      url: "/videos/vmware-videos.html"
+    - title: Hybride Multicloud-Virtualisierung
+      url: "/videos/hybrid-cloud-videos.html"
+  - title: Blogs
+    url: "/blogs.html"
+  - title: Rechtliche Hinweise
+    url: "/legal-notices.html"
+product-family:
+  name: NetApp solutions
+  repo: netapp-solutions-family

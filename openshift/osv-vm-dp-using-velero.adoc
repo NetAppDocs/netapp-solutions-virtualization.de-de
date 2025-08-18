@@ -1,0 +1,82 @@
+---
+sidebar: sidebar 
+permalink: openshift/osv-vm-dp-using-velero.html 
+keywords: OpenShift, OCP, Trident, NetApp ONTAP, Red Hat OpenShift, OpenShift Virtualization, CNV, Container Native Virtualization, Red Hat OpenShift Virtualization, OADP operator, Openshift Data Protection Application operator, velero 
+summary: Red Hat OpenShift-Virtualisierung mit NetApp ONTAP 
+---
+= Erstellen Sie On-Demand-Backups für VMs in Red Hat OpenShift Virtualization mit Velero
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Sichern Sie VMs in OpenShift Virtualization mit Velero und NetApp ONTAP S3 oder StorageGRID.  Dieses Verfahren umfasst das Erstellen von benutzerdefinierten Backup-Ressourcen (CRs) für On-Demand-Backups und von geplanten CRs für geplante Backups.  Bei jeder Sicherung werden VM-Metadaten und persistente Volumes erfasst und zu Wiederherstellungs- oder Compliance-Zwecken am angegebenen Objektspeicherort gespeichert.
+
+
+
+== Schritte zum Erstellen einer Sicherung einer VM
+
+Um ein On-Demand-Backup der gesamten VM (VM-Metadaten und VM-Datenträger) zu erstellen, klicken Sie auf die Registerkarte **Backup**.  Dadurch wird eine benutzerdefinierte Backup-Ressource (CR) erstellt. Zum Erstellen des Backup-CR wird ein YAML-Beispiel bereitgestellt.  Mit diesem YAML werden die VM und ihre Festplatten im angegebenen Namespace gesichert. Weitere Parameter können wie in der Abbildung gezeigt eingestellt werden.link:https://docs.openshift.com/container-platform/4.14/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-creating-backup-cr.html["Dokumentation"] .
+
+Ein Snapshot der persistenten Volumes, die die Festplatten unterstützen, wird vom CSI erstellt.  Es wird eine Sicherung der VM zusammen mit dem Snapshot ihrer Festplatten erstellt und am im YAML angegebenen Sicherungsspeicherort gespeichert. Das Backup bleibt gemäß TTL 30 Tage lang im System.
+
+....
+apiVersion: velero.io/v1
+kind: Backup
+metadata:
+  name: backup1
+  namespace: openshift-adp
+spec:
+  includedNamespaces:
+  - virtual-machines-demo
+  snapshotVolumes: true
+  storageLocation: velero-demo-1 -->this is the backupStorageLocation previously created
+                                    when Velero is configured.
+  ttl: 720h0m0s
+....
+Sobald die Sicherung abgeschlossen ist, wird ihre Phase als abgeschlossen angezeigt.
+
+image:redhat-openshift-oadp-backup-001.png["Sicherung abgeschlossen"]
+
+Sie können das Backup im Objektspeicher mithilfe einer S3-Browseranwendung überprüfen. Der Pfad des Backups wird im konfigurierten Bucket mit dem Präfixnamen (velero/demobackup) angezeigt.  Sie können sehen, dass der Inhalt der Sicherung die Volume-Snapshots, Protokolle und andere Metadaten der virtuellen Maschine umfasst.
+
+
+NOTE: In StorageGrid können Sie zum Anzeigen der Sicherungsobjekte auch die S3-Konsole verwenden, die über den Tenant Manager verfügbar ist.
+
+image:redhat-openshift-oadp-backup-002.png["Sicherungsobjekte in S3"]
+
+
+
+== Erstellen geplanter Sicherungen für VMs in OpenShift Virtualization
+
+Um Backups nach einem Zeitplan zu erstellen, müssen Sie einen Zeitplan-CR erstellen. Der Zeitplan ist einfach ein Cron-Ausdruck, mit dem Sie den Zeitpunkt angeben können, zu dem Sie das Backup erstellen möchten. Ein YAML-Beispiel zum Erstellen eines Schedule CR.
+
+....
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  name: <schedule>
+  namespace: openshift-adp
+spec:
+  schedule: 0 7 * * *
+  template:
+    hooks: {}
+    includedNamespaces:
+    - <namespace>
+    storageLocation: velero-demo-1
+    defaultVolumesToFsBackup: true
+    ttl: 720h0m0s
+....
+Der Cron-Ausdruck 0 7 * * * bedeutet, dass jeden Tag um 7:00 Uhr ein Backup erstellt wird. Außerdem werden die in die Sicherung einzubeziehenden Namespaces und der Speicherort für die Sicherung angegeben. Anstelle einer Backup-CR wird also eine geplante CR verwendet, um zum angegebenen Zeitpunkt und in der angegebenen Häufigkeit eine Sicherung zu erstellen.
+
+Sobald der Zeitplan erstellt ist, wird er aktiviert.
+
+image:redhat-openshift-oadp-backup-003.png["Zeitplan erstellt"]
+
+Backups werden gemäß diesem Zeitplan erstellt und können auf der Registerkarte „Backup“ angezeigt werden.
+
+image:redhat-openshift-oadp-backup-004.png["Zeitplan erstellt"]

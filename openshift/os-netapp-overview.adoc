@@ -1,0 +1,34 @@
+---
+sidebar: sidebar 
+permalink: openshift/os-netapp-overview.html 
+keywords: NetApp, ONTAP, Element, Storage 
+summary: NetApp verfügt über mehrere Speicherplattformen, die mit unserem Trident Storage Orchestrator für die Bereitstellung von Speicher für auf Red Hat OpenShift bereitgestellte Anwendungen qualifiziert sind. 
+---
+= Erfahren Sie mehr über die Bereitstellung von Speicher für Anwendungen, die auf Red Hat OpenShift bereitgestellt werden
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp lässt sich mithilfe des Trident Storage Orchestrator in Red Hat OpenShift integrieren, um persistenten Speicher für containerisierte Anwendungen bereitzustellen.  Zu den unterstützten Speicheroptionen gehören ONTAP-basierte Systeme wie AFF und FAS sowie ONTAP Select und Cloud Volumes ONTAP für virtualisierte und Cloud-Umgebungen.  Cloud-native Dienste wie Amazon FSx for NetApp ONTAP, Azure NetApp Files und Google Cloud NetApp Volumes werden ebenfalls unterstützt.
+
+image:redhat-openshift-043.png["Abbildung, die einen Eingabe-/Ausgabedialog zeigt oder schriftlichen Inhalt darstellt"]
+
+* AFF und FAS Systeme führen NetApp ONTAP aus und bieten Speicher für dateibasierte (NFS) und blockbasierte (iSCSI) Anwendungsfälle.
+* Cloud Volumes ONTAP und ONTAP Select bieten in der Cloud bzw. im virtuellen Raum die gleichen Vorteile.
+* Amazon FSx for NetApp ONTAP, Azure NetApp Files und Google Cloud NetApp Volumes bieten dateibasierten Speicher in der Cloud.
+* NetApp Element -Speichersysteme ermöglichen blockbasierte (iSCSI) Anwendungsfälle in einer hoch skalierbaren Umgebung.
+
+
+
+NOTE: Jedes Speichersystem im NetApp Portfolio kann sowohl die Datenverwaltung als auch die Bewegung zwischen lokalen Standorten und der Cloud vereinfachen und so sicherstellen, dass Ihre Daten dort sind, wo Ihre Anwendungen sind.
+
+Auf den folgenden Seiten finden Sie weitere Informationen zu den in der Red Hat OpenShift mit NetApp -Lösung validierten NetApp -Speichersystemen:
+
+* link:os-netapp-ontap.html["NetApp ONTAP"]
+* link:https://docs.netapp.com/us-en/netapp-solutions-containers/openshift/os-netapp-element.html["NetApp Element"^]
+

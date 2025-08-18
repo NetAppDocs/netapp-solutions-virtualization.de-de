@@ -1,0 +1,29 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-vcf-expand.html 
+keywords: vmware, vcf, expand, supplemental, storage 
+summary:  
+---
+= Erfahren Sie mehr über die Speichererweiterung für eine VCF-Umgebung mithilfe von zusätzlichem Speicher
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+VMware Cloud Foundation (VCF) unterstützt eine breite Palette zusätzlicher Speicheroptionen zur Erweiterung des Speichers in VCF-Verwaltungsdomänen und Workloaddomänen der virtuellen Infrastruktur (VI).
+
+Die ONTAP Tools von NetApp für VMware vSphere bieten eine effiziente Lösung für diese Erweiterung, indem sie NetApp -Speicher nahtlos in die VCF-Umgebung integrieren.  ONTAP Tools vereinfachen die Einrichtung und Verwaltung von Datenspeichern und ermöglichen Administratoren die Bereitstellung und Verwaltung von Speicher direkt vom vSphere Client aus.  Die erweiterten Funktionen von ONTAP wie Snapshots, Klonen und Datenschutz verbessern die Speicherleistung, Effizienz und Skalierbarkeit innerhalb der VCF-Umgebung.
+
+Die technischen Details zur Erweiterung der VCF-Umgebung finden Sie in den folgenden Lösungen.
+
+* link:vmw-vcf-mgmt-supplemental-iscsi.html["Verwaltungsdomäne mit iSCSI"]
+* link:vmw-vcf-mgmt-supplemental-fc.html["Managementdomäne mit FC"]
+* link:vmw-vcf-viwld-supp-iscsi-vvols.html["Virtuelle Infrastruktur-Workload-Domäne mit vVols (iSCSI)"]
+* link:vmw-vcf-viwld-supp-nfs-vvols.html["Virtuelle Infrastruktur-Workload-Domäne mit vVols (NFS)"]
+* link:vmw-vcf-viwld-supp-nvme.html["Virtuelle Infrastruktur-Workloaddomäne mit NVMe/TCP"]
+* link:vmw-vcf-viwld-supp-fc.html["Virtuelle Infrastruktur-Workloaddomäne mit FC"]
+

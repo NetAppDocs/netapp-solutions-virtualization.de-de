@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-vcf-protect-vmsc.html 
+keywords: vmware, vcf, protect, vmsc, vsphere, metro, storage, cluster 
+summary:  
+---
+= Erfahren Sie mehr über die Integration der hohen Verfügbarkeit von ONTAP mit VMware vSphere Metro Storage Cluster (vMSC).
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Informieren Sie sich über die NetApp -Lösungen, mit denen Sie die Hochverfügbarkeit von NetApp ONTAP mit VMware vSphere Metro Storage Cluster (vMSC) integrieren können.  Dies bietet robuste Lösungen für die Verwaltung von VMware Cloud Foundation (VCF) und VI-Workloaddomänen.
+
+Diese Kombination gewährleistet kontinuierliche Datenverfügbarkeit, nahtloses Failover und Notfallwiederherstellung an geografisch verteilten Standorten und verbessert so die Ausfallsicherheit und Betriebskontinuität für kritische Workloads.  SnapMirror Active Sync ermöglicht die Weiterführung des Betriebs von Geschäftsdiensten auch bei einem vollständigen Site-Ausfall und unterstützt Anwendungen bei einem transparenten Failover mithilfe einer sekundären Kopie. Mit SnapMirror Active Sync sind keine manuellen Eingriffe oder benutzerdefinierten Skripts erforderlich, um ein Failover auszulösen.
+
+Weitere Einzelheiten finden Sie in den folgenden Lösungen.
+
+* link:vmw-vcf-vmsc-mgmt-smas.html["Stretch-Cluster für die Verwaltungsdomäne mit SnapMirror Active Sync"]
+* link:vmw-vcf-vmsc-mgmt-mcc.html["Stretch-Cluster für die Verwaltungsdomäne mit MetroCluster"]
+* link:vmw-vcf-vmsc-viwld-smas.html["Stretch Cluster für VI-Workloaddomäne mit SnapMirror Active Sync"]
+* link:vmw-vcf-vmsc-viwld-mcc.html["Stretch Cluster für VI-Workloaddomäne mit MetroCluster"]
+

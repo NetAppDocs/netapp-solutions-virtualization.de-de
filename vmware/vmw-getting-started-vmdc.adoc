@@ -1,0 +1,65 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-getting-started-vmdc.html 
+keywords: vmware, getting, started, overview, netapp, vm, data, collector, vmdc 
+summary:  
+---
+= Erfahren Sie mehr über die Bewertung Ihrer VMware-Infrastruktur mit dem Virtual Machine Data Collector
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Der Virtual Machine Data Collector (VMDC) ist ein kostenloses, leichtes Tool mit einer GUI, die für VMware-Umgebungen entwickelt wurde.  Es sammelt Bestands- und Leistungsdaten zu VMs, Hosts, Speichern und Netzwerken und bietet Erkenntnisse zur Ressourcenoptimierung und Kapazitätsplanung.
+
+
+
+== Einführung
+
+Virtual Machine Data Collector (VMDC) ist ein kostenloses, leichtes und einfaches GUI-basiertes Toolkit für VMware-Umgebungen, mit dem Benutzer detaillierte Bestandsinformationen zu ihren virtuellen Maschinen (VMs), Hosts, Speichern und Netzwerken sammeln können.
+
+Weitere Informationen zum Virtual Machine Data Collector finden Sie unterlink:../assess/vmw-vmdc.html["Dokumentation zum Virtual Machine Data Collector"] .
+
+
+
+== VMDC-Funktionen
+
+VMDC ist nur ein Sprungbrett zum schnellen und sofortigen Sammeln von Statistiken zum Projizieren von Optimierungsmöglichkeiten für die VMWare-Kernlizenzierung zusammen mit vCPU und RAM.  NetApp Data Infrastructure Insights , das die Installation von AUs und Datensammlern erfordert, sollte der naheliegende nächste Schritt zum Verständnis der detaillierten VM-Topologie und zur Gruppierung von VMs mithilfe von Anmerkungen sein, um die Arbeitslasten richtig zu dimensionieren und die Infrastruktur zukunftssicher zu machen.
+
+Stichprobe der mit VMDC erfassten Metriken:
+
+* VM-Informationen
++
+** VM-Name
+** VM-Energiestatus
+** VM-CPU-Informationen
+** VM-Speicherinformationen
+** VM-Standort
+** VM-Netzwerkinformationen
+** und mehr
+
+
+* VM-Leistung
++
+** Leistungsdaten für VMs im ausgewählten Intervall
+** VM-Lese-/Schreibinformationen
+** VM-IOPS-Informationen
+** VM-Latenz
+** und mehr
+
+
+* ESXi-Hostinformationen
++
+** Informationen zum Host-Rechenzentrum
+** Hostclusterinformationen
+** Informationen zum Hostmodell
+** Host-CPU-Informationen
+** Host-Speicherinformationen
+** und mehr
+
+
+

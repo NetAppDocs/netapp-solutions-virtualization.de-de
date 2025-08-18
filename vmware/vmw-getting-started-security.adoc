@@ -1,0 +1,57 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-getting-started-security.html 
+keywords:  
+summary:  
+---
+= Erfahren Sie mehr über die Minimierung von Sicherheits- und Ransomware-Risiken für VMware-Workloads
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP verbessert die Sicherheit und den Ransomware-Schutz in VMware-Umgebungen durch Verschlüsselung, Snapshots und erweiterte Zugriffskontrollen und ergänzt die Sicherheitsfunktionen von VMware zum Schutz von Daten.
+
+
+
+== Einführung
+
+Durch die Nutzung der erweiterten Funktionen von NetApp ONTAP in VMware-Umgebungen können Unternehmen die Integrität, Verfügbarkeit und Sicherheit ihrer Daten gewährleisten.
+
+Nachfolgend erfahren Sie ausführlicher, wie diese Technologien zusammenarbeiten, um *Sicherheits-* und *Backup-Vorteile* zu bieten.
+
+
+
+== Sicherheit und Ransomware
+
+Sicherheit ist in virtualisierten Umgebungen ein vorrangiges Anliegen und NetApp ONTAP bietet robuste Funktionen zur Verbesserung der Sicherheit innerhalb von VMware-Infrastrukturen.  ONTAP bietet Verschlüsselung für gespeicherte und übertragene Daten und stellt so sicher, dass vertrauliche Informationen vor unbefugtem Zugriff geschützt sind.  Verschlüsselungsschlüssel werden sicher verwaltet und ONTAP unterstützt sowohl software- als auch hardwarebasierte Verschlüsselungslösungen.  Durch die Integration mit den Sicherheitstools von VMware, wie den integrierten Sicherheitsfunktionen von vSphere und Sicherheitslösungen von Drittanbietern, trägt ONTAP zur Schaffung einer sicheren und konformen Umgebung bei.
+
+
+
+== Ransomware-Abwehr
+
+Ransomware-Angriffe stellen eine erhebliche Bedrohung für Unternehmen dar und die Kombination aus VMware und ONTAP bietet einen starken Abwehrmechanismus.  Die Snapshot-Technologie von ONTAP ermöglicht die Erstellung unveränderlicher Snapshots, die von Ransomware nicht verändert oder gelöscht werden können.  Im Falle eines Angriffs können diese Snapshots verwendet werden, um betroffene VMs und Datenspeicher schnell in den Zustand vor dem Angriff zurückzusetzen und so Ausfallzeiten und Datenverluste zu minimieren.  Darüber hinaus ermöglicht die Integration von ONTAP mit SIEM-Systemen (Security Information and Event Management) eine proaktive Überwachung und Warnung vor verdächtigen Aktivitäten.  ONTAP unterstützt außerdem die Multi-Faktor-Authentifizierung (MFA) und die rollenbasierte Zugriffskontrolle (RBAC), um die Sicherheit weiter zu verbessern.
+
+
+
+== Ransomware-Wiederherstellungsgarantie
+
+Die NetApp Ransomware-Garantie bietet Unternehmen eine robuste und zuverlässige Lösung zum Schutz vor Ransomware-Angriffen.  Durch die Nutzung der erweiterten Funktionen von NetApp ONTAP können Unternehmen die Sicherheit und Verfügbarkeit ihrer Daten gewährleisten.  Die Garantie bietet die Gewissheit, dass im Falle eines Ransomware-Angriffs die Daten schnell und effektiv wiederhergestellt werden können, wodurch Ausfallzeiten, Datenverlust und finanzielle Auswirkungen minimiert werden.  Dieses Engagement für Datensicherheit und Ausfallsicherheit macht NetApp zum idealen Partner für Unternehmen, die ihre kritischen Vermögenswerte vor sich entwickelnden Cyber-Bedrohungen schützen möchten.
+
+
+
+== Erweiterte Sicherheitsfunktionen
+
+ONTAP umfasst erweiterte Sicherheitsfunktionen wie sichere Mandantenfähigkeit, die Daten und Ressourcen in Umgebungen mit mehreren Mandanten isoliert, und Compliance-Auditing, das den Zugriff auf vertrauliche Daten verfolgt und protokolliert.  Diese Funktionen gewährleisten die Sicherheit der Daten und ermöglichen es Unternehmen, die Einhaltung branchenspezifischer Vorschriften und Standards nachzuweisen.
+
+
+
+== Zusammenfassung
+
+Die Integration der Sicherheitsfunktionen von ONTAP – wie Verschlüsselung, unveränderliche Snapshots und erweiterte Zugriffskontrollen – mit den Tools von VMware bietet einen robusten Schutz vor Cyberbedrohungen, einschließlich Ransomware.  Die Unterstützung von ONTAP für sichere Mandantenfähigkeit und Compliance-Audits gewährleistet Datenschutz und Einhaltung gesetzlicher Vorschriften.
+
+Gemeinsam bieten NetApp ONTAP und VMware eine umfassende Lösung zur Sicherung virtualisierter Umgebungen, die es Unternehmen ermöglicht, Daten zu schützen, Ausfallzeiten zu minimieren und die Geschäftskontinuität aufrechtzuerhalten.  Durch die Implementierung dieser Technologien können Unternehmen moderne IT-Herausforderungen bewältigen und kritische Ressourcen vor neuen Sicherheitsbedrohungen schützen.

@@ -1,0 +1,69 @@
+---
+sidebar: sidebar 
+permalink: openshift/osv-workflow-vm-from-snapshot.html 
+keywords: OpenShift, OCP, Trident, NetApp ONTAP, Red Hat OpenShift, OpenShift Virtualization, CNV, Container Native Virtualization, Red Hat OpenShift Virtualization 
+summary: Red Hat OpenShift-Virtualisierung mit NetApp ONTAP 
+---
+= Erstellen Sie eine VM aus einer Snapshot-Kopie mit Red Hat OpenShift Virtualization
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Erstellen Sie mit OpenShift Virtualization eine VM aus einem Snapshot.  Dieses Verfahren umfasst das Erstellen einer VolumeSnapshotClass, das Aufnehmen eines Snapshots des Persistent Volume Claim (PVC) der VM, das Wiederherstellen des Snapshots auf einem neuen PVC und das Bereitstellen einer neuen VM, die das wiederhergestellte PVC als Root-Datenträger verwendet.
+
+
+
+== Erstellen einer VM aus einem Snapshot
+
+Mit Trident und Red Hat OpenShift können Benutzer einen Snapshot eines persistenten Volumes auf den von ihm bereitgestellten Speicherklassen erstellen.  Mit dieser Funktion können Benutzer eine zeitpunktbezogene Kopie eines Volumes erstellen und damit ein neues Volume erstellen oder dasselbe Volume in einen früheren Zustand zurückversetzen.  Dies ermöglicht oder unterstützt eine Vielzahl von Anwendungsfällen, vom Rollback über Klone bis hin zur Datenwiederherstellung.
+
+Für Snapshot-Operationen in OpenShift müssen die Ressourcen VolumeSnapshotClass, VolumeSnapshot und VolumeSnapshotContent definiert werden.
+
+* Ein VolumeSnapshotContent ist der tatsächliche Snapshot, der von einem Volume im Cluster erstellt wurde.  Es handelt sich um eine clusterweite Ressource analog zu PersistentVolume für die Speicherung.
+* Ein VolumeSnapshot ist eine Anforderung zum Erstellen des Snapshots eines Volumes.  Es ist analog zu einem PersistentVolumeClaim.
+* Mit VolumeSnapshotClass kann der Administrator verschiedene Attribute für einen VolumeSnapshot angeben.  Sie können damit unterschiedliche Attribute für unterschiedliche Snapshots festlegen, die vom selben Datenträger erstellt wurden.
+
+
+image:redhat-openshift-060.png["VM aus Snapshot-Architektur"]
+
+Führen Sie die folgenden Schritte aus, um einen Snapshot einer VM zu erstellen:
+
+. Erstellen Sie eine VolumeSnapshotClass, die dann zum Erstellen eines VolumeSnapshots verwendet werden kann.  Navigieren Sie zu Speicher > VolumeSnapshotClasses und klicken Sie auf „VolumeSnapshotClass erstellen“.
+. Geben Sie den Namen der Snapshot-Klasse ein, geben Sie csi.trident.netapp.io für den Treiber ein und klicken Sie auf „Erstellen“.
++
+image:redhat-openshift-061.png["Snapshot-Klasse erstellen"]
+
+. Identifizieren Sie den PVC, der an die Quell-VM angeschlossen ist, und erstellen Sie dann einen Snapshot dieses PVC.  Navigieren Sie zu `Storage > VolumeSnapshots` und klicken Sie auf „VolumeSnapshots erstellen“.
+. Wählen Sie das PVC aus, für das Sie den Snapshot erstellen möchten, geben Sie den Namen des Snapshots ein oder akzeptieren Sie den Standardnamen und wählen Sie die entsprechende VolumeSnapshotClass aus.  Klicken Sie dann auf Erstellen.
++
+image:redhat-openshift-062.png["Snapshot erstellen"]
+
+. Dadurch wird der Snapshot des PVC zu diesem Zeitpunkt erstellt.
+
+
+
+
+== Erstellen Sie eine neue VM aus dem Snapshot
+
+. Stellen Sie zunächst den Snapshot in einem neuen PVC wieder her.  Navigieren Sie zu Speicher > VolumeSnapshots, klicken Sie auf die Auslassungspunkte neben dem Snapshot, den Sie wiederherstellen möchten, und klicken Sie auf Als neues PVC wiederherstellen.
+. Geben Sie die Details des neuen PVC ein und klicken Sie auf Wiederherstellen.  Dadurch entsteht ein neues PVC.
++
+image:redhat-openshift-063.png["Snapshot auf einem neuen PVC wiederherstellen"]
+
+. Erstellen Sie als Nächstes eine neue VM aus diesem PVC.  Navigieren Sie zu Virtualisierung > Virtuelle Maschinen und klicken Sie auf Erstellen > Mit YAML.
+. Geben Sie im Abschnitt „spec > template > spec > volumes“ den neuen PVC an, der aus Snapshot und nicht aus der Containerfestplatte erstellt wurde.  Geben Sie alle weiteren Details zur neuen VM entsprechend Ihren Anforderungen an.
++
+[source, cli]
+----
+- name: rootdisk
+  persistentVolumeClaim:
+    claimName: rhel8-short-frog-rootdisk-28dvb-snapshot-restore
+----
+. Klicken Sie auf „Erstellen“, um die neue VM zu erstellen.
+. Nachdem die VM erfolgreich erstellt wurde, greifen Sie darauf zu und überprüfen Sie, ob die neue VM denselben Status hat wie die VM, deren PVC zum Zeitpunkt der Erstellung des Snapshots zum Erstellen des Snapshots verwendet wurde.
+

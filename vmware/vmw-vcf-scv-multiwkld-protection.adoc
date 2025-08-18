@@ -1,0 +1,142 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-vcf-scv-multiwkld-protection.html 
+keywords: netapp, vmware, cloud, foundation, vcf, aff, all-flash, nfs, vvol, vvols, array, ontap tools, otv, sddc, scv, workload, domain, backup 
+summary:  
+---
+= Schützen Sie VCF-Verwaltungs- und Workloaddomänen mit dem SnapCenter -Plug-in für VMware vSphere
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Verwenden Sie das SnapCenter Plug-in for VMware vSphere, um mehrere VCF-Domänen zu schützen.  Dieses Verfahren umfasst das Einrichten des Plug-Ins für jede Domäne, das Konfigurieren von Sicherungsrichtlinien und das Durchführen von Wiederherstellungsvorgängen.
+
+Mithilfe von VMware Cloud Foundation (VCF)-Workloaddomänen können Unternehmen Ressourcen logisch in verschiedene Domänen aufteilen, um unterschiedliche Workloads zu gruppieren und die Sicherheit und Fehlertoleranz zu verbessern.
+
+
+
+== Einführung
+
+Domänen können unabhängig skaliert werden, bestimmte Konformitäten erfüllen und Multitenancy bieten.  Der Datenschutz für VMware Cloud Foundation (VCF) ist ein entscheidender Aspekt, um die Verfügbarkeit, Integrität und Wiederherstellbarkeit von Daten in der gesamten Verwaltungsdomäne und den Workload-Domänen sicherzustellen.  Das NetApp SnapCenter Plug-in for VMware vSphere (SCV) ist ein leistungsstarkes Tool, das die Datenschutzfunktionen von NetApp in VMware-Umgebungen integriert.  Es vereinfacht die Sicherung, Wiederherstellung und das Klonen von virtuellen VMware vSphere-Maschinen (VMs), die auf NetApp -Speicher gehostet werden.
+
+Dieses Dokument enthält Bereitstellungsschritte zum Schutz mehrerer VCF-Domänen mit SCV.
+
+
+
+== Publikum
+
+Lösungsarchitekten oder Speicheradministratoren, die Datenschutz und Notfallwiederherstellung für VMware VCF-Workloaddomänen sicherstellen.
+
+
+
+== Architekturübersicht
+
+SCV wird als virtuelle Linux-Appliance mithilfe einer OVA-Datei bereitgestellt, um schnelle, platzsparende, absturzkonsistente und VM-konsistente Sicherungs- und Wiederherstellungsvorgänge für VMs, Datenspeicher sowie Dateien und Ordner bereitzustellen.  SCV verwendet eine Remote-Plug-In-Architektur.  Es wurden mehrere SCVs bereitgestellt und auf der VCF-Verwaltungsdomäne vCenter gehostet.  Zwischen SCV- und VCF-Domäne besteht eine Eins-zu-eins-Beziehung, daher ist für die VCF-Verwaltungsdomäne und jede Workloaddomäne ein SCV erforderlich.
+
+Daten, die sich auf primären ONTAP FAS, AFF oder All SAN Array (ASA)-Systemen befinden und auf sekundäre ONTAP FAS, AFF oder ASA Systeme repliziert werden.  SCV arbeitet auch mit SnapCenter Server zusammen, um anwendungsbasierte Sicherungs- und Wiederherstellungsvorgänge in VMware-Umgebungen für anwendungsspezifische SnapCenter -Plug-Ins zu unterstützen.  Weitere Informationen finden Sie unterlink:https://docs.netapp.com/us-en/sc-plugin-vmware-vsphere/index.html["SnapCenter Plug-in for VMware vSphere Dokumentation."]
+
+image:vmware-vcf-aff-050.png["VCF-Multi-Workload-Domäne mit SCV"]
+
+Die 3-2-1-Backup-Regel ist eine Datenschutzstrategie, bei der drei Kopien der Daten erstellt, auf zwei verschiedenen Medientypen gespeichert und eine Kopie extern aufbewahrt wird. BlueXP backup and recovery ist ein Cloud-basiertes Tool für die Datenverwaltung, das eine einzige Kontrollebene für eine breite Palette von Backup- und Wiederherstellungsvorgängen sowohl in lokalen als auch in Cloud-Umgebungen bietet.  Teil der BlueXP backup and recovery Suite NetApp BlueXP ist eine Funktion, die sich in SCV (vor Ort) integrieren lässt, um eine Kopie der Daten auf den Objektspeicher in der Cloud zu erweitern. Dadurch wird eine dritte Kopie der Daten außerhalb des Standorts erstellt, die aus den Backups des primären oder sekundären Speichers stammt. Mit BlueXP backup and recovery können Sie ganz einfach Speicherrichtlinien einrichten, die Kopien Ihrer Daten von einem dieser beiden lokalen Standorte übertragen.  Weitere Einzelheiten finden Sie unterlink:https://docs.netapp.com/us-en/netapp-solutions-cloud/vmware/vmw-hybrid-321-dp-scv.html["3-2-1-Datenschutz für VMware mit SnapCenter -Plug-in und BlueXP backup and recovery für VMs"^] .
+
+
+
+== Bereitstellen eines VCF mit Verwaltungsdomäne und mehreren Workloaddomänen
+
+Eine VCF-Workloaddomäne ist eine Gruppe von ESXi-Hosts mit einem oder mehreren vSphere-Clustern, die vom SDDC Manager bereitgestellt werden und anwendungsbereit sind.  In einem VCF-Beispiel unten wurden eine Verwaltungsdomäne und zwei Workloaddomänen bereitgestellt.  Weitere Informationen zur Bereitstellung von VCF mit NetApp -Speicher finden Sie unterlink:vmw-vcf-overview.html["Dokumentation zur NetApp VCF-Bereitstellung."]
+
+image:vmware-vcf-aff-051.png["VCF: eine Verwaltungsdomäne und zwei Workloaddomänen"]
+
+
+
+== SCV-Bereitstellung, Konfiguration und Wiederherstellungsschritte
+
+Basierend auf der Anzahl der Workloaddomänen und der Verwaltungsdomäne müssen mehrere SCVs bereitgestellt werden.  Mit zwei Workloaddomänen und einer Verwaltungsdomäne zeigt das folgende Beispiel, dass drei SCVs auf der VCF-Verwaltungsdomäne vCenter bereitgestellt werden.image:vmware-vcf-aff-063.png["Eins zu Eins zwischen VCF-Domäne und SCV"]
+
+.SCV für die Verwaltungsdomäne und jede Workloaddomäne bereitstellen  
+[%collapsible%open]
+====
+. link:https://docs.netapp.com/us-en/sc-plugin-vmware-vsphere/scpivs44_download_the_ova_open_virtual_appliance.html["Laden Sie die Open Virtual Appliance (OVA) herunter."]
+. Melden Sie sich mit dem vSphere-Client beim vCenter Server an.  Navigieren Sie zu Verwaltung > Zertifikate > Zertifikatsverwaltung.  Fügen Sie vertrauenswürdige Stammzertifikate hinzu und installieren Sie jedes Zertifikat im Ordner „Certs“.  Sobald die Zertifikate installiert sind, kann OVA überprüft und bereitgestellt werden.
+. Melden Sie sich beim vCenter der VCF-Workloaddomäne an und stellen Sie die OVF-Vorlage bereit, um den VMware-Bereitstellungsassistenten zu starten.image:vmware-vcf-aff-052.png["SCV OVF-Vorlage bereitstellen"]
++
+{nbsp}
+
+. Schalten Sie OVA ein, um SCV zu starten, und klicken Sie dann auf „VMware-Tools installieren“.
+. Generieren Sie das MFA-Token aus der OVA-Konsole, Systemkonfigurationsmenü.image:vmware-vcf-aff-053.png["MFA für die Anmeldung zur SnapCenter -Verwaltungs-Webschnittstelle"]
++
+{nbsp}
+
+. Melden Sie sich bei der SCV-Verwaltungs-GUI mit dem zum Zeitpunkt der Bereitstellung festgelegten Administratorbenutzernamen und -kennwort sowie dem mithilfe der Wartungskonsole generierten MFA-Token an.
+`https://<appliance-IP-address>:8080` um auf die Verwaltungs-GUI zuzugreifen.
++
+image:vmware-vcf-aff-054.png["NetApp SnapCenter für VMware vSphere Web-Konfiguration"]
+
+
+
+====
+.SCV konfigurieren
+[%collapsible%open]
+====
+Um VMs zu sichern oder wiederherzustellen, fügen Sie zunächst die Speichercluster oder VMs hinzu, die die Datenspeicher hosten, erstellen Sie dann Sicherungsrichtlinien für die Aufbewahrung und Häufigkeit und richten Sie eine Ressourcengruppe zum Schutz der Ressourcen ein.image:vmware-vcf-aff-055.png["Erste Schritte mit SCV"]
+
+. Melden Sie sich beim vCenter-Webclient an, klicken Sie in der Symbolleiste auf „Menü“, wählen Sie „SnapCenter Plug-in for VMware vSphere“ und „Speicher hinzufügen“ aus.  Klicken Sie im linken Navigationsbereich des SCV-Plug-Ins auf „Speichersysteme“ und wählen Sie dann die Option „Hinzufügen“ aus.  Geben Sie im Dialogfeld „Speichersystem hinzufügen“ die grundlegenden SVM- oder Clusterinformationen ein und wählen Sie „Hinzufügen“ aus.  Geben Sie die IP-Adresse des NetApp -Speichers ein und melden Sie sich an.
+. Um eine neue Sicherungsrichtlinie zu erstellen, klicken Sie im linken Navigationsbereich des SCV-Plug-Ins auf „Richtlinien“ und wählen Sie „Neue Richtlinie“ aus.  Geben Sie auf der Seite „Neue Sicherungsrichtlinie“ die Richtlinienkonfigurationsinformationen ein und klicken Sie auf „Hinzufügen“.
++
+image:vmware-vcf-aff-056.png["Erstellen einer Sicherungsrichtlinie"]
+
+. Klicken Sie im linken Navigationsbereich des SCV-Plug-Ins auf „Ressourcengruppen“ und wählen Sie dann „Erstellen“ aus.  Geben Sie auf jeder Seite des Assistenten „Ressourcengruppe erstellen“ die erforderlichen Informationen ein, wählen Sie VMs und Datenspeicher aus, die in die Ressourcengruppe aufgenommen werden sollen, und wählen Sie dann die Sicherungsrichtlinien aus, die auf die Ressourcengruppe angewendet werden sollen, und geben Sie den Sicherungszeitplan an.
+
+
+image:vmware-vcf-aff-057.png["Ressourcengruppe erstellen"]
+
+====
+.Wiederherstellen von VM- und Datei- oder Ordner-Backups
+[%collapsible%open]
+====
+VMs, VMDKs, Dateien und Ordner aus Backups können wiederhergestellt werden.  Die VM kann auf dem ursprünglichen Host oder einem alternativen Host im selben vCenter-Server oder auf einem alternativen ESXi-Host wiederhergestellt werden, der vom selben vCenter verwaltet wird.  Sie können einen herkömmlichen Datenspeicher aus einer Sicherung mounten, wenn Sie auf Dateien in der Sicherung zugreifen möchten.  Sie können das Backup entweder auf demselben ESXi-Host mounten, auf dem das Backup erstellt wurde, oder auf einem alternativen ESXi-Host, der über denselben VM-Typ und dieselben Hostkonfigurationen verfügt.  Sie können einen Datenspeicher mehrmals auf einem Host mounten.  Einzelne Dateien und Ordner können auch in einer Dateiwiederherstellungssitzung des Gastes wiederhergestellt werden, bei der eine Sicherungskopie einer virtuellen Festplatte angehängt und dann die ausgewählten Dateien oder Ordner wiederhergestellt werden.  Auch Dateien und Ordner können wiederhergestellt werden.
+
+*VM-Wiederherstellungsschritte*
+
+. Klicken Sie in der GUI des VMware vSphere-Clients in der Symbolleiste auf „Menü“ und wählen Sie „VMs und Vorlagen“ aus der Dropdownliste aus. Klicken Sie mit der rechten Maustaste auf eine VM und wählen Sie „SnapCenter Plug-in for VMware vSphere“ aus der Dropdownliste aus. Wählen Sie dann „Wiederherstellen“ aus der sekundären Dropdownliste aus, um den Assistenten zu starten.
+. Wählen Sie im Wiederherstellungsassistenten den Sicherungs-Snapshot aus, den Sie wiederherstellen möchten, und wählen Sie im Feld „Wiederherstellungsbereich“ die Option „Gesamte virtuelle Maschine“ aus. Wählen Sie den Wiederherstellungsort aus und geben Sie dann die Zielinformationen ein, unter denen die Sicherung bereitgestellt werden soll.  Wählen Sie auf der Seite „Speicherort auswählen“ den Speicherort für den wiederhergestellten Datenspeicher aus.  Überprüfen Sie die Seite „Zusammenfassung“ und klicken Sie auf „Fertig stellen“.
++
+image:vmware-vcf-aff-059.png["VM-Wiederherstellung"]
+
+. Überwachen Sie den Vorgangsfortschritt, indem Sie unten auf dem Bildschirm auf „Letzte Aufgaben“ klicken.
+
+
+*Schritte zur Datenspeicherwiederherstellung*
+
+. Klicken Sie mit der rechten Maustaste auf einen Datenspeicher und wählen Sie „SnapCenter Plug-in for VMware vSphere“ > „Backup mounten“.
+. Wählen Sie auf der Seite „Datenspeicher bereitstellen“ eine Sicherung und einen Sicherungsspeicherort (primär oder sekundär) aus und klicken Sie dann auf „Befestigen“.
+
+
+image:vmware-vcf-aff-062.png["Datenspeicherwiederherstellung"]
+
+*Schritte zum Wiederherstellen von Dateien und Ordnern*
+
+. Wenn Sie für Datei- oder Ordnerwiederherstellungsvorgänge von Gastbenutzern eine virtuelle Festplatte anhängen, müssen vor der Wiederherstellung die Anmeldeinformationen der Ziel-VM für den Anschluss konfiguriert sein.  Wählen Sie im SnapCenter Plug-in for VMware vSphere unter Plug-ins die Option „Guest File Restore“ und „Run As Credentials“ aus und geben Sie die Benutzeranmeldeinformationen ein.  Als Benutzernamen müssen Sie „Administrator“ eingeben.
++
+image:vmware-vcf-aff-060.png["Anmeldeinformationen wiederherstellen"]
+
+. Klicken Sie im vSphere-Client mit der rechten Maustaste auf die VM und wählen Sie „SnapCenter Plug-in for VMware vSphere“ > „Guest File Restore“.  Geben Sie auf der Seite „Wiederherstellungsbereich“ den Sicherungsnamen, die virtuelle VMDK-Festplatte und den Speicherort – primär oder sekundär – an.  Klicken Sie zur Bestätigung auf „Zusammenfassung“.
++
+image:vmware-vcf-aff-061.png["Wiederherstellen von Dateien und Ordnern"]
+
+
+
+====
+NetApp SnapCenter für VCP Multi-Domain zentralisiert den Datenschutz, reduziert effizient den Zeit- und Speicherplatzbedarf für Backups mithilfe von NetApp Snapshots, unterstützt große VMware-Umgebungen mit robusten Backup- und Replikationsfunktionen und ermöglicht die granulare Wiederherstellung ganzer VMs, bestimmter VMDKs oder einzelner Dateien.
+
+
+
+== Videodemo zum Schützen mehrerer VCF-Domänen mit SCV
+
+.Schützen Sie mehrere VMware VCF-Domänen mit NetApp SCV
+video::25a5a06c-1def-4aa4-ab00-b28100142194[panopto,width=360]

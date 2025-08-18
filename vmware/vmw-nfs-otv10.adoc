@@ -1,0 +1,446 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-nfs-otv10.html 
+keywords: netapp, vmware, cloud, foundation, vcf, aff, all-flash, nfs, vvol, vvols, array, ontap tools, otv, sddc 
+summary:  
+---
+= Konfigurieren Sie NFS-Datenspeicher für vSphere 8 mit ONTAP tools for VMware vSphere
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Stellen Sie ONTAP tools for VMware vSphere 10 bereit, um NFS-Datenspeicher in einer vSphere 8-Umgebung zu konfigurieren.  Dieses Verfahren umfasst das Erstellen von SVMs und LIFs für NFS-Verkehr, das Einrichten des ESXi-Host-Netzwerks und das Registrieren von ONTAP Tools bei Ihrem vSphere-Cluster.
+
+ONTAP tools for VMware vSphere 10 verfügen über eine Architektur der nächsten Generation, die native Hochverfügbarkeit und Skalierbarkeit für den VASA-Provider ermöglicht (unterstützt iSCSI- und NFS- vVols).  Dies vereinfacht die Verwaltung mehrerer VMware vCenter-Server und ONTAP -Cluster.
+
+In diesem Szenario zeigen wir, wie ONTAP tools for VMware vSphere 10 bereitgestellt und verwendet werden und wie ein NFS-Datenspeicher für vSphere 8 konfiguriert wird.
+
+
+
+== Lösungsübersicht
+
+Dieses Szenario umfasst die folgenden allgemeinen Schritte:
+
+* Erstellen Sie eine Storage Virtual Machine (SVM) mit logischen Schnittstellen (LIFs) für NFS-Verkehr.
+* Erstellen Sie eine verteilte Portgruppe für das NFS-Netzwerk auf dem vSphere 8-Cluster.
+* Erstellen Sie einen VMkernel-Adapter für NFS auf den ESXi-Hosts im vSphere 8-Cluster.
+* Stellen Sie ONTAP Tools 10 bereit und registrieren Sie sich beim vSphere 8-Cluster.
+* Erstellen Sie einen neuen NFS-Datenspeicher auf dem vSphere 8-Cluster.
+
+
+
+
+== Architektur
+
+Das folgende Diagramm zeigt die Architekturkomponenten einer ONTAP tools for VMware vSphere 10.
+
+image:vmware-nfs-otv10-029.png["otv10-Architektur"]
+
+
+
+== Voraussetzungen
+
+Diese Lösung erfordert die folgenden Komponenten und Konfigurationen:
+
+* Ein ONTAP AFF -Speichersystem mit physischen Datenports auf Ethernet-Switches, die für den Speicherverkehr vorgesehen sind.
+* Die Bereitstellung des vSphere 8-Clusters ist abgeschlossen und auf den vSphere-Client kann zugegriffen werden.
+* ONTAP tools for VMware vSphere 10 wurden von der NetApp Support-Site heruntergeladen.
+
+
+NetApp empfiehlt redundante Netzwerkdesigns für NFS, die Fehlertoleranz für Speichersysteme, Switches, Netzwerkadapter und Hostsysteme bieten.  Es ist üblich, NFS je nach den Architekturanforderungen mit einem einzelnen Subnetz oder mehreren Subnetzen bereitzustellen.
+
+Siehe https://www.vmware.com/docs/vmw-best-practices-running-nfs-vmware-vsphere["Best Practices für die Ausführung von NFS mit VMware vSphere"] für ausführliche Informationen speziell zu VMware vSphere.
+
+Netzwerkhinweise zur Verwendung von ONTAP mit VMware vSphere finden Sie im https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vsphere-network.html#nfs["Netzwerkkonfiguration – NFS"] Abschnitt der Dokumentation zu NetApp -Unternehmensanwendungen.
+
+Umfassende ONTAP -Tools 10 Ressourcen finden Sie https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/index.html["ONTAP tools for VMware vSphere – Dokumentationsressourcen"] .
+
+
+
+== Bereitstellungsschritte
+
+Führen Sie die folgenden Schritte aus, um ONTAP Tools 10 bereitzustellen und damit einen NFS-Datenspeicher in der VCF-Verwaltungsdomäne zu erstellen:
+
+
+
+=== Erstellen Sie SVM und LIFs auf dem ONTAP Speichersystem
+
+Der folgende Schritt wird im ONTAP System Manager ausgeführt.
+
+.Erstellen der Speicher-VM und LIFs
+[%collapsible%open]
+====
+Führen Sie die folgenden Schritte aus, um eine SVM zusammen mit mehreren LIFs für NFS-Verkehr zu erstellen.
+
+. Navigieren Sie im ONTAP System Manager im linken Menü zu *Storage VMs* und klicken Sie zum Starten auf *+ Hinzufügen*.
++
+image:vmware-vcf-asa-001.png["Klicken Sie auf +Hinzufügen, um mit der Erstellung des SVM zu beginnen"]
+
++
+{nbsp}
+
+. Geben Sie im Assistenten *Speicher-VM hinzufügen* einen *Namen* für die SVM ein, wählen Sie den *IP-Bereich* aus und klicken Sie dann unter *Zugriffsprotokoll* auf die Registerkarte *SMB/CIFS, NFS, S3* und aktivieren Sie das Kontrollkästchen *NFS aktivieren*.
++
+image:vmware-vcf-aff-035.png["Assistent zum Hinzufügen von Speicher-VMs – NFS aktivieren"]
+
++
+
+TIP: Es ist nicht erforderlich, hier die Schaltfläche *NFS-Clientzugriff zulassen* zu aktivieren, da zur Automatisierung des Datastore-Bereitstellungsprozesses Ontap-Tools für VMware vSphere verwendet werden.  Dazu gehört die Bereitstellung des Clientzugriffs für die ESXi-Hosts.  &#160;
+
+. Geben Sie im Abschnitt *Netzwerkschnittstelle* die *IP-Adresse*, *Subnetzmaske* und *Broadcast-Domäne und -Port* für das erste LIF ein.  Für nachfolgende LIFs kann das Kontrollkästchen aktiviert werden, um gemeinsame Einstellungen für alle verbleibenden LIFs oder separate Einstellungen zu verwenden.
++
+image:vmware-vcf-aff-036.png["Netzwerkinformationen für LIFs ausfüllen"]
+
++
+{nbsp}
+
+. Wählen Sie, ob das Storage VM-Administrationskonto (für Umgebungen mit mehreren Mandanten) aktiviert werden soll, und klicken Sie auf *Speichern*, um die SVM zu erstellen.
++
+image:vmware-vcf-asa-004.png["SVM-Konto aktivieren und abschließen"]
+
+
+
+====
+
+
+=== Einrichten des Netzwerks für NFS auf ESXi-Hosts
+
+Die folgenden Schritte werden mithilfe des vSphere-Clients auf dem VI Workload Domain-Cluster ausgeführt.  In diesem Fall wird vCenter Single Sign-On verwendet, sodass der vSphere-Client in allen Verwaltungs- und Workloaddomänen gleich ist.
+
+.Erstellen Sie eine verteilte Portgruppe für NFS-Verkehr
+[%collapsible%open]
+====
+Führen Sie die folgenden Schritte aus, um eine neue verteilte Portgruppe für das Netzwerk zur Übertragung von NFS-Verkehr zu erstellen:
+
+. Navigieren Sie im vSphere-Client zu *Inventar > Netzwerk* für die Workloaddomäne.  Navigieren Sie zum vorhandenen Distributed Switch und wählen Sie die Aktion zum Erstellen einer *Neuen verteilten Portgruppe...*.
++
+image:vmware-nfs-otv10-001.png["Wählen Sie „Neue Portgruppe erstellen“"]
+
++
+{nbsp}
+
+. Geben Sie im Assistenten *Neue verteilte Portgruppe* einen Namen für die neue Portgruppe ein und klicken Sie auf *Weiter*, um fortzufahren.
+. Füllen Sie auf der Seite *Einstellungen konfigurieren* alle Einstellungen aus.  Wenn VLANs verwendet werden, stellen Sie sicher, dass Sie die richtige VLAN-ID angeben. Klicken Sie auf *Weiter*, um fortzufahren.
++
+image:vmware-vcf-asa-023.png["Füllen Sie die VLAN-ID aus"]
+
++
+{nbsp}
+
+. Überprüfen Sie auf der Seite *Bereit zum Abschließen* die Änderungen und klicken Sie auf *Fertig*, um die neue verteilte Portgruppe zu erstellen.
+. Nachdem die Portgruppe erstellt wurde, navigieren Sie zu der Portgruppe und wählen Sie die Aktion „Einstellungen bearbeiten…“ aus.
++
+image:vmware-vcf-aff-037.png["DPG - Einstellungen bearbeiten"]
+
++
+{nbsp}
+
+. Navigieren Sie auf der Seite *Verteilte Portgruppe – Einstellungen bearbeiten* im linken Menü zu *Teaming und Failover*.  Aktivieren Sie die Teambildung für die Uplinks, die für den NFS-Verkehr verwendet werden sollen, indem Sie sicherstellen, dass sie sich gemeinsam im Bereich *Aktive Uplinks* befinden.  Verschieben Sie alle nicht verwendeten Uplinks nach unten zu *Ungenutzte Uplinks*.
++
+image:vmware-nfs-otv10-002.png["DPG - Team-Uplinks"]
+
++
+{nbsp}
+
+. Wiederholen Sie diesen Vorgang für jeden ESXi-Host im Cluster.
+
+
+====
+.Erstellen Sie auf jedem ESXi-Host einen VMkernel-Adapter
+[%collapsible%open]
+====
+Wiederholen Sie diesen Vorgang auf jedem ESXi-Host in der Workload-Domäne.
+
+. Navigieren Sie vom vSphere-Client zu einem der ESXi-Hosts im Workload-Domäneninventar.  Wählen Sie auf der Registerkarte *Konfigurieren* *VMkernel-Adapter* aus und klicken Sie zum Starten auf *Netzwerk hinzufügen...*.
++
+image:vmware-nfs-otv10-003.png["Starten Sie den Assistenten zum Hinzufügen von Netzwerken"]
+
++
+{nbsp}
+
+. Wählen Sie im Fenster *Verbindungstyp auswählen* *VMkernel-Netzwerkadapter* und klicken Sie auf *Weiter*, um fortzufahren.
++
+image:vmware-vcf-asa-008.png["Wählen Sie den VMkernel-Netzwerkadapter"]
+
++
+{nbsp}
+
+. Wählen Sie auf der Seite *Zielgerät auswählen* eine der zuvor erstellten verteilten Portgruppen für NFS aus.
++
+image:vmware-nfs-otv10-004.png["Zielportgruppe auswählen"]
+
++
+{nbsp}
+
+. Behalten Sie auf der Seite *Porteigenschaften* die Standardeinstellungen bei (keine aktivierten Dienste) und klicken Sie auf *Weiter*, um fortzufahren.
+. Geben Sie auf der Seite *IPv4-Einstellungen* die *IP-Adresse* und *Subnetzmaske* ein und geben Sie eine neue Gateway-IP-Adresse an (nur falls erforderlich). Klicken Sie auf *Weiter*, um fortzufahren.
++
+image:vmware-nfs-otv10-005.png["VMkernel-IPv4-Einstellungen"]
+
++
+{nbsp}
+
+. Überprüfen Sie Ihre Auswahl auf der Seite *Bereit zum Abschließen* und klicken Sie auf *Fertig*, um den VMkernel-Adapter zu erstellen.
++
+image:vmware-nfs-otv10-006.png["Überprüfen Sie die VMkernel-Auswahl"]
+
+
+
+====
+
+
+=== Bereitstellen und Verwenden von ONTAP Tools 10 zum Konfigurieren von Speicher
+
+Die folgenden Schritte werden auf einem vSphere 8-Cluster mithilfe des vSphere-Clients ausgeführt und umfassen die Bereitstellung von OTV, die Konfiguration des ONTAP Tools Manager und die Erstellung eines vVols NFS-Datenspeichers.
+
+Die vollständige Dokumentation zur Bereitstellung und Verwendung von ONTAP tools for VMware vSphere 10 finden Sie unter https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/deploy/ontap-tools-deployment.html["Bereitstellen von ONTAP tools for VMware vSphere"] .
+
+.Bereitstellen von ONTAP tools for VMware vSphere 10
+[%collapsible%open]
+====
+ONTAP tools for VMware vSphere 10 werden als VM-Appliance bereitgestellt und bieten eine integrierte vCenter-Benutzeroberfläche zur Verwaltung des ONTAP Speichers.  ONTAP Tools 10 bietet ein neues globales Verwaltungsportal zum Verwalten von Verbindungen zu mehreren vCenter-Servern und ONTAP -Speicher-Backends.
+
+
+NOTE: In einem Bereitstellungsszenario ohne HA sind drei verfügbare IP-Adressen erforderlich.  Eine IP-Adresse wird dem Load Balancer zugewiesen, eine andere der Kubernetes-Steuerebene und die verbleibende dem Knoten.  Bei einer HA-Bereitstellung sind zusätzlich zu den ersten drei IP-Adressen zwei weitere für den zweiten und dritten Knoten erforderlich.  Vor der Zuweisung sollten die Hostnamen den IP-Adressen im DNS zugeordnet werden.  Es ist wichtig, dass sich alle fünf IP-Adressen im selben VLAN befinden, das für die Bereitstellung ausgewählt wird.
+
+Führen Sie die folgenden Schritte aus, um ONTAP tools for VMware vSphere bereitzustellen:
+
+. Besorgen Sie sich das OVA-Image der ONTAP -Tools von derlink:https://mysupport.netapp.com/site/products/all/details/otv10/downloads-tab["NetApp Support-Site"] und in einen lokalen Ordner herunterladen.
+. Melden Sie sich bei der vCenter-Appliance für den vSphere 8-Cluster an.
+. Klicken Sie in der vCenter-Appliance-Schnittstelle mit der rechten Maustaste auf den Verwaltungscluster und wählen Sie *OVF-Vorlage bereitstellen…*
++
+image:vmware-nfs-otv10-007.png["OVF-Vorlage bereitstellen …"]
+
++
+{nbsp}
+
+. Klicken Sie im Assistenten *OVF-Vorlage bereitstellen* auf das Optionsfeld *Lokale Datei* und wählen Sie die im vorherigen Schritt heruntergeladene OVA-Datei der ONTAP -Tools aus.
++
+image:vmware-vcf-aff-022.png["OVA-Datei auswählen"]
+
++
+{nbsp}
+
+. Wählen Sie für die Schritte 2 bis 5 des Assistenten einen Namen und einen Ordner für die VM aus, wählen Sie die Rechenressource aus, überprüfen Sie die Details und akzeptieren Sie die Lizenzvereinbarung.
+. Wählen Sie als Speicherort der Konfigurations- und Datenträgerdateien einen lokalen Datenspeicher oder einen vSAN-Datenspeicher aus.
++
+image:vmware-nfs-otv10-008.png["OVA-Datei auswählen"]
+
++
+{nbsp}
+
+. Wählen Sie auf der Seite „Netzwerk auswählen“ das für den Verwaltungsverkehr verwendete Netzwerk aus.
++
+image:vmware-nfs-otv10-009.png["Netzwerk auswählen"]
+
++
+{nbsp}
+
+. Wählen Sie auf der Konfigurationsseite die zu verwendende Bereitstellungskonfiguration aus.  In diesem Szenario wird die einfache Bereitstellungsmethode verwendet.
++
+
+NOTE: ONTAP Tools 10 bietet mehrere Bereitstellungskonfigurationen, einschließlich Hochverfügbarkeitsbereitstellungen mit mehreren Knoten.  Dokumentation zu allen Bereitstellungskonfigurationen und Voraussetzungen finden Sie unter https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/deploy/prerequisites.html["Voraussetzungen für die Bereitstellung von ONTAP tools for VMware vSphere"] .
+
++
+image:vmware-nfs-otv10-010.png["Netzwerk auswählen"]
+
++
+{nbsp}
+
+. Geben Sie auf der Seite „Vorlage anpassen“ alle erforderlichen Informationen ein:
++
+** Anwendungsbenutzername, der zum Registrieren des VASA-Anbieters und SRA im vCenter Server verwendet werden soll.
+** Aktivieren Sie ASUP für automatisierten Support.
+** ASUP-Proxy-URL, falls erforderlich.
+** Benutzername und Passwort des Administrators.
+** NTP-Server.
+** Wartungsbenutzerkennwort für den Zugriff auf Verwaltungsfunktionen von der Konsole aus.
+** IP des Lastenausgleichs.
+** Virtuelle IP für die K8s-Steuerebene.
+** Primäre VM, um die aktuelle VM als primäre auszuwählen (für HA-Konfigurationen).
+** Hostname für die VM
+** Geben Sie die erforderlichen Felder für die Netzwerkeigenschaften an.
++
+Klicken Sie auf *Weiter*, um fortzufahren.
+
++
+image:vmware-nfs-otv10-011.png["OTV-Vorlage anpassen 1"]
+
++
+image:vmware-nfs-otv10-012.png["OTV-Vorlage 2 anpassen"]
+
++
+{nbsp}
+
+
+
+. Überprüfen Sie alle Informationen auf der Seite „Bereit zum Abschließen“ und klicken Sie auf „Fertig stellen“, um mit der Bereitstellung der ONTAP -Tools-Appliance zu beginnen.
+
+
+====
+.Verbinden Sie Storage Backend und vCenter Server mit ONTAP Tools 10.
+[%collapsible%open]
+====
+Der ONTAP Tools Manager wird zum Konfigurieren globaler Einstellungen für ONTAP Tools 10 verwendet.
+
+. Greifen Sie auf den ONTAP Tools Manager zu, indem Sie zu `https://<loadBalanceIP>:8443/virtualization/ui/` in einem Webbrowser und melden Sie sich mit den Administratoranmeldeinformationen an, die Sie während der Bereitstellung bereitgestellt haben.
++
+image:vmware-nfs-otv10-013.png["ONTAP -Tools-Manager"]
+
++
+{nbsp}
+
+. Klicken Sie auf der Seite *Erste Schritte* auf *Zu Speicher-Backends gehen*.
++
+image:vmware-nfs-otv10-014.png["Erste Schritte"]
+
++
+{nbsp}
+
+. Klicken Sie auf der Seite *Storage Backends* auf *HINZUFÜGEN*, um die Anmeldeinformationen eines ONTAP Speichersystems einzugeben, das bei ONTAP Tools 10 registriert werden soll.
++
+image:vmware-nfs-otv10-015.png["Speicher-Backend hinzufügen"]
+
++
+{nbsp}
+
+. Geben Sie im Feld *Speicher-Backend hinzufügen* die Anmeldeinformationen für das ONTAP -Speichersystem ein.
++
+image:vmware-nfs-otv10-016.png["Speicher-Backend hinzufügen"]
+
++
+{nbsp}
+
+. Klicken Sie im linken Menü auf *vCenters* und dann auf *HINZUFÜGEN*, um die Anmeldeinformationen eines vCenter-Servers einzugeben, der bei ONTAP Tools 10 registriert werden soll.
++
+image:vmware-nfs-otv10-017.png["vCenter-Server hinzufügen"]
+
++
+{nbsp}
+
+. Geben Sie im Feld *vCenter hinzufügen* die Anmeldeinformationen für das ONTAP Speichersystem ein.
++
+image:vmware-nfs-otv10-018.png["Fügen Sie Anmeldeinformationen für den Speicherspeicher hinzu"]
+
++
+{nbsp}
+
+. Wählen Sie im vertikalen Drei-Punkte-Menü für den neu erkannten vCenter-Server *Associate Storage Backend* aus.
++
+image:vmware-nfs-otv10-019.png["Speicher-Backend zuordnen"]
+
++
+{nbsp}
+
+. Wählen Sie im Feld *Associate Storage Backend* das ONTAP -Speichersystem aus, das mit dem vCenter-Server verknüpft werden soll, und klicken Sie auf *Associate*, um die Aktion abzuschließen.
++
+image:vmware-nfs-otv10-020.png["Wählen Sie das zu verknüpfende Speichersystem aus"]
+
++
+{nbsp}
+
+. Um die Installation zu überprüfen, melden Sie sich beim vSphere-Client an und wählen Sie im linken Menü * NetApp ONTAP -Tools* aus.
++
+image:vmware-nfs-otv10-021.png["Greifen Sie auf das ONTAP Tools-Plugin zu"]
+
++
+{nbsp}
+
+. Auf dem Dashboard der ONTAP -Tools sollten Sie sehen, dass dem vCenter Server ein Storage-Backend zugeordnet wurde.
++
+image:vmware-nfs-otv10-022.png["Dashboard für ONTAP -Tools"]
+
++
+{nbsp}
+
+
+
+====
+.Erstellen Sie einen NFS-Datenspeicher mit ONTAP -Tools 10
+[%collapsible%open]
+====
+Führen Sie die folgenden Schritte aus, um mithilfe von ONTAP Tools 10 einen ONTAP Datenspeicher bereitzustellen, der auf NFS ausgeführt wird.
+
+. Navigieren Sie im vSphere-Client zum Speicherinventar.  Wählen Sie im Menü *AKTIONEN* die Option * NetApp ONTAP -Tools > Datenspeicher erstellen*.
++
+image:vmware-nfs-otv10-023.png["ONTAP -Tools – Datenspeicher erstellen"]
+
++
+{nbsp}
+
+. Klicken Sie auf der Seite *Typ* des Assistenten „Datenspeicher erstellen“ auf das Optionsfeld NFS und dann auf *Weiter*, um fortzufahren.
++
+image:vmware-nfs-otv10-024.png["Datenspeichertyp auswählen"]
+
++
+{nbsp}
+
+. Geben Sie auf der Seite *Name und Protokoll* den Namen, die Größe und das Protokoll für den Datenspeicher ein. Klicken Sie auf *Weiter*, um fortzufahren.
++
+image:vmware-nfs-otv10-025.png["Datenspeichertyp auswählen"]
+
++
+{nbsp}
+
+. Wählen Sie auf der Seite *Speicher* eine Plattform (filtert Speichersysteme nach Typ) und eine Speicher-VM für das Volume aus.  Wählen Sie optional eine benutzerdefinierte Exportrichtlinie aus. Klicken Sie auf *Weiter*, um fortzufahren.
++
+image:vmware-nfs-otv10-026.png["Speicherseite"]
+
++
+{nbsp}
+
+. Wählen Sie auf der Seite *Speicherattribute* das zu verwendende Speicheraggregat und optional erweiterte Optionen wie Speicherplatzreservierung und Servicequalität aus. Klicken Sie auf *Weiter*, um fortzufahren.
++
+image:vmware-nfs-otv10-027.png["Seite „Speicherattribute“"]
+
++
+{nbsp}
+
+. Überprüfen Sie abschließend die *Zusammenfassung* und klicken Sie auf „Fertig stellen“, um mit der Erstellung des NFS-Datenspeichers zu beginnen.
++
+image:vmware-nfs-otv10-028.png["Zusammenfassung und Abschluss der Überprüfung"]
+
+
+
+====
+.Ändern Sie die Größe eines NFS-Datenspeichers mit ONTAP -Tools 10
+[%collapsible%open]
+====
+Führen Sie die folgenden Schritte aus, um die Größe eines vorhandenen NFS-Datenspeichers mithilfe von ONTAP Tools 10 zu ändern.
+
+. Navigieren Sie im vSphere-Client zum Speicherinventar.  Wählen Sie im Menü *AKTIONEN* die Option * NetApp ONTAP -Tools > Datenspeichergröße ändern*.
++
+image:vmware-nfs-otv10-030.png["Wählen Sie „Datenspeichergröße ändern“"]
+
++
+{nbsp}
+
+. Geben Sie im Assistenten *Größe des Datenspeichers ändern* die neue Größe des Datenspeichers in GB ein und klicken Sie auf *Größe ändern*, um fortzufahren.
++
+image:vmware-nfs-otv10-031.png["Assistent zur Größenänderung des Datenspeichers"]
+
++
+{nbsp}
+
+. Überwachen Sie den Fortschritt des Größenänderungsauftrags im Bereich *Letzte Aufgaben*.
++
+image:vmware-nfs-otv10-032.png["Bereich „Kürzlich bearbeitete Aufgaben“"]
+
++
+{nbsp}
+
+
+
+====
+
+
+== Weitere Informationen
+
+Eine vollständige Liste der ONTAP tools for VMware vSphere 10-Ressourcen finden Sie unter https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/index.html["ONTAP tools for VMware vSphere – Dokumentationsressourcen"] .
+
+Weitere Informationen zur Konfiguration von ONTAP -Speichersystemen finden Sie imlink:https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/["ONTAP 10 Dokumentation"] Center.

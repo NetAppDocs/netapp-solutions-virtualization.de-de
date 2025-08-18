@@ -1,0 +1,74 @@
+---
+sidebar: sidebar 
+permalink: openshift/os-overview.html 
+keywords: OpenShift, deploy, baremetal, private cloud, virtual 
+summary: Die Red Hat OpenShift Container Platform vereint Entwicklung und IT-Betrieb auf einer einzigen Plattform, um Anwendungen konsistent über lokale und hybride Cloud-Infrastrukturen hinweg zu erstellen, bereitzustellen und zu verwalten. Red Hat OpenShift basiert auf Open-Source-Innovationen und Industriestandards, darunter Kubernetes und Red Hat Enterprise Linux CoreOS, die führende Enterprise-Linux-Distribution für containerbasierte Workloads. 
+---
+= OpenShift-Übersicht
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Die Red Hat OpenShift Container Platform vereint Entwicklung und IT-Betrieb auf einer einzigen Plattform, um Anwendungen konsistent über lokale und hybride Cloud-Infrastrukturen hinweg zu erstellen, bereitzustellen und zu verwalten. Red Hat OpenShift basiert auf Open-Source-Innovationen und Industriestandards, darunter Kubernetes und Red Hat Enterprise Linux CoreOS, die weltweit führende Enterprise-Linux-Distribution für containerbasierte Workloads. OpenShift ist Teil des Certified Kubernetes-Programms der Cloud Native Computing Foundation (CNCF) und bietet Portabilität und Interoperabilität von Container-Workloads.
+
+
+
+== Red Hat OpenShift bietet die folgenden Funktionen:
+
+* *Self-Service-Bereitstellung* Entwickler können schnell und einfach Anwendungen nach Bedarf mit den Tools erstellen, die sie am häufigsten verwenden, während der Betrieb die volle Kontrolle über die gesamte Umgebung behält.
+* *Persistenter Speicher* Durch die Unterstützung von persistentem Speicher ermöglicht Ihnen die OpenShift Container Platform, sowohl zustandsbehaftete als auch Cloud-native zustandslose Anwendungen auszuführen.
+* *Kontinuierliche Integration und kontinuierliche Entwicklung (CI/CD)* Diese Quellcode-Plattform verwaltet Build- und Bereitstellungsimages im großen Maßstab.
+* *Open-Source-Standards* Diese Standards umfassen neben anderen Open-Source-Technologien die Open Container Initiative (OCI) und Kubernetes für die Container-Orchestrierung. Sie sind nicht auf die Technologie oder die Geschäfts-Roadmap eines bestimmten Anbieters beschränkt.
+* *CI/CD-Pipelines* OpenShift bietet sofort einsatzbereite Unterstützung für CI/CD-Pipelines, sodass Entwicklungsteams jeden Schritt des Anwendungsbereitstellungsprozesses automatisieren und sicherstellen können, dass er bei jeder Änderung am Code oder an der Konfiguration der Anwendung ausgeführt wird.
+* *Rollenbasierte Zugriffskontrolle (RBAC)* Diese Funktion bietet Team- und Benutzerverfolgung, um die Organisation einer großen Entwicklergruppe zu erleichtern.
+* *Automatisiertes Erstellen und Bereitstellen* OpenShift bietet Entwicklern die Möglichkeit, ihre containerisierten Anwendungen zu erstellen oder die Container von der Plattform aus dem Anwendungsquellcode oder sogar den Binärdateien erstellen zu lassen. Die Plattform automatisiert dann die Bereitstellung dieser Anwendungen in der gesamten Infrastruktur basierend auf den für die Anwendungen definierten Merkmalen. Beispielsweise, welche Menge an Ressourcen zugewiesen werden sollte und wo auf der Infrastruktur sie bereitgestellt werden sollten, damit sie mit Lizenzen von Drittanbietern kompatibel sind.
+* *Konsistente Umgebungen* OpenShift stellt sicher, dass die für Entwickler und über den gesamten Lebenszyklus der Anwendung bereitgestellte Umgebung vom Betriebssystem über Bibliotheken und Laufzeitversionen (z. B. Java-Laufzeit) bis hin zur verwendeten Anwendungslaufzeit (z. B. Tomcat) konsistent ist, um die durch inkonsistente Umgebungen entstehenden Risiken zu beseitigen.
+* *Konfigurationsverwaltung* Die Konfiguration und Verwaltung sensibler Daten ist in die Plattform integriert, um sicherzustellen, dass der Anwendung eine konsistente und umgebungsunabhängige Anwendungskonfiguration zur Verfügung gestellt wird, unabhängig davon, welche Technologien zum Erstellen der Anwendung verwendet werden oder in welcher Umgebung sie bereitgestellt wird.
+* *Anwendungsprotokolle und Metriken.* Schnelles Feedback ist ein wichtiger Aspekt der Anwendungsentwicklung. Die integrierte Überwachung und Protokollverwaltung von OpenShift liefert den Entwicklern sofortige Messdaten, damit sie das Verhalten der Anwendung bei Änderungen untersuchen und Probleme so früh wie möglich im Anwendungslebenszyklus beheben können.
+* *Sicherheit und Containerkatalog* OpenShift bietet Mandantenfähigkeit und schützt den Benutzer vor der Ausführung schädlichen Codes, indem es etablierte Sicherheit mit Security-Enhanced Linux (SELinux), CGroups und Secure Computing Mode (seccomp) verwendet, um Container zu isolieren und zu schützen. Es bietet außerdem Verschlüsselung durch TLS-Zertifikate für die verschiedenen Subsysteme und Zugriff auf Red Hat-zertifizierte Container (access.redhat.com/containers), die mit besonderem Augenmerk auf Sicherheit gescannt und bewertet werden, um Endbenutzern zertifizierte, vertrauenswürdige und sichere Anwendungscontainer bereitzustellen.
+
+
+image:redhat-openshift-004.png["Abbildung, die einen Eingabe-/Ausgabedialog zeigt oder schriftlichen Inhalt darstellt"]
+
+
+
+== Bereitstellungsmethoden für Red Hat OpenShift
+
+Ab Red Hat OpenShift 4 umfassen die Bereitstellungsmethoden für OpenShift manuelle Bereitstellungen mithilfe von User Provisioned Infrastructure (UPI) für hochgradig angepasste Bereitstellungen oder vollständig automatisierte Bereitstellungen mithilfe von Installer Provisioned Infrastructure (IPI).
+
+Die IPI-Installationsmethode ist in den meisten Fällen die bevorzugte Methode, da sie die schnelle Bereitstellung von OpenShift-Clustern für Entwicklungs-, Test- und Produktionsumgebungen ermöglicht.
+
+
+
+=== IPI-Installation von Red Hat OpenShift
+
+Die Bereitstellung der Installer Provisioned Infrastructure (IPI) von OpenShift umfasst die folgenden allgemeinen Schritte:
+
+. Besuchen Sie die Red Hat OpenShiftlink:https://www.openshift.com["Webseite"^] und melden Sie sich mit Ihren SSO-Anmeldeinformationen an.
+. Wählen Sie die Umgebung aus, in der Sie Red Hat OpenShift bereitstellen möchten.
++
+image:redhat-openshift-008.png["Abbildung, die einen Eingabe-/Ausgabedialog zeigt oder schriftlichen Inhalt darstellt"]
+
+. Laden Sie auf dem nächsten Bildschirm das Installationsprogramm, das eindeutige Pull-Geheimnis und die CLI-Tools für die Verwaltung herunter.
++
+image:redhat-openshift-009.png["Abbildung, die einen Eingabe-/Ausgabedialog zeigt oder schriftlichen Inhalt darstellt"]
+
+. Folgen Sie denlink:https://docs.openshift.com/container-platform/4.7/installing/index.html["Installationsanweisungen"] von Red Hat zur Bereitstellung in der Umgebung Ihrer Wahl.
+
+
+
+
+=== NetApp validierte OpenShift-Bereitstellungen
+
+NetApp hat die Bereitstellung von Red Hat OpenShift in seinen Laboren mithilfe der IPI-Bereitstellungsmethode (Installer Provisioned Infrastructure) in jeder der folgenden Rechenzentrumsumgebungen getestet und validiert:
+
+* link:https://docs.netapp.com/us-en/netapp-solutions-containers/openshift/os-on-bm.html["OpenShift auf Bare Metal"^]
+* link:https://docs.netapp.com/us-en/netapp-solutions-containers/openshift/os-on-openstack.html["OpenShift auf der Red Hat OpenStack-Plattform"^]
+* link:https://docs.netapp.com/us-en/netapp-solutions-containers/openshift/os-on-rhv.html["OpenShift auf Red Hat Virtualization"^]
+* link:https://docs.netapp.com/us-en/netapp-solutions-containers/openshift/os-on-vmw.html["OpenShift auf VMware vSphere"^]
+

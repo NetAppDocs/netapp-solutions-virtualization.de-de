@@ -1,0 +1,87 @@
+---
+sidebar: sidebar 
+permalink: virtualization/virt-overview.html 
+keywords: virtualization, overview, compute, storage, vmware, openshift, hyper-v 
+summary: Das Dokument bietet einen Überblick über die Virtualisierung aus der Perspektive von Computer, Netzwerk und Speicher. 
+---
+= Erfahren Sie mehr über die Verbesserung virtualisierter IT-Umgebungen mit ONTAP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Durch Virtualisierung werden IT-Umgebungen optimiert, was eine effiziente Ressourcennutzung und Flexibilität ermöglicht und gleichzeitig moderne Anwendungen wie KI-Systeme unterstützt.  Informieren Sie sich über die Auswirkungen auf die Netzwerk-, Rechen- und Speicherinfrastruktur und darüber, wie NetApp ONTAP virtualisierte Systeme verbessert.
+
+
+
+== Überblick
+
+Traditionell bestanden Rechenzentren aus physischen Servern, Netzwerken und Speichern, die jeweils bestimmten Aufgaben zugeordnet waren.  Durch diesen Ansatz entstanden Silos von Ressourcen, die häufig kaum genutzt wurden.  Im Kern geht es bei der Virtualisierung darum, physische Ressourcen von den Anforderungen und Funktionen der Organisation zu entkoppeln.  Dies wird durch die Erstellung virtueller Darstellungen der drei wichtigsten Infrastrukturkomponenten erreicht: *Netzwerk*, *Rechner* und *Speicher*.  Durch die Bereitstellung einer virtuellen Infrastruktur können Unternehmen durch diese logischen Konstrukte eine bessere Nutzung der zugrunde liegenden physischen Ressourcen erreichen.
+
+image:virt-overview-001.png["„Diagramm der Virtualisierungskomponenten für Compute, Netzwerk und Speicher“, Breite=40 %"]
+
+Bei der Virtualisierung ist das Ganze durch Automatisierung, richtliniengesteuerte Arbeitsabläufe und Skalierbarkeit mehr als die Summe seiner Teile.  Durch die Verbesserung der Effizienz und Flexibilität sowie die Senkung der Gesamtbetriebskosten der IT-Infrastruktur ermöglicht die Virtualisierung Unternehmen, ihre technologischen Ressourcen in größerem Umfang zu optimieren.  Eine virtuelle Infrastruktur auf Basis von NetApp bietet die wichtigsten Vorteile von ONTAP:
+
+* Bereitstellung, Sicherung und Datenschutz mit branchenführenden Plug-ins und Integrationen
+* Speichereffizienz auf Unternehmensniveau
+* Multiprotokoll-Unterstützung für unterschiedliche Workload-Anforderungen
+* Richtliniengesteuerte Speicherkonfiguration und adaptive QoS
+* Unterstützung für Anwendungen und Workloads vor Ort oder in öffentlichen Clouds mit einem Speicherbetriebssystem
+
+
+Weitere Informationen zu NetApp ONTAP finden Sie hier:
+
+* link:https://www.netapp.com/data-management/ontap-data-management-software/["ONTAP: Das führende Unified Storage-Betriebssystem"]
+
+
+
+
+== Netzwerkvirtualisierung
+
+Unter Netzwerkvirtualisierung versteht man die Abstraktion der physischen Netzwerkkomponenten (Switches, Router, Firewalls, Schnittstellen usw.) in logische Konstrukte.  Diese logischen Konstrukte, die unabhängig von der zugrunde liegenden physischen Infrastruktur arbeiten, ermöglichen eine sichere Kommunikation zwischen Clients, Speichern und anderen Komponenten im Netzwerk.  Die Netzwerkvirtualisierung ist für den Geschäftsbetrieb von entscheidender Bedeutung, da sie die gemeinsame Nutzung von Ressourcen und gleichzeitig die Einschränkung des Netzwerkverkehrs gemäß Richtlinien ermöglicht.
+
+Durch Netzwerkvirtualisierung können mehrere physische Netzwerke in einer virtuellen Struktur kombiniert oder die Aufteilung eines physischen Netzwerks in separate, diskrete virtuelle Netzwerke erleichtert werden.  Es können mehrere Netzwerke erstellt und angepasst werden, um spezifische IT-Anforderungen zu erfüllen.  Häufig bezieht sich die Netzwerkvirtualisierung auf Ethernet-basierte Anwendungsfälle, in vielen Fällen können virtuelle Fabrics jedoch abhängig von den Fähigkeiten des Switch-Herstellers konfiguriert werden.  Unabhängig davon, ob sie virtuelle LANs oder virtuelle SANs einsetzen, erzielen Unternehmen durch Netzwerkvirtualisierung eine höhere Betriebseffizienz und eine insgesamt verbesserte Netzwerkleistung.
+
+Weitere Informationen zur Netzwerkvirtualisierung finden Sie hier:
+
+* link:https://www.cisco.com/c/en/us/products/switches/virtual-networking/index.html["Virtuelles Cisco -Netzwerk"]
+* link:https://www.vmware.com/topics/glossary/content/virtual-networking.html["Virtuelles VMware-Netzwerk"]
+
+
+
+
+== Computervirtualisierung
+
+Die Computer- oder Servervirtualisierung ist möglicherweise die bekannteste Form der Virtualisierung.  Bei der Computervirtualisierung ahmen Hypervisoren die Funktionen physischer Server nach und ermöglichen es Betriebsteams, mehrere virtuelle Maschinen auf einem einzigen physischen Knoten auszuführen.  Bei der Computervirtualisierung werden Ressourcen wie Serverspeicher und CPU gemeinsam genutzt.  Diese gemeinsame Nutzung ermöglicht eine Überbelegung der zugrunde liegenden Ressourcen in einem für die eingesetzten Workloads und Anwendungen akzeptablen Maße.
+
+Bei der Computervirtualisierung verfügt jede virtuelle Maschine über ein eigenes Betriebssystem sowie installierte Anwendungen und Ressourcen; sie funktionieren unabhängig voneinander.  Zu den zahlreichen Vorteilen der Computervirtualisierung zählen eine höhere Serverauslastung, geringere Hardwareausgaben, eine vereinfachte Verwaltung über die Benutzeroberfläche (UI) des Hypervisors und eine verbesserte Disaster-Recovery-Funktionalität.  Darüber hinaus können mit Hypervisor-Plug-ins Speicherverwaltung, Backups und Schutzbeziehungen konfiguriert werden, um Betriebsaufgaben weiter zu vereinfachen.
+
+Weitere Informationen zur Computervirtualisierung finden Sie hier:
+
+* link:https://www.vmware.com/solutions/virtualization.html["VMware vSphere"]
+* link:https://www.redhat.com/en/technologies/cloud-computing/openshift/virtualization["Red Hat OpenShift-Virtualisierung"]
+* link:https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-on-windows-server["Microsoft Hyper-V"]
+
+
+
+
+== Speichervirtualisierung
+
+Ähnlich wie die Netzwerk- und Computervirtualisierung ist die Speichervirtualisierung für ein modernes Rechenzentrum wichtig.  NetApp ONTAP erleichtert die Speichervirtualisierung durch Storage Virtual Machines (SVMs), die Daten an Clients und Hosts bereitstellen.  SVMs sind logische Einheiten, die es ermöglichen, dass Speicherressourcen nicht an physische Medien gebunden sind.  SVMs können basierend auf Arbeitslasttyp, Anwendungsanforderungen und Organisationsgruppen für den Zugriff bereitgestellt werden.
+
+Es gibt mehrere Arten von SVMs, die beim Datenzugriff, der Verwaltung sowie bei Aufgaben auf Cluster- und Systemebene helfen.  Daten-SVMs stellen Clients und Hosts Daten von einem oder mehreren Volumes über eine oder mehrere logische Netzwerkschnittstellen (LIFs) bereit.  Diese Volumes und LIFs sind logische Konstrukte und werden auf Speicheraggregate und physische oder logische Netzwerkports abgebildet.  Dieser logische Datenzugriff ermöglicht die Mobilität von Volumes oder LIFs während Wartungsszenarien oder beim Neuausgleich von Ressourcen, ähnlich wie bei virtuellen Computern.
+
+Weitere Informationen zur Speichervirtualisierung finden Sie hier:
+
+* link:https://docs.netapp.com/us-en/ontap/concepts/storage-virtualization-concept.html["Übersicht über die ONTAP -Speichervirtualisierung"]
+
+
+
+
+== Schließen
+
+Die hier beschriebenen Komponenten der virtuellen Infrastruktur: Netzwerk, Rechenleistung und Speicher bieten die gleiche Funktionalität wie typische physische Ressourcen, jedoch über Software.  Die Zuweisung virtueller Ressourcen gegenüber physischen Ressourcen beschleunigt die Wertschöpfung und ermöglicht eine richtliniengesteuerte Konfiguration der Ressourcen.  Durch die Kombination von ONTAP mit Computer- und Netzwerkvirtualisierung können Clients und Hosts über eine softwaredefinierte virtuelle Infrastruktur auf Ressourcen zugreifen.

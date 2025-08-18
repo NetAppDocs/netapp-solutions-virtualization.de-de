@@ -1,0 +1,17 @@
+---
+sidebar: sidebar 
+permalink: hyperv/hyperv-deploy-conclusion.html 
+keywords: hyperv, hyper-v, deploy, netapp, virtualization 
+summary: Die Lösung bietet die erforderlichen Schritte zum Bereitstellen von Hyper-V auf NetApp -Speicher 
+---
+= Zusammenfassung der Microsoft Hyper-V-Bereitstellung auf ONTAP -Speichersystemen
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP ist die optimale Shared-Storage-Grundlage für die Bereitstellung einer Vielzahl von IT-Workloads.  ONTAP AFF oder ASA -Plattformen sind flexibel und skalierbar für mehrere Anwendungsfälle und Anwendungen.  Windows Server 2022 und darauf aktiviertes Hyper-V sind ein häufiger Anwendungsfall als Virtualisierungslösung, die in diesem Dokument beschrieben wird.  Die Flexibilität und Skalierbarkeit des ONTAP -Speichers und der zugehörigen Funktionen ermöglichen es Kunden, mit einer Speicherebene der richtigen Größe zu beginnen, die mit ihren sich entwickelnden Geschäftsanforderungen wachsen und sich an diese anpassen kann.  Unter den aktuellen Marktbedingungen bietet Hyper-V eine perfekte alternative Hypervisor-Option, die die meisten Funktionen von VMware bietet.

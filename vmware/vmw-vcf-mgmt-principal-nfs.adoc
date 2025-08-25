@@ -65,7 +65,7 @@ Weitere Informationen zur Verwendung einer vorhandenen vSphere-Umgebung finden S
 
 Der zusätzliche vSphere-Cluster in der Verwaltungsdomäne kann mit den folgenden Optionen bereitgestellt werden:
 
-* Besitzen Sie einen zusätzlichen Cluster in der vSphere-Umgebung und verwenden Sie das VCF-Brownfield-Importtool, um die vSphere-Umgebung in eine Verwaltungsdomäne zu konvertieren. https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/create-vvols-datastore.html["ONTAP tools for VMware vSphere"] https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["System Manager oder ONTAP API"] kann verwendet werden, um den NFS-Datenspeicher im vSphere-Cluster bereitzustellen.
+* Besitzen Sie einen zusätzlichen Cluster in der vSphere-Umgebung und verwenden Sie das VCF-Brownfield-Importtool, um die vSphere-Umgebung in eine Verwaltungsdomäne zu konvertieren. https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/create-datastore.html["ONTAP tools for VMware vSphere"] https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["System Manager oder ONTAP API"] kann verwendet werden, um den NFS-Datenspeicher im vSphere-Cluster bereitzustellen.
 * Verwenden Sie die SDDC-API, um zusätzliche Cluster bereitzustellen.  Für die vSphere-Hosts sollte der NFS-Datenspeicher konfiguriert sein.  Verwenden https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["System Manager oder ONTAP API"] um LUN auf vSphere-Hosts bereitzustellen.
 * Verwenden Sie die SDDC Manager-Benutzeroberfläche, um zusätzliche Cluster bereitzustellen.  Diese Option erstellt jedoch nur vSAN-Datenspeicher mit Versionen vor 5.2.x.
 

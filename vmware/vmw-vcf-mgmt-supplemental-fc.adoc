@@ -72,7 +72,7 @@ Führen Sie die folgenden Schritte aus, um ONTAP Tools bereitzustellen und damit
 
 * link:https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/deploy/ontap-tools-deployment.html["Stellen Sie ONTAP -Tools in der Verwaltungsdomäne bereit"]
 * link:https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/add-storage-backend.html["Definieren Sie das Speicher-Backend mithilfe der vSphere-Clientschnittstelle"]
-* link:https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/create-vvols-datastore.html["Bereitstellen von VMFS auf FC"]
+* link:https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/create-datastore.html["Bereitstellen von VMFS auf FC"]
 
 
 

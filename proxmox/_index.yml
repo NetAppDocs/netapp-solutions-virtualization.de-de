@@ -23,4 +23,4 @@ indexpage:
     - title: Sichern und Wiederherstellen von Proxmox VE
       url: https://pve.proxmox.com/pve-docs/chapter-vzdump.html
     - title: Speicher für Proxmox VE
-      url: https://pve.proxmox.com/pve-docs/chapter-storage.html
+      url: https://pve.proxmox.com/pve-docs/chapter-pvesm.html

@@ -1,0 +1,153 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-vcf-mgmt-supplemental-iscsi-storage.html 
+keywords: netapp, vmware, cloud, foundation, vcf, iscsi, create, svm, lif 
+summary: Richten Sie zusätzlichen iSCSI-Speicher ein, um die Verwaltungsdomänen von VMware Cloud Foundation zu erweitern.  Sie stellen ONTAP -Tools bereit, konfigurieren einen iSCSI-Datenspeicher in der Verwaltungsdomäne und migrieren Verwaltungs-VMs in den neuen Datenspeicher. 
+---
+= Konfigurieren Sie iSCSI-Speicher in einer VCF-Verwaltungsdomäne mit ONTAP -Tools
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Richten Sie zusätzlichen iSCSI-Speicher ein, um die Verwaltungsdomänen von VMware Cloud Foundation zu erweitern.  Sie stellen ONTAP -Tools bereit, konfigurieren einen iSCSI-Datenspeicher in der Verwaltungsdomäne und migrieren Verwaltungs-VMs in den neuen Datenspeicher.
+
+Führen Sie die folgenden Schritte auf dem VCF-Verwaltungsdomänencluster mithilfe des vSphere-Clients aus.
+
+
+
+== Schritt 1: ONTAP tools for VMware vSphere bereitstellen
+
+ONTAP tools for VMware vSphere (OTV) werden als VM-Appliance bereitgestellt und bieten eine integrierte vCenter-Benutzeroberfläche zur Verwaltung des ONTAP Speichers.
+
+.Schritte
+. Besorgen Sie sich das OVA-Image der ONTAP -Tools von derlink:https://mysupport.netapp.com/site/products/all/details/otv/downloads-tab["NetApp Support-Site"] und in einen lokalen Ordner herunterladen.
+. Melden Sie sich bei der vCenter-Appliance für die VCF-Verwaltungsdomäne an.
+. Klicken Sie in der vCenter-Appliance-Schnittstelle mit der rechten Maustaste auf den Verwaltungscluster und wählen Sie *OVF-Vorlage bereitstellen…*
++
+image:vmware-vcf-aff-021.png["OVF-Vorlage bereitstellen …"]
+
++
+{nbsp}
+
+. Klicken Sie im Assistenten *OVF-Vorlage bereitstellen* auf das Optionsfeld *Lokale Datei* und wählen Sie die im vorherigen Schritt heruntergeladene OVA-Datei der ONTAP -Tools aus.
++
+image:vmware-vcf-aff-022.png["OVA-Datei auswählen"]
+
++
+{nbsp}
+
+. Wählen Sie in den Schritten 2 bis 5 des Assistenten einen Namen und einen Ordner für die VM aus, wählen Sie die Rechenressource aus, überprüfen Sie die Details und akzeptieren Sie die Lizenzvereinbarung.
+. Wählen Sie als Speicherort der Konfigurations- und Datenträgerdateien den vSAN-Datenspeicher des VCF-Managementdomänenclusters aus.
++
+image:vmware-vcf-aff-023.png["OVA-Datei auswählen"]
+
++
+{nbsp}
+
+. Wählen Sie auf der Seite *Netzwerk auswählen* das für den Verwaltungsverkehr verwendete Netzwerk aus.
++
+image:vmware-vcf-aff-024.png["Netzwerk auswählen"]
+
++
+{nbsp}
+
+. Geben Sie auf der Seite *Vorlage anpassen* alle erforderlichen Informationen ein:
++
+** Für den Administratorzugriff auf ONTAP -Tools zu verwendendes Kennwort.
+** IP-Adresse des NTP-Servers.
+** Kennwort für das Wartungskonto der ONTAP -Tools.
+** ONTAP -Tools Derby DB-Passwort.
+** Aktivieren Sie das Kontrollkästchen *VMware Cloud Foundation (VCF) aktivieren* nicht.  Der VCF-Modus ist für die Bereitstellung von zusätzlichem Speicher nicht erforderlich.
+** FQDN oder IP-Adresse der vCenter-Appliance für die *VI-Workload-Domäne*
+** Anmeldeinformationen für die vCenter-Appliance der *VI Workload Domain*
+** Erforderliche Netzwerkeigenschaften.
+
+
+. Klicken Sie auf *Weiter*, um fortzufahren.
++
+image:vmware-vcf-aff-025.png["OTV-Vorlage anpassen 1"]
+
++
+image:vmware-vcf-asa-035.png["OTV-Vorlage 2 anpassen"]
+
+. Überprüfen Sie alle Informationen auf der Seite *Bereit zum Abschließen* und klicken Sie auf *Fertig*, um mit der Bereitstellung der ONTAP -Tools-Appliance zu beginnen.
+
+
+
+
+== Schritt 2: Ein Speichersystem hinzufügen
+
+Führen Sie die folgenden Schritte aus, um mithilfe von ONTAP -Tools ein Speichersystem hinzuzufügen.
+
+.Schritte
+. Navigieren Sie im vSphere-Client zum Hauptmenü und wählen Sie * NetApp ONTAP -Tools*.
++
+image:vmware-vcf-asa-014.png["Navigieren Sie zu den ONTAP -Tools"]
+
+. Klicken Sie in den * ONTAP -Tools* auf der Seite „Erste Schritte“ (oder unter „Speichersysteme“*) auf *Hinzufügen*, um ein neues Speichersystem hinzuzufügen.
++
+image:vmware-vcf-asa-015.png["Speichersystem hinzufügen"]
+
++
+{nbsp}
+
+. Geben Sie die IP-Adresse und Anmeldeinformationen des ONTAP Speichersystems ein und klicken Sie auf *Hinzufügen*.
++
+image:vmware-vcf-asa-016.png["Geben Sie die IP-Adresse und Anmeldeinformationen des ONTAP -Systems an"]
+
++
+{nbsp}
+
+. Klicken Sie auf *Ja*, um das Cluster-Zertifikat zu autorisieren und das Speichersystem hinzuzufügen.
++
+image:vmware-vcf-asa-017.png["Cluster-Zertifikat autorisieren"]
+
+
+
+
+
+== Optional: Migrieren Sie Management-VMs in den iSCSI-Datenspeicher
+
+In Fällen, in denen Sie zum Schutz der VCF-Verwaltungs-VMs lieber ONTAP Speicher verwenden möchten, migrieren Sie die VMs mit vMotion in den neu erstellten iSCSI-Datenspeicher.
+
+.Schritte
+. Navigieren Sie im vSphere-Client zum Managementdomänencluster und klicken Sie auf die Registerkarte *VMs*.
+. Wählen Sie die VMs aus, die zum iSCSI-Datenspeicher migriert werden sollen, klicken Sie mit der rechten Maustaste und wählen Sie *Migrieren..*.
++
+image:vmware-vcf-asa-018.png["Auswählen der zu migrierenden VMs"]
+
++
+{nbsp}
+
+. Wählen Sie im Assistenten *Virtuelle Maschinen – Migrieren* als Migrationstyp *Nur Speicher ändern* aus und klicken Sie auf *Weiter*, um fortzufahren.
++
+image:vmware-vcf-asa-019.png["Migrationstyp auswählen"]
+
++
+{nbsp}
+
+. Wählen Sie auf der Seite *Speicher auswählen* den iSCSi-Datenspeicher aus und klicken Sie auf *Weiter*, um fortzufahren.
++
+image:vmware-vcf-asa-020.png["Zieldatenspeicher auswählen"]
+
++
+{nbsp}
+
+. Überprüfen Sie die Auswahl und klicken Sie auf *Fertig*, um die Migration zu starten.
+. Der Umzugsstatus kann im Bereich *Letzte Aufgaben* angezeigt werden.
++
+image:vmware-vcf-asa-021.png["Bereich „Kürzliche Aufgaben“ des vSphere-Clients"]
+
+
+
+
+
+== Weitere Informationen
+
+* Informationen zur Konfiguration von ONTAP -Speichersystemen finden Sie unterlink:https://docs.netapp.com/us-en/ontap["ONTAP 9 Dokumentation"^] .
+* Informationen zur Konfiguration von VCF finden Sie unterlink:https://techdocs.broadcom.com/us-en/vmware-cis/vcf.html["VMware Cloud Foundation-Dokumentation"^] .
+* Informationen zur Verwendung von VMFS iSCSI-Datenspeichern mit VMware finden Sie unterlink:vmw-vmfs-iscsi.html["vSphere VMFS-Datenspeicher – iSCSI-Speicher-Backend mit ONTAP"] .
+* Videodemos dieser Lösung finden Sie unterlink:../videos/vmware-videos.html#vmware-datastore-provisioning-with-ontap["Bereitstellung von VMware-Datenspeichern"] .
+

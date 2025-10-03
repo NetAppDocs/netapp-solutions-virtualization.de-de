@@ -40,15 +40,17 @@ indexpage:
       url: osv-workflow-vm-migration-mtv.html
     - title: Migrieren Sie VMs zwischen zwei Clusterknoten
       url: osv-workflow-vm-live-migration.html
-  - title: Schützen Sie Daten mit Trident Protect
+  - title: Schützen Sie VMs mit Trident und Trident Protect
     links:
     - title: Trident installieren
       url: osv-trident-install.html
+    - title: Schützen Sie VMs mit Volume Group Snapshots
+      url: osv-vm-dp-using-vgs.html
     - title: Schützen Sie VMs mit Snapshots und Backups
       url: osv-vm-dp-using-tp.html
     - title: Einrichten von Failover und Failback
       url: osv-vm-dr-using-tp.html
-  - title: Schützen Sie Daten mit Tools von Drittanbietern
+  - title: Schützen Sie VMs mit Tools von Drittanbietern
     links:
     - title: Schützen Sie VMs mit OADP und Velero
       url: osv-vm-dp-using-velero-overview.html

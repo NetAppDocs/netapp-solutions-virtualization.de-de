@@ -1,0 +1,46 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-vcf-mgmt-supplemental-iscsi-requirements.html 
+keywords: netapp, vmware, cloud, foundation, vcf, iscsi, requirements 
+summary: Überprüfen Sie die Anforderungen zum Hinzufügen eines iSCSI-Datenspeichers als zusätzlichen Speicher zu einer VCF-Verwaltungsdomäne. 
+---
+= Bereitstellungsanforderungen für das Hinzufügen eines iSCSI-Datenspeichers zu einer VCF-Verwaltungsdomäne
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Überprüfen Sie die Anforderungen für das Hinzufügen von iSCSI-Datenspeichern als zusätzlichen Speicher zu einer VMware Cloud Foundation (VCF)-Verwaltungsdomäne.  Um iSCSI vVols in einer VMware Cloud Foundation-Verwaltungsdomäne bereitzustellen, benötigen Sie ein vollständig konfiguriertes ONTAP AFF oder ASA Speichersystem und eine bereitgestellte VCF-Verwaltungsdomäne.
+
+
+
+== Infrastrukturanforderungen
+
+Stellen Sie sicher, dass die folgenden Komponenten und Konfigurationen vorhanden sind.
+
+* Ein ONTAP AFF oder ASA -Speichersystem mit physischen Datenports auf Ethernet-Switches, die für den Speicherverkehr vorgesehen sind.
+* Die Bereitstellung der VCF-Verwaltungsdomäne ist abgeschlossen und auf den vSphere-Client kann zugegriffen werden.
+
+
+
+
+== Empfohlenes iSCSI-Netzwerkdesign
+
+Sie sollten vollständig redundante Netzwerkdesigns für iSCSI konfigurieren.  Das folgende Diagramm zeigt ein Beispiel einer redundanten Konfiguration, die Fehlertoleranz für Speichersysteme, Switches, Netzwerkadapter und Hostsysteme bietet. Weitere Informationen finden Sie in der NetApplink:https://docs.netapp.com/us-en/ontap/san-config/index.html["SAN-Konfigurationsreferenz"] für weitere Informationen.
+
+image:vmware-vcf-asa-074.png["iSCSI-Netzwerkdesign"]{nbsp}
+
+Erstellen Sie für Multipathing und Failover über mehrere Pfade mindestens zwei LIFs pro Speicherknoten in separaten Ethernet-Netzwerken für alle SVMs in iSCSI-Konfigurationen.
+
+
+TIP: In Situationen, in denen mehrere VMkernel-Adapter im selben IP-Netzwerk konfiguriert sind, wird empfohlen, die Software-iSCSI-Portbindung auf den ESXi-Hosts zu verwenden, um sicherzustellen, dass ein Lastenausgleich zwischen den Adaptern erfolgt. Siehe KB-Artikellink:https://knowledge.broadcom.com/external/article?legacyId=2038869["Überlegungen zur Verwendung der Software-iSCSI-Portbindung in ESX/ESXi"^] .
+
+
+
+== Wie geht es weiter?
+
+Nach der Überprüfung der Bereitstellungsanforderungen,link:vmw-vcf-mgmt-supplemental-iscsi-svm-lifs.html["Erstellen Sie die SVM und LIFs"] .

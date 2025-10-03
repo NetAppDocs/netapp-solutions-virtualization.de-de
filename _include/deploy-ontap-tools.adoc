@@ -1,0 +1,56 @@
+= 
+:allow-uri-read: 
+
+
+. Besorgen Sie sich das OVA-Image der ONTAP -Tools von derlink:https://mysupport.netapp.com/site/products/all/details/otv/downloads-tab["NetApp Support-Site"] und in einen lokalen Ordner herunterladen.
+. Melden Sie sich bei der vCenter-Appliance für die VCF-Verwaltungsdomäne an.
+. Klicken Sie in der vCenter-Appliance-Schnittstelle mit der rechten Maustaste auf den Verwaltungscluster und wählen Sie *OVF-Vorlage bereitstellen…*
++
+image:vmware-vcf-aff-021.png["OVF-Vorlage bereitstellen …"]
+
++
+{nbsp}
+
+. Klicken Sie im Assistenten *OVF-Vorlage bereitstellen* auf das Optionsfeld *Lokale Datei* und wählen Sie die im vorherigen Schritt heruntergeladene OVA-Datei der ONTAP -Tools aus.
++
+image:vmware-vcf-aff-022.png["OVA-Datei auswählen"]
+
++
+{nbsp}
+
+. Wählen Sie in den Schritten 2 bis 5 des Assistenten einen Namen und einen Ordner für die VM aus, wählen Sie die Rechenressource aus, überprüfen Sie die Details und akzeptieren Sie die Lizenzvereinbarung.
+. Wählen Sie als Speicherort der Konfigurations- und Datenträgerdateien den vSAN-Datenspeicher des VCF-Managementdomänenclusters aus.
++
+image:vmware-vcf-aff-023.png["OVA-Datei auswählen"]
+
++
+{nbsp}
+
+. Wählen Sie auf der Seite *Netzwerk auswählen* das für den Verwaltungsverkehr verwendete Netzwerk aus.
++
+image:vmware-vcf-aff-024.png["Netzwerk auswählen"]
+
++
+{nbsp}
+
+. Geben Sie auf der Seite *Vorlage anpassen* alle erforderlichen Informationen ein:
++
+** Für den Administratorzugriff auf ONTAP -Tools zu verwendendes Kennwort.
+** IP-Adresse des NTP-Servers.
+** Kennwort für das Wartungskonto der ONTAP -Tools.
+** ONTAP -Tools Derby DB-Passwort.
+** Aktivieren Sie das Kontrollkästchen *VMware Cloud Foundation (VCF) aktivieren* nicht.  Der VCF-Modus ist für die Bereitstellung von zusätzlichem Speicher nicht erforderlich.
+** FQDN oder IP-Adresse der vCenter-Appliance für die *VI-Workload-Domäne*
+** Anmeldeinformationen für die vCenter-Appliance der *VI Workload Domain*
+** Erforderliche Netzwerkeigenschaften.
+
+
+. Klicken Sie auf *Weiter*, um fortzufahren.
++
+image:vmware-vcf-aff-025.png["OTV-Vorlage anpassen 1"]
+
++
+image:vmware-vcf-asa-035.png["OTV-Vorlage 2 anpassen"]
+
+. Überprüfen Sie alle Informationen auf der Seite *Bereit zum Abschließen* und klicken Sie auf *Fertig*, um mit der Bereitstellung der ONTAP -Tools-Appliance zu beginnen.
+

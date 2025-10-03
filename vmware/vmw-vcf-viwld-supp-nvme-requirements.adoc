@@ -1,0 +1,42 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-vcf-viwld-supp-nvme-requirements.html 
+keywords: netapp, vmware, cloud, foundation, vcf, aff, all-flash, nfs, vvol, vvols, array, ontap tools, otv, sddc, iscsi 
+summary: Um NVMe vVols in einer VMware Cloud Foundation VI-Workloaddomäne bereitzustellen, benötigen Sie ein vollständig konfiguriertes ONTAP AFF oder ASA Speichersystem, eine vollständige VCF-Verwaltungsdomäne und eine vorhandene VI-Workloaddomäne.  Überprüfen Sie das empfohlene Netzwerkdesign und die Infrastrukturanforderungen, um eine zuverlässige und leistungsstarke Speicherintegration sicherzustellen. 
+---
+= Bereitstellungsanforderungen für NVMe vVols in einer VI-Workloaddomäne
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Überprüfen Sie das empfohlene Netzwerkdesign und die Infrastrukturanforderungen zum Bereitstellen von NVMe vVols in einer VMware Cloud Foundation VI-Workloaddomäne.  Sie benötigen ein vollständig konfiguriertes ONTAP AFF oder ASA Speichersystem, eine bereitgestellte VCF-Verwaltungsdomäne und eine vorhandene VI-Workloaddomäne.
+
+
+
+== Infrastrukturanforderungen
+
+* Ein ONTAP AFF oder ASA -Speichersystem mit physischen Datenports auf Ethernet-Switches, die für den Speicherverkehr vorgesehen sind.
+* Die Bereitstellung der VCF-Verwaltungsdomäne ist abgeschlossen und auf den vSphere-Client kann zugegriffen werden.
+* Zuvor wurde eine VI-Workloaddomäne bereitgestellt.
+
+
+
+
+== Empfohlenes NVMe/TCP-Netzwerkdesign
+
+NetApp empfiehlt vollständig redundante Netzwerkdesigns für NVMe/TCP. Das folgende Diagramm zeigt ein Beispiel einer redundanten Konfiguration, die Fehlertoleranz für Speichersysteme, Switches, Netzwerkadapter und Hostsysteme bietet.
+
+image:vmware-vcf-asa-074.png["NVMe-TCP-Netzwerkdesign"]
+
+Konfigurieren Sie für Multipathing und Failover über mehrere Pfade mindestens zwei LIFs pro Speicherknoten in separaten Ethernet-Netzwerken für alle SVMs in NVMe/TCP-Konfigurationen.
+
+
+
+== Wie geht es weiter?
+
+Nach der Überprüfung der Bereitstellungsanforderungen,link:vmw-vcf-viwld-supp-nvme-svm-lifs.html["Erstellen Sie die SVM und LIFs"] .

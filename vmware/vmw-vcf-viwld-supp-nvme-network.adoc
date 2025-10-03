@@ -1,0 +1,173 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-vcf-viwld-supp-nvme-network.html 
+keywords: netapp, vmware, cloud, foundation, vcf, aff, all-flash, nfs, vvol, vvols, array, ontap tools, otv, sddc, iscsi 
+summary: 'Konfigurieren Sie die Vernetzung für NVMe over TCP (NVMe/TCP)-Speicher auf ESXi-Hosts in einer VI-Workloaddomäne.  Sie erstellen verteilte Portgruppen für NVMe-Verkehr, richten VMkernel-Adapter auf jedem ESXi-Host ein und fügen einen NVMe/TCP-Adapter hinzu, um zuverlässige Konnektivität und Multipathing zu ermöglichen.' 
+---
+= Konfigurieren Sie das Netzwerk für NVMe/TCP auf ESXi-Hosts in einer VCF VI-Workloaddomäne
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Konfigurieren Sie die Vernetzung für NVMe over TCP (NVMe/TCP)-Speicher auf ESXi-Hosts in einer VI-Workloaddomäne.  Sie erstellen verteilte Portgruppen für NVMe-Verkehr, richten VMkernel-Adapter auf jedem ESXi-Host ein und fügen einen NVMe/TCP-Adapter hinzu, um zuverlässige Konnektivität und Multipathing zu ermöglichen.
+
+Führen Sie die folgenden Schritte auf dem VI-Workload-Domänencluster mithilfe des vSphere-Clients aus. In diesem Fall wird vCenter Single Sign-On verwendet, sodass der vSphere-Client sowohl für die Verwaltungs- als auch für die Workloaddomänen gleich ist.
+
+
+
+== Schritt 1: Erstellen Sie verteilte Portgruppen für NVME/TCP-Verkehr
+
+Führen Sie die folgenden Schritte aus, um für jedes NVMe/TCP-Netzwerk eine neue verteilte Portgruppe zu erstellen.
+
+.Schritte
+. Navigieren Sie im vSphere-Client zu *Inventar > Netzwerk* für die Workloaddomäne.  Navigieren Sie zum vorhandenen Distributed Switch und wählen Sie die Aktion zum Erstellen einer *Neuen verteilten Portgruppe...*.
++
+image:vmware-vcf-asa-022.png["Wählen Sie „Neue Portgruppe erstellen“"]
+
++
+{nbsp}
+
+. Geben Sie im Assistenten *Neue verteilte Portgruppe* einen Namen für die neue Portgruppe ein und klicken Sie auf *Weiter*, um fortzufahren.
+. Füllen Sie auf der Seite *Einstellungen konfigurieren* alle Einstellungen aus. Wenn VLANs verwendet werden, stellen Sie sicher, dass Sie die richtige VLAN-ID angeben. Klicken Sie auf *Weiter*, um fortzufahren.
++
+image:vmware-vcf-asa-023.png["Füllen Sie die VLAN-ID aus"]
+
++
+{nbsp}
+
+. Überprüfen Sie auf der Seite *Bereit zum Abschließen* die Änderungen und klicken Sie auf *Fertig*, um die neue verteilte Portgruppe zu erstellen.
+. Wiederholen Sie diesen Vorgang, um eine verteilte Portgruppe für das zweite verwendete NVMe/TCP-Netzwerk zu erstellen, und stellen Sie sicher, dass Sie die richtige *VLAN-ID* eingegeben haben.
+. Wenn beide Portgruppen erstellt wurden, navigieren Sie zur ersten Portgruppe und wählen Sie die Aktion „Einstellungen bearbeiten…“ aus.
++
+image:vmware-vcf-asa-077.png["DPG - Einstellungen bearbeiten"]
+
++
+{nbsp}
+
+. Navigieren Sie auf der Seite *Verteilte Portgruppe – Einstellungen bearbeiten* im linken Menü zu *Teaming und Failover* und klicken Sie auf *Uplink2*, um es nach unten zu *Nicht verwendete Uplinks* zu verschieben.
++
+image:vmware-vcf-asa-078.png["Verschiebe Uplink2 nach „Unbenutzt“"]
+
+. Wiederholen Sie diesen Schritt für die zweite NVMe/TCP-Portgruppe. Verschieben Sie dieses Mal *Uplink1* nach unten zu *Ungenutzte Uplinks*.
++
+image:vmware-vcf-asa-079.png["Uplink 1 nach unbenutzt verschieben"]
+
+
+
+
+
+== Schritt 2: Erstellen Sie die VMkernel-Adapter auf jedem ESXi-Host
+
+Erstellen Sie die VMkernel-Adapter auf jedem ESXi-Host in der Workload-Domäne.
+
+.Schritte
+. Navigieren Sie vom vSphere-Client zu einem der ESXi-Hosts im Workload-Domäneninventar.  Wählen Sie auf der Registerkarte *Konfigurieren* *VMkernel-Adapter* aus und klicken Sie zum Starten auf *Netzwerk hinzufügen...*.
++
+image:vmware-vcf-asa-030.png["Starten Sie den Assistenten zum Hinzufügen von Netzwerken"]
+
++
+{nbsp}
+
+. Wählen Sie im Fenster *Verbindungstyp auswählen* *VMkernel-Netzwerkadapter* und klicken Sie auf *Weiter*, um fortzufahren.
++
+image:vmware-vcf-asa-008.png["Wählen Sie den VMkernel-Netzwerkadapter"]
+
++
+{nbsp}
+
+. Wählen Sie auf der Seite *Zielgerät auswählen* eine der zuvor erstellten verteilten Portgruppen für iSCSI aus.
++
+image:vmware-vcf-asa-095.png["Zielportgruppe auswählen"]
+
++
+{nbsp}
+
+. Klicken Sie auf der Seite *Porteigenschaften* auf das Kästchen für *NVMe/TCP* und klicken Sie auf *Weiter*, um fortzufahren.
++
+image:vmware-vcf-asa-096.png["VMkernel-Porteigenschaften"]
+
++
+{nbsp}
+
+. Geben Sie auf der Seite *IPv4-Einstellungen* die *IP-Adresse* und *Subnetzmaske* ein und geben Sie eine neue Gateway-IP-Adresse an (nur falls erforderlich). Klicken Sie auf *Weiter*, um fortzufahren.
++
+image:vmware-vcf-asa-097.png["VMkernel-IPv4-Einstellungen"]
+
++
+{nbsp}
+
+. Überprüfen Sie Ihre Auswahl auf der Seite *Bereit zum Abschließen* und klicken Sie auf *Fertig*, um den VMkernel-Adapter zu erstellen.
++
+image:vmware-vcf-asa-098.png["Überprüfen Sie die VMkernel-Auswahl"]
+
++
+{nbsp}
+
+. Wiederholen Sie diesen Vorgang, um einen VMkernel-Adapter für das zweite iSCSI-Netzwerk zu erstellen.
+
+
+
+
+== Schritt 3: NVMe/TCP-Adapter hinzufügen
+
+Auf jedem ESXi-Host im Workload-Domänencluster muss für jedes eingerichtete NVMe/TCP-Netzwerk, das für Speicherverkehr vorgesehen ist, ein NVMe/TCP-Softwareadapter installiert sein.
+
+Führen Sie die folgenden Schritte aus, um NVMe/TCP-Adapter zu installieren und die NVMe-Controller zu ermitteln:
+
+. Navigieren Sie im vSphere-Client zu einem der ESXi-Hosts im Workload-Domänencluster.  Klicken Sie auf der Registerkarte *Konfigurieren* im Menü auf *Speicheradapter*.
+. Wählen Sie im Dropdown-Menü *Softwareadapter hinzufügen* die Option *NVMe over TCP-Adapter hinzufügen*.
++
+image:vmware-vcf-asa-099.png["NVMe/TCP-Adapter hinzufügen"]
+
++
+{nbsp}
+
+. Rufen Sie im Fenster *Software-NVMe-over-TCP-Adapter hinzufügen* das Dropdown-Menü *Physischer Netzwerkadapter* auf und wählen Sie den richtigen physischen Netzwerkadapter aus, auf dem der NVMe-Adapter aktiviert werden soll.
++
+image:vmware-vcf-asa-100.png["Physischen Adapter auswählen"]
+
++
+{nbsp}
+
+. Wiederholen Sie diesen Vorgang für das zweite Netzwerk, das dem NVMe/TCP-Verkehr zugewiesen ist, und weisen Sie den richtigen physischen Adapter zu.
+. Wählen Sie einen der neu installierten NVMe/TCP-Adapter aus.  Wählen Sie auf der Registerkarte *Controller* die Option *Controller hinzufügen* aus.
++
+image:vmware-vcf-asa-101.png["Controller hinzufügen"]
+
++
+{nbsp}
+
+. Wählen Sie im Fenster *Controller hinzufügen* die Registerkarte *Automatisch* und führen Sie die folgenden Schritte aus.
++
+.. Geben Sie eine IP-Adresse für eine der logischen SVM-Schnittstellen im selben Netzwerk ein wie der diesem NVMe/TCP-Adapter zugewiesene physische Adapter.
+.. Klicken Sie auf die Schaltfläche *Controller erkennen*.
+.. Aktivieren Sie in der Liste der erkannten Controller das Kontrollkästchen für die beiden Controller, deren Netzwerkadressen mit diesem NVMe/TCP-Adapter übereinstimmen.
+
+
+. Klicken Sie auf *OK*, um die ausgewählten Controller hinzuzufügen.
++
+image:vmware-vcf-asa-102.png["Controller entdecken und hinzufügen"]
+
++
+{nbsp}
+
+. Nach einigen Sekunden sollte der NVMe-Namespace auf der Registerkarte „Geräte“ angezeigt werden.
++
+image:vmware-vcf-asa-103.png["NVMe-Namespace unter Geräten aufgeführt"]
+
++
+{nbsp}
+
+. Wiederholen Sie diesen Vorgang, um einen NVMe/TCP-Adapter für das zweite für NVMe/TCP-Verkehr eingerichtete Netzwerk zu erstellen.
+
+
+
+
+== Wie geht es weiter?
+
+Nach der Netzwerkkonfigurationlink:vmw-vcf-viwld-supp-nvme-storage.html["Speicher für NVMe vVols konfigurieren"] .

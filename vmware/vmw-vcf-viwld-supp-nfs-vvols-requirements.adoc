@@ -1,0 +1,49 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-vcf-viwld-supp-nfs-vvols-requirements.html 
+keywords: netapp, vmware, cloud, foundation, vcf, aff, all-flash, nfs, vvol, vvols, array, ontap tools, otv, sddc 
+summary: Um NFS vVols in einer VMware Cloud Foundation VI-Workloaddomäne bereitzustellen, benötigen Sie ein vollständig konfiguriertes ONTAP AFF oder ASA Speichersystem, eine vollständige VCF-Verwaltungsdomäne und eine vorhandene VI-Workloaddomäne.  Überprüfen Sie das empfohlene Netzwerkdesign und die Infrastrukturanforderungen, um eine zuverlässige und leistungsstarke Speicherintegration sicherzustellen. 
+---
+= Bereitstellungsanforderungen für das Hinzufügen von NFS- vVols in einer VI-Workloaddomäne
+:allow-uri-read: 
+
+
+[role="lead"]
+Überprüfen Sie das empfohlene Netzwerkdesign und die Infrastrukturanforderungen zum Bereitstellen von NFS vVols in einer VMware Cloud Foundation VI-Workloaddomäne.  Sie benötigen ein vollständig konfiguriertes ONTAP AFF oder ASA Speichersystem, eine vollständige VCF-Verwaltungsdomäne und eine vorhandene VI-Workloaddomäne.
+
+
+
+== Infrastrukturanforderungen
+
+Stellen Sie sicher, dass die folgenden Komponenten und Konfigurationen vorhanden sind.
+
+* Ein ONTAP AFF oder FAS Speichersystem mit physischen Datenports auf Ethernet-Switches, die für den Speicherverkehr vorgesehen sind.
+* Die Bereitstellung der VCF-Verwaltungsdomäne ist abgeschlossen und auf den vSphere-Client kann zugegriffen werden.
+* Zuvor wurde eine VI-Workloaddomäne bereitgestellt.
+
+
+
+
+== Empfohlenes NFS-Netzwerkdesign
+
+Konfigurieren Sie redundante Netzwerkdesigns für NFS, um Fehlertoleranz für Speichersysteme, Switches, Netzwerkadapter und Hostsysteme bereitzustellen.  Es ist üblich, NFS je nach den Architekturanforderungen mit einem einzelnen Subnetz oder mehreren Subnetzen bereitzustellen.
+
+{nbsp}image:vmware-vcf-aff-070.png["NFS-Architekturdiagramm"] {nbsp}
+
+
+
+== Weitere Informationen
+
+* Ausführliche Informationen speziell zu VMware vSphere finden Sie unter https://www.vmware.com/docs/vmw-best-practices-running-nfs-vmware-vsphere["Best Practices für die Ausführung von NFS mit VMware vSphere"] .
+* Netzwerkhinweise zur Verwendung von ONTAP mit VMware vSphere finden Sie im https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vsphere-network.html#nfs["Netzwerkkonfiguration – NFS"] Abschnitt der Dokumentation zu NetApp -Unternehmensanwendungen.
++
+Diese Dokumentation veranschaulicht den Vorgang zum Erstellen einer neuen SVM und zum Angeben der IP-Adressinformationen zum Erstellen mehrerer LIFs für NFS-Verkehr.  Informationen zum Hinzufügen neuer LIFs zu einem vorhandenen SVM finden Sie unterlink:https://docs.netapp.com/us-en/ontap/networking/create_a_lif.html["Erstellen Sie eine LIF (Netzwerkschnittstelle)"] .
+
+* Ausführliche Informationen zur Verwendung von NFS mit vSphere-Clustern finden Sie imlink:vmw-vvf-overview.html["NFS v3-Referenzhandbuch für vSphere 8"] .
+
+
+
+
+== Wie geht es weiter?
+
+Nach Prüfung der Anforderungenlink:vmw-vcf-viwld-supp-nfs-vvols-svm-lifs.html["Erstellen Sie die SVM und LIFs"] .

@@ -1,0 +1,61 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-vcf-viwld-supp-nvme-storage.html 
+keywords: netapp, vmware, cloud, foundation, vcf, aff, all-flash, nfs, vvol, vvols, array, ontap tools, otv, sddc, iscsi 
+summary: 'Konfigurieren Sie NVMe over TCP (NVMe/TCP) vVols -Speicher in einer VI-Workloaddomäne.  Sie stellen ONTAP Tools bereit, registrieren ein Speichersystem, erstellen ein Speicherfähigkeitsprofil und stellen einen vVols Datenspeicher im vSphere-Client bereit.' 
+---
+= Konfigurieren Sie den NVMe/TCP vVols -Speicher in einer VCF VI-Workloaddomäne
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Konfigurieren Sie NVMe/TCP vVols -Speicher in einer VMware Cloud Foundation VI-Workloaddomäne.  Sie stellen ONTAP Tools bereit, registrieren ein Speichersystem, erstellen ein Speicherfähigkeitsprofil und stellen einen vVols Datenspeicher im vSphere-Client bereit.
+
+.Schritte
+. Navigieren Sie im vSphere-Client zu einem der ESXi-Hosts im Workload-Domänencluster. Wählen Sie im Menü *Aktionen* die Option *Speicher > Neuer Datenspeicher...*.
++
+image:vmware-vcf-asa-104.png["NVMe/TCP-Adapter hinzufügen"]
+
++
+{nbsp}
+
+. Wählen Sie im Assistenten *Neuer Datenspeicher* als Typ *VMFS* aus. Klicken Sie auf *Weiter*, um fortzufahren.
+. Geben Sie auf der Seite *Namens- und Geräteauswahl* einen Namen für den Datenspeicher ein und wählen Sie den NVMe-Namespace aus der Liste der verfügbaren Geräte aus.
++
+image:vmware-vcf-asa-105.png["Name und Geräteauswahl"]
+
++
+{nbsp}
+
+. Wählen Sie auf der Seite *VMFS-Version* die VMFS-Version für den Datenspeicher aus.
+. Nehmen Sie auf der Seite *Partitionskonfiguration* die gewünschten Änderungen am Standardpartitionsschema vor. Klicken Sie auf *Weiter*, um fortzufahren.
++
+image:vmware-vcf-asa-106.png["NVMe-Partitionskonfiguration"]
+
++
+{nbsp}
+
+. Überprüfen Sie auf der Seite *Bereit zum Abschließen* die Zusammenfassung und klicken Sie auf *Fertig*, um den Datenspeicher zu erstellen.
+. Navigieren Sie zum neuen Datenspeicher im Inventar und klicken Sie auf die Registerkarte *Hosts*. Bei korrekter Konfiguration sollten alle ESXi-Hosts im Cluster aufgelistet sein und Zugriff auf den neuen Datenspeicher haben.
++
+image:vmware-vcf-asa-107.png["Mit dem Datenspeicher verbundene Hosts"]
+
++
+{nbsp}
+
+
+
+
+
+== Weitere Informationen
+
+* Weitere Informationen zur Konfiguration von SAN für Redundanz finden Sie imlink:https://docs.netapp.com/us-en/ontap/san-config/index.html["NetApp SAN-Konfigurationsreferenz"^] .
+* Weitere Informationen zu NVMe-Designüberlegungen für ONTAP Speichersysteme finden Sie unterlink:https://docs.netapp.com/us-en/ontap/nvme/support-limitations.html["NVMe-Konfiguration, -Unterstützung und -Einschränkungen"^] .
+* Informationen zur Konfiguration von ONTAP Speichersystemen finden Sie imlink:https://docs.netapp.com/us-en/ontap["ONTAP 9 Dokumentation"^] .
+* Informationen zur Konfiguration von VCF finden Sie imlink:https://techdocs.broadcom.com/us/en/vmware-cis/vcf.html["VMware Cloud Foundation-Dokumentation"^] .
+

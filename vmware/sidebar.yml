@@ -74,15 +74,55 @@ entries:
     - title: Informationen zur Speichererweiterung
       url: "/vmware/vmw-vcf-expand.html"
     - title: Erweitern Sie Verwaltungsdomänen mit iSCSI
-      url: "/vmware/vmw-vcf-mgmt-supplemental-iscsi.html"
+      entries:
+      - title: Bereitstellungsworkflow
+        url: "/vmware/vmw-vcf-mgmt-supplemental-iscsi.html"
+      - title: Anforderungen überprüfen
+        url: "/vmware/vmw-vcf-mgmt-supplemental-iscsi-requirements.html"
+      - title: Erstellen Sie SVM und LIFs
+        url: "/vmware/vmw-vcf-mgmt-supplemental-iscsi-svm-lifs.html"
+      - title: Konfigurieren des Netzwerks
+        url: "/vmware/vmw-vcf-mgmt-supplemental-iscsi-network.html"
+      - title: Konfigurieren des Speichers
+        url: "/vmware/vmw-vcf-mgmt-supplemental-iscsi-storage.html"
     - title: Erweitern Sie Verwaltungsdomänen mit FC
       url: "/vmware/vmw-vcf-mgmt-supplemental-fc.html"
     - title: Erweitern Sie VI-Workload-Domänen mit vVols iSCSI
-      url: "/vmware/vmw-vcf-viwld-supp-iscsi-vvols.html"
+      entries:
+      - title: Bereitstellungsworkflow
+        url: "/vmware/vmw-vcf-viwld-supp-iscsi-vvols.html"
+      - title: Anforderungen überprüfen
+        url: "/vmware/vmw-vcf-viwld-supp-iscsi-vvols-requirements.html"
+      - title: Erstellen Sie SVM und LIFs
+        url: "/vmware/vmw-vcf-viwld-supp-iscsi-vvols-svm-lifs.html"
+      - title: Konfigurieren des Netzwerks
+        url: "/vmware/vmw-vcf-viwld-supp-iscsi-vvols-network.html"
+      - title: Konfigurieren des Speichers
+        url: "/vmware/vmw-vcf-viwld-supp-iscsi-vvols-storage.html"
     - title: Erweitern Sie VI-Workload-Domänen mit vVols NFS
-      url: "/vmware/vmw-vcf-viwld-supp-nfs-vvols.html"
+      entries:
+      - title: Bereitstellungsworkflow
+        url: "/vmware/vmw-vcf-viwld-supp-nfs-vvols.html"
+      - title: Anforderungen überprüfen
+        url: "/vmware/vmw-vcf-viwld-supp-nfs-vvols-requirements.html"
+      - title: Erstellen Sie SVM und LIFs
+        url: "/vmware/vmw-vcf-viwld-supp-nfs-vvols-svm-lifs.html"
+      - title: Konfigurieren des Netzwerks
+        url: "/vmware/vmw-vcf-viwld-supp-nfs-vvols-network.html"
+      - title: Konfigurieren des Speichers
+        url: "/vmware/vmw-vcf-viwld-supp-nfs-vvols-storage.html"
     - title: Erweitern Sie VI-Workloaddomänen mit NVMe/TCP
-      url: "/vmware/vmw-vcf-viwld-supp-nvme.html"
+      entries:
+      - title: Bereitstellungsworkflow
+        url: "/vmware/vmw-vcf-viwld-supp-nvme.html"
+      - title: Anforderungen überprüfen
+        url: "/vmware/vmw-vcf-viwld-supp-nvme-requirements.html"
+      - title: Erstellen Sie SVM und LIFs
+        url: "/vmware/vmw-vcf-viwld-supp-nvme-svm-lifs.html"
+      - title: Konfigurieren des Netzwerks
+        url: "/vmware/vmw-vcf-viwld-supp-nvme-network.html"
+      - title: Konfigurieren des Speichers
+        url: "/vmware/vmw-vcf-viwld-supp-nvme-storage.html"
     - title: Erweitern Sie VI-Workloaddomänen mit FC
       url: "/vmware/vmw-vcf-viwld-supp-fc.html"
   - title: Schützen Sie VCF mit SnapCenter

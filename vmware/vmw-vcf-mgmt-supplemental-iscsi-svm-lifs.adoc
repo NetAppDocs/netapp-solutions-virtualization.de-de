@@ -1,0 +1,54 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-vcf-mgmt-supplemental-iscsi-svm-lifs.html 
+keywords: netapp, vmware, cloud, foundation, vcf, iscsi, deploy, ontap tools 
+summary: 'Erstellen Sie eine Storage Virtual Machine (SVM) mit mehreren logischen Schnittstellen (LIFs), um iSCSI-Konnektivität für VMware Cloud Foundation-Verwaltungsdomänen bereitzustellen.  Sie konfigurieren die SVM mit iSCSI-Protokollunterstützung und richten mehrere LIFs über separate Ethernet-Netzwerke ein, um Multipathing und Failover für optimale Leistung und Verfügbarkeit zu ermöglichen.' 
+---
+= Erstellen Sie SVM und LIFs für iSCSI-Datenspeicher in einer VCF-Verwaltungsdomäne
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Erstellen Sie eine Storage Virtual Machine (SVM) mit mehreren logischen Schnittstellen (LIFs), um iSCSI-Konnektivität für VMware Cloud Foundation-Verwaltungsdomänen bereitzustellen.  Sie konfigurieren die SVM mit iSCSI-Protokollunterstützung und richten mehrere LIFs über separate Ethernet-Netzwerke ein, um Multipathing und Failover für optimale Leistung und Verfügbarkeit zu ermöglichen.
+
+Informationen zum Hinzufügen neuer LIFs zu einem vorhandenen SVM finden Sie in der ONTAP Dokumentation:link:https://docs.netapp.com/us-en/ontap/networking/create_a_lif.html["Erstellen Sie ONTAP LIFs"^] .
+
+.Schritte
+. Navigieren Sie im ONTAP System Manager im linken Menü zu *Storage VMs* und klicken Sie zum Starten auf *+ Hinzufügen*.
++
+image:vmware-vcf-asa-001.png["Klicken Sie auf +Hinzufügen, um mit der Erstellung des SVM zu beginnen"]
+
++
+{nbsp}
+
+. Geben Sie im Assistenten *Speicher-VM hinzufügen* einen *Namen* für die SVM ein, wählen Sie den *IP-Bereich* aus und klicken Sie dann unter *Zugriffsprotokoll* auf die Registerkarte *iSCSI* und aktivieren Sie das Kontrollkästchen *iSCSI aktivieren*.
++
+image:vmware-vcf-asa-002.png["Assistent zum Hinzufügen von Speicher-VMs – iSCSI aktivieren"]
+
++
+{nbsp}
+
+. Geben Sie im Abschnitt *Netzwerkschnittstelle* die *IP-Adresse*, *Subnetzmaske* und *Broadcast-Domäne und -Port* für das erste LIF ein. Für nachfolgende LIFs können Sie entweder individuelle Einstellungen verwenden oder das Kontrollkästchen aktivieren, um gemeinsame Einstellungen für alle verbleibenden LIFs zu verwenden.
++
+
+NOTE: Erstellen Sie für Multipathing und Failover über mehrere Pfade mindestens zwei LIFs pro Speicherknoten in separaten Ethernet-Netzwerken für alle SVMs in iSCSI-Konfigurationen.
+
++
+image:vmware-vcf-asa-003.png["Netzwerkinformationen für LIFs ausfüllen"]
+
++
+{nbsp}
+
+. Wählen Sie, ob das Storage VM-Administrationskonto (für Umgebungen mit mehreren Mandanten) aktiviert werden soll, und klicken Sie dann auf *Speichern*, um die SVM zu erstellen.
++
+image:vmware-vcf-asa-004.png["SVM-Konto aktivieren und abschließen"]
+
+
+
+
+
+== Wie geht es weiter?
+
+Nachdem Sie die SVM und LIFs erstellt haben,link:vmw-vcf-mgmt-supplemental-iscsi-network.html["Konfigurieren des Netzwerks für iSCSI auf ESXi-Hosts"] .

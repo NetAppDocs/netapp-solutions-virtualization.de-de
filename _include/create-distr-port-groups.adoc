@@ -1,0 +1,37 @@
+= 
+:allow-uri-read: 
+
+
+. Navigieren Sie im vSphere-Client zu *Inventar > Netzwerk* für die Workloaddomäne.  Navigieren Sie zum vorhandenen Distributed Switch und wählen Sie die Aktion zum Erstellen einer *Neuen verteilten Portgruppe...*.
++
+image:vmware-vcf-asa-022.png["Wählen Sie „Neue Portgruppe erstellen“"]
+
++
+{nbsp}
+
+. Geben Sie im Assistenten *Neue verteilte Portgruppe* einen Namen für die neue Portgruppe ein und klicken Sie auf *Weiter*, um fortzufahren.
+. Füllen Sie auf der Seite *Einstellungen konfigurieren* alle Einstellungen aus. Wenn VLANs verwendet werden, stellen Sie sicher, dass Sie die richtige VLAN-ID angeben. Klicken Sie auf *Weiter*, um fortzufahren.
++
+image:vmware-vcf-asa-023.png["Füllen Sie die VLAN-ID aus"]
+
++
+{nbsp}
+
+. Überprüfen Sie auf der Seite *Bereit zum Abschließen* die Änderungen und klicken Sie auf *Fertig*, um die neue verteilte Portgruppe zu erstellen.
+. Wiederholen Sie diesen Vorgang, um eine verteilte Portgruppe für das zweite verwendete iSCSI-Netzwerk zu erstellen, und stellen Sie sicher, dass Sie die richtige *VLAN-ID* eingegeben haben.
+. Nachdem beide Portgruppen erstellt wurden, navigieren Sie zur ersten Portgruppe und wählen Sie die Aktion „Einstellungen bearbeiten…“ aus.
++
+image:vmware-vcf-asa-024.png["DPG - Einstellungen bearbeiten"]
+
++
+{nbsp}
+
+. Navigieren Sie auf der Seite *Verteilte Portgruppe – Einstellungen bearbeiten* im linken Menü zu *Teaming und Failover* und klicken Sie auf *Uplink2*, um es nach unten zu *Nicht verwendete Uplinks* zu verschieben.
++
+image:vmware-vcf-asa-025.png["Verschiebe Uplink2 nach „Unbenutzt“"]
+
+. Wiederholen Sie diesen Schritt für die zweite iSCSI-Portgruppe.  Verschieben Sie dieses Mal jedoch *Uplink1* nach unten zu *Ungenutzte Uplinks*.
++
+image:vmware-vcf-asa-026.png["Uplink1 nach unbenutzt verschieben"]
+
+

@@ -1,0 +1,194 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-vcf-viwld-supp-iscsi-vvols-storage.html 
+keywords: netapp, vmware, cloud, foundation, vcf, aff, all-flash, nfs, vvol, vvols, array, ontap tools, otv, sddc, iscsi 
+summary: Konfigurieren Sie den iSCSI vVols Speicher in einer VI-Workload-Domäne mithilfe von ONTAP Tools.  Sie stellen ONTAP tools for VMware vSphere bereit, registrieren ein Speichersystem, erstellen ein Speicherfähigkeitsprofil und stellen einen vVols Datenspeicher im vSphere-Client bereit. 
+---
+= Konfigurieren Sie den iSCSI vVols Speicher in einer VCF VI-Workloaddomäne mit ONTAP -Tools
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Konfigurieren Sie den iSCSI vVols Speicher in einer VI-Workload-Domäne mithilfe von ONTAP Tools.  Sie stellen ONTAP tools for VMware vSphere bereit, registrieren ein Speichersystem, erstellen ein Speicherfähigkeitsprofil und stellen einen vVols Datenspeicher im vSphere-Client bereit.
+
+
+
+== Schritt 1: ONTAP tools for VMware vSphere bereitstellen
+
+Für VI-Workloaddomänen werden ONTAP Tools im VCF-Verwaltungscluster installiert, aber beim vCenter registriert, das der VI-Workloaddomäne zugeordnet ist.
+
+ONTAP tools for VMware vSphere werden als VM-Appliance bereitgestellt und bieten eine integrierte vCenter-Benutzeroberfläche zur Verwaltung des ONTAP Speichers.
+
+.Schritte
+. Besorgen Sie sich das OVA-Image der ONTAP -Tools von derlink:https://mysupport.netapp.com/site/products/all/details/otv/downloads-tab["NetApp Support-Site"] und in einen lokalen Ordner herunterladen.
+. Melden Sie sich bei der vCenter-Appliance für die VCF-Verwaltungsdomäne an.
+. Klicken Sie in der vCenter-Appliance-Schnittstelle mit der rechten Maustaste auf den Verwaltungscluster und wählen Sie *OVF-Vorlage bereitstellen…*
++
+image:vmware-vcf-aff-021.png["OVF-Vorlage bereitstellen …"]
+
++
+{nbsp}
+
+. Klicken Sie im Assistenten *OVF-Vorlage bereitstellen* auf das Optionsfeld *Lokale Datei* und wählen Sie die im vorherigen Schritt heruntergeladene OVA-Datei der ONTAP -Tools aus.
++
+image:vmware-vcf-aff-022.png["OVA-Datei auswählen"]
+
++
+{nbsp}
+
+. Wählen Sie in den Schritten 2 bis 5 des Assistenten einen Namen und einen Ordner für die VM aus, wählen Sie die Rechenressource aus, überprüfen Sie die Details und akzeptieren Sie die Lizenzvereinbarung.
+. Wählen Sie als Speicherort der Konfigurations- und Datenträgerdateien den vSAN-Datenspeicher des VCF-Managementdomänenclusters aus.
++
+image:vmware-vcf-aff-023.png["OVA-Datei auswählen"]
+
++
+{nbsp}
+
+. Wählen Sie auf der Seite *Netzwerk auswählen* das für den Verwaltungsverkehr verwendete Netzwerk aus.
++
+image:vmware-vcf-aff-024.png["Netzwerk auswählen"]
+
++
+{nbsp}
+
+. Geben Sie auf der Seite *Vorlage anpassen* alle erforderlichen Informationen ein:
++
+** Für den Administratorzugriff auf ONTAP -Tools zu verwendendes Kennwort.
+** IP-Adresse des NTP-Servers.
+** Kennwort für das Wartungskonto der ONTAP -Tools.
+** ONTAP -Tools Derby DB-Passwort.
+** Aktivieren Sie das Kontrollkästchen *VMware Cloud Foundation (VCF) aktivieren* nicht.  Der VCF-Modus ist für die Bereitstellung von zusätzlichem Speicher nicht erforderlich.
+** FQDN oder IP-Adresse der vCenter-Appliance für die *VI-Workload-Domäne*
+** Anmeldeinformationen für die vCenter-Appliance der *VI Workload Domain*
+** Erforderliche Netzwerkeigenschaften.
+
+
+. Klicken Sie auf *Weiter*, um fortzufahren.
++
+image:vmware-vcf-aff-025.png["OTV-Vorlage anpassen 1"]
+
++
+image:vmware-vcf-asa-035.png["OTV-Vorlage 2 anpassen"]
+
+. Überprüfen Sie alle Informationen auf der Seite *Bereit zum Abschließen* und klicken Sie auf *Fertig*, um mit der Bereitstellung der ONTAP -Tools-Appliance zu beginnen.
+
+
+
+
+== Schritt 2: Ein Speichersystem hinzufügen
+
+Führen Sie die folgenden Schritte aus, um mithilfe von ONTAP -Tools ein Speichersystem hinzuzufügen.
+
+
+NOTE: vVol erfordert ONTAP Cluster-Anmeldeinformationen anstelle von SVM-Anmeldeinformationen. Weitere Informationen finden Sie in der Dokumentation zu den ONTAP tools for VMware vSphere : https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere/configure/task_add_storage_systems.html["Speichersysteme hinzufügen"^] .
+
+.Schritte
+. Navigieren Sie im vSphere-Client zum Hauptmenü und wählen Sie * NetApp ONTAP -Tools*.
++
+image:vmware-vcf-asa-014.png["Navigieren Sie zu den ONTAP -Tools"]
+
+. Klicken Sie in den * ONTAP -Tools* auf der Seite „Erste Schritte“ (oder unter „Speichersysteme“*) auf *Hinzufügen*, um ein neues Speichersystem hinzuzufügen.
++
+image:vmware-vcf-asa-015.png["Speichersystem hinzufügen"]
+
++
+{nbsp}
+
+. Geben Sie die IP-Adresse und Anmeldeinformationen des ONTAP Speichersystems ein und klicken Sie auf *Hinzufügen*.
++
+image:vmware-vcf-asa-016.png["Geben Sie die IP-Adresse und Anmeldeinformationen des ONTAP -Systems an"]
+
++
+{nbsp}
+
+. Klicken Sie auf *Ja*, um das Cluster-Zertifikat zu autorisieren und das Speichersystem hinzuzufügen.
++
+image:vmware-vcf-asa-017.png["Cluster-Zertifikat autorisieren"]
+
+
+
+
+
+== Schritt 3: Erstellen Sie ein Speicherkapazitätsprofil in ONTAP -Tools
+
+Speicherleistungsprofile beschreiben die Funktionen, die ein Speicherarray oder Speichersystem bietet.  Sie enthalten Definitionen der Dienstqualität und werden zur Auswahl von Speichersystemen verwendet, die die im Profil definierten Parameter erfüllen.  Es kann eines der bereitgestellten Profile verwendet oder es können neue erstellt werden.
+
+.Schritte
+. Wählen Sie in den ONTAP -Tools im linken Menü *Storage Capability Profile* aus und drücken Sie dann *Create*.
++
+image:vmware-vcf-asa-039.png["Speicherkapazitätsprofil"]
+
+. Geben Sie im Assistenten *Speicherkapazitätsprofil erstellen* einen Namen und eine Beschreibung des Profils ein und klicken Sie auf *Weiter*.
++
+image:vmware-asa-010.png["Namen für SCP hinzufügen"]
+
+. Wählen Sie den Plattformtyp aus und legen Sie *Asymmetrisch* auf „Falsch“ fest, um anzugeben, dass das Speichersystem ein All-Flash-SAN-Array sein soll.
++
+image:vmware-asa-011.png["Plattform für SCP"]
+
+. Wählen Sie das gewünschte Protokoll aus oder wählen Sie *Beliebig*, um alle möglichen Protokolle zuzulassen.
+. Klicken Sie auf *Weiter*, um fortzufahren.
++
+image:vmware-asa-012.png["Protokoll für SCP"]
+
+. Auf der Seite *Leistung* können Sie die Dienstqualität in Form der zulässigen Mindest- und Höchst-IOPs einstellen.
++
+image:vmware-asa-013.png["QoS für SCP"]
+
+. Füllen Sie die Seite *Speicherattribute* aus, indem Sie Speichereffizienz, Speicherplatzreservierung, Verschlüsselung und ggf. Tiering-Richtlinien auswählen.
++
+image:vmware-asa-014.png["Attribute für SCP"]
+
+. Überprüfen Sie die Zusammenfassung und klicken Sie auf *Fertig*, um das Profil zu erstellen.
++
+image:vmware-vcf-asa-040.png["Zusammenfassung für SCP"]
+
+
+
+
+
+== Schritt 4: Erstellen Sie einen vVols -Datenspeicher in ONTAP -Tools
+
+Führen Sie die folgenden Schritte aus, um einen vVols Datenspeicher in ONTAP -Tools zu erstellen.
+
+.Schritte
+. Wählen Sie in den ONTAP -Tools *Übersicht* aus und klicken Sie auf der Registerkarte *Erste Schritte* auf *Bereitstellung*, um den Assistenten zu starten.
++
+image:vmware-vcf-asa-041.png["Datenspeicher bereitstellen"]
+
+. Wählen Sie auf der Seite *Allgemein* des Assistenten „Neuer Datenspeicher“ das vSphere-Rechenzentrum oder Clusterziel aus.
+. Wählen Sie * vVols* als Datenspeichertyp, geben Sie einen Namen für den Datenspeicher ein und wählen Sie * iSCSI * als Protokoll.
+. Klicken Sie auf *Weiter*, um fortzufahren.
++
+image:vmware-vcf-asa-042.png["Seite „Allgemein“"]
+
+. Wählen Sie auf der Seite *Speichersystem* ein Speicherfähigkeitsprofil, das Speichersystem und die VM aus.
+. Klicken Sie auf *Weiter*, um fortzufahren.
++
+image:vmware-vcf-asa-043.png["Speichersystem"]
+
+. Wählen Sie auf der Seite *Speicherattribute* die Erstellung eines neuen Volumes für den Datenspeicher aus und geben Sie die Speicherattribute des Volumes ein, das Sie erstellen möchten.
+. Klicken Sie auf *Hinzufügen*, um das Volume zu erstellen, und dann auf *Weiter*, um fortzufahren.
++
+image:vmware-vcf-asa-044.png["Speicherattribute"]
+
+. Überprüfen Sie die Zusammenfassung und klicken Sie auf *Fertig*, um den Erstellungsprozess des vVol-Datenspeichers zu starten.
++
+image:vmware-vcf-asa-045.png["Zusammenfassungsseite"]
+
+
+
+
+
+== Weitere Informationen
+
+* Informationen zur Konfiguration von ONTAP -Speichersystemen finden Sie unterlink:https://docs.netapp.com/us-en/ontap["ONTAP 9 Dokumentation"^] .
+* Informationen zur Konfiguration von VCF finden Sie unterlink:https://techdocs.broadcom.com/us/en/vmware-cis/vcf.html["VMware Cloud Foundation-Dokumentation"^] .
+* Informationen zur Verwendung von VMFS iSCSI-Datenspeichern mit VMware finden Sie unterlink:vmw-vmfs-iscsi.html["vSphere VMFS-Datenspeicher – iSCSI-Speicher-Backend mit ONTAP"] .
+* Videodemos dieser Lösung finden Sie unterlink:../videos/vmware-videos.html#vmware-datastore-provisioning-with-ontap["Bereitstellung von VMware-Datenspeichern"] .
+

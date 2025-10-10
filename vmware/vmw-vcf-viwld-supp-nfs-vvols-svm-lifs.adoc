@@ -20,13 +20,41 @@ Informationen zum Hinzufügen neuer LIFs zu einem vorhandenen SVM finden Sie in 
 
 .Schritte
 . Navigieren Sie im ONTAP System Manager im linken Menü zu *Storage VMs* und klicken Sie zum Starten auf *+ Hinzufügen*.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image:vmware-vcf-asa-001.png["Klicken Sie auf „Hinzufügen“, um mit der Erstellung des SVM zu beginnen"]
+
+====
 . Geben Sie im Assistenten *Speicher-VM hinzufügen* einen *Namen* für die SVM ein, wählen Sie den *IP-Bereich* aus und klicken Sie dann unter *Zugriffsprotokoll* auf die Registerkarte *SMB/CIFS, NFS, S3* und aktivieren Sie das Kontrollkästchen *NFS aktivieren*.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image:vmware-vcf-aff-035.png["Assistent zum Hinzufügen von Speicher-VMs – NFS aktivieren"]
+
+====
 +
 
 TIP: Sie müssen das Kontrollkästchen *NFS-Clientzugriff zulassen* nicht aktivieren.  ONTAP tools for VMware vSphere werden verwendet, um den Datastore-Bereitstellungsprozess zu automatisieren, was auch die Bereitstellung des Clientzugriffs für die ESXi-Hosts umfasst.
 
 . Geben Sie im Abschnitt *Netzwerkschnittstelle* die *IP-Adresse*, *Subnetzmaske* und *Broadcast-Domäne und -Port* für das erste LIF ein.  Für nachfolgende LIFs können Sie entweder individuelle Einstellungen verwenden oder das Kontrollkästchen aktivieren, um gemeinsame Einstellungen für alle verbleibenden LIFs zu verwenden.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image:vmware-vcf-aff-036.png["Netzwerkinformationen für LIFs ausfüllen"]
+
+====
 . Wählen Sie, ob das Storage VM-Administrationskonto (für Umgebungen mit mehreren Mandanten) aktiviert werden soll, und klicken Sie auf *Speichern*, um die SVM zu erstellen.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image:vmware-vcf-asa-004.png["SVM-Konto aktivieren und abschließen"]
+
+====
 
 
 

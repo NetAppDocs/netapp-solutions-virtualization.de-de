@@ -14,7 +14,7 @@ summary: Überprüfen Sie die Anforderungen zum Hinzufügen eines iSCSI-Datenspe
 
 
 [role="lead"]
-Überprüfen Sie die Anforderungen für das Hinzufügen von iSCSI-Datenspeichern als zusätzlichen Speicher zu einer VMware Cloud Foundation (VCF)-Verwaltungsdomäne.  Um iSCSI vVols in einer VMware Cloud Foundation-Verwaltungsdomäne bereitzustellen, benötigen Sie ein vollständig konfiguriertes ONTAP AFF oder ASA Speichersystem und eine bereitgestellte VCF-Verwaltungsdomäne.
+Überprüfen Sie die Anforderungen für das Hinzufügen von iSCSI-Datenspeichern als zusätzlichen Speicher zu einer VMware Cloud Foundation (VCF)-Verwaltungsdomäne.
 
 
 

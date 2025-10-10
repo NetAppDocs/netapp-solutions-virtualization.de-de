@@ -22,37 +22,41 @@ Führen Sie die folgenden Schritte auf dem VCF-Verwaltungsdomänencluster mithil
 ONTAP tools for VMware vSphere (OTV) werden als VM-Appliance bereitgestellt und bieten eine integrierte vCenter-Benutzeroberfläche zur Verwaltung des ONTAP Speichers.
 
 .Schritte
-. Besorgen Sie sich das OVA-Image der ONTAP -Tools von derlink:https://mysupport.netapp.com/site/products/all/details/otv/downloads-tab["NetApp Support-Site"] und in einen lokalen Ordner herunterladen.
+. Beziehen Sie das OVA-Image der ONTAP -Tools von derlink:https://mysupport.netapp.com/site/products/all/details/otv/downloads-tab["NetApp Support-Site"] und laden Sie es in einen lokalen Ordner herunter.
 . Melden Sie sich bei der vCenter-Appliance für die VCF-Verwaltungsdomäne an.
 . Klicken Sie in der vCenter-Appliance-Schnittstelle mit der rechten Maustaste auf den Verwaltungscluster und wählen Sie *OVF-Vorlage bereitstellen…*
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-aff-021.png["OVF-Vorlage bereitstellen …"]
 
+====
+. Klicken Sie im Assistenten *OVF-Vorlage bereitstellen* auf das Optionsfeld *Lokale Datei* und wählen Sie die OVA-Datei der ONTAP -Tools aus, die Sie im vorherigen Schritt heruntergeladen haben.
 +
-{nbsp}
-
-. Klicken Sie im Assistenten *OVF-Vorlage bereitstellen* auf das Optionsfeld *Lokale Datei* und wählen Sie die im vorherigen Schritt heruntergeladene OVA-Datei der ONTAP -Tools aus.
-+
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-aff-022.png["OVA-Datei auswählen"]
 
-+
-{nbsp}
-
+====
 . Wählen Sie in den Schritten 2 bis 5 des Assistenten einen Namen und einen Ordner für die VM aus, wählen Sie die Rechenressource aus, überprüfen Sie die Details und akzeptieren Sie die Lizenzvereinbarung.
 . Wählen Sie als Speicherort der Konfigurations- und Datenträgerdateien den vSAN-Datenspeicher des VCF-Managementdomänenclusters aus.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-aff-023.png["OVA-Datei auswählen"]
 
-+
-{nbsp}
-
+====
 . Wählen Sie auf der Seite *Netzwerk auswählen* das für den Verwaltungsverkehr verwendete Netzwerk aus.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-aff-024.png["Netzwerk auswählen"]
 
-+
-{nbsp}
-
+====
 . Geben Sie auf der Seite *Vorlage anpassen* alle erforderlichen Informationen ein:
 +
 ** Für den Administratorzugriff auf ONTAP -Tools zu verwendendes Kennwort.
@@ -67,12 +71,15 @@ image:vmware-vcf-aff-024.png["Netzwerk auswählen"]
 
 . Klicken Sie auf *Weiter*, um fortzufahren.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-aff-025.png["OTV-Vorlage anpassen 1"]
 
-+
 image:vmware-vcf-asa-035.png["OTV-Vorlage 2 anpassen"]
 
-. Überprüfen Sie alle Informationen auf der Seite *Bereit zum Abschließen* und klicken Sie auf *Fertig*, um mit der Bereitstellung der ONTAP -Tools-Appliance zu beginnen.
+====
+. Überprüfen Sie alle Informationen auf der Seite *Bereit zum Abschließen* und klicken Sie dann auf *Fertig*, um mit der Bereitstellung der ONTAP -Tools-Appliance zu beginnen.
 
 
 
@@ -84,26 +91,36 @@ Führen Sie die folgenden Schritte aus, um mithilfe von ONTAP -Tools ein Speiche
 .Schritte
 . Navigieren Sie im vSphere-Client zum Hauptmenü und wählen Sie * NetApp ONTAP -Tools*.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-014.png["Navigieren Sie zu den ONTAP -Tools"]
 
+====
 . Klicken Sie in den * ONTAP -Tools* auf der Seite „Erste Schritte“ (oder unter „Speichersysteme“*) auf *Hinzufügen*, um ein neues Speichersystem hinzuzufügen.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-015.png["Speichersystem hinzufügen"]
 
-+
-{nbsp}
-
+====
 . Geben Sie die IP-Adresse und Anmeldeinformationen des ONTAP Speichersystems ein und klicken Sie auf *Hinzufügen*.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-016.png["Geben Sie die IP-Adresse und Anmeldeinformationen des ONTAP -Systems an"]
 
-+
-{nbsp}
-
+====
 . Klicken Sie auf *Ja*, um das Cluster-Zertifikat zu autorisieren und das Speichersystem hinzuzufügen.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-017.png["Cluster-Zertifikat autorisieren"]
 
+====
 
 
 
@@ -116,30 +133,37 @@ In Fällen, in denen Sie zum Schutz der VCF-Verwaltungs-VMs lieber ONTAP Speiche
 . Navigieren Sie im vSphere-Client zum Managementdomänencluster und klicken Sie auf die Registerkarte *VMs*.
 . Wählen Sie die VMs aus, die zum iSCSI-Datenspeicher migriert werden sollen, klicken Sie mit der rechten Maustaste und wählen Sie *Migrieren..*.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-018.png["Auswählen der zu migrierenden VMs"]
 
-+
-{nbsp}
-
+====
 . Wählen Sie im Assistenten *Virtuelle Maschinen – Migrieren* als Migrationstyp *Nur Speicher ändern* aus und klicken Sie auf *Weiter*, um fortzufahren.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-019.png["Migrationstyp auswählen"]
 
-+
-{nbsp}
-
+====
 . Wählen Sie auf der Seite *Speicher auswählen* den iSCSi-Datenspeicher aus und klicken Sie auf *Weiter*, um fortzufahren.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-020.png["Zieldatenspeicher auswählen"]
 
-+
-{nbsp}
-
+====
 . Überprüfen Sie die Auswahl und klicken Sie auf *Fertig*, um die Migration zu starten.
 . Der Umzugsstatus kann im Bereich *Letzte Aufgaben* angezeigt werden.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-021.png["Bereich „Kürzliche Aufgaben“ des vSphere-Clients"]
 
+====
 
 
 

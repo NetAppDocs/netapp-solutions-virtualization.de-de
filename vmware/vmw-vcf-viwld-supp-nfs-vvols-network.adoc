@@ -26,11 +26,39 @@ Führen Sie die folgenden Schritte aus, um eine neue verteilte Portgruppe für d
 
 .Schritte
 . Navigieren Sie im vSphere-Client zu *Inventar > Netzwerk* für die Workloaddomäne.  Navigieren Sie zum vorhandenen Distributed Switch und wählen Sie die Aktion zum Erstellen einer *Neuen verteilten Portgruppe...*.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image:vmware-vcf-asa-022.png["Wählen Sie „Neue Portgruppe erstellen“"]
+
+====
 . Geben Sie im Assistenten *Neue verteilte Portgruppe* einen Namen für die neue Portgruppe ein und klicken Sie auf *Weiter*, um fortzufahren.
 . Füllen Sie auf der Seite *Einstellungen konfigurieren* alle Einstellungen aus. Wenn VLANs verwendet werden, stellen Sie sicher, dass Sie die richtige VLAN-ID angeben. Klicken Sie auf *Weiter*, um fortzufahren.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image:vmware-vcf-asa-023.png["Füllen Sie die VLAN-ID aus"]
+
+====
 . Überprüfen Sie auf der Seite *Bereit zum Abschließen* die Änderungen und klicken Sie auf *Fertig*, um die neue verteilte Portgruppe zu erstellen.
 . Nachdem die Portgruppe erstellt wurde, navigieren Sie zu der Portgruppe und wählen Sie die Aktion „Einstellungen bearbeiten…“ aus.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image:vmware-vcf-aff-037.png["DPG - Einstellungen bearbeiten"]
+
+====
 . Navigieren Sie auf der Seite *Verteilte Portgruppe – Einstellungen bearbeiten* im linken Menü zu *Teaming und Failover*. Aktivieren Sie die Teambildung für die Uplinks, die für den NFS-Verkehr verwendet werden sollen, indem Sie sicherstellen, dass sie sich gemeinsam im Bereich *Aktive Uplinks* befinden. Verschieben Sie alle nicht verwendeten Uplinks nach unten zu *Ungenutzte Uplinks*.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image:vmware-vcf-aff-038.png["DPG - Team-Uplinks"]
+
+====
 . Wiederholen Sie diesen Vorgang für jeden ESXi-Host im Cluster.
 
 
@@ -42,11 +70,46 @@ Erstellen Sie auf jedem ESXi-Host in der Workload-Domäne einen VMkernel-Adapter
 
 .Schritte
 . Navigieren Sie vom vSphere-Client zu einem der ESXi-Hosts im Workload-Domäneninventar. Wählen Sie auf der Registerkarte *Konfigurieren* *VMkernel-Adapter* aus und klicken Sie zum Starten auf *Netzwerk hinzufügen...*.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image:vmware-vcf-asa-030.png["Starten Sie den Assistenten zum Hinzufügen von Netzwerken"]
+
+====
 . Wählen Sie im Fenster *Verbindungstyp auswählen* *VMkernel-Netzwerkadapter* und klicken Sie auf *Weiter*, um fortzufahren.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image:vmware-vcf-asa-008.png["Wählen Sie den VMkernel-Netzwerkadapter"]
+
+====
 . Wählen Sie auf der Seite *Zielgerät auswählen* eine der zuvor erstellten verteilten Portgruppen für NFS aus.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image:vmware-vcf-aff-039.png["Zielportgruppe auswählen"]
+
+====
 . Behalten Sie auf der Seite *Porteigenschaften* die Standardeinstellungen bei (keine aktivierten Dienste) und klicken Sie auf *Weiter*, um fortzufahren.
 . Geben Sie auf der Seite *IPv4-Einstellungen* die *IP-Adresse* und *Subnetzmaske* ein und geben Sie eine neue Gateway-IP-Adresse an (nur falls erforderlich). Klicken Sie auf *Weiter*, um fortzufahren.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image:vmware-vcf-aff-040.png["VMkernel-IPv4-Einstellungen"]
+
+====
 . Überprüfen Sie Ihre Auswahl auf der Seite *Bereit zum Abschließen* und klicken Sie auf *Fertig*, um den VMkernel-Adapter zu erstellen.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image:vmware-vcf-aff-041.png["Überprüfen Sie die VMkernel-Auswahl"]
+
+====
 
 
 

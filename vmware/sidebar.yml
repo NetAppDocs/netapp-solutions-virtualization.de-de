@@ -51,12 +51,28 @@ entries:
     url: "/vmware/vmw-vcf-dr-bxp-nfs.html"
   - title: Konvertieren Sie vorhandene vSphere-Cluster in VCF
     entries:
-    - title: Informationen zum Konvertieren vorhandener vSphere-Cluster in VCF
+    - title: Erfahren Sie mehr über die Konvertierung von vSphere-Clustern
       url: "/vmware/vmw-vcf-migrate.html"
-    - title: Konvertieren Sie vorhandene vSphere-Cluster mit NFS-Datenspeichern
-      url: "/vmware/vmw-vcf-mgmt-nfs.html"
-    - title: Konvertieren Sie vorhandene vSphere-Cluster mit FC-Datenspeichern
-      url: "/vmware/vmw-vcf-mgmt-fc.html"
+    - title: Konvertieren Sie vSphere-Cluster mit NFS-Datenspeichern
+      entries:
+      - title: Bereitstellungsworkflow
+        url: "/vmware/vmw-vcf-mgmt-nfs.html"
+      - title: Anforderungen überprüfen
+        url: "/vmware/vmw-vcf-mgmt-nfs-requirements.html"
+      - title: Bereitstellen von ONTAP -Tools und Bereitstellen eines NFS-Datenspeichers
+        url: "/vmware/vmw-vcf-mgmt-nfs-deploy.html"
+      - title: Konvertieren Sie den vSphere-Cluster in VCF
+        url: "/vmware/vmw-vcf-mgmt-nfs-conversion.html"
+    - title: Konvertieren Sie vSphere-Cluster mit FC-Datenspeichern
+      entries:
+      - title: Bereitstellungsworkflow
+        url: "/vmware/vmw-vcf-mgmt-fc.html"
+      - title: Anforderungen überprüfen
+        url: "/vmware/vmw-vcf-mgmt-fc-requirements.html"
+      - title: Bereitstellen von ONTAP -Tools und Bereitstellen eines FC-Datenspeichers
+        url: "/vmware/vmw-vcf-mgmt-fc-deploy.html"
+      - title: Konvertieren Sie den vSphere-Cluster in VCF
+        url: "/vmware/vmw-vcf-mgmt-fc-conversion.html"
   - title: Bereitstellen von VCF mit Hauptspeicher
     entries:
     - title: Informationen zur Bereitstellung von Hauptspeicher

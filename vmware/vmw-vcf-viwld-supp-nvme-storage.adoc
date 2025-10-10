@@ -19,35 +19,39 @@ Konfigurieren Sie NVMe/TCP vVols -Speicher in einer VMware Cloud Foundation VI-W
 .Schritte
 . Navigieren Sie im vSphere-Client zu einem der ESXi-Hosts im Workload-Domänencluster. Wählen Sie im Menü *Aktionen* die Option *Speicher > Neuer Datenspeicher...*.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-104.png["NVMe/TCP-Adapter hinzufügen"]
 
-+
-{nbsp}
-
+====
 . Wählen Sie im Assistenten *Neuer Datenspeicher* als Typ *VMFS* aus. Klicken Sie auf *Weiter*, um fortzufahren.
 . Geben Sie auf der Seite *Namens- und Geräteauswahl* einen Namen für den Datenspeicher ein und wählen Sie den NVMe-Namespace aus der Liste der verfügbaren Geräte aus.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-105.png["Name und Geräteauswahl"]
 
-+
-{nbsp}
-
+====
 . Wählen Sie auf der Seite *VMFS-Version* die VMFS-Version für den Datenspeicher aus.
 . Nehmen Sie auf der Seite *Partitionskonfiguration* die gewünschten Änderungen am Standardpartitionsschema vor. Klicken Sie auf *Weiter*, um fortzufahren.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-106.png["NVMe-Partitionskonfiguration"]
 
-+
-{nbsp}
-
+====
 . Überprüfen Sie auf der Seite *Bereit zum Abschließen* die Zusammenfassung und klicken Sie auf *Fertig*, um den Datenspeicher zu erstellen.
 . Navigieren Sie zum neuen Datenspeicher im Inventar und klicken Sie auf die Registerkarte *Hosts*. Bei korrekter Konfiguration sollten alle ESXi-Hosts im Cluster aufgelistet sein und Zugriff auf den neuen Datenspeicher haben.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-107.png["Mit dem Datenspeicher verbundene Hosts"]
 
-+
-{nbsp}
-
+====
 
 
 

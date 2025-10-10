@@ -27,18 +27,20 @@ Informationen zum Hinzufügen neuer LIFs zu einem vorhandenen SVM finden Sie in 
 .Schritte
 . Navigieren Sie im ONTAP System Manager im linken Menü zu *Storage VMs* und klicken Sie auf *+ Hinzufügen*.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-001.png["Klicken Sie auf +Hinzufügen, um mit der Erstellung des SVM zu beginnen"]
 
-+
-{nbsp}
-
+====
 . Geben Sie im Assistenten *Speicher-VM hinzufügen* einen *Namen* für die SVM ein, wählen Sie den *IP-Bereich* aus und klicken Sie dann unter *Zugriffsprotokoll* auf die Registerkarte *NVMe* und aktivieren Sie das Kontrollkästchen *NVMe/TCP aktivieren*.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-075.png["Assistent zum Hinzufügen von Speicher-VMs – NVMe/TCP aktivieren"]
 
-+
-{nbsp}
-
+====
 . Geben Sie im Abschnitt *Netzwerkschnittstelle* die *IP-Adresse*, *Subnetzmaske* und *Broadcast-Domäne und -Port* für das erste LIF ein.  Für nachfolgende LIFs können Sie entweder individuelle Einstellungen verwenden oder das Kontrollkästchen aktivieren, um gemeinsame Einstellungen für alle verbleibenden LIFs zu verwenden.
 +
 
@@ -46,15 +48,21 @@ NOTE: Erstellen Sie für Multipathing und Failover über mehrere Pfade mindesten
 
 . Wählen Sie, ob das Storage VM-Administrationskonto (für Umgebungen mit mehreren Mandanten) aktiviert werden soll, und klicken Sie auf *Speichern*, um die SVM zu erstellen.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-004.png["SVM-Konto aktivieren und abschließen"]
 
+====
 
 
 
 
 == Schritt 2: Erstellen des NVMe-Namespace
 
-NVMe-Namespaces sind analog zu LUNs für iSCSi oder FC. Sie müssen den NVMe-Namespace erstellen, bevor ein VMFS-Datenspeicher vom vSphere-Client bereitgestellt werden kann.  Um den NVMe-Namespace zu erstellen, rufen Sie den NVMe Qualified Name (NQN) von jedem ESXi-Host im Cluster ab.  ONTAP verwendet den NQN, um die Zugriffskontrolle für den Namespace bereitzustellen.
+NVMe-Namespaces sind analog zu LUNs für iSCSi oder FC. Sie müssen den NVMe-Namespace erstellen, bevor ein VMFS-Datenspeicher vom vSphere-Client bereitgestellt werden kann.
+
+Um den NVMe-Namespace zu erstellen, rufen Sie den NVMe Qualified Name (NQN) von jedem ESXi-Host im Cluster ab.  ONTAP verwendet den NQN, um die Zugriffskontrolle für den Namespace bereitzustellen.
 
 .Schritte
 . Öffnen Sie eine SSH-Sitzung mit einem ESXi-Host im Cluster, um dessen NQN zu erhalten.  Verwenden Sie den folgenden Befehl aus der CLI:
@@ -74,18 +82,23 @@ Host NQN: nqn.2014-08.com.netapp.sddc:nvme:vcf-wkld-esx01
 . Notieren Sie den NQN für jeden ESXi-Host im Cluster.
 . Navigieren Sie im ONTAP System Manager im linken Menü zu *NVMe-Namespaces* und klicken Sie zum Starten auf *+ Hinzufügen*.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-093.png["Klicken Sie auf +Hinzufügen, um den NVMe-Namespace zu erstellen"]
 
-+
-{nbsp}
-
+====
 . Geben Sie auf der Seite *NVMe-Namespace hinzufügen* ein Namenspräfix, die Anzahl der zu erstellenden Namespaces, die Größe des Namespaces und das Host-Betriebssystem ein, das auf den Namespace zugreifen wird.
 . Erstellen Sie im Abschnitt *Host-NQN* eine durch Kommas getrennte Liste der NQNs, die zuvor von den ESXi-Hosts erfasst wurden, die auf die Namespaces zugreifen werden.
 . Klicken Sie auf *Weitere Optionen*, um zusätzliche Elemente zu konfigurieren, beispielsweise die Snapshot-Schutzrichtlinie.
 . Klicken Sie abschließend auf *Speichern*, um den NVMe-Namespace zu erstellen.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-093.png["Klicken Sie auf +Hinzufügen, um den NVMe-Namespace zu erstellen"]
 
+====
 
 
 

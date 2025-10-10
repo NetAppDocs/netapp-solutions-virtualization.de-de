@@ -4,45 +4,51 @@
 
 . Navigieren Sie vom vSphere-Client zu einem der ESXi-Hosts im Workload-Domäneninventar. Wählen Sie auf der Registerkarte *Konfigurieren* *VMkernel-Adapter* aus und klicken Sie zum Starten auf *Netzwerk hinzufügen...*.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-030.png["Starten Sie den Assistenten zum Hinzufügen von Netzwerken"]
 
-+
-{nbsp}
-
+====
 . Wählen Sie im Fenster *Verbindungstyp auswählen* *VMkernel-Netzwerkadapter* und klicken Sie auf *Weiter*, um fortzufahren.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-008.png["Wählen Sie den VMkernel-Netzwerkadapter"]
 
-+
-{nbsp}
-
+====
 . Wählen Sie auf der Seite *Zielgerät auswählen* eine der zuvor erstellten verteilten Portgruppen für iSCSI aus.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-031.png["Zielportgruppe auswählen"]
 
-+
-{nbsp}
-
+====
 . Behalten Sie auf der Seite *Porteigenschaften* die Standardeinstellungen bei und klicken Sie auf *Weiter*, um fortzufahren.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-032.png["VMkernel-Porteigenschaften"]
 
-+
-{nbsp}
-
+====
 . Geben Sie auf der Seite *IPv4-Einstellungen* die *IP-Adresse* und *Subnetzmaske* ein und geben Sie eine neue Gateway-IP-Adresse an (nur falls erforderlich). Klicken Sie auf *Weiter*, um fortzufahren.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-033.png["VMkernel-IPv4-Einstellungen"]
 
-+
-{nbsp}
-
+====
 . Überprüfen Sie Ihre Auswahl auf der Seite *Bereit zum Abschließen* und klicken Sie auf *Fertig*, um den VMkernel-Adapter zu erstellen.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-034.png["Überprüfen Sie die VMkernel-Auswahl"]
 
-+
-{nbsp}
-
+====
 . Wiederholen Sie diesen Vorgang, um einen VMkernel-Adapter für das zweite iSCSI-Netzwerk zu erstellen.
 

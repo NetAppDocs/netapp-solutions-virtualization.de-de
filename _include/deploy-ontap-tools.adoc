@@ -2,37 +2,41 @@
 :allow-uri-read: 
 
 
-. Besorgen Sie sich das OVA-Image der ONTAP -Tools von derlink:https://mysupport.netapp.com/site/products/all/details/otv/downloads-tab["NetApp Support-Site"] und in einen lokalen Ordner herunterladen.
+. Beziehen Sie das OVA-Image der ONTAP -Tools von derlink:https://mysupport.netapp.com/site/products/all/details/otv/downloads-tab["NetApp Support-Site"] und laden Sie es in einen lokalen Ordner herunter.
 . Melden Sie sich bei der vCenter-Appliance für die VCF-Verwaltungsdomäne an.
 . Klicken Sie in der vCenter-Appliance-Schnittstelle mit der rechten Maustaste auf den Verwaltungscluster und wählen Sie *OVF-Vorlage bereitstellen…*
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-aff-021.png["OVF-Vorlage bereitstellen …"]
 
+====
+. Klicken Sie im Assistenten *OVF-Vorlage bereitstellen* auf das Optionsfeld *Lokale Datei* und wählen Sie die OVA-Datei der ONTAP -Tools aus, die Sie im vorherigen Schritt heruntergeladen haben.
 +
-{nbsp}
-
-. Klicken Sie im Assistenten *OVF-Vorlage bereitstellen* auf das Optionsfeld *Lokale Datei* und wählen Sie die im vorherigen Schritt heruntergeladene OVA-Datei der ONTAP -Tools aus.
-+
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-aff-022.png["OVA-Datei auswählen"]
 
-+
-{nbsp}
-
+====
 . Wählen Sie in den Schritten 2 bis 5 des Assistenten einen Namen und einen Ordner für die VM aus, wählen Sie die Rechenressource aus, überprüfen Sie die Details und akzeptieren Sie die Lizenzvereinbarung.
 . Wählen Sie als Speicherort der Konfigurations- und Datenträgerdateien den vSAN-Datenspeicher des VCF-Managementdomänenclusters aus.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-aff-023.png["OVA-Datei auswählen"]
 
-+
-{nbsp}
-
+====
 . Wählen Sie auf der Seite *Netzwerk auswählen* das für den Verwaltungsverkehr verwendete Netzwerk aus.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-aff-024.png["Netzwerk auswählen"]
 
-+
-{nbsp}
-
+====
 . Geben Sie auf der Seite *Vorlage anpassen* alle erforderlichen Informationen ein:
 +
 ** Für den Administratorzugriff auf ONTAP -Tools zu verwendendes Kennwort.
@@ -47,10 +51,13 @@ image:vmware-vcf-aff-024.png["Netzwerk auswählen"]
 
 . Klicken Sie auf *Weiter*, um fortzufahren.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-aff-025.png["OTV-Vorlage anpassen 1"]
 
-+
 image:vmware-vcf-asa-035.png["OTV-Vorlage 2 anpassen"]
 
-. Überprüfen Sie alle Informationen auf der Seite *Bereit zum Abschließen* und klicken Sie auf *Fertig*, um mit der Bereitstellung der ONTAP -Tools-Appliance zu beginnen.
+====
+. Überprüfen Sie alle Informationen auf der Seite *Bereit zum Abschließen* und klicken Sie dann auf *Fertig*, um mit der Bereitstellung der ONTAP -Tools-Appliance zu beginnen.
 

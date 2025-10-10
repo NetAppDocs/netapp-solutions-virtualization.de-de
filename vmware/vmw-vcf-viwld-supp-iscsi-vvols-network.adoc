@@ -25,38 +25,49 @@ Verwenden Sie den vSphere-Client mit vCenter Single Sign-On, um diese Schritte a
 Führen Sie die folgenden Schritte aus, um für jedes iSCSI-Netzwerk eine neue verteilte Portgruppe zu erstellen.
 
 .Schritte
-. Navigieren Sie im vSphere-Client zu *Inventar > Netzwerk* für die Workloaddomäne.  Navigieren Sie zum vorhandenen Distributed Switch und wählen Sie die Aktion zum Erstellen einer *Neuen verteilten Portgruppe...*.
+. Navigieren Sie im vSphere-Client zu *Inventar > Netzwerk* für die Workloaddomäne. Navigieren Sie zum vorhandenen Distributed Switch und wählen Sie die Aktion zum Erstellen einer neuen *Distributed Port Group...*.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-022.png["Wählen Sie „Neue Portgruppe erstellen“"]
 
-+
-{nbsp}
-
-. Geben Sie im Assistenten *Neue verteilte Portgruppe* einen Namen für die neue Portgruppe ein und klicken Sie auf *Weiter*, um fortzufahren.
+====
+. Geben Sie im Assistenten *Neue verteilte Portgruppe* einen Namen für die neue Portgruppe ein und klicken Sie dann auf *Weiter*, um fortzufahren.
 . Füllen Sie auf der Seite *Einstellungen konfigurieren* alle Einstellungen aus. Wenn VLANs verwendet werden, stellen Sie sicher, dass Sie die richtige VLAN-ID angeben. Klicken Sie auf *Weiter*, um fortzufahren.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-023.png["Füllen Sie die VLAN-ID aus"]
 
-+
-{nbsp}
-
+====
 . Überprüfen Sie auf der Seite *Bereit zum Abschließen* die Änderungen und klicken Sie auf *Fertig*, um die neue verteilte Portgruppe zu erstellen.
 . Wiederholen Sie diesen Vorgang, um eine verteilte Portgruppe für das zweite verwendete iSCSI-Netzwerk zu erstellen, und stellen Sie sicher, dass Sie die richtige *VLAN-ID* eingegeben haben.
 . Nachdem beide Portgruppen erstellt wurden, navigieren Sie zur ersten Portgruppe und wählen Sie die Aktion „Einstellungen bearbeiten…“ aus.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-024.png["DPG - Einstellungen bearbeiten"]
 
-+
-{nbsp}
-
+====
 . Navigieren Sie auf der Seite *Verteilte Portgruppe – Einstellungen bearbeiten* im linken Menü zu *Teaming und Failover* und klicken Sie auf *Uplink2*, um es nach unten zu *Nicht verwendete Uplinks* zu verschieben.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-025.png["Verschiebe Uplink2 nach „Unbenutzt“"]
 
+====
 . Wiederholen Sie diesen Schritt für die zweite iSCSI-Portgruppe.  Verschieben Sie dieses Mal jedoch *Uplink1* nach unten zu *Ungenutzte Uplinks*.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-026.png["Uplink1 nach unbenutzt verschieben"]
 
+====
 
 
 
@@ -68,46 +79,52 @@ Führen Sie die folgenden Schritte auf jedem ESXi-Host in der Workload-Domäne m
 .Schritte
 . Navigieren Sie vom vSphere-Client zu einem der ESXi-Hosts im Workload-Domäneninventar. Wählen Sie auf der Registerkarte *Konfigurieren* *VMkernel-Adapter* aus und klicken Sie zum Starten auf *Netzwerk hinzufügen...*.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-030.png["Starten Sie den Assistenten zum Hinzufügen von Netzwerken"]
 
-+
-{nbsp}
-
+====
 . Wählen Sie im Fenster *Verbindungstyp auswählen* *VMkernel-Netzwerkadapter* und klicken Sie auf *Weiter*, um fortzufahren.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-008.png["Wählen Sie den VMkernel-Netzwerkadapter"]
 
-+
-{nbsp}
-
+====
 . Wählen Sie auf der Seite *Zielgerät auswählen* eine der zuvor erstellten verteilten Portgruppen für iSCSI aus.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-031.png["Zielportgruppe auswählen"]
 
-+
-{nbsp}
-
+====
 . Behalten Sie auf der Seite *Porteigenschaften* die Standardeinstellungen bei und klicken Sie auf *Weiter*, um fortzufahren.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-032.png["VMkernel-Porteigenschaften"]
 
-+
-{nbsp}
-
+====
 . Geben Sie auf der Seite *IPv4-Einstellungen* die *IP-Adresse* und *Subnetzmaske* ein und geben Sie eine neue Gateway-IP-Adresse an (nur falls erforderlich). Klicken Sie auf *Weiter*, um fortzufahren.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-033.png["VMkernel-IPv4-Einstellungen"]
 
-+
-{nbsp}
-
+====
 . Überprüfen Sie Ihre Auswahl auf der Seite *Bereit zum Abschließen* und klicken Sie auf *Fertig*, um den VMkernel-Adapter zu erstellen.
 +
+.Beispiel anzeigen
+[%collapsible]
+====
 image:vmware-vcf-asa-034.png["Überprüfen Sie die VMkernel-Auswahl"]
 
-+
-{nbsp}
-
+====
 . Wiederholen Sie diesen Vorgang, um einen VMkernel-Adapter für das zweite iSCSI-Netzwerk zu erstellen.
 
 

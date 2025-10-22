@@ -1887,7 +1887,6 @@
   <block id="5858ee4031acd7b896faa2d3d2c1a299" category="inline-link">Cloud Insights Dokumentation</block>
   <block id="00911ced9034aa731093735d56a2e06c" category="paragraph">NetApp Cloud Insights ist ein Tool zur Überwachung der Cloud-Infrastruktur, das Ihnen Einblick in Ihre gesamte Infrastruktur bietet.  Mit Cloud Insights können Sie alle Ihre Ressourcen, einschließlich Ihrer öffentlichen Clouds und Ihrer privaten Rechenzentren, überwachen, Fehler beheben und optimieren.  Weitere Informationen zu NetApp Cloud Insights finden Sie im<block ref="68693b67403a80c90005e9f7b1aea49c" category="inline-link-rx"></block> .</block>
   <block id="695d7a391bb9043561bcc3c254868311" category="inline-link-macro">Onboarding von Cloud Insights</block>
-  <block id="cb637fe731d8f11e987efcc1f79cfb92" category="paragraph">Um Cloud Insights zu verwenden, müssen Sie sich beim NetApp BlueXP Portal anmelden.  Einzelheiten finden Sie im<block ref="3eafb0740656ee40f537cc91680fcad7" category="inline-link-macro-rx"></block></block>
   <block id="ca2b06c0229201c6bba975ee591eaee2" category="inline-link-macro">Video-Tutorials</block>
   <block id="f42ccee1558b3f9e0eae968dc12af1af" category="paragraph">Cloud Insights verfügt über mehrere Funktionen, mit denen Sie schnell und einfach Daten finden, Probleme beheben und Einblicke in Ihre Umgebung erhalten.  Mit leistungsstarken Abfragen können Sie Daten einfach finden, in Dashboards visualisieren und E-Mail-Benachrichtigungen für von Ihnen festgelegte Datenschwellenwerte senden.  Weitere Informationen finden Sie im<block ref="641d67cbeba767c6e6b6cd386cc73a79" category="inline-link-macro-rx"></block> um Ihnen das Verständnis dieser Funktionen zu erleichtern.</block>
   <block id="16c85c2f0f86fe481df1b62b9a61ca0a" category="paragraph">Damit Cloud Insights mit der Datenerfassung beginnen kann, benötigen Sie Folgendes</block>
@@ -7733,4 +7732,6 @@
   <block id="28425bdbdef396f1aec8883562967014" category="sidebar">Konvertieren Sie den vSphere-Cluster in VCF</block>
   <block id="ab5febdae5f3f0c5a30a718689093234" category="sidebar">Konvertieren Sie vSphere-Cluster mit FC-Datenspeichern</block>
   <block id="d8b72d69741e3404fbbca9934e6e1693" category="sidebar">Bereitstellen von ONTAP -Tools und Bereitstellen eines FC-Datenspeichers</block>
+  <block id="3c031b939f6ec312ee601d021e7a6644" category="inline-link-macro">NetApp Console</block>
+  <block id="4a6d449241d20161e4eaa333c42fc179" category="paragraph">Um Cloud Insights nutzen zu können, müssen Sie sich auf der <block ref="04ae21d04d9a279324faf4ed210bd5b7" category="inline-link-macro-rx"></block>. Einzelheiten finden Sie im <block ref="3eafb0740656ee40f537cc91680fcad7" category="inline-link-macro-rx"></block></block>
 </blocks>

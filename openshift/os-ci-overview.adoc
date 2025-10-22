@@ -18,7 +18,7 @@ NetApp Data Infrastructure Insights (früher Cloud Insights) lässt sich in Open
 
 NetApp Cloud Insights ist ein Tool zur Überwachung der Cloud-Infrastruktur, das Ihnen Einblick in Ihre gesamte Infrastruktur bietet.  Mit Cloud Insights können Sie alle Ihre Ressourcen, einschließlich Ihrer öffentlichen Clouds und Ihrer privaten Rechenzentren, überwachen, Fehler beheben und optimieren.  Weitere Informationen zu NetApp Cloud Insights finden Sie im https://docs.netapp.com/us-en/cloudinsights["Cloud Insights Dokumentation"] .
 
-Um Cloud Insights zu verwenden, müssen Sie sich beim NetApp BlueXP Portal anmelden.  Einzelheiten finden Sie imlink:https://docs.netapp.com/us-en/cloudinsights/task_cloud_insights_onboarding_1.html["Onboarding von Cloud Insights"]
+Um Cloud Insights nutzen zu können, müssen Sie sich auf der link:https://www.netapp.com/console["NetApp Console"]. Einzelheiten finden Sie im link:https://docs.netapp.com/us-en/cloudinsights/task_cloud_insights_onboarding_1.html["Onboarding von Cloud Insights"]
 
 Cloud Insights verfügt über mehrere Funktionen, mit denen Sie schnell und einfach Daten finden, Probleme beheben und Einblicke in Ihre Umgebung erhalten.  Mit leistungsstarken Abfragen können Sie Daten einfach finden, in Dashboards visualisieren und E-Mail-Benachrichtigungen für von Ihnen festgelegte Datenschwellenwerte senden.  Weitere Informationen finden Sie imlink:https://docs.netapp.com/us-en/cloudinsights/concept_feature_tutorials.html#introduction["Video-Tutorials"] um Ihnen das Verständnis dieser Funktionen zu erleichtern.
 

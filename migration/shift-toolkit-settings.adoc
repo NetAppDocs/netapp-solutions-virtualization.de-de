@@ -1,0 +1,349 @@
+---
+sidebar: sidebar 
+permalink: migration/shift-toolkit-settings.html 
+keywords: netapp, vmware, esxi, vm, migration, openshift, virtualization, hyper-v, proxmox 
+summary: Konfigurieren Sie erweiterte Einstellungen im Shift Toolkit, um die CredSSP-Authentifizierung zu verwalten, Protokollierung und Debugging zu aktivieren, auf REST-APIs zuzugreifen und E-Mail-Benachrichtigungen für Migrationsaufträge einzurichten. 
+---
+= Konfigurieren Sie erweiterte Einstellungen im Shift Toolkit
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Konfigurieren Sie erweiterte Einstellungen im Shift Toolkit, um die CredSSP-Authentifizierung zu verwalten, Protokollierung und Debugging zu aktivieren, auf REST-APIs zuzugreifen und E-Mail-Benachrichtigungen für Migrationsaufträge einzurichten.
+
+Die erweiterten Einstellungen erreichen Sie durch Klicken auf das Symbol *Einstellungen* in der oberen Symbolleiste.
+
+image::shift-toolkit-250.png[Einstellungssymbol in der Shift Toolkit-Symbolleiste]
+
+
+
+== Credential Security Service Provider (CredSSP)
+
+Das Shift Toolkit verwendet Credential Security Service Provider (CredSSP), um die Übertragung von Anmeldeinformationen während des Konvertierungsprozesses zu verwalten.  Der Shift-Server führt Skripte auf dem Gastbetriebssystem der zu konvertierenden VM aus und übergibt die Anmeldeinformationen über einen „Double-Hop“ vom Shift-Server über den Hyper-V-Server an das Gastbetriebssystem.
+
+image::shift-toolkit-251.png[CredSSP-Konfigurationseinstellungen]
+
+
+
+=== Konfigurieren Sie den Shift-Server als CredSSP-Client
+
+Der Assistent für erweiterte Einstellungen konfiguriert den Shift-Server automatisch als CredSSP-Client, sodass dieser Anmeldeinformationen an die Hyper-V-Server delegieren kann.
+
+
+
+==== Hinter den Kulissen
+
+Das Shift Toolkit führt die folgenden Befehle und Richtlinienkonfigurationen aus, um sich als Client einzurichten:
+
+*Ausgeführte Befehle:*
+
+* `Set-Item WSMan:\localhost\Client\TrustedHosts -Value "fqdn-of-hyper-v-host"`
+* `Enable-WSManCredSSP -Role client -DelegateComputer "fqdn-of-hyper-v-host"`
+
+
+*Gruppenrichtlinie konfiguriert:*
+
+* Computerkonfiguration > Administrative Vorlagen > System > Anmeldeinformationsdelegierung > Delegierung neuer Anmeldeinformationen mit reiner NTLM-Serverauthentifizierung zulassen
++
+Aktivieren Sie diese Richtlinie und fügen Sie Folgendes hinzu `wsman/fqdn-of-hyper-v-host` Die
+
+
+
+
+
+=== Konfigurieren Sie den Hyper-V-Server als CredSSP-Server.
+
+Verwenden Sie die `Enable-WSManCredSSP` Cmdlet auf dem Hyper-V-Server, um ihn als CredSSP-Server zu konfigurieren, damit er Anmeldeinformationen vom Shift-Server empfangen kann.
+
+.Schritte
+. Öffnen Sie auf dem Hyper-V-Host, auf dem die VMs vom Shift Toolkit-Server bereitgestellt werden, eine Windows PowerShell-Sitzung als Administrator.
+. Führen Sie die folgenden Befehle aus:
++
+[listing]
+----
+Enable-PSRemoting
+Enable-WSManCredSSP -Role server
+----
+
+
+
+
+== Protokollierung und Debugging
+
+Das Shift Toolkit beinhaltet eine standardmäßige Protokollierung mit einer Aufbewahrungsfrist von 30 Tagen.  Die Protokollierung kann auf Anfrage des Supports zu Fehlerbehebungszwecken in den Debug-Modus umgeschaltet werden.
+
+image::shift-toolkit-252.png[Protokollierungskonfigurationseinstellungen]
+
+
+
+== Stolzieren
+
+Über die Swagger-Seite in den erweiterten Einstellungen können Sie mit den REST-APIs des Shift Toolkits interagieren.
+
+image::shift-toolkit-253.png[Swagger API-Dokumentationsschnittstelle]
+
+Die Shift Toolkit REST API bietet programmatischen Zugriff auf Migrations-, Konvertierungs- und Automatisierungsfunktionen.  Die APIs sind nach funktionalen Arbeitsabläufen organisiert, damit Sie schnell die Ressourcen finden, die Sie für bestimmte Aufgaben benötigen.
+
+image::shift-toolkit-254.png[API-Ressourcenkategorien]
+
+
+
+=== Authentifizierungs- und Einrichtungs-APIs
+
+Verwenden Sie diese APIs, um Verbindungen herzustellen, Benutzer zu verwalten und die Authentifizierung für den Shift Toolkit-Server zu konfigurieren.
+
+*Sitzung*
+
+Benutzerauthentifizierung verwalten und Autorisierungstoken für API-Anfragen abrufen:
+
+* Starten einer Sitzung
+* Validieren einer Sitzung
+* Alle Sitzungs-IDs abrufen
+* Beenden einer Sitzung
+
+
+*Benutzer*
+
+Benutzerkonten und Berechtigungen verwalten:
+
+* Einen Benutzer hinzufügen
+* Alle Benutzer abrufen
+* Benutzerpasswort ändern
+* EULA akzeptieren
+
+
+*CredSSP*
+
+Konfigurieren des Credential Security Service Providers für die Delegierung von Anmeldeinformationen:
+
+* CredSSP aktivieren
+* CredSSP-Status abrufen
+
+
+*Anschluss*
+
+Verbindungen zu Infrastrukturkomponenten verwalten:
+
+* Einen Connector hinzufügen
+* Details zu allen Konnektoren abrufen
+* Aktualisierung der Verbindungsdetails anhand der ID
+* Abrufen von Connectordetails nach ID
+
+
+*Mieter*
+
+Verwaltung von Mandantenkonfigurationen:
+
+* Mieter hinzufügen
+* Alle Mieter abrufen
+
+
+
+
+=== APIs für das Infrastrukturmanagement
+
+Nutzen Sie diese APIs, um Ihre Quell- und Zielumgebungen zu konfigurieren und zu ermitteln.
+
+*Website*
+
+Verwaltung von Migrationsstandorten und den dazugehörigen virtuellen Umgebungen und Speicherumgebungen:
+
+* Anzahl der Websites ermitteln
+* Alle Site-Details abrufen
+* Hinzufügen einer Site
+* Standortdetails anhand der ID abrufen
+* Löschen einer Site anhand der ID
+* Einer Site eine virtuelle Umgebung hinzufügen
+* Speicherumgebung zu einer Site hinzufügen
+* Details zur virtuellen Umgebung für einen Standort abrufen
+* Aktualisieren Sie die Details der virtuellen Umgebung für einen Standort.
+* Details der virtuellen Umgebung für einen Standort löschen
+* Details zur Speicherumgebung eines Standorts abrufen
+* Aktualisieren Sie die Details der Speicherumgebung für einen Standort.
+* Details zur Speicherumgebung für einen Standort löschen
+
+
+*Entdeckung*
+
+VMs und Ressourcen in Quell- und Zielumgebungen ermitteln und inventarisieren:
+
+* Quellsite entdecken
+* Alle Erkennungsanfragen für die Quellsite abrufen
+* Zielsite ermitteln
+* Alle Erkennungsanforderungen für die Zielsite abrufen
+* Ermittlungsschritte für die Quellwebsite anhand der ID abrufen
+* Ermittlungsschritte für die Zielwebsite anhand der ID abrufen
+
+
+
+
+=== VM- und Ressourcenverwaltungs-APIs
+
+Nutzen Sie diese APIs, um VMs und Ressourcen für die Migration zu inventarisieren, zu organisieren und zu verwalten.
+
+*VM*
+
+Abfrage und Verwaltung virtueller Maschinen:
+
+* Holen Sie sich VMs für eine Site und eine virtuelle Umgebung in der Quelle
+* Erhalten Sie ungeschützte VMs für eine Site und eine virtuelle Umgebung
+* VM-Anzahl abrufen
+* Abrufen der Anzahl geschützter VMs
+
+
+*Ressource*
+
+Ressourcennutzung und -verfügbarkeit anzeigen:
+
+* Abrufen von Ressourcendetails für eine Site und eine virtuelle Umgebung
+* Anzahl der Ressourcen der Quellwebsite abrufen
+
+
+*Ressourcengruppe*
+
+Organisieren Sie VMs für die Migration in Schutzgruppen:
+
+* Abrufen der Anzahl der Schutzgruppen
+* Alle Details zur Schutzgruppe abrufen
+* Hinzufügen einer Schutzgruppe
+* Details zu Schutzgruppen anhand der ID abrufen
+* Eine Schutzgruppe anhand ihrer ID löschen
+* Details der Schutzgruppe anhand der ID aktualisieren
+* VMs einer Schutzgruppe anhand der ID abrufen
+* Besorgen Sie sich Baupläne, die die Schutzgruppe enthalten
+
+
+
+
+=== Migrations- und Wiederherstellungs-APIs
+
+Nutzen Sie diese APIs, um Migrationen durchzuführen, die Einhaltung von Vorschriften zu überwachen und Wiederherstellungsvorgänge zu verwalten.
+
+*Entwurf*
+
+Migrationspläne definieren und verwalten:
+
+* Ermitteln Sie die Anzahl der Baupläne.
+* Alle Details zum Bauplan abrufen
+* Füge eine Blaupause hinzu
+* Blaupausendetails anhand der ID abrufen
+* Blaupause anhand der ID löschen
+* Blaupausendetails für ID aktualisieren
+* Abrufen von VMs eines Blueprints
+* Erhalten Sie den Energiestatus der im Blueprint vorhandenen VMs
+
+
+*Einhaltung*
+
+Vor der Migration Bereitschaft und Kompatibilität prüfen:
+
+* Abrufen des Ergebnisses der Konformitätsprüfung für einen Blueprint
+* Abrufen des endgültigen Status der Konformitätsprüfung für einen Blueprint
+* Fügen Sie eine bedarfsgesteuerte Konformitätsprüfung für einen Entwurf hinzu.
+
+
+*Ausführung*
+
+Überwachung der Ausführung von Migrations- und Konvertierungsaufträgen:
+
+* Alle Ausführungsdetails abrufen
+* Erhalten Sie Details zur laufenden Ausführung
+* Ausführungsanzahl abrufen
+* Anzahl der laufenden Ausführungen abrufen
+* Schritte für die Ausführungs-ID abrufen
+
+
+*Erholung*
+
+Migrations- und Wiederherstellungsvorgänge durchführen und verwalten:
+
+* Neue Ausführungsanforderung für einen Blueprint hinzufügen
+* Füge eine Wiederholungsanforderung für die Ausführung eines Blueprints hinzu.
+* Rufe die Ausführungsstatus aller Blaupausen ab
+* Ausführungsstatus für Blueprint-ID abrufen
+
+
+
+
+=== Automatisierungs-APIs
+
+Nutzen Sie diese APIs, um die Funktionalität von Shift Toolkit zu erweitern und zu automatisieren.
+
+*Skriptblock*
+
+Zugriff auf und Ausführung von Automatisierungsskripten:
+
+* Alle Skript-Metadaten abrufen
+* Skriptmetadaten anhand der ID abrufen
+* Alle Aktualisierungsmetadaten abrufen
+* Skript ausführen
+
+
+
+
+== Skriptblock und Automatisierung
+
+Der Skriptblock innerhalb des Shift Toolkits bietet Beispielcode, der Ihnen hilft, Funktionen mithilfe interner und externer APIs zu automatisieren, zu integrieren und zu entwickeln.  Im Abschnitt „Codebeispiele“ können Sie Beispiele durchsuchen und herunterladen, die vom Automatisierungsteam des Shift Toolkit und Mitgliedern der Community geschrieben wurden.  Nutzen Sie diese Beispiele, um mit Automatisierungs-, Verwaltungs- oder Integrationsaufgaben zu beginnen.
+
+image::shift-toolkit-255.png[Skriptblockschnittstelle]
+
+image::shift-toolkit-256.png[Verfügbare Codebeispiele]
+
+Das folgende Beispiel zeigt ein PowerShell-Skript, das einen bestimmten Auftrag innerhalb der Shift Toolkit-Benutzeroberfläche löscht.  Diese Funktionalität ist zwar nicht über den Standard-Workflow zugänglich, kann aber mithilfe des Skriptblocks realisiert werden.  Das Skript ist auch als Batch-Skript verfügbar, das einfach heruntergeladen und ausgeführt werden kann.
+
+image::shift-toolkit-257.png[Beispiel-PowerShell-Skript zum Löschen eines Auftrags]
+
+Ziel des Skriptblocks ist es, Beispielskripte für den Start am ersten Tag und den laufenden Betrieb auf bestimmten Hypervisoren unter Verwendung der Shift Toolkit APIs und der jeweiligen veröffentlichten Hypervisor-APIs bereitzustellen.
+
+Ziel des Skriptblocks ist es, Beispielskripte für den Start am ersten Tag und den laufenden Betrieb auf bestimmten Hypervisoren unter Verwendung der Shift Toolkit APIs und der jeweiligen veröffentlichten Hypervisor-APIs bereitzustellen.
+
+
+
+== E-Mail-Benachrichtigungen und Warnmeldungen
+
+Konfigurieren Sie E-Mail-Benachrichtigungen, um Warnungen über Ermittlungs-, Konvertierungs- oder Migrationsaufträge an bestimmte Empfänger zu senden.  Es stehen auch UI-Benachrichtigungen (Warnungen innerhalb der Benutzeroberfläche) zur Verfügung, die 7 Tage lang gespeichert werden.
+
+Die Einstellungen für E-Mail-Benachrichtigungen finden Sie unter Einstellungen > Plattformeinstellungen > E-Mail-Konfiguration.
+
+.Schritte
+. Melden Sie sich bei der Shift Toolkit-Benutzeroberfläche an.
+. Navigieren Sie zu Einstellungen > Plattformeinstellungen.
+. E-Mail-Benachrichtigungen auswählen und SMTP-Details aktualisieren:
++
+** SMTP-Serveradresse
+** Hafen
+** Benutzername
+** Passwort
+
+
+. Aktualisieren Sie das Empfängerfeld und wählen Sie die Ereignisse aus den verfügbaren Kategorien aus.
+. Klicken Sie auf *Übernehmen*.
+
+
+image::shift-toolkit-258.png[Konfigurationseinstellungen für E-Mail-Benachrichtigungen]
+
+Der Screenshot zeigt die Aufschlüsselung für jede Benachrichtigungskategorie und jedes Ereignis.
+
+
+NOTE: In dieser Version werden für die E-Mail-Benachrichtigung die grundlegende SMTP-Authentifizierung und SendGrid verwendet.  Eine zukünftige Version wird moderne Authentifizierungsmethoden unterstützen.
+
+
+NOTE: In dieser Version werden für die E-Mail-Benachrichtigung die grundlegende SMTP-Authentifizierung und SendGrid verwendet.  Eine zukünftige Version wird moderne Authentifizierungsmethoden unterstützen.
+
+
+
+== Abbruch- und Rückgängigmachungsfunktionen
+
+Das Shift Toolkit bietet die Möglichkeit, einen laufenden Job in jedem Schritt des Arbeitsablaufs abzubrechen.  Wenn ein Auftrag abgebrochen wird, werden alle verwaisten Komponenten automatisch bereinigt, einschließlich:
+
+* Herunterfahren der VMs auf dem Hypervisor, falls diese eingeschaltet waren
+* Entfernen von Datenträgereinträgen aus dem entsprechenden Qtree
+* Löschung persistenter Volumenansprüche (PVCs)
+
+
+Da das Shift Toolkit die Quell-VM in keiner Weise verändert, ist ein Rollback unkompliziert: Man muss lediglich die Quell-VM einschalten.  Es sind keine weiteren Rollback-Aktionen erforderlich.

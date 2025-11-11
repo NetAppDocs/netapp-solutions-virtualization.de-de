@@ -132,30 +132,30 @@ Zusammenfassend lässt sich sagen, dass libvirt eine umfassende Verwaltungsebene
 
 Die VM-Festplatten können dynamisch im Speicherpool bereitgestellt oder vom Speicheradministrator vorab für die VM bereitgestellt werden.  Libvirt unterstützt verschiedene Pooltypen.  Hier ist die Liste der anwendbaren Pooltypen zusammen mit dem unterstützten Speicherprotokoll.  Die gängige Wahl ist dir. Dann netfs und logical. iscsi und iscsi-direct verwenden ein einzelnes Ziel und bieten keine Fehlertoleranz. mpath bietet Multipath, aber keine dynamische Zuweisung.  Es wird eher wie eine Rohgerätezuordnung in vSphere verwendet.  Für Dateiprotokolle (NFS/SMB/CIFS) können Mount-Optionen in https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/managing_file_systems/mounting-file-systems-on-demand#the-autofs-service["Automounter"] oder es wird der Fstab- und Verzeichnispooltyp verwendet.  Bei Blockprotokollen (iSCSI, FC, NVMe-oF) wird ein gemeinsam genutztes Dateisystem wie ocfs2 oder gfs2 verwendet.
 
-[cols="20% 10% 10% 10% 10% 10% 10% 10%"]
+[cols="20%, 10%, 10%, 10%, 10%, 10%, 10%, 10%"]
 |===
-| Speicherprotokoll | dir | fs | netfs | logisch | disk | iscsi | iscsi-direct | mpath 
+| Speicherprotokoll | dir | fs | netfs | logisch | disk | iscsi | iscsi-direct 
 
 
-| SMB/CIFS | Ja | Nein | Ja | Nein | Nein | Nein | Nein | Nein 
+| mpath | SMB/CIFS | Ja | Nein | Ja | Nein | Nein | Nein 
 
 
-| NFS | Ja | Nein | Ja | Nein | Nein | Nein | Nein | Nein 
+| Nein | Nein | NFS | Ja | Nein | Ja | Nein | Nein 
 
 
-| iSCSI | Ja | Ja | Nein | Ja | Ja | Ja | Ja | Ja 
+| Nein | Nein | Nein | iSCSI | Ja | Ja | Nein | Ja 
 
 
-| FC | Ja | Ja | Nein | Ja | Ja | Nein | Nein | Ja 
+| Ja | Ja | Ja | Ja | FC | Ja | Ja | Nein 
 
 
-| NVMe-oF | Ja | Ja | Nein | Ja | Ja | Nein | Nein | Nr. ^1^ 
+| Ja | Ja | Nein | Nein | Ja | NVMe-oF | Ja | Ja 
 |===
 *Hinweise:* 1 – Möglicherweise ist eine zusätzliche Konfiguration erforderlich.
 
 Je nach verwendetem Speicherprotokoll müssen zusätzliche Pakete auf dem Host verfügbar sein.  Hier ist die Beispielliste.
 
-[cols="40% 20% 20% 20%"]
+[cols="40%, 20%, 20%, 20%"]
 |===
 | Speicherprotokoll | Fedora | Debian | Pacman 
 

@@ -122,29 +122,32 @@ Im Wesentlichen können Sie durch die Verwendung von Libvirt mit ONTAP die Flexi
 
 Speicherpools vom Typ „dir“ und „netfs“ sind für die dateibasierte Speicherung geeignet.
 
-[cols="20% 10% 10% 10% 10% 10% 10% 10%"]
+[cols="30%, 10%, 10% ,10%, 10%, 10,% 10%, 10%"]
 |===
-| Speicherprotokoll | dir | fs | netfs | logisch | disk | iscsi | iscsi-direct | mpath 
+| Speicherprotokoll | dir | fs | netfs | logisch | disk | iscsi 
 
 
-| SMB/CIFS | Ja | Nein | Ja | Nein | Nein | Nein | Nein | Nein 
+| iscsi-direct | mpath | SMB/CIFS | Ja | Nein | Ja | Nein 
 
 
-| NFS | Ja | Nein | Ja | Nein | Nein | Nein | Nein | Nein 
+| Nein | Nein | Nein | Nein | NFS | Ja | Nein 
 |===
 Mit Netfs mountet libvirt das Dateisystem und die unterstützten Mount-Optionen sind begrenzt.  Beim Dir-Speicherpool muss die Bereitstellung des Dateisystems extern auf dem Host erfolgen. Zu diesem Zweck können fstab oder Automounter verwendet werden.  Um den Automounter zu verwenden, muss das Autofs-Paket installiert werden.  Autofs ist besonders nützlich, um Netzwerkfreigaben bei Bedarf zu mounten, was die Systemleistung und Ressourcennutzung im Vergleich zu statischen Mounts in fstab verbessern kann.  Nach einer Zeit der Inaktivität werden Freigaben automatisch ausgehängt.
 
 Überprüfen Sie anhand des verwendeten Speicherprotokolls, ob die erforderlichen Pakete auf dem Host installiert sind.
 
-[cols="40% 20% 20% 20%"]
+[cols="40%, 20,% 20%, 20%"]
 |===
-| Speicherprotokoll | Fedora | Debian | Pacman 
+| Speicherprotokoll | Fedora | Debian 
 
 
-| SMB/CIFS | Samba-Client/CIFS-Dienstprogramme | smbclient/cifs-utils | smbclient/cifs-utils 
+| Pacman | SMB/CIFS | Samba-Client/CIFS-Dienstprogramme 
 
 
-| NFS | nfs-utils | nfs-common | nfs-utils 
+| smbclient/cifs-utils | smbclient/cifs-utils | NFS 
+
+
+| nfs-utils | nfs-common | nfs-utils 
 |===
 NFS ist aufgrund seiner nativen Unterstützung und Leistung unter Linux eine beliebte Wahl, während SMB eine praktikable Option für die Integration in Microsoft-Umgebungen ist.  Überprüfen Sie immer die Supportmatrix, bevor Sie sie in der Produktion verwenden.
 
@@ -241,7 +244,7 @@ Ein Verzeichnispooltyp wird häufig über einem Cluster-Dateisystem wie OCFS2 od
 
 Überprüfen Sie, ob auf dem Host die erforderlichen Pakete basierend auf dem verwendeten Speicherprotokoll installiert sind.
 
-[cols="40% 20% 20% 20%"]
+[cols="40%, 20%, 20%, 20%"]
 |===
 | Speicherprotokoll | Fedora | Debian | Pacman 
 

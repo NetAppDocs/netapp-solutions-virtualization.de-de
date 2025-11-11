@@ -1,0 +1,52 @@
+---
+sidebar: sidebar 
+permalink: migration/shift-toolkit-monitor.html 
+keywords: netapp, vmware, esxi, vm, migration, openshift, virtualization, hyper-v, proxmox 
+summary: Mit dem Shift Toolkit Job Monitoring Dashboard können Sie Migrations-, Konvertierungs- und Blueprint-Vorgänge in Echtzeit verfolgen. Administratoren können so schnell den Jobstatus ermitteln und Probleme beheben. 
+---
+= Überwachen Sie Migrationsaufträge mit dem Shift Toolkit-Dashboard
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Mit dem Shift Toolkit Job Monitoring Dashboard können Sie Migrations-, Konvertierungs- und Blueprint-Vorgänge in Echtzeit verfolgen, um den Jobstatus schnell zu ermitteln und Probleme zu beheben.
+
+
+
+== Job-Überwachungs-Dashboard
+
+Das Job-Monitoring-Dashboard bietet eine zentrale Übersicht über alle aktiven und abgeschlossenen Vorgänge innerhalb des Shift Toolkits.  Nutzen Sie dieses Dashboard, um den Fortschritt Ihrer Migrations-, Konvertierungs- und Blueprint-Aufträge zu überwachen.
+
+image::shift-toolkit-190.png[Job-Monitoring-Dashboard mit Anzeige aktiver Jobs im Shift Toolkit]
+
+Das Dashboard zeigt wichtige Informationen für jeden Job an:
+
+* Auftragsart (Migration, Konvertierung oder Blueprint)
+* Aktueller Status (läuft, erfolgreich, fehlgeschlagen oder teilweise fehlgeschlagen)
+* Fortschrittsindikatoren und Fertigstellungsgrad
+* Anzahl der verarbeiteten VMs
+* Start- und Endzeiten
+
+
+
+
+== Stellenstatus verstehen
+
+Die intuitive Benutzeroberfläche ermöglicht es Ihnen, den Status aller Vorgänge schnell zu beurteilen und Aufgaben zu identifizieren, die Aufmerksamkeit erfordern.
+
+image::shift-toolkit-191.png[Jobstatusdetails im Shift Toolkit-Dashboard]
+
+Auftragsstatusindikatoren helfen Ihnen, das Ergebnis jedes einzelnen Vorgangs zu verstehen:
+
+* *Erfolgreich*: Alle VMs im Auftrag wurden fehlerfrei abgeschlossen.
+* *Fehlgeschlagen*: Bei der Bearbeitung des Auftrags sind Fehler aufgetreten, und er konnte nicht abgeschlossen werden.
+* *Teilweise fehlgeschlagen*: Einige VMs wurden erfolgreich abgeschlossen, während bei anderen Fehler auftraten.
+* *Läuft*: Der Auftrag wird derzeit bearbeitet.
+
+
+Nutzen Sie die Statusinformationen, um Prioritäten bei der Fehlerbehebung festzulegen und reibungslose Migrationsabläufe zu gewährleisten.

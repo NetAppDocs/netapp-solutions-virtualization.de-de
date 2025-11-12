@@ -14,7 +14,7 @@ summary: Migrieren Sie VMs von SAN-basierten Datenspeichern auf NAS, bevor Sie s
 
 
 [role="lead"]
-Migrieren Sie VMs von SAN-basierten Datenspeichern auf NAS, bevor Sie sie mit dem Shift Toolkit konvertieren. Nutzen Sie dazu VMware Storage vMotion und Hyper-V Storage Live Migration, um die Geschäftskontinuität zu gewährleisten.
+Migrieren Sie VMs von SAN-basierten Datenspeichern auf NAS, bevor Sie sie mit dem Shift Toolkit konvertieren, und nutzen Sie VMware Storage vMotion und Storage Live Migration, um die Geschäftskontinuität aufrechtzuerhalten.
 
 
 
@@ -32,14 +32,14 @@ image::shift-toolkit-260.png[Workflow-Diagramm zur Migration, das die VM-Verschi
 
 Der Migrationsprozess besteht aus drei Hauptphasen:
 
-.Migration von SAN zu NAS (VMware-Umgebung)*
+.Migration von SAN zu NAS (VMware-Umgebung)
 Verwenden Sie VMware vSphere Storage vMotion, um VMs und deren Festplatten vom SAN-Datenspeicher auf einen NFS-Datenspeicher zu migrieren.  Dieser Vorgang kann ohne Ausfallzeit der VM durchgeführt werden.
 
-.Konvertieren Sie VMs mit dem Shift Toolkit*
-Nachdem die VMs auf dem NFS-Datenspeicher abgelegt wurden, verwendet das Shift Toolkit die NetApp FlexClone -Technologie, um die VMs von VMware ESXi zu Hyper-V zu konvertieren. Die konvertierten VMs und ihre Festplatten werden auf einer CIFS-Freigabe platziert, auf die der Hyper-V-Host zugreifen kann.
+.Konvertieren Sie VMs mit dem Shift Toolkit
+Nachdem die VMs auf dem NFS-Datenspeicher abgelegt wurden, verwendet das Shift Toolkit die NetApp FlexClone -Technologie, um die VMs von VMware ESXi auf einen beliebigen Hypervisor zu konvertieren. Die konvertierten VMs und ihre Festplatten werden auf einem Qtree platziert, auf den der jeweilige Hypervisor-Host zugreifen kann.
 
-.Migration zurück zu SAN (Hyper-V-Umgebung)*
-Nach der Konvertierung können Sie die konvertierten VMs und ihre Festplatten mithilfe von Hyper-V Storage Live Migration vom CIFS-Share auf ein SAN-fähiges Cluster Shared Volume (CSV) verschieben.  Dies ermöglicht es Ihnen, Ihre SAN-Infrastruktur in der Hyper-V-Umgebung aufrechtzuerhalten.
+.Zurück zu SAN migrieren
+Nach der Konvertierung sollten Sie die Speichermigration nutzen, um die konvertierten VMs und ihre Festplatten vom Qtree auf ein SAN-fähiges Volume zu verschieben. Dies ermöglicht es Ihnen, Ihre SAN-Infrastruktur in der jeweiligen Hypervisor-Umgebung aufrechtzuerhalten.
 
 
 

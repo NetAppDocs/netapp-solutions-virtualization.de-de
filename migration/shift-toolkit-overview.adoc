@@ -48,7 +48,7 @@ Das Shift-Toolkit unterstützt die Konvertierung virtueller Datenträger auf Dat
 
 image::shift-toolkit-001.png[Überblick über das NetApp Shift Toolkit]
 
-Das Shift-Toolkit kann heruntergeladen werden.link:https://mysupport.netapp.com/site/tools/tool-eula/vm-data-collector["hier,"] und ist nur für Windows-Systeme verfügbar.
+Das Shift-Toolkit kann heruntergeladen werden.link:https://mysupport.netapp.com/site/tools/tool-eula/netapp-shift-toolkit["hier,"] und ist nur für Windows-Systeme verfügbar.
 
 
 

@@ -21,17 +21,19 @@ Installieren Sie das Shift Toolkit auf einer dedizierten VM mit einem Windows-Be
 
 Um mit dem Toolkit zu beginnen, verwenden Sie ein Windows-Betriebssystem auf einer dafür vorgesehenen virtuellen Maschine und stellen Sie sicher, dass Sie die Voraussetzungen erfüllen. Installieren Sie anschließend das Paket.
 
-Das Shift-Toolkit kann unter Windows 2019, 2022 und 2025 ausgeführt werden.  Laden Sie das Shift-Toolkit-Paket herunter vonlink:https://mysupport.netapp.com/site/tools/tool-eula/vm-data-collector["NetApp Toolchest"] Anschließend entpacken Sie das Paket und führen die .exe-Datei aus, um den Dienst zu installieren und zu starten.  Das Shift-Toolkit bietet 2 Pakete an – Online (~130 MB groß) und Offline (~1,2 GB groß).  Wie der Name schon sagt, lädt das Online-Installationspaket die notwendigen Voraussetzungen aus dem Internet herunter und installiert sie.
+Das Shift-Toolkit kann unter Windows 2019, 2022 und 2025 ausgeführt werden. Laden Sie das Shift-Toolkit-Paket herunter vonlink:https://mysupport.netapp.com/site/tools/tool-eula/netapp-shift-toolkit["NetApp Toolchest"] Anschließend entpacken Sie das Paket und führen die .exe-Datei aus, um den Dienst zu installieren und zu starten. Das Shift-Toolkit bietet 2 Pakete an – Online (~130 MB groß) und Offline (~1,2 GB groß). Wie der Name schon sagt, lädt das Online-Installationspaket die notwendigen Voraussetzungen aus dem Internet herunter und installiert sie.
 
 image::shift-toolkit-010.png[Diagramm zur Darstellung der Downloadauswahl für das Shift Toolkit]
 
 Während die Online-Installation praktisch ist, bietet die Offline-Installation mehr Kontrolle über den Installationsprozess.  Mit dem Offline-Installationspaket sind alle notwendigen Voraussetzungen für die Installation des Shift-Toolkits im Paket enthalten.  Ein großer Vorteil der Offline-Installation besteht darin, dass das Shift-Toolkit auf virtuellen Maschinen ohne Internetverbindung installiert werden kann.
 
-Tipp: Verwenden Sie das passende Paket für die Bereitstellung. Im Offlinemodus müssen die Proxy-Einstellungen nicht geändert werden, da alle erforderlichen Voraussetzungen und Dateien gebündelt sind.
+
+TIP: Verwenden Sie das entsprechende Paket für die Bereitstellung. Im Offlinemodus müssen die Proxy-Einstellungen nicht geändert werden, da alle erforderlichen Voraussetzungen und Dateien gebündelt sind.
 
 Das Shift-Toolkit kann auf einer virtuellen Maschine installiert werden, auf der ein VMware- oder Microsoft Hyper-V-Server ausgeführt wird, solange eine Verbindung zwischen Quell- und Zielumgebung besteht. Es empfiehlt sich, das Shift-Toolkit auf einer eigenen VM zu installieren.  Mit diesem Ansatz können Sie mit einem einzigen Shift-Toolkit-Server verschiedene Microsoft Hyper-V-Server oder VMware ESXi-Server ansprechen.
 
-Hinweis: Installieren Sie das Shift-Toolkit auf einer dedizierten VM.
+
+NOTE: Installieren Sie das Shift-Toolkit auf einer dedizierten VM.
 
 
 
@@ -48,7 +50,8 @@ Stellen Sie sicher, dass der Shift-Server-Host die Mindesthardwareanforderungen 
 * Festplattenspeicher – mindestens 100 GB
 
 
-Hinweis: Für die Installation müssen 900 MB Festplattenspeicher frei sein.
+
+NOTE: Für die Installation müssen 900 MB Speicherplatz verfügbar sein.
 
 
 
@@ -73,9 +76,11 @@ Obwohl das Shift-Toolkit die Verwendung eines vorhandenen SVM zulässt, ist es e
 
 Folgen Sie den Anweisungen in diesem Link, um eine neue SVM bereitzustellen, die sowohl das NFS- als auch das SMB-Protokoll unterstützt.
 
-Hinweis: Es empfiehlt sich, eine neue SVM zu erstellen, um sicherzustellen, dass die SVM die Anforderungen des Shift-Toolkits erfüllt, ohne die produktive SVM auf eine Weise modifizieren zu müssen, die zu Störungen führen könnte.
 
-Hinweis: Für eine bidirektionale Migration zwischen VMware und Hyper-V müssen auf der neuen SVM sowohl das NFS- als auch das SMB-Protokoll aktiviert sein. Für das bereitgestellte Volume sollten außerdem sowohl NFS als auch SMB aktiviert sein.
+NOTE: Es empfiehlt sich, ein neues SVM zu erstellen, um sicherzustellen, dass das SVM die Anforderungen des Shift-Toolkits erfüllt, ohne das Produktions-SVM auf eine Weise ändern zu müssen, die zu Störungen führen könnte.
+
+
+NOTE: Für eine bidirektionale Migration zwischen VMware und Hyper-V müssen auf der neuen SVM sowohl das NFS- als auch das SMB-Protokoll aktiviert sein. Für das bereitgestellte Volume sollten außerdem sowohl NFS als auch SMB aktiviert sein.
 
 
 
@@ -91,11 +96,14 @@ Auf dem Volume, das zum Hosten der von VMware zu Hyper-V zu konvertierenden VMs 
 
 Das Shift-Toolkit überprüft den Sicherheitsstil der Qtrees nicht.  Daher ist es wichtig, Qtrees mit dem passenden Sicherheitsstil basierend auf dem Ziel-Hypervisor und dem Festplattentyp zu erstellen.
 
-Hinweis: Der Zielpfad muss sich auf demselben Volume wie die Quell-VM befinden.
 
-Hinweis: Weisen Sie dem Qtree den korrekten Sicherheitsstil entsprechend dem Ziel-Hypervisor-Typ und dem Festplattenformat zu.
+NOTE: Der Zielpfad muss sich auf demselben Volume wie die Quell-VM befinden.
 
-Hinweis: Wenn die konvertierten qcow2-Dateien für die Verwendung mit OpenShift-Virtualisierung vorgesehen sind, gibt es eine Ausnahme: Diese Dateien können direkt auf dem Volume platziert werden, ohne einen Qtree zu verwenden.  Um dies zu erreichen, verwenden Sie die GUI des Shift Toolkits oder die APIs des Shift Toolkits, um VMDK-Dateien in das qcow2-Format zu konvertieren und sie direkt im Volume zu platzieren.
+
+NOTE: Weisen Sie dem Qtree entsprechend dem Ziel-Hypervisortyp und dem Festplattenformat den richtigen Sicherheitsstil zu.
+
+
+NOTE: Wenn die konvertierten qcow2-Dateien für die Verwendung mit der OpenShift-Virtualisierung vorgesehen sind, gibt es eine Ausnahme: Diese Dateien können ohne Verwendung eines Qtree direkt auf dem Volume platziert werden. Um dies zu erreichen, verwenden Sie die GUI des Shift Toolkits oder die APIs des Shift Toolkits, um VMDK-Dateien in das qcow2-Format zu konvertieren und sie direkt im Volume zu platzieren.
 
 image::shift-toolkit-011.png[Diagramm des zu erstellenden Q-Baum-Typs basierend auf dem Migrationstyp]
 
@@ -115,15 +123,20 @@ image::shift-toolkit-013.png[Dialogfeld zur Anzeige der zu erstellenden CIFS-Fre
 
 image::shift-toolkit-014.png[Dialogfeld mit Anzeige der Ergebnisse der CIFS-Freigabeerstellung]
 
-Hinweis: SMB 3.0 muss aktiviert sein; dies ist standardmäßig aktiviert.
 
-Hinweis: Stellen Sie sicher, dass die Eigenschaft „Dauerhaft verfügbar“ aktiviert ist.
+NOTE: SMB 3.0 muss aktiviert sein, dies ist standardmäßig aktiviert.
 
-Hinweis: Exportrichtlinien für SMB müssen auf der Storage Virtual Machine (SVM) deaktiviert sein.
 
-Hinweis: Die Domäne, zu der der CIFS-Server und die Hyper-V-Server gehören, muss sowohl die Kerberos- als auch die NTLMv2-Authentifizierung zulassen.
+NOTE: Stellen Sie sicher, dass die Eigenschaft „Kontinuierlich verfügbar“ aktiviert ist.
 
-Hinweis: ONTAP erstellt die Freigabe mit der Windows-Standardfreigabeberechtigung „Jeder / Vollzugriff“.
+
+NOTE: Exportrichtlinien für SMB müssen auf der Storage Virtual Machine (SVM) deaktiviert werden
+
+
+NOTE: Die Domäne, zu der der CIFS-Server und die Hyper-V-Server gehören, muss sowohl die Kerberos- als auch die NTLMv2-Authentifizierung zulassen.
+
+
+NOTE: ONTAP erstellt die Freigabe mit der Windows-Standardfreigabeberechtigung „Jeder/Vollzugriff“.
 
 
 
@@ -160,9 +173,11 @@ Die folgenden Linux-Versionen werden als Gastbetriebssysteme für VM-Konvertieru
 * SuSe 15
 
 
-Hinweis: CentOS Linux/RedHat für Red Hat Enterprise Linux 5 und 6 werden nicht unterstützt.
 
-Hinweis: Windows Server 2008 wird nicht unterstützt, der Konvertierungsprozess sollte aber problemlos funktionieren. Gehen Sie auf eigenes Risiko vor. Wir haben jedoch Berichte von Kunden erhalten, die das Shift-Toolkit erfolgreich zum Konvertieren von Windows 2008-VMs verwendet haben. Es ist wichtig, die IP-Adresse nach der Migration zu aktualisieren, da die für die Automatisierung der IP-Zuweisung verwendete PowerShell-Version nicht mit der älteren Version kompatibel ist, die auf Windows Server 2008 ausgeführt wird.
+NOTE: CentOS Linux/RedHat für Red Hat Enterprise Linux 5 und 6 werden nicht unterstützt.
+
+
+NOTE: Windows Server 2008 wird nicht unterstützt, der Konvertierungsprozess sollte jedoch problemlos funktionieren. Gehen Sie auf eigenes Risiko vor. Wir haben jedoch Berichte von Kunden erhalten, die das Shift-Toolkit erfolgreich zum Konvertieren von Windows 2008-VMs verwendet haben. Es ist wichtig, die IP-Adresse nach der Migration zu aktualisieren, da die für die Automatisierung der IP-Zuweisung verwendete PowerShell-Version nicht mit der älteren Version kompatibel ist, die auf Windows Server 2008 ausgeführt wird.
 
 
 
@@ -181,15 +196,17 @@ Das Shift-Toolkit unterstützt Plattformen mit ONTAP 9.14.1 oder höher
 * Auf dem Oracle Linux Virtualization Manager-Host ist ovirt-engine-4.5.4-1.el8 RPM oder höher installiert.
 
 
-Hinweis: In der aktuellen Version wird die vollständige Migration virtueller Maschinen nur mit Hyper-V, VMware, OpenShift und Oracle Virtualization unterstützt.
 
-Hinweis: In der aktuellen Version wird für KVM als Zielmedium nur die VMDK-zu-qcow2- oder RAW-Konvertierung unterstützt. Wenn KVM aus der Dropdown-Liste ausgewählt wird, sind daher keine Hypervisor-Details erforderlich. Die qcow2-Festplatte kann zum Bereitstellen virtueller Maschinen auf KVM-Varianten verwendet werden.
+NOTE: In der aktuellen Version wird die vollständige Migration virtueller Maschinen nur mit Hyper-V, VMware, OpenShift und Oracle Virtualization unterstützt.
+
+
+NOTE: In der aktuellen Version wird für KVM als Zielmedium nur die VMDK-zu-qcow2- oder RAW-Konvertierung unterstützt. Wenn KVM aus der Dropdown-Liste ausgewählt wird, sind daher keine Hypervisor-Details erforderlich. Die qcow2-Festplatte kann zum Bereitstellen virtueller Maschinen auf KVM-Varianten verwendet werden.
 
 
 
 == Installation
 
-. Herunterladenlink:https://mysupport.netapp.com/site/tools/tool-eula/vm-data-collector["Schaltwerkzeugsatz"] Paket und entpacke es.
+. Herunterladenlink:https://mysupport.netapp.com/site/tools/tool-eula/netapp-shift-toolkit["Schaltwerkzeugsatz"] Paket und entpacke es.
 +
 image::shift-toolkit-015.png[Dialogfeld mit den Downloadoptionen für das Shift Toolkit]
 
@@ -198,7 +215,8 @@ image::shift-toolkit-015.png[Dialogfeld mit den Downloadoptionen für das Shift 
 image::shift-toolkit-016.png[Dialogfeld zur Anzeige des auszuführenden Shift Toolkit-Pakets.]
 
 +
-Hinweis: Alle Vorabprüfungen werden durchgeführt. Werden die Mindestanforderungen nicht erfüllt, werden entsprechende Fehler- oder Warnmeldungen angezeigt.
+
+NOTE: Es werden alle Vorprüfungen durchgeführt und bei Nichterfüllung der Mindestanforderungen entsprechende Fehler- oder Warnmeldungen angezeigt.
 
 . Das Installationsprogramm beginnt mit dem Installationsvorgang.  Wählen Sie den entsprechenden Speicherort aus oder verwenden Sie die Standardplatzierung und klicken Sie auf „Weiter“.
 +
@@ -209,7 +227,8 @@ image::shift-toolkit-017.png[Dialogfeld zur Anzeige des Zielordners des Shift To
 image::shift-toolkit-018.png[Dialogfeld mit der IP-Adresse zum Starten des Shift Toolkits]
 
 +
-Hinweis: Falls der VM mehrere Netzwerkkarten zugewiesen sind, kann während des Einrichtungsprozesses die richtige IP-Adresse über eine Dropdown-Liste ausgewählt werden.
+
+NOTE: Der Einrichtungsprozess ermöglicht die Auswahl der richtigen IP-Adresse mithilfe einer Dropdown-Option, wenn der VM mehrere Netzwerkkarten zugewiesen sind.
 
 . In diesem Schritt zeigt das Installationsprogramm alle erforderlichen Komponenten an, die im Rahmen des Vorgangs automatisch heruntergeladen und installiert werden.  Für die ordnungsgemäße Funktion des Shift-Toolkits müssen die folgenden obligatorischen Komponenten installiert werden: MongoDB, Windows PowerShell 7, NetApp ONTAP PowerShell Toolkit, Richtliniendatei-Editor, Credential Manage, VMware.PowerCLI-Paket und Java OpenJDK, die alle im Paket enthalten sind.
 +
@@ -236,7 +255,8 @@ image::shift-toolkit-023.png[Dialog zur Anzeige des Installationsfortschritts de
 
 . Das Shift-Toolkit verwendet standardmäßig ein selbstsigniertes Zertifikat.  Bestätigen Sie die Zertifikatsabfrage und klicken Sie auf Weiter.
 +
-Hinweis: Das Zertifikat kann problemlos durch ein von einem Drittanbieter oder einer Zertifizierungsstelle ausgestelltes Zertifikat ersetzt werden.  Ersetzen Sie einfach das Zertifikat im Ordner „certs“.  Der Ordner „certs“ befindet sich im Verzeichnis <Installationsverzeichnis>Storage>Certs.
+
+NOTE: Das Zertifikat kann problemlos durch ein von einem Drittanbieter oder einer Zertifizierungsstelle ausgestelltes Zertifikat ersetzt werden. Ersetzen Sie einfach das Zertifikat im Ordner „certs“. Der Ordner „certs“ befindet sich im Verzeichnis <Installationsverzeichnis>Storage>Certs.
 
 +
 image::shift-toolkit-024.png[Dialogfeld zur Auswahl des Shift Toolkit SSL-Zertifikats]
@@ -244,11 +264,13 @@ image::shift-toolkit-024.png[Dialogfeld zur Auswahl des Shift Toolkit SSL-Zertif
 . Sobald dies geschehen ist, ist die Installation abgeschlossen.
 
 
-Hinweis: Falls die Shift Toolkit VM keine Internetverbindung hat, führt das Offline-Installationsprogramm die gleichen Schritte aus, installiert die Komponenten jedoch mithilfe der in der ausführbaren Datei enthaltenen Pakete.
+
+NOTE: Wenn die Shift-Toolkit-VM nicht über Internet verfügt, führt das Offline-Installationsprogramm dieselben Schritte aus, installiert die Komponenten jedoch mithilfe der in der ausführbaren Datei enthaltenen Pakete.
 
 image::shift-toolkit-025.png[Dialogfeld, das den Shift Toolkit-Assistenten anzeigt]
 
-Hinweis: Die Installation kann 10 bis 15 Minuten dauern.
+
+NOTE: Die Installation kann 10 bis 15 Minuten dauern.
 
 
 
@@ -265,6 +287,7 @@ Upgrades erfolgen nun vollautomatisch und können mit einem einzigen Klick abges
 
 image::shift-toolkit-026.png[Dialogfeld mit der Option zum Upgrade des Shift Toolkits]
 
-Hinweis: Bei Bereitstellungen ohne Internetverbindung laden Sie das Upgrade-Paket, das mit „update“ beginnt, manuell aus der NetApp Toolchest herunter und legen Sie es in einem dafür vorgesehenen Ordner ab (C:\NetApp_Shift).  Dieser Ordnerpfad sollte während des Aktualisierungsprozesses erstellt und angegeben werden.  Alle anderen Schritte bleiben die gleichen wie beim Online-Upgrade-Verfahren.
+
+NOTE: Bei Bereitstellungen ohne Internetverbindung laden Sie das Upgrade-Paket, beginnend mit „update“, manuell aus der NetApp Toolchest herunter und legen es in einem dafür vorgesehenen Ordner ab (C:\NetApp_Shift). Dieser Ordnerpfad sollte während des Aktualisierungsprozesses erstellt und angegeben werden. Alle anderen Schritte bleiben die gleichen wie beim Online-Upgrade-Verfahren.
 
 image::shift-toolkit-027.png[Dialogfeld mit der Option zum Upgrade des Shift Toolkits]

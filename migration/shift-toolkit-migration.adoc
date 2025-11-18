@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: migration/shift-toolkit-migration.html 
-keywords: netapp, vmware, esxi, vm, migration, openshift, virtualization, hyper-v, proxmox 
+keywords: netapp, vmware, esxi, vm, migration, openshift, virtualization, hyper-v, proxmox, shift, toolkit 
 summary: Verwenden Sie das Shift Toolkit, um VMs zwischen Virtualisierungsplattformen zu migrieren.  Der Prozess umfasst die Vorbereitung der VMs, die Konvertierung der Festplattenformate und die Konfiguration der Netzwerkeinstellungen in der Zielumgebung. 
 ---
 = Migrieren Sie VMs mit dem Shift Toolkit

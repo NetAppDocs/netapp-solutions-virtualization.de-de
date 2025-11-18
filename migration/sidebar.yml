@@ -6,10 +6,18 @@ entries:
 - title: Verwenden Sie Shift Toolkit zum Migrieren oder Konvertieren von VMs
   pdf-filename: Shift Toolkit Benutzerhandbuch
   entries:
-  - title: Über Shift Toolkit
+  - title: Über das NetApp Shift Toolkit
     url: "/migration/shift-toolkit-overview.html"
+  - title: Vom Shift Toolkit unterstützte Versionen
+    url: "/migration/shift-toolkit-supported-versions.html"
   - title: Installieren Sie das Shift Toolkit
-    url: "/migration/shift-toolkit-install.html"
+    entries:
+    - title: Vorbereiten der Installation
+      url: "/migration/shift-toolkit-install-prepare.html"
+    - title: Installationsanforderungen prüfen
+      url: "/migration/shift-toolkit-install-prereqs.html"
+    - title: Installieren oder aktualisieren Sie Shift Toolkit
+      url: "/migration/shift-toolkit-install.html"
   - title: Konfigurieren des Shift-Toolkits
     url: "/migration/shift-toolkit-ui.html"
   - title: Migrieren Sie VMs mit dem Shift Toolkit

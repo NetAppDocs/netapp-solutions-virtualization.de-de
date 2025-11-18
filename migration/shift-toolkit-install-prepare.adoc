@@ -1,0 +1,57 @@
+---
+sidebar: sidebar 
+permalink: migration/shift-toolkit-install-prepare.html 
+keywords: netapp, vmware, esxi, vm, migration, openshift, virtualization, hyper-v, proxmox, install, shift, toolkit 
+summary: Bereiten Sie die Installation des NetApp Shift Toolkits vor, indem Sie sicherstellen, dass Ihre Umgebung die Voraussetzungen erfüllt und das für Ihr Bereitstellungsszenario geeignete Installationspaket auswählen. 
+---
+= Bereiten Sie die Installation des NetApp Shift Toolkits für ONTAP -Speicher vor.
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Bereiten Sie die Installation des NetApp Shift Toolkits vor, indem Sie sicherstellen, dass Ihre Umgebung die Voraussetzungen erfüllt und das für Ihr Bereitstellungsszenario geeignete Installationspaket auswählen.
+
+
+
+== Bevor Sie beginnen
+
+Vergewissern Sie sich, dass Ihre Umgebung die folgenden Anforderungen erfüllt:
+
+* Windows Server 2019, 2022 oder 2025
+* Dedizierte virtuelle Maschine für die Installation des Shift Toolkits
+* Netzwerkverbindung zwischen Quell- und Zielumgebungen
+* Virtuelle Maschine, die auf VMware vSphere oder Microsoft Hyper-V läuft
+
+
+
+NOTE: Installieren Sie das Shift Toolkit auf einer dedizierten VM, um die Verwaltung mehrerer Quell- und Ziel-Hypervisoren von einem einzigen Server aus zu ermöglichen.
+
+
+
+== Wählen Sie ein Installationspaket aus
+
+Das Shift Toolkit ist in zwei Installationspaketen erhältlich ab link:https://mysupport.netapp.com/site/tools/tool-eula/netapp-shift-toolkit["NetApp Toolchest"]:
+
+*Online-Installer (~130 MB)*
+
+* Lädt während der Installation erforderliche Komponenten aus dem Internet herunter und installiert sie.
+* Für die Installation ist eine Internetverbindung erforderlich.
+* Kleinere Paketgröße für schnelleren Download
+
+
+*Offline-Installer (~1,2 GB)*
+
+* Enthält alle erforderlichen Komponenten, die im Paket enthalten sind
+* Unterstützt die Installation auf virtuellen Maschinen ohne Internetzugang
+* Keine Proxy-Konfiguration erforderlich
+* Bietet mehr Kontrolle über den Installationsprozess
+
+
+image::shift-toolkit-010.png[Optionen für das Shift Toolkit-Installationspaket]
+
+
+TIP: Verwenden Sie den Offline-Installer für abgeschottete Umgebungen oder wenn Sie die vollständige Kontrolle über den Installationsprozess ohne externe Abhängigkeiten benötigen.

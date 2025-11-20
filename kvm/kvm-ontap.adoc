@@ -63,7 +63,7 @@ KVM-Hosts müssen über FC, Ethernet oder andere unterstützte Schnittstellen ve
 
 *SAN*
 
-* Erweitern Sie den Cluster über Fehlerdomänen mit SnapMirror Active Sync.
+* Erweitern Sie den Cluster über Fehlerdomänen mit SnapMirror Active Sync. Immer prüfen https://mysupport.netapp.com/matrix/#welcome["Interoperabilitätsmatrix-Tool"] für unterstützte Konfigurationen.
 * ASA -Modelle bieten Active/Active-Multipathing und Fast Path Failover.
 * Unterstützung für FC-, iSCSI- und NVMe-oF-Protokolle.
 * Unterstützung für gegenseitige iSCSI CHAP-Authentifizierung.

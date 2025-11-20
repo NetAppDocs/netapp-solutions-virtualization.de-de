@@ -60,7 +60,7 @@ Proxmox VE-Hosts müssen über FC, Ethernet oder andere unterstützte Schnittste
 
 *SAN*
 
-* Erweitern Sie den Cluster über Fehlerdomänen mit SnapMirror Active Sync.
+* Erweitern Sie den Cluster über Fehlerdomänen mit SnapMirror Active Sync. Immer prüfen https://mysupport.netapp.com/matrix/#welcome["Interoperabilitätsmatrix-Tool"] für unterstützte Konfigurationen.
 * ASA -Modelle bieten Active/Active-Multipathing und Fast Path Failover.
 * Unterstützung für FC-, iSCSI- und NVMe-oF-Protokolle.
 * Unterstützung für gegenseitige iSCSI CHAP-Authentifizierung.
@@ -237,14 +237,7 @@ image:proxmox-ontap-009.png["NFS-Speichernavigation"]
 +
 image:proxmox-ontap-010.png["NFS-Speicher hinzufügen"]
 
-. Aktualisieren Sie für die Sitzungsbündelung auf jedem Proxmox VE-Host die Datei /etc/fstab, um denselben NFS-Export mit einer anderen LIF-Adresse zusammen mit der Option „max_connect“ und der NFS-Version zu mounten.
-+
-image:proxmox-ontap-011.png["fstab-Einträge für den Sitzungstrunk"]
-
-. Hier ist der Inhalt in /etc/pve/storage.cfg für NFS.
-+
-image:proxmox-ontap-012.png["Speicherkonfigurationsdatei für NFS"]
-
+. Um die nConnect-Option zu aktivieren, öffnen Sie die Shell auf einem beliebigen Knoten des Clusters und geben Sie pvesm set pvenfs01 --options nconnect=4 ein, wobei pvenfs01 die im vorherigen Schritt erstellte Speicher-ID ist. Beachten Sie, dass bei Verwendung der Trunking-Funktion mindestens NFS v4.1 verwendet und die Option „trunkdiscovery“ aktiviert sein muss. Führen Sie dazu folgenden Befehl aus: `pvesm set pvenfs01 --options vers=4.1,trunkdiscovery`
 
 
 ====

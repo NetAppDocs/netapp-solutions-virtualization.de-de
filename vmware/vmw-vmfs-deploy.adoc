@@ -425,7 +425,7 @@ Durch die Integration von 1P-Diensten von NetApp auf jedem Hyperskalar können U
 
 === Notfallwiederherstellung zwischen lokalen Standorten
 
-Weitere Informationen finden Sie unterlink:https://docs.netapp.com/us-en/netapp-solutions-cloud/vmware/vmw-hybrid-dr-vmfs.html["DR mit BlueXP DRaaS für VMFS-Datenspeicher"^]
+Weitere Einzelheiten finden Sie unter link:https://docs.netapp.com/us-en/netapp-solutions-cloud/vmware/vmw-hybrid-dr-vmfs.html["DR mit NetApp Disaster Recovery für VMFS-Datenspeicher"^]
 
 
 

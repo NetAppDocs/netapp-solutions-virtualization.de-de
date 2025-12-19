@@ -171,7 +171,7 @@ image:vmware-vcf-asa-021.png["Bereich „Kürzliche Aufgaben“ des vSphere-Clie
 == Weitere Informationen
 
 * Informationen zur Konfiguration von ONTAP -Speichersystemen finden Sie unterlink:https://docs.netapp.com/us-en/ontap["ONTAP 9 Dokumentation"^] .
-* Informationen zur Konfiguration von VCF finden Sie unterlink:https://techdocs.broadcom.com/us-en/vmware-cis/vcf.html["VMware Cloud Foundation-Dokumentation"^] .
+* Informationen zur Konfiguration von VCF finden Sie unterlink:https://techdocs.broadcom.com/us/en/vmware-cis/vcf.html["VMware Cloud Foundation-Dokumentation"^] .
 * Informationen zur Verwendung von VMFS iSCSI-Datenspeichern mit VMware finden Sie unterlink:vmw-vmfs-iscsi.html["vSphere VMFS-Datenspeicher – iSCSI-Speicher-Backend mit ONTAP"] .
 * Videodemos dieser Lösung finden Sie unterlink:../videos/vmware-videos.html#vmware-datastore-provisioning-with-ontap["Bereitstellung von VMware-Datenspeichern"] .
 

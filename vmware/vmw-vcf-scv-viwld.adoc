@@ -49,7 +49,7 @@ Dieses Szenario erfordert die folgenden Komponenten und Konfigurationen:
 Informationen zum Konfigurieren von iSCSI-VMFS-Datenspeichern als zusätzlicher Speicher finden Sie unterlink:vmw-vcf-mgmt-supplemental-iscsi.html["*iSCSI als zusätzlicher Speicher für Managementdomänen mit ONTAP Tools für VMware*"] in dieser Dokumentation.  Der Prozess zur Verwendung von OTV zum Bereitstellen von Datenspeichern ist für Verwaltungs- und Workloaddomänen identisch.
 
 
-TIP: Zusätzlich zur Replikation von mit SCV erstellten Backups auf sekundären Speicher können mithilfe von NetApp BlueXP backup and recovery für VMs externe Kopien der Daten auf Objektspeicher bei einem der drei (3) führenden Cloud-Anbieter erstellt werden.  Weitere Informationen finden Sie in der Lösunglink:vmw-vcf-321-data-protection.html["3-2-1-Datenschutz für VMware mit SnapCenter -Plug-in und BlueXP backup and recovery für VMs"] .
+TIP: Zusätzlich zur Replikation von mit SCV erstellten Backups auf Sekundärspeicher können mit NetApp Backup and Recovery for VMs auch Offsite-Kopien von Daten auf Objektspeicher bei einem der drei (3) führenden Cloud-Anbieter erstellt werden. Weitere Informationen finden Sie in diesem Angebot.link:https://docs.netapp.com/us-en/data-services-backup-recovery/index.html["NetApp Backup and Recovery"] Die
 
 image:vmware-vcf-asa-108.png["3-2-1-Backup-Strategie"]
 

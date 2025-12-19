@@ -88,7 +88,7 @@ Bei Active-Active-Pathing betragen die IO-Wiederaufnahmezeiten sowohl bei geplan
 
 Weitere Informationen finden Sie unter https://www.netapp.com/pdf.html?item=/media/85671-tr-4968.pdf["TR-4968, NetApp All-SAS Array – Datenverfügbarkeit und -integrität mit dem NetApp ASA"] . {nbsp}
 
-Ausführliche Informationen finden Sie im https://www.netapp.com/data-storage/all-flash-san-storage-array["NetApp ASA -Landingpage"] . {nbsp}
+Für detaillierte Informationen siehe https://www.netapp.com/asa/["NetApp ASA -Landingpage"]Die {nbsp}
 
 
 

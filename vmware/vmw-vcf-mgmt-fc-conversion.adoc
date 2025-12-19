@@ -94,7 +94,7 @@ Nachfolgend sehen Sie ein Beispiel einer JSON-Datei für die NSX-Bereitstellung.
 . Kopieren Sie die JSON-Datei in ein Verzeichnis im SDDC Manager.
 +
 
-NOTE: Beim Bereitstellen eines NSX Manager-Clusters in einem Konvertierungs- oder Importvorgang wird das NSX-VLAN-Netzwerk verwendet. Informationen zu NSX-VLAN-Netzwerkbeschränkungen finden Sie unter https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-5-2-and-earlier/5-2/considerations-before-converting-or-importing-existing-vsphere-environments-into-vcf-admin.html["Überlegungen vor dem Konvertieren oder Importieren vorhandener vSphere-Umgebungen in VMware Cloud Foundation"] .
+NOTE: Bei der Bereitstellung eines NSX Manager-Clusters im Rahmen einer Konvertierungs- oder Importoperation wird NSX-VLAN-Netzwerktechnologie verwendet. Informationen zu den Netzwerkbeschränkungen von NSX-VLAN finden Sie unter https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-5-2-and-earlier/5-2/map-for-administering-vcf-5-2/importing-existing-vsphere-environments-admin/considerations-before-converting-or-importing-existing-vsphere-environments-into-vcf-admin.html["Überlegungen vor dem Konvertieren oder Importieren vorhandener vSphere-Umgebungen in VMware Cloud Foundation"]Die
 
 
 

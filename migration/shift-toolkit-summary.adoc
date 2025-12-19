@@ -158,4 +158,29 @@ Wenn Sie fertig sind, verwenden Sie den oben erstellten Benutzer, während Sie d
 
 Um virtuelle Maschinen von VMware vSphere mithilfe des Shift-Toolkits zu migrieren, erstellen Sie über „Verwaltung > Zugriffskontrolle > Rollen“ einen RBAC-Benutzer mit den unten genannten Berechtigungen.
 
-image:shift-toolkit-085.png["Abbildung, die einen Eingabe-/Ausgabedialog zeigt oder schriftlichen Inhalt darstellt"]
+Wählen Sie die Registerkarte *PRIVILEGIEN* aus:
+
+[listing]
+----
+Datastore
+•	Browse datastore
+•	Update virtual machine files
+
+Virtual machine
+•	Edit inventory
+    o	Register
+    o	Unregister
+•	Interaction
+    o	Answer question
+    o	Console interaction
+    o	Power off
+    o	Power on
+•	Snapshot management
+    o	Create snapshot
+    o	Remove snapshot
+    o	Rename snapshot
+•	Guest operations
+    o	Guest operation modifications
+    o	Guest operation program execution
+    o	Guest operation queries
+----

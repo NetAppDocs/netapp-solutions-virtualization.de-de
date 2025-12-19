@@ -24,8 +24,7 @@ Lesen Sie die Blogs, die praktische Anleitungen und Best Practices zur Integrati
 ** link:https://www.netapp.com/blog/netapp-vmware-cloud-foundation-supplemental-storage["Teil 4: ONTAP -Tools für VMware und zusätzlichen Speicher"]
 
 
-* link:https://cloud.netapp.com/blog/azure-blg-optimize-storage-for-cloud-based-vmware-deployments["Optimieren Sie den Speicher für Cloud-basierte VMware-Bereitstellungen"]
-* link:https://cloud.netapp.com/blog/azure-blg-netapp-cloud-offerings-with-azure-vmware-solution["Erste Schritte mit Azure VMware-Lösungen mithilfe von NetApp-basierten Cloud-Angeboten"]
+* link:https://www.netapp.com/blog/vmware-optimize-storage-workloads/["Optimieren Sie speicher- und datenintensive VMware-Workloads in jeder Cloud"]
+* link:https://www.netapp.com/blog/vmware-migrate-workloads-azure/["Migration speicherintensiver VMware-Workloads zu Azure VMware Solution? Lies dies zuerst."]
 * link:https://community.netapp.com/t5/Tech-ONTAP-Blogs/NetApp-and-VMware-Better-than-ever/ba-p/445780["NetApp und VMware – Besser denn je"]
-* link:https://community.netapp.com/t5/Tech-ONTAP-Blogs/3-2-1-Data-Protection-for-VMware-with-SnapCenter-Plug-in-and-BlueXP-Backup-and/ba-p/446180["3-2-1-Datenschutz für VMware mit SnapCenter -Plug-in und BlueXP Backup und Recovery für VMs"]
 

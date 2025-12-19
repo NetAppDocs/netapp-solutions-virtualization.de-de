@@ -39,7 +39,7 @@ KVM-Hosts müssen über FC, Ethernet oder andere unterstützte Schnittstellen ve
 * Manipulationssichere Snapshot-Kopiersperre
 * Verschlüsselungsunterstützung
 * FabricPool zum Einordnen kalter Daten in den Objektspeicher.
-* Integration von BlueXP und Data Infrastructure Insights .
+* Integration von NetApp Console und Data Infrastructure Insights .
 * Microsoft Offloaded Data Transfer (ODX)
 
 

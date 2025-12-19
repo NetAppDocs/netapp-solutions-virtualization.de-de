@@ -23,5 +23,4 @@ Weitere Einzelheiten finden Sie in den folgenden Lösungen.
 * link:vmw-vcf-scv-viwld.html["Schützen der VCF-Workloaddomäne"]
 * link:vmw-vcf-scv-multiwkld-protection.html["Schützen Sie mehrere VCF-Workloaddomänen"]
 * link:vmw-vcf-scv-nvme.html["Schützen Sie die VCF-Workload-Domäne mit NVMe"]
-* link:vmw-vcf-321-data-protection.html["3-2-1-Datenschutz für VMware mit SnapCenter -Plug-in und BlueXP backup and recovery für VMs"]
 

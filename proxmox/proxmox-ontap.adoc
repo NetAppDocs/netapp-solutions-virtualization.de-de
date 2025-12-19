@@ -37,7 +37,7 @@ Proxmox VE-Hosts müssen über FC, Ethernet oder andere unterstützte Schnittste
 * Manipulationssichere Snapshot-Kopiersperre
 * Verschlüsselungsunterstützung
 * FabricPool zum Einordnen kalter Daten in den Objektspeicher.
-* BlueXP und CloudInsights-Integration.
+* Integration von NetApp Console und Data Infrastructure Insights .
 * Microsoft Offloaded Data Transfer (ODX)
 
 

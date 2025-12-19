@@ -82,16 +82,16 @@ NOTE: Der `nConnect` Die Sitzungsanzahl gilt pro Host.  Aktualisieren Sie nach d
 *** link:https://docs.netapp.com/us-en/sc-plugin-vmware-vsphere/scpivs44_create_resource_groups.html["Erstellen von Ressourcengruppen"] .
 
 
-.. Stellen Sie den BlueXP Connector bereit
+.. Stellen Sie den NetApp Console Agenten bereit.
 +
-*** link:https://docs.netapp.com/us-en/bluexp-setup-admin/concept-connectors.html#what-you-can-do-without-a-connector["Überprüfen Sie, was Sie ohne Connector tun können"] .
-*** link:https://docs.netapp.com/us-en/bluexp-setup-admin/concept-modes.html#overview["Bereitstellen des Connectors"] .
+*** link:https://docs.netapp.com/us-en/console-setup-admin/concept-agents.html["Prüfen Sie, was Sie ohne Console-Agent tun können."]Die
+*** link:https://docs.netapp.com/us-en/console-setup-admin/concept-modes.html#overview["Agentenbereitstellungsmodi"]Die
 
 
-.. Verwenden Sie BlueXP für Backup und Wiederherstellung
+.. Verwenden Sie NetApp Backup and Recovery
 +
-*** link:https://docs.netapp.com/us-en/bluexp-backup-recovery/prev-vmware-protect-overview.html["Schützen Sie VM -Workloads"] .
-*** link:https://docs.netapp.com/us-en/bluexp-backup-recovery/br-use-kubernetes-protect-overview.html["Schützen Sie VKS -Workloads"] .
+*** link:https://docs.netapp.com/us-en/data-services-backup-recovery/prev-vmware-protect-overview.html["Schützen Sie VM -Workloads"]Die
+*** link:https://docs.netapp.com/us-en/data-services-backup-recovery/br-use-kubernetes-protect-overview.html["Schützen Sie VKS -Workloads"]Die
 
 
 
@@ -113,10 +113,10 @@ NOTE: Der `nConnect` Die Sitzungsanzahl gilt pro Host.  Aktualisieren Sie nach d
 *** link:https://docs.netapp.com/us-en/sc-plugin-vmware-vsphere/scpivs44_create_resource_groups.html["Erstellen von Ressourcengruppen"] .
 
 
-.. Verwenden Sie BlueXP für Backup und Wiederherstellung
+.. Verwenden Sie NetApp Backup and Recovery
 +
-*** link:https://docs.netapp.com/us-en/bluexp-backup-recovery/prev-vmware-protect-overview.html["Schützen Sie VM -Workloads"] .
-*** link:https://docs.netapp.com/us-en/bluexp-backup-recovery/br-use-kubernetes-protect-overview.html["Schützen Sie VKS -Workloads"] .
+*** link:https://docs.netapp.com/us-en/data-services-backup-recovery/prev-vmware-protect-overview.html["Schützen Sie VM -Workloads"]Die
+*** link:https://docs.netapp.com/us-en/data-services-backup-recovery/br-use-kubernetes-protect-overview.html["Schützen Sie VKS -Workloads"]Die
 
 
 

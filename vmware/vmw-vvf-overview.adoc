@@ -65,7 +65,7 @@ Die VVF-Lösung unterstützt sowohl native Kubernetes als auch auf virtuellen Ma
 * VMware vSphere
 * VMware vSAN
 * Aria Standard
-* VMware Tanzu Kubernetes Grid Service für vSphere
+* VMware vSphere Kubernetes vSphere
 * vSphere Distributed Switch
 
 

@@ -94,20 +94,6 @@ video::9b66ac8d-d2b1-4ac4-a33c-b16900f67df6[panopto]
 .iSCSI-Datenspeicher als zusätzlicher Speicher für VCF-Verwaltungsdomänen
 video::1d0e1af1-40ae-483a-be6f-b156015507cc[panopto]
 ====
-.NetApp mit VMware Tanzu
-[%collapsible%open]
-====
-VMware Tanzu ermöglicht Kunden die Bereitstellung, Verwaltung und das Management ihrer Kubernetes-Umgebung über vSphere oder die VMware Cloud Foundation.  Mit diesem Produktportfolio von VMware können Kunden alle relevanten Kubernetes-Cluster von einer einzigen Steuerebene aus verwalten, indem sie die VMware Tanzu-Edition auswählen, die ihren Anforderungen am besten entspricht.
-
-Weitere Informationen zu VMware Tanzu finden Sie im https://tanzu.vmware.com/tanzu["VMware Tanzu – Übersicht"^] .  Dieser Testbericht behandelt Anwendungsfälle, verfügbare Ergänzungen und mehr zu VMware Tanzu.
-
-.So verwenden Sie vVols mit NetApp und VMware Tanzu Basic, Teil 1
-video::ZtbXeOJKhrc[youtube,width=360]
-.So verwenden Sie vVols mit NetApp und VMware Tanzu Basic, Teil 2
-video::FVRKjWH7AoE[youtube,width=360]
-.So verwenden Sie vVols mit NetApp und VMware Tanzu Basic, Teil 3
-video::Y-34SUtTTtU[youtube,width=360]
-====
 .NetApp Cloud Insights
 [%collapsible%open]
 ====

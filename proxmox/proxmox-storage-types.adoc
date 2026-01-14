@@ -1,0 +1,94 @@
+---
+sidebar: sidebar 
+permalink: proxmox/proxmox-storage-types.html 
+keywords: netapp, proxmox, proxmox ve, ontap, storage, nfs, smb, cifs, iscsi, fc, nvme, content types, vm disks, backups, templates 
+summary: Proxmox VE unterstützt mit ONTAP mehrere Speichertypen, darunter NFS und SMB für NAS-Protokolle sowie FC, iSCSI und NVMe-oF für SAN-Protokolle. Jedes Protokoll unterstützt verschiedene Inhaltstypen, darunter VM-Festplatten, Backups, Container-Volumes, ISO-Images und Vorlagen. 
+---
+= Unterstützte Speichertypen für die virtuelle Proxmox-Umgebung
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Proxmox Virtual Environment (VE) unterstützt mehrere Speicherprotokolle mit NetApp ONTAP, darunter NFS und SMB für NAS sowie FC, iSCSI und NVMe-oF für SAN. Jedes Protokoll unterstützt verschiedene Proxmox VE-Inhaltstypen, darunter VM-Festplatten, Backups, Container-Volumes, ISO-Images und Vorlagen.
+
+
+
+== NAS-Protokollunterstützung
+
+Die NAS-Protokolle (NFS und SMB) unterstützen alle Proxmox VE-Inhaltstypen und werden typischerweise einmalig auf Rechenzentrumsebene konfiguriert. Gast-VMs können auf NAS-Speichern die Festplattenformate raw, qcow2 oder VMDK verwenden. ONTAP Snapshots können für Clients sichtbar gemacht werden, um auf zeitpunktbezogene Kopien von Daten zuzugreifen.
+
+
+
+== SAN-Protokollunterstützung
+
+SAN-Protokolle (FC, iSCSI und NVMe-oF) werden typischerweise pro Host konfiguriert und unterstützen VM-Disk- und Container-Image-Inhaltstypen in Proxmox VE. Gast-VMs können auf Blockspeichern die Festplattenformate raw, VMDK oder qcow2 verwenden.
+
+
+
+== Kompatibilitätsmatrix für Speichertypen
+
+[cols="25% 15% 15% 15% 15% 15%"]
+|===
+| Inhaltstyp | NFS | SMB/CIFS | FC | iSCSI | NVMe-oF 
+
+
+| Backups | Ja | Ja  a| 
+Nr. ^1^
+ a| 
+Nr. ^1^
+ a| 
+Nr. ^1^
+
+
+
+| VM-Datenträger | Ja | Ja  a| 
+Ja^2^
+ a| 
+Ja^2^
+ a| 
+Ja^2^
+
+
+
+| CT-Volumina | Ja | Ja  a| 
+Ja^2^
+ a| 
+Ja^2^
+ a| 
+Ja^2^
+
+
+
+| ISO-Images | Ja | Ja  a| 
+Nr. ^1^
+ a| 
+Nr. ^1^
+ a| 
+Nr. ^1^
+
+
+
+| CT-Vorlagen | Ja | Ja  a| 
+Nr. ^1^
+ a| 
+Nr. ^1^
+ a| 
+Nr. ^1^
+
+
+
+| Ausschnitte | Ja | Ja  a| 
+Nr. ^1^
+ a| 
+Nr. ^1^
+ a| 
+Nr. ^1^
+
+|===
+*Anmerkungen:*
+
+. Erfordert ein Cluster-Dateisystem zum Erstellen des freigegebenen Ordners und die Verwendung des Speichertyps „Verzeichnis“.
+. Verwenden Sie den LVM-Speichertyp.
+

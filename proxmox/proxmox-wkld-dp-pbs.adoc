@@ -1,0 +1,358 @@
+---
+sidebar: sidebar 
+permalink: proxmox/proxmox-wkld-dp-pbs.html 
+keywords: netapp, proxmox, proxmox ve, all-flash, nfs, iscsi, nvme, fc, ontap, storage, aff, asa, virtual machines, vm, containers, proxmox backup server 
+summary: Schützen Sie Proxmox VE-Workloads mit Proxmox Backup Server und NetApp ONTAP Speicher. Dieses Verfahren umfasst die Konfiguration des Datenspeichers, Sicherungsvorgänge, Wiederherstellungsverfahren und die Einrichtung der Notfallwiederherstellung mithilfe der SnapMirror Replikation. 
+---
+= Schützen Sie Proxmox VE-Workloads mit Proxmox Backup Server und NetApp ONTAP.
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Schützen Sie Proxmox Virtual Environment (VE)-Workloads mithilfe des Proxmox Backup Server (PBS), der in den NetApp ONTAP Speicher integriert ist. Dieses Verfahren umfasst die Konfiguration des Datenspeichers, Sicherungsvorgänge, Wiederherstellungsverfahren und die Einrichtung der Notfallwiederherstellung mithilfe der ONTAP SnapMirror Replikation.
+
+Informationen zur Architektur des Proxmox Backup Servers und zur ONTAP -Integration finden Sie unter link:proxmox-pbs-architecture.html["Erfahren Sie mehr über die Architektur des Proxmox Backup-Servers mit NetApp ONTAP."]Die
+
+
+
+== Bevor Sie beginnen
+
+* Für hohe Verfügbarkeit und Leistungsfähigkeit sollten redundante Netzwerkpfade zwischen PBS und ONTAP -Speicher sichergestellt werden.
+* Erwägen Sie Link-Aggregation (LACP) für erhöhte Bandbreite und Redundanz.
+* Konfigurieren Sie Jumbo-Frames (MTU 9000) auf allen Netzwerkgeräten, um die Speicherdatenverkehrsleistung zu verbessern.
+* Für NFS erstellen Sie einen dedizierten Export für den PBS-Datenspeicher mit entsprechenden Berechtigungen.
+* Bei Blockprotokollen muss eine ordnungsgemäße Zonierung und LUN-Maskierung sichergestellt werden, um den Zugriff auf autorisierte PBS-Hosts zu beschränken.
+
+
+
+
+== Datenspeicher konfigurieren
+
+Konfigurieren Sie Proxmox Backup Server-Datenspeicher unter Verwendung von NetApp ONTAP -Speicher. Dies umfasst die Einbindung von ONTAP -Speicher auf dem PBS-Host, die Erstellung eines lokalen Datenspeichers in der PBS-Weboberfläche und optional die Konfiguration von ONTAP S3-Speicher für die externe Datensicherung und Langzeitaufbewahrung.
+
+Bereiten Sie das ONTAP -Speicher-Backend vor und binden Sie es auf dem PBS-Host ein. Die Vorbereitungsschritte variieren je nachdem, ob Sie dateibasierte (NFS) oder blockbasierte (SAN/NVMe-oF) Protokolle verwenden.
+
+PBS kann jeden auf dem lokalen Speicher eingebundenen Ordner als Datenspeicher verwenden. PBS speichert Katalog-, Index- und Chunk-Dateien im Datenspeicher. Für optimale Leistung und Skalierbarkeit verwenden Sie NetApp ONTAP SAN (iSCSI/FC/NVMe-oF) oder NFS-Speicher (mit nConnect oder Session Trunking und aktiviertem pNFS) als PBS-Datenspeicher.
+
+.-> Den Speicher auf dem PBS-Host einbinden
+. Für SAN- oder NVMe-oF-Protokolle erstellen Sie eine LUN oder einen Namespace auf ONTAP und verbinden diesen mit dem PBS-Host.
+. Formatieren Sie die LUN oder den Namespace mit einem geeigneten Dateisystem (ext4 oder xfs) und mounten Sie ihn auf dem PBS-Host.
+. Für NFS muss der NFS-Export auf dem PBS-Host eingebunden werden.
+. Verwenden Sie fstab oder automount, um sicherzustellen, dass der Datenspeicher beim Systemneustart automatisch eingebunden wird.
+
+
+.-> Datenspeicher in PBS erstellen
+Nach der Einbindung des Speichers erstellen Sie einen neuen Datenspeicher in der PBS-Weboberfläche.
+
+. Navigieren Sie zu Datenspeicher > Datenspeicher hinzufügen.
+. Geben Sie einen Namen an, wählen Sie als Datenspeichertyp „lokal“ aus und geben Sie den eingebundenen Ordner als Sicherungspfad an.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image::proxmox-wkld-dp-pbs-002.png[Lokale Datenspeicherkonfiguration in PBS]
+
+====
+
+
+.-> Konfigurieren von Datenspeichern mit ONTAP S3-Speicher
+S3-Speicher wird typischerweise für die externe Datensicherung und die Langzeitarchivierung verwendet. Proxmox Backup Server unterstützt S3-Speicher als Tech Preview-Funktion.
+
+. Stellen Sie sicher, dass der ONTAP S3-Dienst aktiviert und ordnungsgemäß konfiguriert ist.
+. Erstellen Sie einen S3-Bucket auf ONTAP für den PBS-Datenspeicher.
+. Besorgen Sie sich den Zugriffsschlüssel und den geheimen Schlüssel für den S3-Bucket.
+. Sammeln Sie die S3-Endpunkt-URL und die Zertifikat-Fingerabdruckinformationen.
+. Navigieren Sie in der PBS-Weboberfläche zu Konfiguration > S3-Endpunkte und fügen Sie einen neuen S3-Endpunkt mit den gesammelten Informationen hinzu.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image::proxmox-wkld-dp-pbs-003.png[S3-Endpunktkonfiguration in PBS]
+
+====
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image::proxmox-wkld-dp-pbs-004.png[S3-Endpunktkonfigurationsdatei in PBS]
+
+====
+. Navigieren Sie anschließend zu Datenspeicher → Datenspeicher hinzufügen. Geben Sie einen Namen an, wählen Sie als Datenspeichertyp S3 aus und wählen Sie den konfigurierten S3-Endpunkt aus. Geben Sie den Ordnernamen im lokalen Datenspeicher an, der als lokaler Cache verwendet werden soll, und wählen Sie den Bucket aus. Beispiel anzeigen
+
+
+[]
+====
+image::proxmox-wkld-dp-pbs-005.png[S3-Datenspeicherkonfiguration in PBS]
+
+image::proxmox-wkld-dp-pbs-006.png[S3-Datenspeicher-Konfigurationsdatei in PBS]
+
+====
+
+
+== Erstellen Sie lokale Synchronisierungsaufträge für den ONTAP S3-Speicher.
+
++ Daten vom lokalen PBS-Datenspeicher in den ONTAP S3-Speicher migrieren, indem ein lokaler Synchronisierungsauftrag in PBS erstellt wird. Dieser Job kopiert Sicherungsdaten vom lokalen Datenspeicher in den S3-Datenspeicher zur externen Speicherung und langfristigen Aufbewahrung.
+
+. Navigieren Sie in der PBS-Weboberfläche zu S3 Datastore > Sync Jobs und klicken Sie auf Hinzufügen.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image::proxmox-wkld-dp-pbs-007.png[Hinzufügen eines lokalen Synchronisierungsauftrags in PBS]
+
+====
+. Wählen Sie als Speicherort „Lokal“ aus, wählen Sie den lokalen Quelldatenspeicher und geben Sie den gewünschten Namespace und die gewünschte Tiefe an. Konfigurieren Sie den Zeitplan für den Synchronisierungsauftrag und alle zusätzlichen Optionen.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image::proxmox-wkld-dp-pbs-008.png[Konfiguration des lokalen Synchronisierungsauftrags in PBS]
+
+====
+. Speichern Sie die Konfiguration des Synchronisierungsauftrags. Der Synchronisierungsauftrag wird gemäß dem festgelegten Zeitplan ausgeführt und kopiert Sicherungsdaten vom lokalen PBS-Datenspeicher in den ONTAP S3-Speicher.
+
+
+
+NOTE: Für die externe Speicherung und längere Aufbewahrung mit ONTAP -Speicher kann die NetApp Console für Management- und Datendienste genutzt werden.
+
+
+
+== Proxmox Backup Server zum Proxmox VE-Cluster hinzufügen
+
+Fügen Sie Proxmox Backup Server als Speicherziel hinzu, um Sicherungsvorgänge für VMs und Container zu aktivieren.
+
+. Navigieren Sie in der Proxmox VE-Weboberfläche zu Datacenter > Storage und klicken Sie auf Add > Proxmox Backup Server.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image::proxmox-wkld-dp-pbs-009.png[Hinzufügen von PBS-Speicher in Proxmox VE]
+
+====
+. Stellen Sie den Fingerabdruck des PBS-Serverzertifikats für eine sichere Kommunikation bereit. Den Fingerabdruck erhalten Sie über die PBS-Weboberfläche oder durch Ausführen des folgenden Befehls auf PBS: `proxmox-backup-manager cert info`Die
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image::proxmox-wkld-dp-pbs-010.png[Konfiguration des PBS-Zertifikat-Fingerabdrucks in der Benutzeroberfläche des Proxmox Backup Servers]
+
+====
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image::proxmox-wkld-dp-pbs-011.png[PBS-Zertifikat-Fingerabdruckkonfiguration in der Proxmox Backup Server CLI]
+
+====
+. Konfigurieren Sie zusätzliche Optionen wie Aufbewahrungsrichtlinien für Backups und Verschlüsselung.
+. Klicken Sie auf „Hinzufügen“, um die PBS-Speicherkonfiguration zu speichern.
+
+
+Der Proxmox VE-Cluster kann nun den PBS-Datenspeicher für Sicherungs- und Wiederherstellungsvorgänge für VMs und Container nutzen.
+
+
+
+== Datensicherungen durchführen
+
+Proxmox VE-Workloads auf dem Proxmox Backup Server sichern. Dies umfasst die Durchführung von On-Demand-Backups, die Konfiguration von geplanten Backup-Aufträgen, das Sichern von Host-Konfigurationsdateien und die Verwendung von Pre- und Post-Backup-Skripten für benutzerdefinierte Aktionen.
+
+.-> Führen Sie bedarfsgesteuerte Backups durch
+Erstellen Sie mit Proxmox Backup Server ein sofortiges Backup einer VM oder eines Containers.
+
+. Navigieren Sie in der Proxmox VE-Weboberfläche zur VM oder zum Container.
+. Klicken Sie auf die Registerkarte „Sicherung“ und anschließend auf „Jetzt sichern“.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image::proxmox-wkld-dp-pbs-012.png[On-Demand-Backup in Proxmox VE]
+
+====
+. Wählen Sie Proxmox Backup Server Storage als Sicherungsziel aus.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image::proxmox-wkld-dp-pbs-013.png[On-Demand-Backup mit PBS-Zielspeicher in Proxmox VE]
+
+====
+. Konfigurieren Sie zusätzliche Backup-Optionen wie Komprimierung, Benachrichtigungen und Snapshot-Modus.
+. Klicken Sie auf „Sichern“, um den Sicherungsprozess zu starten.
+
+
+.-> Geplante Datensicherungen konfigurieren
+Richten Sie mithilfe des Proxmox Backup Servers geplante Backups für VMs und Container ein.
+
+. Navigieren Sie in der Proxmox VE-Weboberfläche zu Datacenter > Backup.
+. Klicken Sie auf „Hinzufügen“, um einen neuen Sicherungsauftrag zu erstellen.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image::proxmox-wkld-dp-pbs-014.png[Hinzufügen eines geplanten Backup-Jobs in Proxmox VE]
+
+====
+. Wählen Sie PBS-Speicher als Ziel aus und legen Sie den Sicherungszeitplan fest (z. B. täglich oder wöchentlich). Stellen Sie den Auswahlmodus auf „Alle“, „Ausgewählte VMs/CTs ein-/ausschließen“ oder „Poolbasiert“ ein.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image::proxmox-wkld-dp-pbs-015.png[Konfiguration geplanter Backup-Jobs in Proxmox VE]
+
+====
+. Konfigurieren Sie zusätzliche Optionen wie Aufbewahrungsrichtlinien, Komprimierung und Snapshot-Modus.
+. Klicken Sie auf „Erstellen“, um die Konfiguration des geplanten Sicherungsauftrags zu speichern.
++
+.Ergebnis
+Der Proxmox VE-Cluster führt automatisch Backups der angegebenen VMs und Container gemäß dem definierten Zeitplan durch und verwendet dabei den Proxmox Backup Server als Speicherziel.
+
++
+Die Konfiguration des geplanten Jobs wird in der Datei /etc/pve/job.cfg auf dem Proxmox VE-Host gespeichert.
+
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image::proxmox-wkld-dp-pbs-016.png[Konfigurationsdatei für geplante Sicherungsaufträge in Proxmox VE]
+
+====
+
+
+.-> Proxmox VE-Hostdateien auf PBS sichern
+Sichern Sie die Proxmox VE-Hostkonfigurationsdateien, Systemeinstellungen und andere wichtige Daten auf dem Proxmox Backup Server.
+
+. Verwenden Sie in einer Proxmox VE-Shell oder SSH-Sitzung die `proxmox-backup-client` Befehl zum Erstellen eines Host-Backups:
++
+[source]
+----
+proxmox-backup-client backup <backupspec> --repository <pbs-storage>:<datastore> --ns <namespace>
+----
++
+Ersetzen `<backupspec>` mit der Backup-Spezifikation (wie z.B. `backupname and backuptype/<directory or files to backup>`), `<pbs-storage>` mit dem FQDN des PBS, `<datastore>` mit dem PBS-Datenspeichernamen und `<namespace>` mit dem Namensraum. Dies setzt voraus, dass die Umgebungsvariablen für Authentifizierung und Fingerabdruck konfiguriert sind.
+
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image::proxmox-wkld-dp-pbs-017.png[Proxmox VE Host-Backup-Befehl]
+
+====
+. Der Sicherungsprozess erstellt eine Sicherungskopie des Proxmox VE-Hosts und speichert diese im angegebenen PBS-Datenspeicher.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image::proxmox-wkld-dp-pbs-018.png[Anzeigen der Dateien über die Benutzeroberfläche des Proxmox Backup Servers]
+
+====
+. Um die Proxmox VE-Hostdateien aus der Sicherung wiederherzustellen, verwenden Sie die `proxmox-backup-client restore` Befehl mit den entsprechenden Parametern.
+
+
+Proxmox VE unterstützt Pre- und Post-Backup-Skripte, um benutzerdefinierte Aktionen vor und nach dem Backup-Prozess durchzuführen. Verwenden Sie diese Skripte, um VMs oder Container für die Datensicherung vorzubereiten, zusätzliche Aufgaben durchzuführen oder nach Abschluss der Datensicherung aufzuräumen.
+
+. Erstellen Sie das Backup-Skript auf dem Proxmox VE-Host. Stellen Sie sicher, dass das Skript ausführbar ist und über die erforderlichen Berechtigungen verfügt.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image::proxmox-wkld-dp-pbs-020.png[Skriptargumentdetails für das Sicherungsskript]
+
+====
+. Stellen Sie sicher, dass der Sicherungsauftrag existiert.
+. Verwenden Sie in einer Proxmox VE-Shell oder SSH-Sitzung die `pvesh` Befehl mit dem `--script` Option zur Angabe des auszuführenden Skripts.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image::proxmox-wkld-dp-pbs-019.png[Backup-Skript in Proxmox VE einrichten]
+
+====
+. Optional können Sie QEMU-Gastagenten verwenden, um das Dateisystem innerhalb der Arbeitslast vor dem Erstellen eines Snapshots für die Sicherung in einen konsistenten Zustand zu versetzen. Stellen Sie sicher, dass der QEMU-Gastagent installiert ist und ausgeführt wird. Platzieren Sie die Skripte in /etc/qemu/fsfreeze-hook.d/ oder /etc/qemu-ga/fsfreeze-hook.d/ innerhalb der VM oder des Containers.
+
+
+
+NOTE: Hookscripts können auch auf VM- oder Containerebene mithilfe von `qm set` oder `pct set` Befehle mit dem `--hookscript` Option. Ein Beispiel für ein Hook-Skript finden Sie unter /usr/share/pve-docs/examples/guest-example-hookscript.pl auf dem Proxmox VE-Host.
+
+
+
+== VMs und Container wiederherstellen
+
+VMs und Container können direkt über die Proxmox VE-Weboberfläche oder vom PBS-Speicher wiederhergestellt werden.
+
+. Um eine bestehende VM oder einen Container wiederherzustellen, navigieren Sie in der Proxmox VE-Weboberfläche zu dieser/diesem, klicken Sie auf die Registerkarte „Backup“, wählen Sie das Backup aus dem PBS-Speicher aus und klicken Sie auf „Wiederherstellen“.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image::proxmox-wkld-dp-pbs-021.png[Wiederherstellen von VM aus PBS in Proxmox VE]
+
+====
++
+Für die Bare-Metal-Wiederherstellung oder die Wiederherstellung auf einem anderen Proxmox VE-Host verwenden Sie die `proxmox-backup-client` Befehl.
+
+. Um eine VM oder einen Container wiederherzustellen, der derzeit nicht in Proxmox VE verfügbar ist, navigieren Sie zum Abschnitt PBS-Speichersicherungen, wählen Sie die Sicherung aus und klicken Sie auf Wiederherstellen. Geben Sie den Zielspeicherort und alle weiteren erforderlichen Informationen an, um die Wiederherstellung abzuschließen.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image::proxmox-wkld-dp-pbs-022.png[Wiederherstellen fehlender VMs aus dem PBS-Speicher in der Proxmox VE-Benutzeroberfläche]
+
+====
+
+
+
+
+== Konfigurieren Sie die Notfallwiederherstellung mit SnapMirror
+
+Zur Notfallwiederherstellung replizieren Sie den PBS-Datenspeicher auf einem ONTAP -Speicher mithilfe von SnapMirror auf ein anderes ONTAP -System. Dies schützt Sicherungsdaten und ermöglicht die Wiederherstellung nach Ausfällen des Standorts.
+
+. Konfigurieren Sie die SnapMirror Replikation für das PBS-Datenspeichervolume.
+. Im Katastrophenfall sollte der replizierte PBS-Datenspeicher auf einer sekundären PBS-Instanz eingebunden werden.
++
+Beim Hinzufügen des Datenspeichers in PBS sollte die erweiterte Option „Vorhandenen Datenspeicher wiederverwenden“ aktiviert werden, um eine erneute Initialisierung des Datenspeichers zu vermeiden.
+
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image::proxmox-wkld-dp-pbs-023.png[Vorhandenen Datenspeicher in PBS wiederverwenden]
+
+====
++
+Für ONTAP S3-Speicher müssen beim Hinzufügen des Datenspeichers in PBS sowohl die Option „Vorhandenen Datenspeicher wiederverwenden“ als auch die Option „In Verwendung befindliche Markierung überschreiben“ aktiviert werden.
+
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image::proxmox-wkld-dp-pbs-024.png[Wiederverwendung des vorhandenen S3-Datenspeichers in PBS]
+
+====
++
+.Ergebnis
+Nach dem Hinzufügen des Datenspeichers können Sie auf die Sicherungsdaten zugreifen und Wiederherstellungsvorgänge durchführen.
+
+
+
+
+
+== Überwachen Sie mehrere Cluster mit Proxmox Datacenter Manager
+
+Überwachen und verwalten Sie mehrere Proxmox VE- und Proxmox Backup Server-Instanzen mit Proxmox Datacenter Manager (PDM). PDM bietet eine zentrale Management-Schnittstelle zur Überwachung des Zustands, der Leistung und des Status mehrerer Proxmox VE-Cluster und PBS-Instanzen.
+
+.Beispiel anzeigen
+[%collapsible]
+====
+image::proxmox-wkld-dp-pbs-025.png[Proxmox Datacenter Manager – Übersicht]
+
+====
+
+
+== Zusammenfassung
+
+Der mit NetApp ONTAP -Speicher integrierte Proxmox Backup Server bietet robusten und effizienten Datenschutz für Proxmox VE-Workloads. Unternehmen können die Verfügbarkeit und Integrität virtualisierter Workloads gewährleisten, indem sie die fortschrittlichen Datenverwaltungsfunktionen von ONTAP und die Backup-Funktionen von PBS nutzen.

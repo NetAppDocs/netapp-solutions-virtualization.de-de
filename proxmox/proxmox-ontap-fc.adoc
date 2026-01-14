@@ -1,0 +1,123 @@
+---
+sidebar: sidebar 
+permalink: proxmox/proxmox-ontap-fc.html 
+keywords: netapp, proxmox, proxmox ve, fc, fibre channel, lvm, ontap, storage 
+summary: 'Konfigurieren des Logical Volume Manager (LVM) mit Fibre Channel für die Proxmox Virtual Environment mithilfe von ONTAP. Dieses Verfahren umfasst die Multipath-Konfiguration, die LUN-Bereitstellung, die Einrichtung von igroups und die Erstellung von Volume-Gruppen für gemeinsam genutzten Speicher.' 
+---
+= Konfigurieren Sie LVM mit FC für Proxmox VE
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Konfigurieren Sie Logical Volume Manager (LVM) für gemeinsam genutzten Speicher über Proxmox Virtual Environment (VE)-Hosts hinweg unter Verwendung des Fibre Channel-Protokolls mit NetApp ONTAP. Diese Konfiguration ermöglicht den Zugriff auf Speicherblöcke mit hoher Leistung und geringer Latenz.
+
+
+
+== Erste Aufgaben des Virtualisierungsadministrators
+
+Führen Sie diese ersten Schritte durch, um die Proxmox VE-Hosts für die FC-Konnektivität vorzubereiten und die notwendigen Informationen für den Speicheradministrator zu sammeln.
+
+. Prüfen Sie, ob zwei HBA-Schnittstellen verfügbar sind.
+. Stellen Sie sicher, dass multipath-tools auf allen Proxmox VE-Hosts installiert ist und beim Systemstart automatisch startet.
++
+[source, shell]
+----
+apt list | grep multipath-tools
+# If need to install, execute the following line.
+apt-get install multipath-tools
+systemctl enable multipathd
+----
+. Sammeln Sie die WWPN aller Proxmox VE-Hosts und übermitteln Sie diese dem Speicheradministrator.
++
+[source, shell]
+----
+cat /sys/class/fc_host/host*/port_name
+----
+
+
+
+
+== Aufgaben des Speicheradministrators
+
+Wenn Sie ONTAP noch nicht kennen, nutzen Sie den System Manager für eine bessere Benutzererfahrung.
+
+. Stellen Sie sicher, dass die SVM mit aktiviertem FC-Protokoll verfügbar ist. Folgen link:https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["ONTAP 9 Dokumentation"]Die
+. Erstellen Sie zwei LIFs pro Controller, die speziell für FC vorgesehen sind.
++
+image:proxmox-ontap-fc-001.png["FC-Schnittstellendetails"]
+
+. Erstellen Sie eine igroup und füllen Sie die Host-FC-Initiatoren.
+. Erstellen Sie die LUN mit der gewünschten Größe auf der SVM und stellen Sie sie der im vorherigen Schritt erstellten igroup zur Verfügung. Stellen Sie sicher, dass der Anti-Ransomware-Schutz auf der Registerkarte „Sicherheit“ für ASA -Systeme und auf der Registerkarte „Volume-Sicherheit“ für AFF/ FAS -Systeme aktiviert ist.
++
+image:proxmox-ontap-fc-002.png["Monddetails"]
+
+. Benachrichtigen Sie den Virtualisierungsadministrator, dass die LUN erstellt wurde.
+
+
+
+
+== Abschließende Aufgaben des Virtualisierungsadministrators
+
+Führen Sie diese Schritte aus, um die LUN als gemeinsam genutzten LVM-Speicher in Proxmox VE zu konfigurieren.
+
+. Navigieren Sie auf jedem Proxmox VE-Host im Cluster zu einer Shell und überprüfen Sie, ob die Festplatte sichtbar ist.
++
+[source, shell]
+----
+lsblk -S
+rescan-scsi-bus.sh
+lsblk -S
+----
+. Überprüfen Sie, ob das Gerät in der Multipath-Liste angezeigt wird.
++
+[source, shell]
+----
+multipath -ll
+multipath -a /dev/sdX  # replace sdX with the device name
+multipath -r
+multipath -ll
+----
+. Erstellen Sie die Volumengruppe.
++
+[source, shell]
+----
+vgcreate <volume group name> /dev/mapper/<device id>
+# Where <volume group name> is the desired name for the volume group and <device id> is the multipath device id.
+pvs
+# Verify the physical volume is part of the volume group.
+vgs
+# Verify the volume group is created.
+----
+. Verwendung der Management-UI bei `https:<proxmox node>:8006`Klicken Sie auf Datacenter, wählen Sie Storage, klicken Sie auf Add und wählen Sie LVM.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image:proxmox-ontap-fc-003.png["LVM-Speichernavigation"]
+
+====
+. Geben Sie den Namen der Speicher-ID an, wählen Sie die vorhandene Volumengruppe aus und wählen Sie die Volumengruppe aus, die gerade mit der CLI erstellt wurde. Aktivieren Sie die Option „Gemeinsam nutzen“. Mit Proxmox VE 9 und höher aktivieren Sie die `Allow Snapshots as Volume-Chain` Diese Option ist sichtbar, wenn das Kontrollkästchen „Erweitert“ aktiviert ist.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image:proxmox-ontap-fc-004.png["LVM-Speichererstellung"]
+
+====
+. Nachfolgend ist die Beispielkonfigurationsdatei für den Speicherbetrieb von LVM mit FC dargestellt:
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image:proxmox-ontap-fc-005.png["LVM FC-Konfiguration"]
+
+====
++
+Ab Proxmox VE 9 enthält die Speicherkonfigurationsdatei die zusätzliche Option `snapshot-as-volume-chain 1` Wann `Allow Snapshots as Volume-Chain` ist aktiviert.
+
+

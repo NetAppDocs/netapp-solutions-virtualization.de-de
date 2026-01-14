@@ -1,0 +1,67 @@
+---
+sidebar: sidebar 
+permalink: proxmox/proxmox-deploy-guidelines.html 
+keywords: netapp, proxmox, proxmox ve, all-flash, nfs, iscsi, nvme, fc, ontap, storage, aff, asa, virtual machines, vm, containers, proxmox backup server 
+summary: 'Proxmox Virtual Environment (VE) integriert sich mit NetApp ONTAP -Speicher, um gemeinsam genutzten Speicher für virtuelle Maschinen und Container bereitzustellen und so schnellere Live-Migrationen, konsistente Vorlagen und zentralisierte Backups zu ermöglichen. Lernen Sie die Architektur, die Netzwerk- und Speicherkonfiguration sowie die Best Practices für die Bereitstellung und Optimierung eines Proxmox VE-Clusters mit ONTAP -Speichersystemen kennen.' 
+---
+= Bereitstellungsrichtlinien für Proxmox Virtual Environment mit NetApp ONTAP Speicher
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Proxmox Virtual Environment (VE) integriert sich mit NetApp ONTAP -Speicher, um gemeinsam genutzten Speicher für virtuelle Maschinen und Container bereitzustellen und so schnellere Live-Migrationen, konsistente Vorlagen und zentralisierte Backups zu ermöglichen. Erfahren Sie mehr über Richtlinien und Best Practices für die Netzwerk- und Speicherkonfiguration beim Einsatz und der Optimierung eines Proxmox VE-Clusters mit ONTAP -Speichersystemen.
+
+Informationen zu unterstützten Speichertypen und Inhaltskompatibilität finden Sie unter link:proxmox-storage-types.html["Erfahren Sie mehr über die von Proxmox VE unterstützten Speichertypen."]Die
+
+
+
+== Richtlinien zur Netzwerkkonfiguration
+
+Befolgen Sie diese Richtlinien, um die Netzwerkleistung und -zuverlässigkeit zu optimieren:
+
+* Stellen Sie doppelt redundante Netzwerkpfade zwischen den Proxmox VE-Knoten und dem ONTAP -Speicher sicher.
+* Nutzen Sie Link-Aggregation (LACP) für erhöhte Bandbreite und Fehlertoleranz.
+* Entwerfen Sie die Netzwerktopologie so, dass Probleme mit Spannbäumen vermieden werden. Nutzen Sie gegebenenfalls Funktionen wie RSTP oder MSTP.
+* Implementieren Sie VLANs, um verschiedene Arten von Datenverkehr zu segmentieren und die Sicherheit zu erhöhen.
+* Konfigurieren Sie Jumbo-Frames (MTU 9000) auf allen Netzwerkgeräten, um die Leistung beim Speicherdatenverkehr zu verbessern.
+* Erwägen Sie die Verwendung von Open vSwitch (OVS) über Linux Bridge, wenn VLAN-Zonen konfiguriert werden.
+
+
+
+
+== Best Practices für die Speicherkonfiguration
+
+Befolgen Sie diese bewährten Methoden, um Speicherleistung und Skalierbarkeit zu optimieren:
+
+* Nutzen Sie die fortschrittlichen Datenverwaltungsfunktionen von ONTAP, wie z. B. Snapshots und Klonen, um den Datenschutz und die Datenwiederherstellung zu verbessern.
+* Nutzen Sie FlexGroup -Volumes für große Kapazitätsanforderungen, um das volle Skalierbarkeitspotenzial von ONTAP auszuschöpfen.
+* In geografisch verteilten Umgebungen können Sie FlexCache verwenden, um Images und Templates näher an den Proxmox VE-Knoten zu verteilen und so schnellere Bereitstellungszeiten und eine zentrale Verwaltung zu ermöglichen.
+* Bei der Verwendung von FlexGroup mit NFS empfiehlt sich die Kombination aus nConnect oder Session Trunking und pNFS, um Leistung und Verfügbarkeit zu optimieren.
+* Bei Blockprotokollen muss eine ordnungsgemäße Zonierung und LUN-Maskierung sichergestellt werden, um den Zugriff ausschließlich autorisierten Proxmox VE-Knoten zu gewähren.
+* Weisen Sie ausreichend Speicherkapazität zu, um dem Wachstum der virtuellen Maschinen und dem Datenbedarf gerecht zu werden.
+* Implementieren Sie Storage-Tiering, um Leistung und Kosteneffizienz zu optimieren.
+* Überwachen Sie die Speicherleistung und den Speicherzustand regelmäßig mit Hilfe der NetApp -Verwaltungstools.
+* Nutzen Sie die NetApp Console zur zentralen Verwaltung mehrerer ONTAP Systeme.
+* Aktivieren Sie die Ransomware-Schutzfunktionen auf ONTAP , um sich vor Ransomware-Angriffen zu schützen.
+
+
+
+
+== Proxmox VE-Konfigurationsrichtlinien
+
+Befolgen Sie diese Richtlinien, um Proxmox VE mit NetApp ONTAP Speicher zu optimieren:
+
+* Aktualisieren Sie Proxmox VE auf die neueste stabile Version, um von den aktuellen Funktionen und Fehlerbehebungen zu profitieren.
+* Konfigurieren Sie Proxmox VE so, dass gemeinsam genutzter Speicher von NetApp ONTAP für den VM-Speicher verwendet wird.
+* Richten Sie Proxmox VE-Cluster ein, um Hochverfügbarkeit und Live-Migration von VMs zu ermöglichen.
+* Verwenden Sie ein redundantes Netzwerk für die Clusterkommunikation und stellen Sie ein separates Netzwerk für die Live-Migration bereit.
+* Um Konflikte zu vermeiden, sollten Sie die gleichen VM- oder Container-IDs nicht clusterübergreifend wiederverwenden.
+* Nutzen Sie einen VirtIO SCSI-Einzelcontroller für bessere Leistung und mehr Funktionen in VMs.
+* Aktivieren Sie die Option „IO-Threads“ für VMs mit hohem IO-Bedarf.
+* Aktivieren Sie die Discard-/TRIM-Unterstützung auf VM-Festplatten, um die Speichernutzung zu optimieren.
+

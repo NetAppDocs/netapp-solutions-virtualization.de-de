@@ -1,0 +1,97 @@
+---
+sidebar: sidebar 
+permalink: proxmox/proxmox-ontap-iscsi.html 
+keywords: netapp, proxmox, proxmox ve, iscsi, lvm, ontap, storage 
+summary: 'Konfigurieren des Logical Volume Manager (LVM) mit iSCSI für die Proxmox Virtual Environment mithilfe von ONTAP. Dieses Verfahren umfasst die Multipath-Konfiguration, die LUN-Bereitstellung, die Einrichtung von igroups und die Erstellung von Volume-Gruppen für gemeinsam genutzten Speicher.' 
+---
+= Konfigurieren Sie LVM mit iSCSI für Proxmox VE
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Konfigurieren Sie Logical Volume Manager (LVM) für gemeinsam genutzten Speicher über Proxmox Virtual Environment (VE)-Hosts hinweg unter Verwendung des iSCSI-Protokolls mit NetApp ONTAP. Diese Konfiguration ermöglicht den Zugriff auf Speicherblöcke über Standard-Ethernet-Netzwerke mit Multipath-Unterstützung.
+
+.Gemeinsam genutzter LVM-Pool mit iSCSI unter Verwendung von ONTAP
+video::d66ef67f-bcc2-4ced-848e-b22e01588e8c[panopto,width=360]
+
+
+== Erste Aufgaben des Virtualisierungsadministrators
+
+Führen Sie diese ersten Schritte durch, um die Proxmox VE-Hosts für die iSCSI-Konnektivität vorzubereiten und die notwendigen Informationen für den Speicheradministrator zu sammeln.
+
+. Prüfen Sie, ob zwei Linux-VLAN-Schnittstellen verfügbar sind.
+. Stellen Sie sicher, dass multipath-tools auf allen Proxmox VE-Hosts installiert ist und beim Systemstart automatisch startet.
++
+[source, shell]
+----
+apt list | grep multipath-tools
+# If need to install, execute the following line.
+apt-get install multipath-tools
+systemctl enable multipathd
+----
+. Sammeln Sie die iSCSI-Host-IQN für alle Proxmox VE-Hosts und übermitteln Sie diese dem Speicheradministrator.
++
+[source, shell]
+----
+cat /etc/iscsi/initiator.name
+----
+
+
+
+
+== Aufgaben des Speicheradministrators
+
+Wenn Sie ONTAP noch nicht kennen, nutzen Sie den System Manager für eine bessere Benutzererfahrung.
+
+. Stellen Sie sicher, dass die SVM mit aktiviertem iSCSI-Protokoll verfügbar ist. Folgen link:https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["ONTAP 9 Dokumentation"]Die
+. Erstellen Sie zwei LIFs pro Controller, die ausschließlich für iSCSI vorgesehen sind.
++
+image:proxmox-ontap-iscsi-001.png["iscsi-Schnittstellendetails"]
+
+. Erstellen Sie eine igroup und füllen Sie die Host-iSCSI-Initiatoren.
+. Erstellen Sie die LUN mit der gewünschten Größe auf der SVM und stellen Sie sie der im vorherigen Schritt erstellten igroup zur Verfügung. Stellen Sie sicher, dass der Anti-Ransomware-Schutz auf der Registerkarte „Sicherheit“ für ASA -Systeme aktiviert ist. Bei AFF/ FAS -Systemen muss sichergestellt werden, dass der Anti-Ransomware-Schutz auf der Registerkarte „Sicherheit“ des Volumes aktiviert ist.
++
+image:proxmox-ontap-iscsi-002.png["iscsi-lun-details"]
+
+. Benachrichtigen Sie den Virtualisierungsadministrator, dass die LUN erstellt wurde.
+
+
+
+
+== Abschließende Aufgaben des Virtualisierungsadministrators
+
+Führen Sie diese Schritte aus, um die iSCSI LUN als gemeinsam genutzten LVM-Speicher in Proxmox VE zu konfigurieren.
+
+. Verwendung der Management-UI bei `https:<proxmox node>:8006`Klicken Sie auf Rechenzentrum, wählen Sie Speicher, klicken Sie auf Hinzufügen und wählen Sie iSCSI.
++
+image:proxmox-ontap-iscsi-003.png["iscsi-speichernavigation"]
+
+. Geben Sie den Speicher-ID-Namen an. Die iSCSI-LIF-Adresse von ONTAP sollte das Ziel auswählen können, wenn keine Kommunikationsprobleme vorliegen. Wenn Sie den Gast-VMs keinen direkten Zugriff auf die LUN gewähren möchten, deaktivieren Sie diese Option.
++
+image:proxmox-ontap-iscsi-004.png["Erstellung eines iscsi-Speichertyps"]
+
+. Klicken Sie auf Hinzufügen und wählen Sie LVM aus.
++
+image:proxmox-ontap-iscsi-005.png["LVM-Speichernavigation"]
+
+. Geben Sie den Namen der Speicher-ID an und wählen Sie den Basisspeicher aus, der dem im vorherigen Schritt erstellten iSCSI-Speicher entspricht. Wählen Sie die LUN für das Basisvolume aus und geben Sie den Namen der Volume-Gruppe an. Stellen Sie sicher, dass die Option „Gemeinsam“ ausgewählt ist. Mit Proxmox VE 9 und höher aktivieren Sie die `Allow Snapshots as Volume-Chain` Diese Option ist sichtbar, wenn das Kontrollkästchen „Erweitert“ aktiviert ist.
++
+image:proxmox-ontap-iscsi-006.png["LVM-Speichererstellung"]
+
+. Nachfolgend ist die Beispielkonfigurationsdatei für den Speicherbetrieb von LVM mit iSCSI dargestellt:
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image:proxmox-ontap-iscsi-007.png["LVM-ISCSI-Konfiguration"]
+
+====
++
+Ab Proxmox VE 9 enthält die Speicherkonfigurationsdatei die zusätzliche Option `snapshot-as-volume-chain 1` Wann `Allow Snapshots as Volume-Chain` ist aktiviert.
+
+

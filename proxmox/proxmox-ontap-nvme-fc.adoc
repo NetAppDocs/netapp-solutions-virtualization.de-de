@@ -1,0 +1,122 @@
+---
+sidebar: sidebar 
+permalink: proxmox/proxmox-ontap-nvme-fc.html 
+keywords: netapp, proxmox, proxmox ve, nvme, nvme-fc, lvm, ontap, storage 
+summary: 'Konfigurieren des Logical Volume Manager (LVM) mit NVMe über Fibre Channel für die Proxmox Virtual Environment mit ONTAP. Dieses Verfahren umfasst die Installation von nvme-cli, die Bereitstellung von Namespaces, die Einrichtung von Subsystemen und die Erstellung von Volume-Gruppen für gemeinsam genutzten Speicher.' 
+---
+= Konfigurieren Sie LVM mit NVMe/FC für Proxmox VE
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Konfigurieren Sie Logical Volume Manager (LVM) für gemeinsam genutzten Speicher über Proxmox Virtual Environment (VE)-Hosts hinweg unter Verwendung des NVMe-over-Fibre-Channel-Protokolls mit NetApp ONTAP. Diese Konfiguration ermöglicht einen leistungsstarken Block-Level-Speicherzugriff mit geringer Latenz unter Verwendung des modernen NVMe-Protokolls.
+
+
+
+== Erste Aufgaben des Virtualisierungsadministrators
+
+Führen Sie diese ersten Schritte durch, um die Proxmox VE-Hosts für die NVMe/FC-Konnektivität vorzubereiten und die notwendigen Informationen für den Speicheradministrator zu sammeln.
+
+. Prüfen Sie, ob zwei HBA-Schnittstellen verfügbar sind.
+. Führen Sie auf jedem Proxmox-Host im Cluster die folgenden Befehle aus, um die WWPN-Informationen zu sammeln und zu überprüfen, ob das nvme-cli-Paket installiert ist.
++
+[source, shell]
+----
+apt update
+apt install nvme-cli
+cat /sys/class/fc_host/host*/port_name
+nvme show-hostnqn
+----
+. Stellen Sie dem Speicheradministrator die gesammelten Host-NQN- und WWPN-Informationen zur Verfügung und fordern Sie einen NVMe-Namespace in der benötigten Größe an.
+
+
+
+
+== Aufgaben des Speicheradministrators
+
+Wenn Sie ONTAP noch nicht kennen, nutzen Sie den System Manager für eine bessere Benutzererfahrung.
+
+. Stellen Sie sicher, dass die SVM mit aktiviertem NVMe-Protokoll verfügbar ist. Siehe link:https://docs.netapp.com/us-en/ontap/san-admin/create-nvme-namespace-subsystem-task.html["NVMe-Aufgaben in der ONTAP 9-Dokumentation"]Die
+. Erstellen Sie den NVMe-Namespace.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image:proxmox-ontap-nvme-fc-001.png["Erstellung eines NVMe-Namespaces"]
+
+====
+. Erstellen Sie das Subsystem und weisen Sie Host-NQNs zu (bei Verwendung der CLI). Folgen Sie dem oben angegebenen Link.
+. Stellen Sie sicher, dass der Anti-Ransomware-Schutz auf der Registerkarte „Sicherheit“ aktiviert ist.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image:proxmox-ontap-nvme-fc-002.png["Anti-Ransomware-Status"]
+
+====
+. Benachrichtigen Sie den Virtualisierungsadministrator, dass der NVMe-Namespace erstellt wurde.
+
+
+
+
+== Abschließende Aufgaben des Virtualisierungsadministrators
+
+Führen Sie diese Aufgaben aus, um den NVMe-Namespace als gemeinsam genutzten LVM-Speicher in Proxmox VE zu konfigurieren.
+
+. Navigieren Sie auf jedem Proxmox VE-Host im Cluster zu einer Shell und überprüfen Sie, ob der neue Namespace sichtbar ist.
+. Namespace-Details prüfen.
++
+[source, shell]
+----
+nvme list
+----
+. Gerätedetails prüfen und erfassen.
++
+[source, shell]
+----
+nvme list
+nvme netapp ontapdevices
+nvme list-subsys
+lsblk -N
+----
+. Erstellen Sie die Volumengruppe.
++
+[source, shell]
+----
+vgcreate <volume group name> /dev/mapper/<device id>
+# Where <volume group name> is the desired name for the volume group and <device id> is the nvme device id.
+pvs
+# Verify the physical volume is part of the volume group.
+vgs
+# Verify the volume group is created.
+----
+. Verwendung der Management-UI bei `https:<proxmox node>:8006`Klicken Sie auf Datacenter, wählen Sie Storage, klicken Sie auf Add und wählen Sie LVM.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image:proxmox-ontap-nvme-fc-003.png["LVM-Speichernavigation"]
+
+====
+. Geben Sie den Namen der Speicher-ID an, wählen Sie die vorhandene Volumengruppe aus und wählen Sie die Volumengruppe aus, die gerade mit der CLI erstellt wurde. Aktivieren Sie die Option „Gemeinsam nutzen“. Mit Proxmox VE 9 und höher aktivieren Sie die `Allow Snapshots as Volume-Chain` Diese Option ist sichtbar, wenn das Kontrollkästchen „Erweitert“ aktiviert ist.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image:proxmox-ontap-nvme-fc-004.png["lvm auf vorhandenem vg"]
+
+====
+. Nachfolgend ist eine Beispielkonfigurationsdatei für LVM mit NVMe/FC dargestellt:
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image:proxmox-ontap-nvme-fc-005.png["LVM auf NVMe FC-Konfiguration"]
+
+====
+

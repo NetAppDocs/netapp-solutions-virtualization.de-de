@@ -541,5 +541,5 @@ NOTE: Bevor Sie mit dieser speziellen Integration beginnen, wenden Sie sich bitt
 
 Das folgende Video veranschaulicht den in dieser Lösung beschriebenen Prozess.
 
-.Migration ohne Eingriff von ESX zu Oracle Linux Virtualization Manager (OLVM)
+.Zero-Touch-Migration von ESX zu Red Hat OpenShift Virtualization (OSV)
 video::7e2abc5e-2919-43d6-a5c2-b3760100adaf[panopto]

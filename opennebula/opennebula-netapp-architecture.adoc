@@ -1,0 +1,92 @@
+---
+sidebar: sidebar 
+permalink: opennebula/opennebula-netapp-architecture.html 
+keywords: netapp, opennebula, ontap, storage, architecture, nas, san, nfs, smb, iscsi, fc, nvme, flexgroup, flexcache, snapmirror 
+summary: NetApp integriert sich mit OpenNebula, um Speicherfunktionen der Enterprise-Klasse über NAS- und SAN-Protokolle bereitzustellen. ONTAP stellt fortschrittliche Datenverwaltungsfunktionen bereit, darunter Snapshots, Klonen, Replikation und Ransomware-Schutz für virtualisierte Workloads. 
+---
+= Erfahren Sie mehr über die ONTAP-Speicherarchitektur für OpenNebula
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp-Produkte integrieren sich mit OpenNebula, um Speicherfunktionen der Enterprise-Klasse über NAS- und SAN-Protokolle bereitzustellen. ONTAP bietet fortschrittliche Datenverwaltungsfunktionen, einschließlich Snapshots, Klonen, Replikation und Ransomware-Schutz für virtualisierte Workloads, die auf OpenNebula-Clustern ausgeführt werden.
+
+
+
+== Lösungsarchitektur
+
+Die Lösungsarchitektur umfasst folgende Schlüsselkomponenten:
+
+* *OpenNebula Frontend-Server:* Eine Reihe von OpenNebula Frontend-Servern, die Cloud-Management-Funktionen zur Verwaltung von virtuellen Maschinen (VMs) und Kubernetes-Clustern bereitstellen.
+* *OpenNebula Compute-Knoten:* Eine Reihe von Compute-Knoten, die die virtuellen Maschinen und Kubernetes-Cluster hosten, die von OpenNebula verwaltet werden.
+* *NetApp ONTAP storage:* Ein leistungsstarkes, skalierbares Speichersystem, das gemeinsam genutzten Speicher für den OpenNebula Cluster bereitstellt.
+* *Netzwerkinfrastruktur:* Ein robustes Netzwerk-Setup, das eine Verbindung mit niedriger Latenz und hohem Durchsatz zwischen OpenNebula-Knoten und ONTAP-Speicher gewährleistet.
+* * NetApp Console:* Eine zentrale Management-Schnittstelle zur Verwaltung mehrerer NetApp -Speichersysteme und Datendienste.
+
+
+Das folgende Diagramm zeigt die Architektur auf hoher Ebene von OpenNebula, integriert mit NetApp ONTAP Storage:
+
+image::opennebula-netapp-architecture-001.png[OpenNebula with NetApp ONTAP-Architektur]
+
+
+
+== ONTAP-Funktionen für OpenNebula
+
+ONTAP bietet ein umfassendes Set an Enterprise-Speicherfunktionen, die OpenNebula Deployments verbessern. Diese Funktionen umfassen Datenmanagement, Datenschutz, Effizienz und Protokollunterstützung für NAS- und SAN-Speicherarchitekturen.
+
+
+
+=== Kernfunktionen für die Datenverwaltung
+
+* Scale-out-Clusterarchitektur
+* Unterstützung für sichere Authentifizierung und rollenbasierte Zugriffskontrolle (RBAC).
+* Unterstützung für mehrere Administratoren im Zero-Trust-Modus
+* Sichere Mandantenfähigkeit
+* Datenreplikation mit SnapMirror
+* Zeitpunktkopien mit Snapshots
+* Platzsparende Klone
+* Speichereffizienzfunktionen wie Deduplizierung und Komprimierung
+* Trident CSI-Unterstützung für Kubernetes
+* SnapLock für Konformität
+* Manipulationssichere Snapshot-Kopiersperre
+* Ransomware-Schutz mit autonomer Bedrohungserkennung
+* Verschlüsselung ruhender und übertragener Daten
+* FabricPool zur Kategorisierung von Kaltdaten in Objektspeicher
+* NetApp Console und Data Infrastructure Insights Integration
+* Microsoft Offloaded Data Transfer (ODX)
+
+
+
+
+=== NAS-Protokollfunktionen
+
+* FlexGroup Volumes bieten Scale-Out-NAS-Container mit hoher Leistung, Lastverteilung und Skalierbarkeit.
+* FlexCache verteilt Daten global und bietet gleichzeitig lokalen Lese- und Schreibzugriff.
+* Die Unterstützung mehrerer Protokolle ermöglicht den Zugriff auf dieselben Daten sowohl über SMB als auch über NFS.
+* NFS nConnect ermöglicht mehrere TCP-Sitzungen pro Verbindung, um den Netzwerkdurchsatz zu erhöhen und Hochgeschwindigkeits-Netzwerkkarten zu nutzen.
+* NFS-Session-Trunking bietet höhere Datenübertragungsgeschwindigkeiten, hohe Verfügbarkeit und Fehlertoleranz.
+* SMB-Mehrkanalübertragung bietet höhere Datenübertragungsgeschwindigkeiten, hohe Verfügbarkeit und Fehlertoleranz.
+* Integration mit Active Directory und LDAP für Dateiberechtigungen
+* Sichere Verbindungen mit NFS über TLS
+* NFS-Kerberos-Authentifizierungsunterstützung
+* NFS über RDMA für Zugriff mit geringer Latenz
+* Namenszuordnung zwischen Windows- und Unix-Identitäten
+* Autonomer Ransomware-Schutz mit integrierter Bedrohungserkennung
+* Dateisystemanalyse zur Gewinnung von Einblicken in Kapazität und Nutzung
+
+
+
+
+=== SAN-Protokollfunktionen
+
+* Cluster über Fehlerdomänen hinweg mit SnapMirror Active Sync erweitern (immer die Option „Cluster über Fehlerdomänen hinweg dehnen“ überprüfen). https://mysupport.netapp.com/matrix/#welcome["Interoperabilitätsmatrix-Tool"] (für unterstützte Konfigurationen)
+* ASA Modelle bieten Active-Active-Multipathing und Fast-Path-Failover.
+* Protokollunterstützung für FC, iSCSI und NVMe-oF
+* iSCSI CHAP gegenseitige Authentifizierung
+* Selektive LUN-Zuordnung und Portgruppen für erhöhte Sicherheit
+

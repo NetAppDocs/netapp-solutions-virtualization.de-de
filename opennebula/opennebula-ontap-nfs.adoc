@@ -1,0 +1,158 @@
+---
+sidebar: sidebar 
+permalink: opennebula/opennebula-ontap-nfs.html 
+keywords: netapp, opennebula, kvm, nfs, ontap, storage, nconnect, session trunking 
+summary: Konfigurieren Sie NFS-Datenspeicher für OpenNebula mit ONTAP. Dieses Verfahren umfasst die SVM-Aktivierung, die LIF-Erstellung, die Konfiguration der Exportrichtlinie, die Volume-Erstellung sowie die Einrichtung von nConnect oder Session Trunking für Fehlertoleranz und Leistung. 
+---
+= Konfigurieren Sie NFS-Speicher für OpenNebula mit ONTAP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Konfigurieren Sie NFS-Speicher für OpenNebula mithilfe von NetApp ONTAP. Verwenden Sie nConnect oder Session Trunking mit pNFS (v4.1 oder später), während Sie FlexGroup-Volumes für effizientes Ressourcenmanagement, Fehlertoleranz und Leistungssteigerungen nutzen. Ein einzelner NFS-Export kann sowohl für Image- als auch für System-Datenspeicher eines OpenNebula-Clusters verwendet werden. Wenn Sie planen, FlexCache zu verwenden, reservieren Sie den NFS-Export ausschließlich für Image-Datenspeicher.
+
+Berücksichtigen Sie die MetroCluster-Konfiguration für Hochverfügbarkeits- und Notfallwiederherstellungsszenarien.
+
+Wenn Sie ONTAP noch nicht kennen, verwenden Sie die System Manager Interface, um diese Aufgaben zu erledigen.
+
+
+
+== Aufgaben des Speicheradministrators
+
+Führen Sie diese Aufgaben aus, um NFS-Speicher auf ONTAP für die Verwendung mit OpenNebula bereitzustellen.
+
+. Aktivieren Sie die SVM für NFS. Siehe link:https://docs.netapp.com/us-en/ontap/nfs-config/verify-protocol-enabled-svm-task.html["ONTAP 9 Dokumentation"]Die
+. Erstellen Sie mindestens zwei LIFs pro Controller. Folgen Sie den Schritten in der Dokumentation. Zur Veranschaulichung hier ein Screenshot der im Labor verwendeten LIFs.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image:opennebula-ontap-nfs-001.png["NAS-Schnittstellendetails"]
+
+====
+. Erstellen oder aktualisieren Sie eine NFS-Exportrichtlinie, um den Zugriff auf OpenNebula Host-IP-Adressen oder Subnetze zu ermöglichen. Siehe link:https://docs.netapp.com/us-en/ontap/nfs-config/create-export-policy-task.html["Erstellen einer Exportrichtlinie"] und link:https://docs.netapp.com/us-en/ontap/nfs-config/add-rule-export-policy-task.html["Hinzufügen einer Regel zu einer Exportrichtlinie"].
+. link:https://docs.netapp.com/us-en/ontap/nfs-config/create-volume-task.html["Erstellen eines Volumes"]. Bei hohem Kapazitätsbedarf (>100TB) aktivieren Sie die Option zur Datenverteilung im Cluster, um FlexGroup zu verwenden. Wenn Sie FlexGroup verwenden, sollten Sie pNFS auf der SVM für eine bessere Performance aktivieren, indem Sie link:https://docs.netapp.com/us-en/ontap/pnfs/pnfs-commands.html#enable-nfsv4-1["pNFS auf SVM aktivieren"] folgen. Bei Verwendung von pNFS stellen Sie sicher, dass die OpenNebula-Hosts Zugriff auf alle Controller (Daten-LIFs) haben. Stellen Sie sicher, dass der Anti-Ransomware-Schutz auf dem Volume aktiviert ist.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image:opennebula-ontap-nfs-002.png["FlexGroup -Option"]
+
+====
+. Benachrichtigen Sie den Virtualisierungsadministrator, dass das NFS-Volume bereit ist, und geben Sie die Details zum NFS-Exportpfad an.
+
+
+
+
+== Aufgaben des Virtualisierungsadministrators
+
+Führen Sie diese Aufgaben aus, um das NFS-Volume als Datenspeicher in OpenNebula hinzuzufügen und nConnect oder Session Trunking für eine verbesserte Leistung zu konfigurieren.
+
+. Stellen Sie sicher, dass mindestens zwei Schnittstellen in unterschiedlichen VLANs konfiguriert sind, um Fehlertoleranz zu gewährleisten. NIC-Bonding verwenden.
+. Stellen Sie eine SSH-Verbindung zu einem der Frontend-Server her und erstellen Sie eine Konfigurationsdatei basierend auf dem gewünschten Datastore-Typ. Beispieldateien sind unten aufgeführt:
++
+[role="tabbed-block"]
+====
+.Backup
+--
+.. Für Restic,
+
+
+[listing]
+----
+$cat nfs-restic.conf
+NAME = "Backup-Restic-NFS"
+TYPE = "BACKUP_DS"
+
+DS_MAD = "restic"
+TM_MAD = "-"
+
+RESTIC_PASSWORD = "<restic_password>"
+RESTIC_SFTP_SERVER = "<backup server>"
+----
+.. Für Rsync,
+
+
+[listing]
+----
+$cat nfs-rsync.conf
+NAME = "Backup-Rsync-NFS"
+TYPE = "BACKUP_DS"
+
+DS_MAD = "rsync"
+TM_MAD = "-"
+
+RSYNC_USER = "<rsync_user>"
+RSYNC_HOST = "<backup server>"
+----
+--
+.Datei
+[source, shell]
+----
+$cat nfs-kernel.conf
+NAME = "File-Kernel-NFS"
+TYPE = "FILE_DS"
+DS_MAD = "fs"
+TM_MAD = "local"
+SAFE_DIRS = "/var/tmp/files"
+----
+.Bild
+[source, shell]
+----
+$cat nfs-image.conf
+NAME = "Image-NFS"
+TYPE = "IMAGE_DS"
+DS_MAD = "fs"
+TM_MAD = "shared"
+----
+.System
+[source, shell]
+----
+$cat nfs-system.conf
+NAME = "System-NFS"
+TYPE = "SYSTEM_DS"
+TM_MAD = "shared"
+----
+====
+. Führen Sie  `onedatastore create <configuration file>` aus. Notieren Sie sich die nach der Erstellung zurückgegebene Datenspeicher-ID.
++
+[]
+====
+onedatastore create nfs-system.conf ID: 101
+
+====
+. Ermitteln Sie die UID und GID des Benutzers oneadmin mit dem `id oneadmin` Befehl.
+. Aktualisieren Sie /etc/fstab oder die Automount-Konfiguration, um den Datenspeicher mit den gewünschten Mount-Optionen einzubinden. Angenommen wird der Standardspeicherort /var/lib/one/datastores. Kann mit  `onedatastore show <datastore_id>` validiert werden. Falls nicht, prüfen Sie den Parameter DATASTORE_LOCATION in /etc/one/oned.conf. Stellen Sie sicher, dass der <datastore_id> Ordner unter dem Datenspeicherort existiert. Beispielhafte Einträge sind unten aufgeführt:
++
+[role="tabbed-block"]
+====
+.Verwendung von /etc/fstab
+--
+[source, shell]
+----
+# To use session trunking, use the option trunkdiscovery
+//<nfs_server>/<nfs_share> /var/lib/one/datastores/<datastore_id> nfs nconnect=8,max_channels=16,_netdev,noauto,x-systemd.automount,nofail,uid=<oneadmin uid>,gid=<oneadmin gid> 0 0
+----
+--
+.Automount verwenden
+--
+[source, shell]
+----
+# To use session trunking, use the option trunkdiscovery
+/var/lib/one/datastores/<datastore_id> -fstype=nfs,nconnect=8,max_channels=16,_netdev,noauto,x-systemd.automount,nofail,uid=<oneadmin uid>,gid=<oneadmin gid> <nfs_server>:/<nfs_share>
+----
+--
+====
+. Mounten Sie den Datenspeicher mit  `mount -a` oder  `systemctl reload autofs`-Befehl.
+. Überprüfen Sie mit dem Befehl mount, ob der Datenspeicher eingebunden ist, und überprüfen Sie die Datenspeicherkapazität mit dem  `onedatastore show <datastore_id>` Befehl.
+. Stellen Sie sicher, dass der Benutzer und die Gruppe „oneadmin“ Eigentümer des Datenspeicherordners sind. Passen Sie die Berechtigungen mit dem  `chown -R oneadmin:oneadmin /var/lib/one/datastores/<datastore_id>` Befehl an.
+. Um zu überprüfen, ob die nConnect-Option aktiviert ist, führen Sie  `ss -an | grep :2049` auf einem beliebigen OpenNebula-Host aus und prüfen Sie, ob mehrere Verbindungen zur NFS-Server-IP bestehen. Um zu überprüfen, ob pNFS aktiviert ist, führen Sie  `nfsstat -c` aus und prüfen Sie die layoutbezogenen Metriken. Basierend auf dem Datenverkehr sollten mehrere Verbindungen zu Daten-LIFs sichtbar sein.
+
+
+
+NOTE: Bei Session-Trunking wird die Option nconnect nur auf einer der Trunk-Schnittstellen aktiviert. Bei pNFS wird die nconnect-Option auf Metadaten- und Datenschnittstellen aktiviert. Für Produktionsumgebungen sollte entweder nConnect oder Session Trunking verwendet werden, nicht beides.

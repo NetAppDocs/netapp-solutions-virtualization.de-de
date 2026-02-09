@@ -1,0 +1,172 @@
+---
+sidebar: sidebar 
+permalink: opennebula/opennebula-netapp-iscsi.html 
+keywords: netapp, opennebula, opennebula, iscsi, snapshot, ontap, storage 
+summary: Konfigurieren Sie den OpenNebula Datenspeicher mit iSCSI mithilfe von ONTAP. Dieses Verfahren umfasst die für die iSCSI-Konnektivität und die Datenspeicherbereitstellung erforderliche Ersteinrichtung. 
+---
+= Konfigurieren Sie NetApp Datastore mit iSCSI für OpenNebula
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Konfigurieren Sie OpenNebula Datenspeicher mithilfe des iSCSI-Protokolls mit NetApp ONTAP auf AFF oder FAS-Systemen. Diese Konfiguration ermöglicht Block-Level-Speicherzugriff über Standard-Ethernet-Netzwerke mit Multipath-Unterstützung. Dieses Datenspeicher-Setup nutzt native ONTAP-Funktionen, einschließlich Snapshots und Klonen, um die Speichereffizienz und den Datenschutz zu verbessern.
+
+
+
+== Erste Aufgaben des Virtualisierungsadministrators
+
+Führen Sie diese ersten Schritte durch, um OpenNebula-Hosts für die iSCSI-Konnektivität vorzubereiten und die notwendigen Informationen für den Speicheradministrator zu sammeln.
+
+. Prüfen Sie, ob zwei Linux-VLAN-Schnittstellen verfügbar sind.
+. Stellen Sie sicher, dass multipath-tools und iSCSI-Initiator-Dienstprogramme auf allen OpenNebula Hosts installiert sind und beim Systemstart automatisch gestartet werden.
++
+[role="tabbed-block"]
+====
+.Debian/Ubuntu
+--
+[source, shell]
+----
+apt list | grep multipath-tools
+# If need to install, execute the following line.
+apt-get install multipath-tools open-iscsi
+# If /etc/multipath.conf is not present, first make sure the multipathd service is started.
+systemctl enable --now multipathd
+systemctl enable --now open-iscsi
+----
+--
+.RHEL/AlmaLinux
+--
+[source, shell]
+----
+dnf list installed | grep device-mapper-multipath
+# If need to install, execute the following line.
+dnf install device-mapper-multipath iscsi-initiator-utils
+# If /etc/multipath.conf is not present, first make sure the multipathd service is started.
+systemctl enable --now multipathd
+systemctl enable --now iscsid
+----
+--
+====
+. Sammeln Sie die iSCSI-Host-IQN für alle OpenNebula Hosts und übermitteln Sie diese dem Speicheradministrator.
++
+[source, shell]
+----
+cat /etc/iscsi/initiator.name
+----
+
+
+
+
+== Aufgaben des Speicheradministrators
+
+Wenn Sie ONTAP noch nicht kennen, nutzen Sie den System Manager für eine bessere Benutzererfahrung.
+
+. Stellen Sie sicher, dass die SVM mit aktiviertem iSCSI-Protokoll verfügbar ist. Folgen link:https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["ONTAP 9 Dokumentation"]Die
+. Erstellen Sie zwei LIFs pro Controller, die für iSCSI dediziert sind. Zwei LIFs pro Controller werden für Redundanz und Multipath-Performance empfohlen. Stellen Sie sicher, dass die LIFs auf den VLAN-Schnittstellen erstellt werden, die auf OpenNebula Hosts konfiguriert sind. Jumbo-Frames (MTU 9000) werden für bessere Performance empfohlen.
++
+image:opennebula-netapp-iscsi-001.png["iscsi-Schnittstellendetails"]
+
+. Erstellen Sie eine Initiatorgruppe und fügen Sie die Host-iSCSI-Initiatoren hinzu. Normalerweise wird eine Initiatorgruppe für einen OpenNebula Cluster erstellt. Fügen Sie Frontend-Server und Hypervisor-Hosts in dieselbe Initiatorgruppe ein, um sowohl Image- als auch System-Datenspeicher zu unterstützen.
+. Erstellen Sie eine ONTAP-Rolle und ein Benutzerkonto mit ONTAP-REST-API-Zugriff, der auf die Ziel-SVM beschränkt ist. Dieser Benutzer wird vom NetApp-Treiber in OpenNebula verwendet. Siehe link:https://docs.netapp.com/us-en/ontap-automation/rest/rbac_overview.html["Arbeiten mit Benutzern und Rollen"] ONTAP-Dokumentation für weitere Informationen. Notieren Sie sich den Benutzernamen und das Passwort, um sie in den Virtualisierungskonfigurationsaufgaben zu verwenden.
+. Sammeln Sie die SVM iSCSI-Ziel-IQN und UUIDs für die folgenden Ressourcen zur Verwendung in den Virtualisierungskonfigurationsaufgaben:
++
+** Die SVM
+** Die zu verwendenden Aggregate / Stufen
+** Die Initiatorgruppe mit den OpenNebula Hosts
+** Der iSCSI-Ziel-IQN (in der Regel identisch mit dem SVM-IQN). Der Virtualisierungsadministrator kann diese Information mit dem  `iscsiadm -m session`-Befehl abrufen, nachdem er sich bei einem der OpenNebula Hosts angemeldet und das iSCSI-Ziel entdeckt hat. +
+
+
+
+
+[listing]
+----
+NETAPP_SVM="85c23687-d5d9-11f0-86c4-d039eac4d4b3"
+NETAPP_AGGREGATES="6e8f9995-42dd-400a-a440-646639dc5d0b"
+NETAPP_IGROUP="5ad9faf3-d62c-11f0-86c4-d039eac4d4b3"
+NETAPP_TARGET="iqn.1992-08.com.netapp:sn.85c23687d5d911f086c4d039eac4d4b3:vs.6"
+----
+ TIP: System Manager displays the UUID in the URL when viewing the resource details.
+
+
+== Abschließende Aufgaben des Virtualisierungsadministrators
+
+Führen Sie diese Aufgaben aus, um den iSCSI-Datenspeicher auf OpenNebula zu konfigurieren.
+
+. Stellen Sie eine SSH-Verbindung zu einem der Frontend-Server her und ermitteln Sie alle iSCSI Lif-Portale, indem Sie eine der iSCSI data lif-Adressen angeben.
++
+[source, shell]
+----
+iscsiadm -m discovery -t sendtargets -p <iscsi data lif address>
+iscsiadm -m node
+iscsiadm -m node -l
+----
+. Erstellen Sie eine Konfigurationsdatei basierend auf dem gewünschten Datenspeichertyp. Eine vollständige Attributliste finden Sie unter https://docs.opennebula.io/7.0/product/cluster_configuration/san_storage/netapp/#datastore-optional-attributes["OpenNebula NetApp SAN-Dokumentation"]. Beispieldateien sind unten aufgeführt:
++
+[role="tabbed-block"]
+====
+.Bild
+[source, shell]
+----
+$cat netapp-image.conf
+NAME = "Image-NetApp-iSCSI"
+TYPE = "IMAGE_DS"
+DS_MAD = "netapp"
+TM_MAD = "netapp"
+DISK_TYPE = "BLOCK"
+NETAPP_HOST = "<ontap_cluster_ip>"
+NETAPP_USER = "<ontap_api_user>"
+NETAPP_PASS = "<ontap_api_password>"
+NETAPP_SVM = "<ontap_svm_uuid>"
+NETAPP_AGGREGATES = "<ontap_aggregate_uuid>"
+NETAPP_IGROUP = "<ontap_igroup_uuid>"
+NETAPP_TARGET = "<ontap_iscsi_target_iqn>"
+# Optional suffix to share SVM across multiple tenants
+NETAPP_SUFFIX = "t1"
+----
+.System
+[source, shell]
+----
+$cat netapp-system.conf
+NAME = "System-NetApp-iSCSI"
+TYPE = "SYSTEM_DS"
+TM_MAD = "netapp"
+DISK_TYPE = "BLOCK"
+NETAPP_HOST = "<ontap_cluster_ip>"
+NETAPP_USER = "<ontap_api_user>"
+NETAPP_PASS = "<ontap_api_password>"
+NETAPP_SVM = "<ontap_svm_uuid>"
+NETAPP_AGGREGATES = "<ontap_aggregate_uuid>"
+NETAPP_IGROUP = "<ontap_igroup_uuid>"
+NETAPP_TARGET = "<ontap_iscsi_target_iqn>"
+# Optional suffix to share SVM across multiple tenants
+NETAPP_SUFFIX = "t1"
+----
+====
+. Führen Sie  `onedatastore create <configuration file>` aus. Notieren Sie sich die nach der Erstellung zurückgegebene Datenspeicher-ID.
++
+[]
+====
+onedatastore create netapp-system.conf ID: 105
+
+====
+. Überprüfen Sie, ob der Datenspeicher erfolgreich erstellt wurde, indem Sie  `onedatastore show <datastore_id>` ausführen.
+. Apps auf dem Image-Datenspeicher herunterladen und eine VM mithilfe von Vorlagen erstellen, um sie auf dem System-Datenspeicher bereitzustellen.
+. Überprüfen Sie die auf ONTAP für das Image und die Festplatten der virtuellen Maschinen erstellten LUNs. Die verwendete Namenskonvention ist wie folgt:
++
+.. Image-Datenspeicher: one_<datastore_id>_<image_id>_<suffix> (Volume), one_<datastore_id>_<image_id>_<suffix>_lun (LUN)
+.. Systemdatenspeicher: one_<vm_id>_disk_<disk_id>_<suffix> (Volume), one_<datastore_id>_<vm_id>_disk_<disk_id>_<suffix>_lun (LUN)
++
+.Beispiel anzeigen
+[%collapsible]
+====
+image:opennebula-netapp-iscsi-002.png["ONTAP LUNs für OpenNebula Images und VMs"]
+
+====
+
+
+

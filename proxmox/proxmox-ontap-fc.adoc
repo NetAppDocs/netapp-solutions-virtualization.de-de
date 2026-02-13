@@ -30,8 +30,12 @@ Führen Sie diese ersten Schritte durch, um die Proxmox VE-Hosts für die FC-Kon
 apt list | grep multipath-tools
 # If need to install, execute the following line.
 apt-get install multipath-tools
-systemctl enable multipathd
+systemctl enable --now multipathd
 ----
++
+
+NOTE: Die gewünschte Konfiguration für ONTAP Geräte-Multipath ist bereits im Paket enthalten. Weitere Informationen finden Sie in der link:https://docs.netapp.com/us-en/ontap-sanhost/hu-proxmox-ve-9x.html#step-1-confirm-the-multipath-configuration-for-your-host["ONTAP 9 documentation zu Proxmox VE 9.x für FCP und iSCSI mit ONTAP storage"]
+
 . Sammeln Sie die WWPN aller Proxmox VE-Hosts und übermitteln Sie diese dem Speicheradministrator.
 +
 [source, shell]

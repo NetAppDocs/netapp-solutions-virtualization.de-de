@@ -75,6 +75,7 @@ ONTAP bietet eine umfassende Reihe von Enterprise-Speicherfunktionen, die Proxmo
 * Namenszuordnung zwischen Windows- und Unix-Identitäten
 * Autonomer Ransomware-Schutz mit integrierter Bedrohungserkennung
 * Dateisystemanalyse zur Gewinnung von Einblicken in Kapazität und Nutzung
+* Metrocluster support für Hochverfügbarkeit.
 
 
 
@@ -82,6 +83,7 @@ ONTAP bietet eine umfassende Reihe von Enterprise-Speicherfunktionen, die Proxmo
 === SAN-Protokollfunktionen
 
 * Cluster über Fehlerdomänen hinweg mit SnapMirror Active Sync erweitern (immer die Option „Cluster über Fehlerdomänen hinweg dehnen“ überprüfen). https://mysupport.netapp.com/matrix/#welcome["Interoperabilitätsmatrix-Tool"] (für unterstützte Konfigurationen)
+* Metrocluster support für Hochverfügbarkeit.
 * ASA Modelle bieten Active-Active-Multipathing und Fast-Path-Failover.
 * Protokollunterstützung für FC, iSCSI und NVMe-oF
 * iSCSI CHAP gegenseitige Authentifizierung

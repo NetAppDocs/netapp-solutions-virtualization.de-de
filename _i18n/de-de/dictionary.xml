@@ -1719,14 +1719,10 @@
   <block id="3e50a0145c990c27ae65e8976658d044" category="list-text"><block ref="3e50a0145c990c27ae65e8976658d044" category="inline-link-macro-rx"></block></block>
   <block id="472d13eb415cd6107aeef3a1ae6cd705" category="summary">NetApp bietet eine Reihe von Produkten, die unsere Kunden bei der Orchestrierung und Verwaltung persistenter Daten in containerbasierten Umgebungen wie Red Hat OpenShift unterstützen.</block>
   <block id="dd99886a26d3b0bfc6c607830f9e7019" category="doc">Erfahren Sie mehr über die Integration von NetApp Trident mit Red Hat OpenShift</block>
-  <block id="54283b72e941e950513b99a2293f70b8" category="paragraph">Informieren Sie sich über NetApp Trident Protect, das für die Anwendungs- und persistente Speicherverwaltung für die OpenShift-Virtualisierungslösung validiert wurde.</block>
-  <block id="c4c4d8eb1a938d23dbd4e3561819fbf1" category="paragraph">Trident, ein von NetApp und NetApp Trident Protect gepflegter Open-Source-Speicherbereitsteller und -Orchestrator, hilft Ihnen bei der Orchestrierung und Verwaltung persistenter Daten in containerbasierten Umgebungen wie Red Hat OpenShift.</block>
   <block id="900bda04002ffdec7966ea3d7d98194b" category="paragraph"><block ref="900bda04002ffdec7966ea3d7d98194b" category="inline-image-macro-rx" type="image"></block></block>
   <block id="cd351007d4a671a321b6881f730d0dc3" category="paragraph">Auf den folgenden Seiten finden Sie zusätzliche Informationen zu den NetApp -Produkten, die für die Anwendungs- und persistente Speicherverwaltung in der Red Hat OpenShift mit NetApp -Lösung validiert wurden:</block>
   <block id="b427c728eaaa53d5c94c13cde0411106" category="inline-link-macro">Trident -Dokumentation</block>
   <block id="38a66e64d72c4bab859830a3603ac8eb" category="list-text"><block ref="38a66e64d72c4bab859830a3603ac8eb" category="inline-link-macro-rx"></block></block>
-  <block id="593761100422aee4bdc18b693f31d86b" category="inline-link-macro">Trident Protect-Dokumentation</block>
-  <block id="678a9deea346abba1fb1c0458355563f" category="list-text"><block ref="678a9deea346abba1fb1c0458355563f" category="inline-link-macro-rx"></block></block>
   <block id="65cd53ff19e601ea00bf9688be4dd86a" category="summary">Red Hat OpenShift-Virtualisierung mit NetApp ONTAP</block>
   <block id="d42b44fb81f291c6ab4e79de6575323c" category="doc">Voraussetzungen für die Bereitstellung von Red Hat OpenShift Virtualization mit ONTAP</block>
   <block id="5bcb2c405229387b9d1cd5b7fbf439a7" category="paragraph">Überprüfen Sie die Anforderungen für die Installation und Bereitstellung der OpenShift-Virtualisierung mit ONTAP -Speichersystemen.</block>
@@ -2002,14 +1998,10 @@
   <block id="386516d20f942ea44530abce3a0d6658" category="section-title">Löschen einer Wiederherstellung</block>
   <block id="7d1b1dead1b5c837eb4e8627adae0e1b" category="paragraph">Sie können die Wiederherstellungs-CR mit der Velero-CLI löschen</block>
   <block id="62493b3471e85f7b7102c1acae457868" category="paragraph">Sie können den oc-Befehl sowie die Benutzeroberfläche verwenden, um die Wiederherstellungs-CR zu löschen</block>
-  <block id="1821a63ecd868360f33ee8c307c19f29" category="doc">Schützen Sie VMs in Red Hat OpenShift Virtualization mit Trident Protect</block>
   <block id="880438dc3c158f0520f9576a507cb60f" category="paragraph">Schützen Sie VMs in OpenShift Virtualization mithilfe von Snapshots und Backups. Dieses Verfahren umfasst das Erstellen eines AppVault mithilfe des ONTAP S3-Objektspeichers, das Konfigurieren von Trident Protect zum Erfassen von VM-Daten, einschließlich Kubernetes-Ressourcenobjekten, persistenten Volumes und internen Images, sowie das Wiederherstellen der Daten bei Bedarf.</block>
   <block id="ae4c2d0da7b1da91fd7f98644678ccf9" category="paragraph">Virtuelle Maschinen in der OpenShift-Virtualisierungsumgebung sind containerisierte Anwendungen, die in den Worker-Knoten Ihrer OpenShift-Containerplattform ausgeführt werden. Es ist wichtig, die VM-Metadaten sowie die persistenten Datenträger der VMs zu schützen, damit Sie sie wiederherstellen können, wenn sie verloren gehen oder beschädigt werden.</block>
   <block id="4f2e2fd0041732a5bfeffd80536904be" category="inline-link-macro">Trident CSI</block>
-  <block id="cb1f1e88b6db83dc715d1cb1d8733445" category="inline-link-macro">Trident -Schutz</block>
-  <block id="e33e8d48f0bb799b37b5bc749487254d" category="paragraph">Die persistenten Festplatten der OpenShift Virtualization VMs können durch ONTAP Speicher gesichert werden, der in den OpenShift-Cluster integriert ist, indem<block ref="d66058559be29002c97cec8314567a26" category="inline-link-macro-rx"></block> . In diesem Abschnitt verwenden wir<block ref="cc24e09f500ab5b39acb9ba4de3f5622" category="inline-link-macro-rx"></block> um Snapshots und Backups von VMs einschließlich ihrer Datenvolumes in ONTAP Object Storage zu erstellen.</block>
   <block id="cfb19c3733743fd549ce0c727fedef08" category="paragraph">Bei Bedarf stellen wir dann eine Wiederherstellung aus einem Snapshot oder einem Backup her.</block>
-  <block id="c086ef24cd8b21f804c162916c382ae8" category="paragraph">Trident Protect ermöglicht Snapshots, Backups, Wiederherstellung und Notfallwiederherstellung von Anwendungen und VMs auf einem OpenShift-Cluster. Zu den Daten, die bei OpenShift-Virtualisierungs-VMs mit Trident Protect geschützt werden können, gehören mit den VMs verknüpfte Kubernetes-Ressourcenobjekte, persistente Volumes und interne Images.</block>
   <block id="a6040c159eeb9dc3a8ee2778db8e299e" category="paragraph">**Im Folgenden sind die Versionen der verschiedenen Komponenten aufgeführt, die für die Beispiele in diesem Abschnitt verwendet wurden.**</block>
   <block id="8029f49e67976ee4be8e5ee35ae01297" category="inline-link-macro">OpenShift Cluster 4.17</block>
   <block id="200698ac6537b28ad9734722a73080db" category="list-text"><block ref="200698ac6537b28ad9734722a73080db" category="inline-link-macro-rx"></block></block>
@@ -2017,15 +2009,11 @@
   <block id="287f7b64542d2f7312b8d3de9b3f8b26" category="list-text"><block ref="287f7b64542d2f7312b8d3de9b3f8b26" category="inline-link-macro-rx"></block></block>
   <block id="a1862e00d8111386cdf238bd23bb97db" category="inline-link-macro">Trident 25.02</block>
   <block id="ff6395262d82836eedf127f3a80c2ce7" category="list-text"><block ref="ff6395262d82836eedf127f3a80c2ce7" category="inline-link-macro-rx"></block></block>
-  <block id="8646f7af8fba1737c1ced6f2d0eed098" category="inline-link-macro">Trident 25.02</block>
-  <block id="45317a3a74be40b0ff3578e7b5297766" category="list-text"><block ref="45317a3a74be40b0ff3578e7b5297766" category="inline-link-macro-rx"></block></block>
   <block id="8c1ba5eb61420c0029961110f20d7829" category="inline-link-macro">ONTAP 9.16</block>
   <block id="a13c7db7d74afd839261d6b5eef45b76" category="list-text"><block ref="a13c7db7d74afd839261d6b5eef45b76" category="inline-link-macro-rx"></block></block>
   <block id="9e2fd9553f3b1f1f9aa36beca4f46a7f" category="section-title">App Vault für Objektspeicher erstellen</block>
   <block id="e17a719a6366dd11d450cd1e2c5967de" category="example-title">AppVault erstellen</block>
-  <block id="ad701f18604247a6a058dd775e3fc022" category="paragraph">Bevor die Snapshots und Backups für eine Anwendung oder eine VM erstellt werden, muss in Trident Protect ein Objektspeicher konfiguriert werden, um die Snapshots und Backups zu speichern. Dies geschieht mithilfe des Bucket CR. Nur Administratoren können einen Bucket CR erstellen und konfigurieren. Der Bucket CR ist in Trident Protect als AppVault bekannt. AppVault-Objekte sind die deklarative Kubernetes-Workflow-Darstellung eines Speicher-Buckets. Ein AppVault CR enthält die Konfigurationen, die für die Verwendung eines Buckets in Schutzvorgängen wie Backups, Snapshots, Wiederherstellungsvorgängen und SnapMirror Replikation erforderlich sind.</block>
   <block id="20e0e1d713d2f39f16898ab621ce4a16" category="paragraph">In diesem Beispiel zeigen wir die Verwendung von ONTAP S3 als Objektspeicher. Hier ist der Workflow zum Erstellen von AppVault CR für ONTAP S3: 1. Erstellen Sie einen S3-Objektspeicherserver in der SVM im ONTAP -Cluster. 2. Erstellen Sie einen Bucket im Object Store Server. 3. Erstellen Sie einen S3-Benutzer in der SVM. Bewahren Sie den Zugangsschlüssel und den geheimen Schlüssel an einem sicheren Ort auf. 4. Erstellen Sie in OpenShift ein Geheimnis zum Speichern der ONTAP S3-Anmeldeinformationen. 5. Erstellen eines AppVault-Objekts für ONTAP S3</block>
-  <block id="a5ac9b5456b97ca447f18f063406daea" category="paragraph">**Konfigurieren Sie Trident Protect AppVault für ONTAP S3**</block>
   <block id="37a9b7cb85e77fd6a74d8009cdd8a7df" category="inline-image-macro">ONTAP S3 Appvault erstellt</block>
   <block id="6afc7e89d60452ea0a1961d489ba04e1" category="paragraph"><block ref="6afc7e89d60452ea0a1961d489ba04e1" category="inline-image-macro-rx" type="image"></block></block>
   <block id="947f19e597d1f0b50f7169331bdb939d" category="section-title">Erstellen einer VM in OpenShift Virtualization</block>
@@ -2190,13 +2178,8 @@
   <block id="8338d70e0350b47b250bcd770f7e6343" category="paragraph"><block ref="8338d70e0350b47b250bcd770f7e6343" category="inline-image-macro-rx" type="image"></block></block>
   <block id="2b8a498ff5a5d59604f3b541192e2fb4" category="paragraph">Backups werden gemäß diesem Zeitplan erstellt und können auf der Registerkarte „Backup“ angezeigt werden.</block>
   <block id="2e5299fed2cfe1761ad175396bd26e19" category="paragraph"><block ref="2e5299fed2cfe1761ad175396bd26e19" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="71a8646f5d7ed7c876a19ff81bccb6d1" category="doc">Richten Sie Failover und Failback für VMs in Red Hat OpenShift Virtualization mit Trident Protect ein</block>
   <block id="25004d3f662b99445efdd2f577721c43" category="paragraph">Richten Sie mit Trident Protect die Notfallwiederherstellung für VMs in OpenShift Virtualization ein.  Dieses Verfahren umfasst das Erstellen eines AppVault mit ONTAP S3, das Einrichten von AppMirror-Beziehungen zwischen Quell- und Disaster Recovery-Namespaces, das Planen der Replikation und das Ausführen von Failover- und Failback-Vorgängen, um die VM-Verfügbarkeit während Site-Ausfällen aufrechtzuerhalten.</block>
   <block id="5cd13346424792191b48974af666e183" category="list-text">Trident muss installiert sein.  Backend- und Speicherklassen müssen erstellt werden, bevor OpenShift Virtualization mithilfe des OpenShift Virtualization-Operators auf dem Cluster installiert wird.</block>
-  <block id="78dd70e05042b12a0e3269236194ed10" category="inline-link-macro">Installieren Sie Trident Protect</block>
-  <block id="5a94d84de6c3446c8d18d7e451b0ee14" category="list-text">Trident Protect muss installiert werden, um Failover- und Failback-Vorgänge für die OpenShift-VMs zu implementieren.  Beachten Sie die Anweisungen hier, um<block ref="33de37297967c96aa0b75869ddb17044" category="inline-link-macro-rx"></block></block>
-  <block id="a22886aa40c3917e950e183080c76112" category="inline-image-macro">OCP-v Trident Protect im Trident-Protect-Namespace installiert</block>
-  <block id="e5bfea7a1fc6eb1ad109f598f71ec80c" category="paragraph"><block ref="e5bfea7a1fc6eb1ad109f598f71ec80c" category="inline-image-macro-rx" type="image"></block></block>
   <block id="d59ce64481ee53a5e3af6710efc0b479" category="paragraph">Eine VM muss in OpenShift Virtualization verfügbar sein.  Einzelheiten zum Bereitstellen einer neuen VM oder zum Migrieren einer vorhandenen VM in OpenShift Virtualization finden Sie im entsprechenden Abschnitt der Dokumentation.</block>
   <block id="3581c46b7eec38ce850b20f09099b741" category="inline-image-macro">OCP-v VM im Source-NS-Namespace installiert</block>
   <block id="e477803592f44cdb2efd8445b19c3653" category="paragraph"><block ref="e477803592f44cdb2efd8445b19c3653" category="inline-image-macro-rx" type="image"></block></block>
@@ -2206,11 +2189,9 @@
   <block id="f29421ad98d05722b53303fb3e551243" category="paragraph">Stellen Sie sicher, dass der Ontap S3-Tresor erstellt wurde und sich im Status „Verfügbar“ befindet</block>
   <block id="ca2d8b6115af60005a3ff445f33397f3" category="inline-image-macro">OCP-v Appvault im Trident-Protect-Namespace</block>
   <block id="4d22ca0764b49c93cccecbb8850b02ae" category="paragraph"><block ref="4d22ca0764b49c93cccecbb8850b02ae" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="166619e9e17175678375f8cdc1a1591c" category="section-title">Erstellen Sie eine Trident Protect-App für die VM</block>
   <block id="3eb534dd2cc996be0f44dbcaab5bcf1d" category="paragraph">Erstellen Sie eine benutzerdefinierte App-Ressource im Namespace, in dem sich die VM befindet.</block>
   <block id="0901b77c87ff8c3428ddb5fb8143f250" category="inline-image-macro">OCP-v-App im Source-NS-Namespace</block>
   <block id="007e2424c414a2df986160beaad9b0de" category="paragraph"><block ref="007e2424c414a2df986160beaad9b0de" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="b7692004b0adef75deee3e519871e97d" category="section-title">Erstellen Sie eine Trident -Schutz-App für die Disaster Recovery-VM in einem neuen Namespace</block>
   <block id="34333d34e84e035b6bf767d0f3139123" category="paragraph"><block ref="34333d34e84e035b6bf767d0f3139123" category="inline-image-macro-rx" type="image"></block></block>
   <block id="734a811b8e48ab8540db8b6840f2c82f" category="section-title">Erstellen Sie einen AppMirror-Zeitplan im Quellnamespace</block>
   <block id="9d8a2182f45d04be9b619200a4e9f404" category="paragraph">Erstellen Sie mithilfe des YAML wie gezeigt einen Zeitplan für AppMirror.  Dadurch werden Snapshots nach dem Zeitplan (alle 5 Minuten) erstellt und 2 Snapshots gespeichert</block>
@@ -2603,8 +2584,6 @@
   <block id="e9c81e67a451d04b832faa62b80e711c" category="video-title">Live-Migration virtueller Maschinen in OpenShift-Virtualisierung auf ROSA mit Amazon FSx for NetApp ONTAP</block>
   <block id="3699cb747ce71b2fed488fef61ad35be" category="video-title">Workload-Migration – Red Hat OpenShift mit NetApp</block>
   <block id="03c39d763ca15978d9ef16c2ba5fe98a" category="section-title">Datenschutz und Notfallwiederherstellung</block>
-  <block id="e0da49b5df3487900e358f73e4c78a73" category="video-title">Schützen einer VM mit Trident Protect</block>
-  <block id="3dbc9d2bc429734f02c8a3d8afff4ab3" category="video-title">Notfallwiederherstellung für eine VM mit Trident Protect</block>
   <block id="79a7f926e9efd864ab3d8398313226de" category="video-title">Failover/Failback von OpenShift-VMs mithilfe der erweiterten Datenverwaltungsfunktionen von Trident (nur im Early Access-Programm verfügbar)</block>
   <block id="17dcee806d40bcff0ceea64c03d54cce" category="section-title">Speicherintegration und -verwaltung</block>
   <block id="cd87f3aa48bcd2407ce3ff99ce497956" category="video-title">Installieren von Trident mit dem Red Hat Certified Trident Operator</block>
@@ -8567,4 +8546,25 @@
   <block id="12db34d0277dc14c8dfb7f00306bcdb1" category="list-text">Metrocluster support für Hochverfügbarkeit.</block>
   <block id="193267cce237caa1ad9fccf574952dd4" category="inline-link-macro">ONTAP 9 documentation zu Proxmox VE 9.x für FCP und iSCSI mit ONTAP storage</block>
   <block id="191c3e0b6a997326d8f620ef8fbb2776" category="admonition">Die gewünschte Konfiguration für ONTAP Geräte-Multipath ist bereits im Paket enthalten. Weitere Informationen finden Sie in der <block ref="bbf51a4dc5cabbb4a7cd9e6e15ab2e54" category="inline-link-macro-rx"></block></block>
+  <block id="fce579e2b8eca0cf6765e4d77b07475d" category="paragraph">Erfahren Sie mehr über NetApp Trident Protect, das für die Anwendungs- und persistente Speicherverwaltung für die OpenShift Virtualization solution validiert wurde.</block>
+  <block id="65ea3b818c50a0aadbd82694fd825c9a" category="paragraph">Trident, ein Open-Source-Speicherbereitstellungs- und Orchestrierungsprogramm, das von NetApp betreut wird, und NetApp Trident Protect helfen Ihnen bei der Orchestrierung und Verwaltung persistenter Daten in containerbasierten Umgebungen wie Red Hat OpenShift.</block>
+  <block id="5ec3b68db6f1825ef893a3df02e8cb74" category="inline-link-macro">Trident Protect Dokumentation</block>
+  <block id="3a984bfb64105d2cab0a81dc1af80642" category="list-text"><block ref="3a984bfb64105d2cab0a81dc1af80642" category="inline-link-macro-rx"></block></block>
+  <block id="b9f9d8ab7728b19c689309af7e3aefef" category="doc">Schützen Sie VMs in Red Hat OpenShift Virtualization mit Trident Protect</block>
+  <block id="9b6a034e6854c5f27feb3ac185829f8d" category="inline-link-macro">Trident Protect</block>
+  <block id="ac71c4d21bb2fbca171b057c4fbdfa0f" category="paragraph">Die persistenten Datenträger der OpenShift Virtualisierungs-VMs können durch ONTAP-Speicher, der in den OpenShift Cluster integriert ist, mit <block ref="d66058559be29002c97cec8314567a26" category="inline-link-macro-rx"></block> gesichert werden. In diesem Abschnitt verwenden wir <block ref="e549df9ba6f12288cca9d79527f10372" category="inline-link-macro-rx"></block> , um Snapshots und Backups von VMs einschließlich ihrer Datenvolumes im ONTAP Object Storage zu erstellen.</block>
+  <block id="c2dd4428ac6222d4abc4fdad61a8e9f1" category="paragraph">Trident Protect ermöglicht Snapshots, Backups, Wiederherstellung und Notfallwiederherstellung von Anwendungen und VMs auf einem OpenShift Cluster. Für OpenShift Virtualization VMs können mit Trident Protect Daten geschützt werden, darunter Kubernetes-Ressourcenobjekte, persistente Volumes und interne Images.</block>
+  <block id="858d1bbfede21b3edba173e16575d1b2" category="inline-link-macro">Trident Protect 25.02</block>
+  <block id="9d466dd3378ec2773ed896c1894ca7b0" category="list-text"><block ref="9d466dd3378ec2773ed896c1894ca7b0" category="inline-link-macro-rx"></block></block>
+  <block id="d1997f81bf158c9d30df18d996e06d01" category="paragraph">Vor dem Erstellen von Snapshots und Backups für eine Anwendung oder eine VM muss ein Objektspeicher in Trident Protect konfiguriert werden, um die Snapshots und Backups zu speichern. Dies erfolgt mithilfe des Bucket-CR. Nur Administratoren können einen Bucket-CR erstellen und konfigurieren. Der Bucket-CR wird in Trident Protect als AppVault bezeichnet. AppVault-Objekte sind die deklarative Kubernetes-Workflow-Darstellung eines Speicher-Buckets. Ein AppVault-CR enthält die Konfigurationen, die erforderlich sind, damit ein Bucket in Schutzvorgängen wie Backups, Snapshots, Wiederherstellungsvorgängen und SnapMirror-Replikation verwendet werden kann.</block>
+  <block id="079dddd4d4443155dd6786175af87e1e" category="paragraph">**Trident Protect AppVault für ONTAP S3 konfigurieren**</block>
+  <block id="f1ba847d6c9174289db37c0a61512128" category="doc">Failover und Failback für VMs in Red Hat OpenShift Virtualization mit Trident Protect einrichten</block>
+  <block id="dc84984abc7de0d1dfdb34895d0f13bc" category="inline-link-macro">Trident Protect installieren</block>
+  <block id="27b133f8cf3565f166808593b6fb3be2" category="list-text">Trident Protect muss installiert sein, um Failover- und Failback-Operationen für die OpenShift VMs zu implementieren. Anweisungen dazu finden Sie hier <block ref="3bf8a3a602689bdae45850e9c7400b5b" category="inline-link-macro-rx"></block></block>
+  <block id="5317d0172f118abc73f0a2df44acf7fd" category="inline-image-macro">OCP-v Trident Protect im Namespace trident-protect installiert</block>
+  <block id="249083bb7a5f6247b648d6d27dced11e" category="paragraph"><block ref="249083bb7a5f6247b648d6d27dced11e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="049f156007c224e7ed4ab9e57d03bbbb" category="section-title">Erstellen Sie eine Trident Protect App für die VM</block>
+  <block id="50b12fb9dc3c4acc08c0bff3aad3baf3" category="section-title">Erstellen Sie eine Trident Protect-App für die Disaster Recovery-VM in einem neuen Namespace</block>
+  <block id="92b72e1a477bb22316b8809fbb5782d9" category="video-title">Schutz einer VM mit Trident Protect</block>
+  <block id="0bb0fe78cec7e68d89f6dbb07d2b8093" category="video-title">Notfallwiederherstellung für eine VM mit Trident Protect</block>
 </blocks>

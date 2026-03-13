@@ -2183,12 +2183,6 @@
   <block id="d59ce64481ee53a5e3af6710efc0b479" category="paragraph">Eine VM muss in OpenShift Virtualization verfügbar sein.  Einzelheiten zum Bereitstellen einer neuen VM oder zum Migrieren einer vorhandenen VM in OpenShift Virtualization finden Sie im entsprechenden Abschnitt der Dokumentation.</block>
   <block id="3581c46b7eec38ce850b20f09099b741" category="inline-image-macro">OCP-v VM im Source-NS-Namespace installiert</block>
   <block id="e477803592f44cdb2efd8445b19c3653" category="paragraph"><block ref="e477803592f44cdb2efd8445b19c3653" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="93548c2eaed0aa421119ccb8d4011aa9" category="section-title">App Vault mit ONTAP S3 erstellen</block>
-  <block id="44ec316b16babd7a30392ef3aa9b614b" category="paragraph">In diesem Abschnitt wird gezeigt, wie Sie mithilfe des Ontap S3-Objektspeichers einen App-Tresor in Trident Protect einrichten.</block>
-  <block id="08dbf6549f498a3998c329d45a90ea26" category="paragraph">Verwenden Sie OC-Befehle und die unten gezeigten YAML-Dateien, um ein Geheimnis und die benutzerdefinierte Appvault-Ressource für Ontap S3 zu erstellen.  Stellen Sie sicher, dass Sie sie im Trident Protect-Namespace erstellen.</block>
-  <block id="f29421ad98d05722b53303fb3e551243" category="paragraph">Stellen Sie sicher, dass der Ontap S3-Tresor erstellt wurde und sich im Status „Verfügbar“ befindet</block>
-  <block id="ca2d8b6115af60005a3ff445f33397f3" category="inline-image-macro">OCP-v Appvault im Trident-Protect-Namespace</block>
-  <block id="4d22ca0764b49c93cccecbb8850b02ae" category="paragraph"><block ref="4d22ca0764b49c93cccecbb8850b02ae" category="inline-image-macro-rx" type="image"></block></block>
   <block id="3eb534dd2cc996be0f44dbcaab5bcf1d" category="paragraph">Erstellen Sie eine benutzerdefinierte App-Ressource im Namespace, in dem sich die VM befindet.</block>
   <block id="0901b77c87ff8c3428ddb5fb8143f250" category="inline-image-macro">OCP-v-App im Source-NS-Namespace</block>
   <block id="007e2424c414a2df986160beaad9b0de" category="paragraph"><block ref="007e2424c414a2df986160beaad9b0de" category="inline-image-macro-rx" type="image"></block></block>
@@ -8567,4 +8561,10 @@
   <block id="50b12fb9dc3c4acc08c0bff3aad3baf3" category="section-title">Erstellen Sie eine Trident Protect-App für die Disaster Recovery-VM in einem neuen Namespace</block>
   <block id="92b72e1a477bb22316b8809fbb5782d9" category="video-title">Schutz einer VM mit Trident Protect</block>
   <block id="0bb0fe78cec7e68d89f6dbb07d2b8093" category="video-title">Notfallwiederherstellung für eine VM mit Trident Protect</block>
+  <block id="b16acd8ae1ca5e379b2e4aa604f8a2ba" category="section-title">Erstellen Sie AppVault mit ONTAP S3</block>
+  <block id="472263ee87de0443326619011c98d149" category="paragraph">Dieser Abschnitt zeigt, wie man ein AppVault-Objekt in Trident Protect mithilfe von ONTAP S3-Objektspeicher einrichtet.</block>
+  <block id="c1a6380543e106c0301282521b55a3fc" category="paragraph">Verwenden Sie die oc-Befehle und die unten aufgeführten yaml-Dateien, um ein Secret und die AppVault Custom Resource für ONTAP s3 zu erstellen. Stellen Sie sicher, dass Sie sie im Namespace trident protect erstellen.</block>
+  <block id="4035a79b3668307381cda3c40c13747d" category="paragraph">Stellen Sie sicher, dass ONTAP S3 vault erstellt wurde und sich im Status Verfügbar befindet</block>
+  <block id="6cd1f4dd55f2126ac98b438f1fa31844" category="inline-image-macro">OCP-v AppVault im trident-protect-Namespace</block>
+  <block id="c047817699debbb2dda60dae4514bd1c" category="paragraph"><block ref="c047817699debbb2dda60dae4514bd1c" category="inline-image-macro-rx" type="image"></block></block>
 </blocks>

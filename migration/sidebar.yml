@@ -36,6 +36,8 @@ entries:
     - title: Migration von VMs von VMware ESXi zu Oracle Linux Virtualization Manager
         (OLVM)
       url: "/migration/shift-toolkit-migrate-esxi2olvm.html"
+    - title: VMs von VMware ESXi zu Proxmox VE migrieren
+      url: "/migration/shift-toolkit-migrate-esxi2proxmox.html"
   - title: Konvertieren Sie VMs mit dem Shift Toolkit
     url: "/migration/shift-toolkit-conversion.html"
   - title: Überwachung und Dashboard

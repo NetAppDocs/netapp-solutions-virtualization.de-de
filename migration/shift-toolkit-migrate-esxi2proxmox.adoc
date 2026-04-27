@@ -56,9 +56,9 @@ NOTE: Die virtuellen Maschinen sollten vor dem Auslösen der Migration ausgescha
 NOTE: Die VMware Tools-Entfernung erfolgt auf dem Zielhypervisor, sobald die VMs eingeschaltet sind.
 
 * Verwenden Sie beim Ausführen von Invoke-VMScript zur Vorbereitung von Windows-VMs ein lokales Administratorkonto oder ein Active Directory-Konto, das der lokalen Administratorgruppe angehört. Für Linux-Systeme verwenden Sie ein Konto, das Befehle ohne Passwort ausführen kann (z. B. über passwortloses sudo).
-* Stellen Sie bei Windows-VMs sicher, dass das VirtIO-ISO eingebunden ist; andernfalls schlägt der Vorbereitungsvorgang fehl. Den VirtIO-ISO-Treiber können Sie hier herunterladen. Das Skript erkennt das eingebundene Laufwerk und kopiert die benötigten Dateien automatisch.
+* Bei Windows-VMs muss sichergestellt sein, dass die VirtIO-ISO-Datei eingebunden ist; andernfalls schlägt die Vorbereitung fehl. Der VirtIO-ISO-Treiber kann von link:https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/virtio-win-0.1.271-1/virtio-win-0.1.271.iso["hier,"] heruntergeladen werden. Das Skript erkennt das eingebundene Laufwerk und kopiert die benötigten Dateien automatisch.
 +
-** Stellen Sie sicher, dass die im Link angegebene ISO-Datei verwendet wird, da das Vorbereitungsskript das .msi-Paket nutzt, um die Treiber und qemu-guest-agents zu installieren. Sobald die Voraussetzungen erfüllt sind, melden Sie sich an der Shift toolkit UI an und konfigurieren Sie den Standort mit Proxmox VE als Ziel-Hypervisor. Um hinzuzufügen, klicken Sie auf „Add New Site“ und wählen Sie „Destination“ aus.
+** Stellen Sie sicher, dass die im Link angegebene ISO-Datei verwendet wird, da das Vorbereitungsskript das .msi-Paket zur Installation der Treiber und qemu-guest-agents verwendet. Sobald die Voraussetzungen erfüllt sind, melden Sie sich an der Shift toolkit UI an und konfigurieren Sie den Standort mit Proxmox VE als Ziel-Hypervisor. Um hinzuzufügen, klicken Sie auf „Add New Site“ und wählen Sie „Destination“ aus.
 
 
 

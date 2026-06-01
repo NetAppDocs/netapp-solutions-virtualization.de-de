@@ -347,3 +347,56 @@ Das Shift Toolkit bietet die Möglichkeit, einen laufenden Job in jedem Schritt 
 
 
 Da das Shift Toolkit die Quell-VM in keiner Weise verändert, ist ein Rollback unkompliziert: Man muss lediglich die Quell-VM einschalten.  Es sind keine weiteren Rollback-Aktionen erforderlich.
+
+
+
+== Migration überprüfen
+
+Das Shift-Toolkit bietet nun eine Überprüfungsoption auf Blueprint-Ebene, die aktiviert wird, nachdem der Migrationsstatus als „Erfolgreich“ oder „Teilweise fehlgeschlagen“ markiert wurde. Nach erfolgreichem Abschluss startet die Überprüfungsoption einen neuen Auftrag und prüft die VM-Einstellungen gemäß den Blueprint-Zuordnungen. Der Status des Überprüfungs-Migrationsauftrags wird in der Auftragsüberwachung angezeigt und die Details können durch Klicken auf den Auftrag und Auswahl von „Protokolle anzeigen“ eingesehen werden.
+
+
+NOTE: Die Option „Überprüfen“ kann auch beim Erstellen des Blueprints ausgewählt werden, in diesem Fall wird der Überprüfungsauftrag nach 5 Minuten ausgelöst, sobald der Migrationsauftrag abgeschlossen ist.
+
+
+NOTE: Wenn die Überprüfung nach dem Migrationsauftrag ausgewählt wird, wird ein Überprüfungsauftrag spontan ausgelöst und der Assistent listet den Auftrag auf.
+
+image::shift-toolkit-471.png[Details des Migrationsauftrags überprüfen]
+
+image::shift-toolkit-472.png[Migrationsauftragsliste überprüfen]
+
+
+
+== Aufteilung des Workflows
+
+Der Split-Workflow (nur anwendbar auf OpenShift-Migrations-Blueprints mit dem ONTAP NAS-Treiber) erkennt automatisch die den VMs zugeordneten Volumes sowie deren entsprechende FlexClone-Volumes.
+
+Basierend auf der ONTAP-Version wird die passende Aufteilungsstrategie automatisch ausgewählt. Die allgemeine Richtlinie lautet wie folgt:
+
+* Split Clone für Volumes auf ONTAP 9.17.1 und höher, mit 20 paralleler Ausführung
+* Volume Move für ONTAP Versionen vor 9.17.1, unter Verwendung von bis zu vier parallelen Threads
+
+
+Der Split-Clone-Prozess überwacht kontinuierlich den Fortschritt und steuert die Jobwarteschlange entsprechend. Sobald der Split- oder Volume-Verschiebungsvorgang abgeschlossen ist, wird der zugehörige Snapshot gelöscht.
+
+Der Status des Split-Schritt-Jobs wird in der Auftragsüberwachung angezeigt. Um weitere Details anzuzeigen, klicken Sie auf den Split-Job und wählen Sie „Protokolle anzeigen“.
+
+
+NOTE: Das Shift Toolkit ändert derzeit nicht die Größe von Volumes nach dem Löschen von Snapshots. Diese Funktion ist für eine zukünftige Version geplant.
+
+image::shift-toolkit-473.png[Auswahl der Split-Workflow-Strategie]
+
+image::shift-toolkit-474.png[Arbeitsfortschritt des Split-Workflows]
+
+
+
+== Erweiterte Hypervisor-Einstellungen
+
+Das Shift Toolkit enthält erweiterte Hypervisor-Einstellungen für Migrationsaufträge auf Zielhypervisoren. Mithilfe dieser Einstellungen können Migrationsadministratoren die benötigten Funktionen für jede VM-Migrationswelle aktivieren. Das Shift Toolkit liest die Einstellungen zur Laufzeit, sodass jeder Auftrag die ausgewählten Optionen beim Start anwendet.
+
+image::shift-toolkit-475.png[Übersicht über die erweiterten Hypervisor-Einstellungen]
+
+image::shift-toolkit-476.png[Erweiterte Hypervisor-Einstellungen Optionen]
+
+image::shift-toolkit-477.png[Konfiguration der erweiterten Hypervisor-Einstellungen]
+
+image::shift-toolkit-478.png[Details zum Job „Erweiterte Hypervisor-Einstellungen“]

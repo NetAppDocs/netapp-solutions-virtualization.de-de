@@ -9041,4 +9041,26 @@
   <block id="ff9844b2de7cfcbbdfa55375ab39a06f" category="list-text"><block ref="ff9844b2de7cfcbbdfa55375ab39a06f" category="inline-link-macro-rx"></block></block>
   <block id="990fa9f57e4aad9dabc3374936fa135c" category="inline-link-macro">VMware ESXi zu Proxmox VE</block>
   <block id="0844e7bd233e5a61e8cb4e245ed8e467" category="list-text"><block ref="0844e7bd233e5a61e8cb4e245ed8e467" category="inline-link-macro-rx"></block></block>
+  <block id="5ee3244123f8d6e1cd95dd20bbd4c917" category="section-title">Migration überprüfen</block>
+  <block id="a72a581a13e85fc031dd394d163e7318" category="paragraph">Das Shift-Toolkit bietet nun eine Überprüfungsoption auf Blueprint-Ebene, die aktiviert wird, nachdem der Migrationsstatus als „Erfolgreich“ oder „Teilweise fehlgeschlagen“ markiert wurde. Nach erfolgreichem Abschluss startet die Überprüfungsoption einen neuen Auftrag und prüft die VM-Einstellungen gemäß den Blueprint-Zuordnungen. Der Status des Überprüfungs-Migrationsauftrags wird in der Auftragsüberwachung angezeigt und die Details können durch Klicken auf den Auftrag und Auswahl von „Protokolle anzeigen“ eingesehen werden.</block>
+  <block id="f32310bcb640784ccc77c7dd4c4b3dbf" category="admonition">Die Option „Überprüfen“ kann auch beim Erstellen des Blueprints ausgewählt werden, in diesem Fall wird der Überprüfungsauftrag nach 5 Minuten ausgelöst, sobald der Migrationsauftrag abgeschlossen ist.</block>
+  <block id="9d40980b6999e7f166bfa40856a00fec" category="admonition">Wenn die Überprüfung nach dem Migrationsauftrag ausgewählt wird, wird ein Überprüfungsauftrag spontan ausgelöst und der Assistent listet den Auftrag auf.</block>
+  <block id="56ac9d919bb8cab4f6077b76fb1f62a9" category="image-alt">Details des Migrationsauftrags überprüfen</block>
+  <block id="bcf221f3eb2ff23d03e933df5dc05c15" category="image-alt">Migrationsauftragsliste überprüfen</block>
+  <block id="4215a20f35c33323f41cfdcc53561758" category="section-title">Aufteilung des Workflows</block>
+  <block id="b648dea0c6088fda044bba8739f233dd" category="paragraph">Der Split-Workflow (nur anwendbar auf OpenShift-Migrations-Blueprints mit dem ONTAP NAS-Treiber) erkennt automatisch die den VMs zugeordneten Volumes sowie deren entsprechende FlexClone-Volumes.</block>
+  <block id="8aa0551ed462370f4ba674dbd90ceb17" category="paragraph">Basierend auf der ONTAP-Version wird die passende Aufteilungsstrategie automatisch ausgewählt. Die allgemeine Richtlinie lautet wie folgt:</block>
+  <block id="6d574a30eced387339f80ba54a89cc7d" category="list-text">Split Clone für Volumes auf ONTAP 9.17.1 und höher, mit 20 paralleler Ausführung</block>
+  <block id="3880a6f70719d876e231d8e2879f85ee" category="list-text">Volume Move für ONTAP Versionen vor 9.17.1, unter Verwendung von bis zu vier parallelen Threads</block>
+  <block id="1a3cae237cc41487606878fecfbf5dbd" category="paragraph">Der Split-Clone-Prozess überwacht kontinuierlich den Fortschritt und steuert die Jobwarteschlange entsprechend. Sobald der Split- oder Volume-Verschiebungsvorgang abgeschlossen ist, wird der zugehörige Snapshot gelöscht.</block>
+  <block id="9c3a731812fdeaa07c81b64877fdd363" category="paragraph">Der Status des Split-Schritt-Jobs wird in der Auftragsüberwachung angezeigt. Um weitere Details anzuzeigen, klicken Sie auf den Split-Job und wählen Sie „Protokolle anzeigen“.</block>
+  <block id="e9957f4f6643604e2e240ef6506687cd" category="admonition">Das Shift Toolkit ändert derzeit nicht die Größe von Volumes nach dem Löschen von Snapshots. Diese Funktion ist für eine zukünftige Version geplant.</block>
+  <block id="240aa9b96ee46082f68f7be9164d556b" category="image-alt">Auswahl der Split-Workflow-Strategie</block>
+  <block id="17ad14aae32d21937aca67c32e7957b4" category="image-alt">Arbeitsfortschritt des Split-Workflows</block>
+  <block id="403f27f7aab7b0ad3c0682d7cca0a733" category="section-title">Erweiterte Hypervisor-Einstellungen</block>
+  <block id="d77c1cd5f2b0ce7f2dd95f4c5bc3c495" category="paragraph">Das Shift Toolkit enthält erweiterte Hypervisor-Einstellungen für Migrationsaufträge auf Zielhypervisoren. Mithilfe dieser Einstellungen können Migrationsadministratoren die benötigten Funktionen für jede VM-Migrationswelle aktivieren. Das Shift Toolkit liest die Einstellungen zur Laufzeit, sodass jeder Auftrag die ausgewählten Optionen beim Start anwendet.</block>
+  <block id="4502be711601ff984509d35dfc59750d" category="image-alt">Übersicht über die erweiterten Hypervisor-Einstellungen</block>
+  <block id="d54ff9be113864ba45f6c548b61f0360" category="image-alt">Erweiterte Hypervisor-Einstellungen Optionen</block>
+  <block id="891154c0cb3c52a4cadf0de9b589ee45" category="image-alt">Konfiguration der erweiterten Hypervisor-Einstellungen</block>
+  <block id="8639d82053466ca0d28ba6da8779cf53" category="image-alt">Details zum Job „Erweiterte Hypervisor-Einstellungen“</block>
 </blocks>

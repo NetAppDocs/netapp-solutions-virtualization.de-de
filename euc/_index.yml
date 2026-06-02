@@ -1,0 +1,22 @@
+---
+indexpage:
+  title: Endbenutzer-Computing mit NetApp
+  summary: NetApp End User Computing-Lösungen helfen Unternehmen, sichere, skalierbare
+    virtuelle Desktops und Anwendungen auf jedem Gerät für Benutzer bereitzustellen.
+  lead: NetApp End User Computing-Lösungen helfen Unternehmen, sichere, skalierbare
+    virtuelle Desktops und Anwendungen auf jedem Gerät für Benutzer bereitzustellen.
+  tiles:
+  - title: Erste Schritte
+    links:
+    - title: Lernen Sie End User Computing mit NetApp kennen
+      url: euc-overview.html
+    - title: Vorteile der NetApp Storage für End User Computing
+      url: euc-benefits.html
+  - title: End User Computing mit Omnissa Horizon und NetApp
+    links:
+    - title: Omnissa Horizon und NetApp Architektur
+      url: omnissa-netapp-architecture.html
+  - title: Zusätzliche Ressourcen
+    links:
+    - title: Omnissa Tech Zone
+      url: https://techzone.omnissa.com

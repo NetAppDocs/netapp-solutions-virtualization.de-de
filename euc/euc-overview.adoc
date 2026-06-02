@@ -1,0 +1,41 @@
+---
+sidebar: sidebar 
+permalink: euc/euc-overview.html 
+keywords: euc, digital workspace, virtual desktop, vdi, virtual desktop infrastructure, cloud desktop, virtual application, application virtualization, app virtualization, virtual desktop management, desktop management, application management 
+summary:  
+---
+= Lernen Sie End User Computing mit NetApp kennen
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+End User Computing (EUC) ist eine Technologie, die es Benutzern ermöglicht, von jedem Gerät und überall auf ihren Desktop und ihre Anwendungen zuzugreifen. Eine EUC-Lösung mit NetApp umfasst virtuelle Desktop-Infrastruktur (VDI), Applikationsvirtualisierung und Benutzerprofilverwaltung. Mit den EUC-Lösungen von NetApp können Unternehmen die Produktivität steigern, Kosten senken und die Sicherheit für ihre Endbenutzer verbessern.
+
+
+
+== Was ist End User Computing (EUC)?
+
+End User Computing (EUC) ist eine Technologie, die es Benutzern ermöglicht, von jedem Gerät aus und überall auf ihren Desktop und ihre Anwendungen zuzugreifen. EUC-Lösungen umfassen typischerweise virtuelle Desktop-Infrastruktur (VDI), Applikationsvirtualisierung und Tools zur Benutzerprofilverwaltung. Mit EUC können Unternehmen die Produktivität steigern, Kosten senken und die Sicherheit für ihre Endbenutzer verbessern. Dateifreigaben und Benutzerverzeichnisse sind ebenfalls Bestandteil der EUC-Lösung und ermöglichen Benutzern den Zugriff auf ihre Dateien und Daten von jedem Gerät.
+
+Benutzer benötigen Zugriff auf Anwendungen, um ihre Arbeit zu erledigen, entweder über eine einzelne Anwendung oder einen vollständigen Desktop. Einige Benutzer benötigen möglicherweise High-End-Grafikanwendungen für ihre Desktop-Workflows oder spezifische Anwendungsfälle. Eine EUC-Lösung mit NetApp kann für jeden Benutzer die richtige Lösung basierend auf seinen Bedürfnissen und Anforderungen bieten. Mit den EUC-Lösungen von NetApp können Unternehmen ihren Benutzern Zugriff auf ihren Desktop und ihre Anwendungen von jedem Gerät und überall ermöglichen und gleichzeitig sicherstellen, dass Daten sicher und effizient gespeichert werden.
+
+Organisationen können die EUC-Lösung lokal, in der Cloud oder in einer Hybridumgebung bereitstellen, was ihnen die Flexibilität gibt, das Bereitstellungsmodell zu wählen, das am besten zu ihren Anforderungen passt. Mit den EUC-Lösungen von NetApp können Organisationen die Produktivität steigern, Kosten senken und die Sicherheit für ihre Endnutzer erhöhen, während sie ihnen gleichzeitig die Flexibilität bieten, von überall aus zu arbeiten.
+
+
+
+== Hohe Vorteile des Endbenutzer-Computing mit NetApp
+
+NetApps EUC-Lösungen bieten Unternehmen mehrere Vorteile, darunter: * Verbesserte Produktivität: Mit EUC können Benutzer von jedem Gerät und überall auf ihren Desktop und ihre Anwendungen zugreifen, was die Produktivität und Zusammenarbeit verbessert. * Geringere Kosten: EUC kann Unternehmen helfen, Kosten zu senken, indem das Desktop- und Applikationsmanagement zentralisiert wird, wodurch der Bedarf an teurer Hardware und Software reduziert wird. * Verbesserte Sicherheit: EUC kann Unternehmen helfen, die Sicherheit zu erhöhen, indem das Desktop- und Applikationsmanagement zentralisiert wird, was das Risiko von Datenpannen und anderen Sicherheitsvorfällen verringert. * Skalierbarkeit: NetApps EUC-Lösungen sind so konzipiert, dass sie skalierbar sind, sodass Unternehmen Benutzer je nach Bedarf einfach hinzufügen oder entfernen können. * Flexibilität: NetApps EUC-Lösungen können lokal, in der Cloud oder in einer Hybridumgebung bereitgestellt werden, sodass Unternehmen die Flexibilität haben, das Bereitstellungsmodell zu wählen, das am besten zu ihren Anforderungen passt.
+
+Weitere Informationen finden Sie auf der link:euc-benefits.html["Vorteile der NetApp Storage für End User Computing"] Seite.
+
+
+
+== NetApp's EUC-Lösungen
+
+NetApp bietet eine Reihe von EUC-Lösungen an, darunter: * Virtuelle Desktop-Infrastruktur (VDI): VDI-Lösungen ermöglichen es Unternehmen, ihren Endbenutzern virtuelle Desktops bereitzustellen und ihnen so von jedem Gerät und überall Zugriff auf ihren Desktop und ihre Anwendungen zu ermöglichen. * Anwendungsvirtualisierung: Lösungen zur Anwendungsvirtualisierung ermöglichen es Unternehmen, ihren Endbenutzern virtuelle Anwendungen bereitzustellen und ihnen so von jedem Gerät und überall Zugriff auf ihre Anwendungen zu ermöglichen. * Dateifreigaben und Benutzerverzeichnisse: Lösungen für Dateifreigaben und Benutzerverzeichnisse ermöglichen es Unternehmen, Benutzern von jedem Gerät und überall Zugriff auf ihre Dateien und Daten zu gewähren und gleichzeitig sicherzustellen, dass die Daten sicher und effizient gespeichert werden. * Benutzerprofilverwaltung: Lösungen zur Benutzerprofilverwaltung ermöglichen es Unternehmen, Benutzerprofile und -einstellungen geräteübergreifend zu verwalten und Benutzern so ein einheitliches Benutzererlebnis zu bieten, unabhängig vom verwendeten Gerät.

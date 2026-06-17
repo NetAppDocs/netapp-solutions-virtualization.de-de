@@ -14,13 +14,13 @@ summary:
 
 
 [role="lead"]
-Verwenden Sie das Shift Toolkit, um VMware ESX-Virtual-Machine-Festplatten (VMDK) in das Microsoft Hyper-V-Festplattenformat (VHDX) oder das Red Hat KVM-Festplattenformat (QCOW2) zu konvertieren.  Dieser Prozess umfasst das Einrichten von Ressourcengruppen, das Erstellen von Konvertierungsplänen und das Planen von Konvertierungen.
+Mit dem Shift Toolkit lassen sich VMware ESX-virtuelle Festplatten (VMDK) in das Microsoft Hyper-V-Festplattenformat (VHDX) oder in RAW/QCOW2-Festplattenformate konvertieren. Dieser Prozess umfasst das Einrichten von Ressourcengruppen, das Erstellen von Konvertierungs-Blueprints und das Planen von Konvertierungen.
 
 
 
 == Überblick
 
-Das Shift-Toolkit unterstützt die Konvertierung virtueller Datenträger auf Datenträgerebene zwischen Hypervisoren für die folgenden Datenträgerformate:
+Shift Toolkit unterstützt die Konvertierung virtueller Festplatten auf Festplattenebene zwischen Hypervisoren für die folgenden Formate, mit Unterstützung sowohl für FlexVol und FlexGroup Volumes auf ONTAP:
 
 * VMware ESX zu Microsoft Hyper-V (VMDK zu VHDX)
 * Microsoft Hyper-V zu VMware ESX (VHDX zu VMDK)
@@ -28,7 +28,12 @@ Das Shift-Toolkit unterstützt die Konvertierung virtueller Datenträger auf Dat
 * VMware ESX zu Red Hat KVM (VMDK zu RAW)
 
 
-Die konvertierten qcow2-Dateien sind mit allen KVM-Hypervisoren kompatibel. Beispielsweise kann eine qcow2-Datei mit RHEL-basiertem KVM unter Verwendung von virt-manager zur Erstellung einer VM genutzt werden, ebenso wie mit Ubuntu KVM, Rocky Linux-basiertem KVM und anderen. Dasselbe kann mit einer Optimierung mit dem Oracle Linux-Virtualisierungsmanager und nach dem Import mit NetApp Trident mit der OpenShift-Virtualisierung verwendet werden. Das Ziel besteht darin, die Festplatte (umgerechnet in Sekunden in Minuten) bereitzustellen, die dann in vorhandene Automatisierungsskripte integriert werden kann, die von Organisationen zum Bereitstellen der VM und Zuweisen des Netzwerks verwendet werden. Dieser Ansatz trägt dazu bei, die Gesamtmigrationszeit zu verkürzen, da die Datenträgerkonvertierung von den APIs des Shift-Toolkits übernommen wird und das verbleibende Skript die VMs startet.
+Die konvertierten qcow2-Dateien sind mit allen KVM-Hypervisoren kompatibel. Beispielsweise kann eine qcow2-Datei mit RHEL-basiertem KVM unter Verwendung von virt-manager zur Erstellung einer VM genutzt werden, ebenso wie mit Ubuntu KVM, Rocky Linux basierendem KVM und anderen. Dasselbe ist möglich mit Oracle Linux Virtualization Manager, Proxmox, OpenNebula, HP VME und mit OpenShift Virtualisierung nach dem Import mit NetApp Trident. Das Ziel besteht darin, die Festplatte (umgewandelt in Sekunden bis Minuten) bereitzustellen, die dann in bestehende Automatisierungsskripte integriert werden kann, die von Unternehmen zur Bereitstellung der VM und zur Netzwerkzuweisung verwendet werden. Dieser Ansatz trägt dazu bei, die gesamte Migrationszeit zu reduzieren, wobei die Festplattenkonvertierung von den Shift Toolkit APIs übernommen wird und das verbleibende Skript die VMs startet.
+
+Das NetApp Shift Toolkit unterstützt auch die Konvertierung von VMware VMDK-Disks, die auf FlexGroup Volumes gespeichert sind, in das RAW-Disk-Format, wodurch eine nahtlose Migration zu KVM-basierten Plattformen wie Proxmox oder OLVM ermöglicht wird.
+
+
+NOTE: Bei Verwendung von FlexGroup Storage werden ausschließlich RAW-Formatkonvertierungen unterstützt. Zusätzlich injiziert das Shift Toolkit während der Vorbereitung bei reinen KVM-Konvertierungen die VirtIO-Treiber.
 
 Das Shift-Toolkit unterstützt die durchgängige Migration von VMware zu anderen kompatiblen KVM-Hypervisoren.  Die Konvertierungsoption bietet Migrationsadministratoren jedoch die Möglichkeit, diese Konvertierungs- und Migrations-APIs auszuführen.
 

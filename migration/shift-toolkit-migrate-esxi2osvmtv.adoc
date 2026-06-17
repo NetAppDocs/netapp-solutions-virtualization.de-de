@@ -38,14 +38,14 @@ Bitte vergewissern Sie sich vor Beginn der Migration, dass die folgenden Vorauss
 
 .VMware-Anforderungen
 * Konto mit minimalen Berechtigungen. Siehe diesen Abschnittlink:https://docs.netapp.com/us-en/netapp-solutions-virtualization/migration/shift-toolkit-summary.html#minimum-permissions-role-required-on-vmware["für die minimalen Berechtigungen erforderlich"]
-* VMDKs müssen mithilfe von svmotion auf einzelnen Volumes platziert werden (wodurch eine VMDK-Datei einer PVC/PV-Konstruktion entspricht).
+* VMDKs können auf verschiedene Arten konfiguriert werden: Alle VMDKs können sich auf einem einzigen Volume befinden (wodurch die Notwendigkeit für Storage vMotion entfällt), jede VMDK kann auf einem eigenen Volume platziert werden oder mehrere VMDKs können innerhalb eines qtree in einem Volume organisiert werden.
++
 
+NOTE: Das Shift Toolkit erkennt automatisch das Layout und wählt die passende Klonmethode und die entsprechenden NAS-Speichertreiber aus.
 
++
 
-NOTE: Diese Einschränkung wird in der nächsten Version aufgehoben, in der der NAS-Economy-Treiber für die PVC-Bereitstellung verwendet werden kann.
-
-
-NOTE: Mit dem im Skriptblock verfügbaren Skript (**Einstellungen > Entwicklerzugriff > Skriptblock**) können Sie die PVC-Platzierung auf einem Qtree aktivieren oder das Volume unverändert importieren oder das Volume klonen und importieren, wodurch manuelle vMotion-Vorgänge entfallen.
+NOTE: Wenn VMDKs in einem qtree platziert werden, verwendet Shift Toolkit den ONTAP-NAS-economy-Treiber.
 
 * VMware-Tools laufen auf den Gast-VMs.
 * Das Betriebssystem jeder VM ist zertifiziert und wird als Gastbetriebssystem für Konvertierungen unterstützt.
@@ -332,5 +332,4 @@ NOTE: VMs werden im Rahmen des Projekts „Standard“ für virtuelle Maschinen 
 
 Shift Toolkit beschleunigt die Migration, indem es den Prozess vereinfacht, Ausfallzeiten minimiert und den Bedarf an ESXi-Hostzugriff oder VDDK-basierten Ansätzen eliminiert.
 
-
-NOTE: Bevor Sie mit dieser speziellen Integration beginnen, wenden Sie sich bitte an Ihr Red Hat-Kundenbetreuungsteam.
+Nach Abschluss der Migration muss das Klon-Volume getrennt werden. Die Methode hängt von der ONTAP Version ab: Klon-Teilung wird für ONTAP 9.17.1 und höher verwendet, während für frühere Versionen vol move eingesetzt wird. Ein Skript zum Starten des Trennvorgangs befindet sich im Ordner „Post migrate“ innerhalb des bereitgestellten ZIP-Pakets.

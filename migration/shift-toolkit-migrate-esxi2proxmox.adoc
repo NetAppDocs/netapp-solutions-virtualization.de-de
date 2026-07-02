@@ -404,7 +404,7 @@ NOTE: Wenn mehrere VMDK-Dateien vorhanden sind, wird jede VMDK-Datei konvertiert
 .Laden Sie das QCOW2- oder RAW-Image in den PVE NFS-basierten Speicherpool hoch
 Nachdem das virtuelle Maschinen-Disk-Image in das qcow2- oder RAW-Format konvertiert wurde, platziert das Shift toolkit die Datei im entsprechenden Speicherpool und fügt jede Festplatte im jeweiligen VM-ID-Ordner hinzu.
 
-image::shift-toolkit-469.png[shift toolkit 469]
+image::shift-toolkit-469.png[VM-Festplattenabbild in den Proxmox VE NFS-Speicherpool hochgeladen]
 
 .Virtuelle Maschine erstellen
 Das Shift toolkit führt REST API-Aufrufe durch, um je nach Betriebssystem jede VM zu erstellen.

@@ -18,6 +18,7 @@ Verwenden Sie das Shift Toolkit, um VMs zwischen Virtualisierungsplattformen zu 
 
 
 
+[[supported-migrations]]
 == Unterstützte Migrationen
 
 Das Shift Toolkit bietet Flexibilität in Multi-Hypervisor-Umgebungen durch die Unterstützung bidirektionaler Migrationen zwischen den folgenden Hypervisoren:
@@ -32,6 +33,7 @@ Das Shift Toolkit bietet Flexibilität in Multi-Hypervisor-Umgebungen durch die 
 
 
 
+[[migration-workflow]]
 == Migrationsworkflow
 
 Nachdem ein Entwurf erstellt wurde, kann der Migrationsprozess gestartet werden.  Während der Migration führt das Shift Toolkit eine Reihe von Schritten durch, um Festplattenformate zu konvertieren und virtuelle Maschinen auf dem Zielhost gemäß der Blaupause zu erstellen.
@@ -49,6 +51,7 @@ Das Shift Toolkit führt während der Migration die folgenden Schritte aus:
 
 
 
+[[network-tips-and-considerations]]
 == Netzwerktipps und Überlegungen
 
 Berücksichtigen Sie bei der Planung Ihrer Migration die folgenden Netzwerkanforderungen und -verhaltensweisen.  Das Shift Toolkit kopiert automatisch die Netzwerkeinstellungen von den Quell-VMs und wendet sie auf die migrierten VMs an, allerdings können die Benennung der Schnittstellen und die Konfigurationen der Netzwerkadapter zwischen Windows- und Linux-Systemen variieren.
@@ -91,6 +94,7 @@ Das Shift Toolkit behält die im Blueprint festgelegten IP-Adressen bei.
 
 
 
+[[migration-phases]]
 == Migrationsphasen
 
 Nachfolgend sind die Migrationsphasen aufgeführt, die Sie befolgen müssen, um VMs mithilfe des Shift Toolkits zu migrieren.
@@ -111,6 +115,7 @@ NOTE: Das Shift Toolkit verändert die Quell-VM nicht, außer dass Skripte kopie
 
 
 
+[[execute-a-migration]]
 == Führe eine Migration aus
 
 Um den Migrationsworkflow mit der im Blueprint angegebenen Konfiguration auszulösen, klicken Sie auf *Migrieren*.
@@ -133,3 +138,57 @@ image::shift-toolkit-033.png[Fortschritt der Festplattenkonvertierung]
 Sobald der Auftrag abgeschlossen ist, ändert sich der Blueprint-Status in „Migration abgeschlossen“.
 
 image::shift-toolkit-034.png[Migrationsstatus abgeschlossen]
+
+
+
+[[delete-a-blueprint]]
+== Einen Bauplan löschen
+
+Ein Blueprint, der noch nie ausgeführt wurde, kann direkt über die Benutzeroberfläche gelöscht werden. Nachdem ein Blueprint jedoch ausgelöst wurde, werden Auftragsverlaufsdatensätze erstellt, die entfernt werden müssen, bevor der Blueprint selbst gelöscht werden kann. Das PowerShell Entfernungsskript dient dazu, diese Auftragsdatensätze zu bereinigen. Danach ist das Löschen des Blueprints und der zugehörigen Ressourcengruppe möglich.
+
+.Schritte
+. Das Entfernungsskript kann über die Shift Toolkit UI unter *Einstellungen > Entwicklerzugriff > Skriptblock* heruntergeladen werden.
++
+image::shift-toolkit-082.png[Jobs basierend auf dem Blueprint-Namen entfernen]
+
+. Den ZIP-Ordner extrahieren. Das Paket enthält zwei Dateien:
++
+** `removeBpJobs.json` - Konfigurationsdatei
+** `removeBpJobs.ps1` - PowerShell-Skript
+
+
+. Bearbeiten Sie die  `removeBpJobs.json` Datei, um Folgendes anzugeben:
++
+** Ausführungsname für diesen Vorgang
+** Shift Toolkit IP-Adresse
+** Administrator-Zugangsdaten
+** Name der Blaupause zur Entfernung
++
+Beispielkonfiguration:
+
++
+[source, json]
+----
+"executions": [
+  {
+    "execution_name": "reslore",
+    "shift_server_ip": "https://10.63.184.75",
+    "shift_username": "admin",
+    "shift_password": "Admin",
+    "blueprint_details": [{"BPTHIMFAT": "True"}]
+  }
+]
+----
+
+
+. Öffnen Sie PowerShell und navigieren Sie zu dem Ordner, der die extrahierten Dateien enthält.
+. Das Skript ausführen:
++
+[listing]
+----
+pwsh
+.\removeBpJobs.ps1
+----
+
+
+Nach erfolgreichem Abschluss des Skripts können die Blaupause und die zugehörige Ressourcengruppe über die Shift Toolkit Benutzeroberfläche gelöscht werden.

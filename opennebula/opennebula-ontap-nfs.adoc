@@ -22,6 +22,7 @@ Wenn Sie ONTAP noch nicht kennen, verwenden Sie die System Manager Interface, um
 
 
 
+[[storage-administrator-tasks]]
 == Aufgaben des Speicheradministrators
 
 Führen Sie diese Aufgaben aus, um NFS-Speicher auf ONTAP für die Verwendung mit OpenNebula bereitzustellen.
@@ -49,6 +50,7 @@ image:opennebula-ontap-nfs-002.png["FlexGroup -Option"]
 
 
 
+[[virtualization-administrator-tasks]]
 == Aufgaben des Virtualisierungsadministrators
 
 Führen Sie diese Aufgaben aus, um das NFS-Volume als Datenspeicher in OpenNebula hinzuzufügen und nConnect oder Session Trunking für eine verbesserte Leistung zu konfigurieren.

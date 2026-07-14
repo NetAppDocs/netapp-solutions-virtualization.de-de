@@ -20,24 +20,28 @@ Die Windows Server-Plattform verwendet die Hyper-V-Rolle, um Virtualisierungstec
 
 
 
+[[overview]]
 == Überblick
 
 Mit der Hyper-V-Rolle können wir mithilfe der in Windows Server integrierten Virtualisierungstechnologie eine virtualisierte Computerumgebung erstellen und verwalten.  Die Hyper-V-Technologie virtualisiert Hardware, um eine Umgebung bereitzustellen, in der Sie mehrere Betriebssysteme gleichzeitig auf einem physischen Computer ausführen können.  Mit Hyper-V können Sie virtuelle Maschinen und deren Ressourcen erstellen und verwalten.  Jede virtuelle Maschine ist ein isoliertes, virtualisiertes Computersystem, das sein eigenes Betriebssystem ausführen kann.  Hyper-V bietet eine Infrastruktur zur Virtualisierung von Anwendungen und Workloads, die eine Vielzahl von Geschäftszielen unterstützt, die auf die Verbesserung der Effizienz und die Senkung der Kosten abzielen. Es ist eine perfekte Alternative zu VMware vSphere, insbesondere wenn Unternehmen unter den aktuellen Marktbedingungen nach einer Koexistenz mehrerer Hypervisoren suchen.
 
 
 
+[[audience]]
 == Publikum
 
 Dieses Dokument beschreibt die Architektur und Bereitstellungsverfahren für die Hyper-V-Clusterkonfiguration mit den NetApp ONTAP -Systemen.  Zur Zielgruppe dieses Dokuments zählen Vertriebsingenieure, Außendienstberater, professionelle Dienstleister, IT-Manager, Partneringenieure und Kunden, die Hyper-V als primären oder alternativen Hypervisor einsetzen möchten.
 
 
 
+[[architecture]]
 == Architektur
 
 Die in diesem Dokument beschriebene Architektur umfasst insbesondere Microsoft Windows Server 2022 und Hyper-V-Virtualisierung.  NetApp empfiehlt dringend, bei jeder Bereitstellung Virtualisierungssoftware und Infrastrukturverwaltungssoftware einzusetzen.  Die Konfiguration verwendet die Best Practices für jede Komponente, um eine zuverlässige Infrastruktur der Enterprise-Klasse zu ermöglichen.
 
 
 
+[[use-case-summary]]
 == Zusammenfassung des Anwendungsfalls
 
 In diesem Dokument werden die Bereitstellungsverfahren und Best Practices zum Einrichten eines Hyper-V-Clusters beschrieben, damit dieser als Workload auf Microsoft Windows Server 2022 unter Verwendung der All-Flash FAS und ASA Array-Modelle von NetApp eine optimale Leistung erbringt.  Das Server-Betriebssystem/Hypervisor ist Microsoft Windows Server 2022.  Die Anleitung umfasst NetApp -Speichersysteme, die Daten über Storage Area Network (SAN)- und Network Attached Storage (NAS)-Protokolle bereitstellen.

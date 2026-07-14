@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar 
-permalink: openshift/osv-workflow-vm-live-migration.html 
+permalink: openshift/osv-vm-live-migration.html 
 keywords: OpenShift, OCP, Trident, NetApp ONTAP, Red Hat OpenShift, OpenShift Virtualization, CNV, Container Native Virtualization, Red Hat OpenShift Virtualization 
 summary: Red Hat OpenShift-Virtualisierung mit NetApp ONTAP 
 ---
@@ -18,6 +18,7 @@ Migrieren Sie eine VM in OpenShift Virtualization ohne Ausfallzeiten zwischen zw
 
 
 
+[[vm-live-migration]]
 == VM Live Migration
 
 Bei der Livemigration handelt es sich um einen Prozess, bei dem eine VM-Instanz ohne Ausfallzeiten von einem Knoten zu einem anderen in einem OpenShift-Cluster migriert wird.  Damit die Livemigration in einem OpenShift-Cluster funktioniert, müssen VMs an PVCs mit dem gemeinsamen ReadWriteMany-Zugriffsmodus gebunden sein.  Mit Ontap-Nas-Treibern konfigurierte Trident -Backends unterstützen den RWX-Zugriffsmodus für die Dateisystemprotokolle NFS und SMB.  Weitere Informationen finden Sie in der Dokumentationlink:https://docs.netapp.com/us-en/trident/trident-use/ontap-nas.html["hier,"] .  Mit ontap-san-Treibern konfigurierte Trident -Backends unterstützen den RWX-Zugriffsmodus für den Block-VolumeMode für iSCSI- und NVMe/TCP-Protokolle.  Weitere Informationen finden Sie in der Dokumentationlink:https://docs.netapp.com/us-en/trident/trident-use/ontap-san.html["hier,"] .

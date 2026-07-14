@@ -18,6 +18,7 @@ Dieser Abschnitt bietet einen Überblick über die Architektur von Omnissa mit N
 
 
 
+[[architecture-overview]]
 == Architekturübersicht
 
 Die Architektur von Omnissa mit NetApp ist darauf ausgelegt, eine skalierbare und flexible Lösung für EUC-Umgebungen bereitzustellen. Die Lösung besteht aus mehreren Komponenten, darunter die Omnissa-Managementplattform, NetApp Storage-Arrays und die virtuelle Desktop- und Applikationsinfrastruktur. Die Omnissa-Managementplattform bietet eine zentrale Schnittstelle zur Verwaltung der virtuellen Desktop- und Applikationsinfrastruktur, während die NetApp Storage-Arrays leistungsstarken und zuverlässigen Speicher für die virtuellen Desktops und Anwendungen bereitstellen. Die Architektur ist darauf ausgelegt, eine breite Palette von EUC-Anwendungsfällen zu unterstützen, einschließlich virtueller Desktop-Infrastruktur (VDI), Anwendungsvirtualisierung und Dateifreigaben für Benutzerdaten.
@@ -48,6 +49,7 @@ NetApp Speicherarrays werden verwendet, um leistungsstarken und zuverlässigen S
 
 
 
+[[pod-and-block-architecture]]
 == Pod- und Blockarchitektur
 
 Omnissa Horizon nutzt eine Pod- und Blockarchitektur, um eine skalierbare und wiederholbare Lösung für EUC-Umgebungen bereitzustellen. Ein Pod ist eine Gruppe von miteinander verbundenen Horizon Connection-Servern, die Sitzungen für bis zu 20.000 virtuelle Desktops und Anwendungen bereitstellen können. Ein Pod kann bis zu 7 Horizon Connection-Server enthalten, die sich im selben Rechenzentrum befinden müssen und nicht standortübergreifend sein dürfen. Mehrere Pods können mithilfe der Cloud Pod Architecture (CPA) miteinander verbunden werden, um eine skalierbare Lösung für größere Umgebungen bereitzustellen. Mit CPA kann die Anzahl der Sitzungen auf bis zu 250.000 skaliert werden. Für höhere Sitzungszahlen können der Architektur zusätzliche CPAs hinzugefügt werden.
@@ -71,6 +73,7 @@ NOTE: Für die Horizon Connection-Server in einem Pod werden standortübergreife
 
 
 
+[[application-virtualization]]
 == Applikationsvirtualisierung
 
 Eine häufige Herausforderung in VDI-Umgebungen ist die unkontrollierte Verbreitung von VDI-Vorlagen aufgrund vorinstallierter Anwendungen. Mit Omnissa Horizon können App Volumes verwendet werden, um Anwendungen auf virtuelle Desktops und veröffentlichte Anwendungshosts zu streamen. Benutzerbeschreibbare Volumes ermöglichen es Benutzern, Anwendungen zu installieren. Dadurch reduziert sich der Bedarf an persistenten Desktops. Mit App Volumes werden Anwendungen verpackt und in Echtzeit an virtuelle Desktops und RDSH-Sitzungen bereitgestellt. Basierend auf Machine Manager werden die verpackten Anwendungen als VMDK-Dateien auf Datastores oder als VHD-Dateien auf SMB-Dateifreigaben gespeichert, die vom App Volumes Agent für das Ein- und Aushängen auf den virtuellen Desktops und RDSH-Servern verwaltet werden.
@@ -85,6 +88,7 @@ Weitere Einzelheiten finden Sie unter https://techzone.omnissa.com/resource/app-
 
 
 
+[[user-profile-management]]
 == Benutzerprofilverwaltung
 
 Die Benutzerprofilverwaltung ist ein entscheidender Bestandteil jeder EUC-Umgebung, da sie ein einheitliches Benutzererlebnis über verschiedene virtuelle Desktops und Anwendungen hinweg gewährleistet. Omnissa Horizon unterstützt mehrere Lösungen zur Benutzerprofilverwaltung, darunter Microsoft FSLogix und Omnissa Dynamic Environment Manager (DEM) oder eine Kombination aus beiden. FSLogix bietet eine containerisierte Benutzerprofillösung, die schnelle Anmeldungen und ein konsistentes Benutzererlebnis über verschiedene virtuelle Desktops und Anwendungen hinweg ermöglicht. DEM bietet einen detaillierteren Ansatz für die Benutzerprofilverwaltung und erlaubt Administratoren, Benutzereinstellungen und -konfigurationen anhand spezifischer Bedingungen und Kriterien zu verwalten. Weitere Informationen zu DEM finden Sie hier https://techzone.omnissa.com/resource/dynamic-environment-manager-architecture["Architektur des Dynamic Environment Manager"].

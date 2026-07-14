@@ -18,6 +18,7 @@ Dieser Abschnitt behandelt die Erstellung eines VMFS-Datenspeichers mit ONTAP -S
 
 
 
+[[what-you-need]]
 == Voraussetzungen
 
 * Grundlegende Kenntnisse, die zum Verwalten einer vSphere-Umgebung und von ONTAP erforderlich sind.
@@ -41,6 +42,7 @@ Dieser Abschnitt behandelt die Erstellung eines VMFS-Datenspeichers mit ONTAP -S
 
 
 
+[[provision-vmfs-datastore]]
 == Bereitstellen eines VMFS-Datenspeichers
 
 . Überprüfen Sie die Kompatibilität mit dem https://mysupport.netapp.com/matrix["Interoperabilitätsmatrix-Tool (IMT)"] .
@@ -49,6 +51,7 @@ Dieser Abschnitt behandelt die Erstellung eines VMFS-Datenspeichers mit ONTAP -S
 
 
 
+[[ontap-tasks]]
 == ONTAP -Aufgaben
 
 . link:https://docs.netapp.com/us-en/ontap-cli-98/system-license-show.html["Überprüfen Sie die ONTAP -Lizenz für FCP."]Verwenden Sie die `system license show` Befehl und prüfen Sie, ob NVMe_oF aufgeführt ist.  Verwenden `license add -license-code <license code>` , um eine Lizenz hinzuzufügen.
@@ -69,6 +72,7 @@ Dieser Abschnitt behandelt die Erstellung eines VMFS-Datenspeichers mit ONTAP -S
 
 
 
+[[vmware-vsphere-tasks]]
 == VMware vSphere-Aufgaben
 
 . Stellen Sie sicher, dass HBA-Treiber installiert sind.  Bei von VMware unterstützten HBAs sind die Treiber standardmäßig installiert und sollten beilink:++https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.storage.doc/GUID-ED20B7BE-0D1C-4BF7-85C9-631D45D96FEC.html++["Informationen zum Speicheradapter"]

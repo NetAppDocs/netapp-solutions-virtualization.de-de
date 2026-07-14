@@ -20,6 +20,7 @@ Erfahren Sie, wie Sie einzigartige Hyper-V-Backup-Aspekte wie Festplatten-ID-Kon
 
 
 
+[[restore-using-netapp-storage-snapshot]]
 == Wiederherstellung mit NetApp Storage-Snapshot
 
 Das Sichern und schnelle Wiederherstellen oder Klonen von VMs gehört zu den großen Stärken von ONTAP -Volumes.  Verwenden Sie Snapshot-Kopien, um schnelle FlexClone Kopien der VMs oder sogar des gesamten CSV-Volumes zu erstellen, ohne die Leistung zu beeinträchtigen.  Dies ermöglicht die Arbeit mit Produktionsdaten ohne das Risiko einer Datenbeschädigung beim Klonen von Produktionsdatenvolumes und deren Bereitstellung in QA-, Staging- und Entwicklungsumgebungen.  FlexClone -Volumes sind nützlich, um Testkopien von Produktionsdaten zu erstellen, ohne den zum Kopieren der Daten erforderlichen Speicherplatz verdoppeln zu müssen.
@@ -30,6 +31,7 @@ Während es bei eigenständigen Hyper-V-Hosts unkompliziert ist, ist das Verfahr
 
 
 
+[[backup-and-restore-using-third-party-solutions]]
 == Sichern und Wiederherstellen mit Lösungen von Drittanbietern
 
 *Hinweis*: In diesem Abschnitt wird Commvault verwendet, dies gilt jedoch auch für andere Lösungen von Drittanbietern.
@@ -149,6 +151,7 @@ Ausführliche Schritte für alle unterstützten Wiederherstellungsoptionen finde
 
 
 
+[[advanced-netapp-ontap-options]]
 == Erweiterte NetApp ONTAP -Optionen
 
 NetApp SnapMirror ermöglicht eine effiziente Site-to-Site-Speicherreplikation und sorgt so für eine schnelle, zuverlässige und verwaltbare Notfallwiederherstellung, die den Anforderungen globaler Unternehmen von heute gerecht wird.  SnapMirror repliziert Daten mit hoher Geschwindigkeit über LANs und WANs und bietet hohe Datenverfügbarkeit und schnelle Wiederherstellung für unternehmenskritische Anwendungen sowie hervorragende Speicherdeduplizierungs- und Netzwerkkomprimierungsfunktionen.  Mit der NetApp SnapMirror -Technologie kann die Notfallwiederherstellung das gesamte Rechenzentrum schützen.  Volumes können schrittweise an einem externen Standort gesichert werden.  SnapMirror führt eine inkrementelle, blockbasierte Replikation so häufig durch, wie es das erforderliche RPO erfordert.  Durch die Aktualisierungen auf Blockebene werden Bandbreite und Zeitbedarf reduziert und die Datenkonsistenz am DR-Standort gewahrt.

@@ -18,6 +18,7 @@ In diesem Artikel wird detailliert beschrieben, wie Sie SnapMirror Active Sync m
 
 
 
+[[overview]]
 == Überblick
 
 link:https://docs.netapp.com/us-en/ontap/snapmirror-active-sync/["NetApp Snapmirror Active Sync (SM Active Sync)"]ist eine robuste Lösung zum Erreichen von null Recovery Time Objective (RTO) und null Recovery Point Objective (RPO) in einer virtualisierten Umgebung.
@@ -32,6 +33,7 @@ Dieses Dokument zeigt Ihnen die Schritte zum Konvertieren von SM Active Sync Asy
 
 
 
+[[prerequisites]]
 == Voraussetzungen
 
 * NetApp -Speichersysteme: Stellen Sie sicher, dass Sie über zwei NetApp -Speichercluster (Quelle und Ziel) mit Snapmirror-Lizenzen verfügen.
@@ -47,6 +49,7 @@ Dieses Dokument zeigt Ihnen die Schritte zum Konvertieren von SM Active Sync Asy
 
 
 
+[[steps-to-convert-from-asymmetric-to-symmetric-sm-active-sync]]
 == Schritte zur Konvertierung von asymmetrischer zu symmetrischer SM Active Sync
 
 Im folgenden Beispiel ist selectrz1 der primäre Standort und selectrz2 der sekundäre Standort.

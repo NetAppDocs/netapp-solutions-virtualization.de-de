@@ -23,6 +23,7 @@ NOTE: Die Funktion ist allgemein für NFS v3 mit 8.0 U2 verfügbar. Siehe Abschn
 
 
 
+[[use-cases]]
 == Anwendungsfälle
 
 * Hosten Sie mehr virtuelle Maschinen pro NFS-Datenspeicher auf demselben Host.
@@ -32,12 +33,14 @@ NOTE: Die Funktion ist allgemein für NFS v3 mit 8.0 U2 verfügbar. Siehe Abschn
 
 
 
+[[technical-details]]
 == Technische Details
 
 Der Zweck von nconnect besteht darin, mehrere TCP-Verbindungen pro NFS-Datenspeicher auf einem vSphere-Host bereitzustellen.  Dies trägt zur Erhöhung der Parallelität und Leistung für NFS-Datenspeicher bei.  Wenn in ONTAP eine NFS-Einbindung hergestellt wird, wird eine Verbindungs-ID (CID) erstellt.  Dieses CID ermöglicht bis zu 128 gleichzeitige Operationen während des Fluges.  Wenn diese Zahl vom Client überschritten wird, führt ONTAP eine Art Flusskontrolle durch, bis einige verfügbare Ressourcen freigegeben werden können, während andere Vorgänge abgeschlossen werden.  Diese Pausen dauern normalerweise nur wenige Mikrosekunden, können sich jedoch im Laufe von Millionen von Vorgängen summieren und zu Leistungsproblemen führen.  Nconnect kann das Limit von 128 nehmen und es mit der Anzahl der Nconnect-Sitzungen auf dem Client multiplizieren, was mehr gleichzeitige Vorgänge pro CID ermöglicht und möglicherweise Leistungsvorteile mit sich bringt.  Weitere Einzelheiten finden Sie unterlink:https://www.netapp.com/media/10720-tr-4067.pdf["NFS-Best-Practice- und Implementierungshandbuch"]
 
 
 
+[[default-nfs-datastore]]
 === Standard-NFS-Datenspeicher
 
 Um die Leistungseinschränkungen einer einzelnen Verbindung eines NFS-Datenspeichers zu beheben, werden zusätzliche Datenspeicher bereitgestellt oder zusätzliche Hosts hinzugefügt, um die Verbindung zu verbessern.
@@ -46,6 +49,7 @@ image:vmware-vsphere8-nfs-wo-nconnect.png["NFS-Datenspeicher ohne Nconnect-Funkt
 
 
 
+[[with-nconnect-nfs-datastore]]
 === Mit nConnect NFS Datastore
 
 Sobald der NFS-Datenspeicher mit ONTAP Tools oder anderen Optionen erstellt wurde, kann die Anzahl der Verbindungen pro NFS-Datenspeicher mithilfe von vSphere CLI, PowerCLI, dem Govc-Tool oder anderen API-Optionen geändert werden.  Um Leistungsprobleme im Zusammenhang mit vMotion zu vermeiden, halten Sie die Anzahl der Verbindungen für den NFS-Datenspeicher auf allen vSphere-Hosts, die Teil des vSphere-Clusters sind, gleich.
@@ -54,6 +58,7 @@ image:vmware-vsphere8-nfs-nconnect.png["NFS-Datenspeicher mit aktivierter Nconne
 
 
 
+[[pre-requisite]]
 == Voraussetzung
 
 Um die Nconnect-Funktion zu nutzen, müssen die folgenden Abhängigkeiten erfüllt sein.
@@ -75,6 +80,7 @@ Um die Nconnect-Funktion zu nutzen, müssen die folgenden Abhängigkeiten erfül
 |===
 
 
+[[update-number-of-connection-to-nfs-datastore]]
 == Aktualisieren Sie die Anzahl der Verbindungen zum NFS-Datenspeicher
 
 Eine einzelne TCP-Verbindung wird verwendet, wenn ein NFS-Datenspeicher mit ONTAP Tools oder mit vCenter erstellt wird.  Um die Anzahl der Verbindungen zu erhöhen, kann die vSphere CLI verwendet werden.  Der Referenzbefehl wird unten angezeigt.
@@ -135,6 +141,7 @@ Verweisenlink:https://kb.vmware.com/s/article/91497["VMware KB-Artikel 91497"] f
 
 
 
+[[design-considerations]]
 == Designüberlegungen
 
 Die maximale Anzahl der auf ONTAP unterstützten Verbindungen hängt vom Speicherplattformmodell ab.  Suchen Sie nach exec_ctx auflink:https://www.netapp.com/media/10720-tr-4067.pdf["NFS-Best-Practice- und Implementierungshandbuch"] für weitere Informationen.

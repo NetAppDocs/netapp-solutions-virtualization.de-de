@@ -18,6 +18,7 @@ summary: Um iSCSI vVols in einer VMware Cloud Foundation VI-Workloaddomäne bere
 
 
 
+[[infrastructure-requirements]]
 == Infrastrukturanforderungen
 
 Stellen Sie sicher, dass die folgenden Komponenten und Konfigurationen vorhanden sind.
@@ -29,6 +30,7 @@ Stellen Sie sicher, dass die folgenden Komponenten und Konfigurationen vorhanden
 
 
 
+[[recommended-iscsi-network-design]]
 == Empfohlenes iSCSI-Netzwerkdesign
 
 Sie sollten vollständig redundante Netzwerkdesigns für iSCSI konfigurieren.  Das folgende Diagramm zeigt ein Beispiel einer redundanten Konfiguration.  Es bietet Fehlertoleranz für Speichersysteme, Switches, Netzwerkadapter und Hostsysteme.  Weitere Informationen finden Sie in der NetApplink:https://docs.netapp.com/us-en/ontap/san-config/index.html["SAN-Konfigurationsreferenz"^] .
@@ -44,6 +46,7 @@ NOTE: In Situationen, in denen mehrere VMkernel-Adapter im selben IP-Netzwerk ko
 
 
 
+[[whats-next]]
 == Wie geht es weiter?
 
 Nach der Überprüfung der Bereitstellungsanforderungen,link:vmw-vcf-viwld-supp-iscsi-vvols-svm-lifs.html["Erstellen Sie die SVM und LIFs"] .

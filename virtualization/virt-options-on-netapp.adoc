@@ -18,6 +18,7 @@ Entdecken Sie, wie NetApp ONTAP eine robuste Grundlage für die Virtualisierung 
 
 
 
+[[introduction]]
 == Einführung
 
 Angesichts der jüngsten Lizenzänderungen von VMware müssen Unternehmen ihre Virtualisierungsstrategien anpassen, um Kosteneffizienz und Skalierbarkeit zu maximieren und Geschäftsrisiken zu minimieren.  Entscheidende Schritte sind die Optimierung vorhandener VMware-Umgebungen, die Berücksichtigung einer Migration von eigenständigem vSphere zu VMware Cloud Foundation (VCF) unter Verwendung des vorhandenen Unternehmensspeichers und die Einführung eines Multi-Hypervisor- oder Hybrid-Cloud-Ansatzes.  Insbesondere führte VCF 5.2.1 eine verbesserte Flexibilität ein, indem es die Verwendung externer Speicherlösungen anstelle von vSAN ermöglichte, was es Unternehmen vereinfachte, die neuen Lizenzmodelle zu übernehmen und gleichzeitig Unternehmensspeicherfunktionen zu nutzen und die Kontinuität aufrechtzuerhalten.
@@ -28,6 +29,7 @@ Dieses Dokument skizziert Strategien zur Optimierung der VMware-Bereitstellungsk
 
 
 
+[[what-changed]]
 == Was hat sich geändert?
 
 Die Übernahme von VMware durch Broadcom hat zu einer erheblichen Änderung des Lizenzmodells von VMware geführt.  Der neue Ansatz geht in Richtung einer abonnementbasierten Paketpreisstruktur, die zwar den Branchentrends entspricht, aber voraussichtlich zu wesentlich höheren Kosten für die Kunden führen wird.  Hier sind drei wichtige Punkte, die Sie beachten sollten:
@@ -42,6 +44,7 @@ Die Übernahme von VMware durch Broadcom hat zu einer erheblichen Änderung des 
 
 
 
+[[why-ontap]]
 == Warum ONTAP
 
 Mit den Speicherlösungen von NetApp können Kunden alle Vorteile einer virtualisierten Infrastruktur voll ausschöpfen.  Mit NetApp -Lösungen können Kunden schnell umfassende Datenmanagementsoftware bereitstellen, die Automatisierung, Effizienz, Datenschutz und führende Sicherheitsfunktionen bietet und gleichzeitig alle anspruchsvollen Leistungsanforderungen erfüllt.  Durch die Kombination der ONTAP -Software mit VMware vSphere können Sie die Kosten für Host-Hardware und VMware-Lizenzen senken, den Schutz Ihrer Daten zu geringeren Kosten gewährleisten und eine gleichbleibend hohe Leistung erzielen.
@@ -66,6 +69,7 @@ Die ONTAP Speicherlösung bietet die folgenden Vorteile:
 
 
 
+[[key-takeaways]]
 === Wichtige Erkenntnisse
 
 * Verwenden Sie ONTAP , um die CPU-Auslastung und den Overhead auf ESXi-Hosts zu eliminieren, indem Sie CPU-intensive Aufgaben wie Speichereffizienz, Verschlüsselung, Snapshots und mehr auslagern.  Diese Optimierung reduziert die Gesamtbetriebskosten (TCO), da auf jedem Host weniger Kerne erforderlich sind.
@@ -78,6 +82,7 @@ Die ONTAP Speicherlösung bietet die folgenden Vorteile:
 
 
 
+[[right-size-and-optimize]]
 == Richtige Größe und Optimierung
 
 Mit dem Inkrafttreten dieser Lizenzänderungen stehen alle IT-Organisationen unter dem Druck potenziell steigender Gesamtbetriebskosten (TCO), die manchmal um mehr als das Zehnfache steigen können.  Eine gut optimierte VMware-Umgebung maximiert die Leistung und kontrolliert gleichzeitig die Lizenzkosten.  Dies gewährleistet eine effektive Ressourcenverwaltung und Kapazitätsplanung.  Mit dem richtigen Satz an Tools können Sie schnell verschwendete oder ungenutzte Ressourcen identifizieren, um die Kerne zurückzugewinnen und so die Anzahl der Kerne zu reduzieren, was wiederum die Gesamtlizenzkosten senkt.
@@ -86,6 +91,7 @@ NetApp bietet eine leistungsstarke Suite von Tools zur Bewältigung dieser Herau
 
 
 
+[[how-netapp-helps]]
 === So hilft NetApp
 
 
@@ -204,12 +210,14 @@ Bei ONTAP One sind alle Sicherheitsfunktionssätze, die als zusätzliche Ebene f
 
 
 
+[[vmware-alternatives-to-consider]]
 == Zu berücksichtigende VMware-Alternativen
 
 Jede Organisation prüft einen Multi-Hypervisor-Ansatz, der eine Multi-Vendor-Hypervisor-Strategie unterstützt und so die betriebliche Flexibilität stärkt, die Abhängigkeit von Anbietern verringert und die Workload-Platzierung optimiert.  Durch die Kombination mehrerer Hypervisoren können Unternehmen ihre Infrastruktur an unterschiedliche Arbeitslastanforderungen anpassen und gleichzeitig die Kosten im Griff behalten.  Unternehmen optimieren dann die Verwaltung mehrerer Hypervisoren, indem sie Interoperabilität, kostengünstige Lizenzierung und Automatisierung nutzen.  ONTAP ist die ideale Plattform für jede Hypervisor-Plattform.  Und eine Schlüsselanforderung bei diesem Ansatz ist die dynamische Mobilität virtueller Maschinen basierend auf den SLAs und der Strategie zur Workload-Platzierung.
 
 
 
+[[key-considerations-for-multi-hypervisor-adoption]]
 === Wichtige Überlegungen zur Einführung mehrerer Hypervisoren
 
 * *Strategische Kostenoptimierung:* Durch die Verringerung der Abhängigkeit von einem einzelnen Anbieter werden die Betriebs- und Lizenzkosten optimiert.
@@ -226,6 +234,7 @@ image:virt-options-002.png["Diagramm der von NetApp unterstützten Virtualisieru
 
 
 
+[[hyper-v-windows-server]]
 === Hyper-V (Windows Server)
 
 Lassen Sie es uns erkunden:
@@ -250,6 +259,7 @@ Lassen Sie es uns erkunden:
 
 
 
+[[openshift-virtualization-redhat-kubevirt-implementation]]
 === OpenShift-Virtualisierung (RedHat KubeVirt-Implementierung)
 
 Lassen Sie es uns erkunden:
@@ -279,6 +289,7 @@ OpenShift-Virtualisierung kann sinnvoll sein, wenn:
 
 
 
+[[proxmox-virtual-environment-proxmox-ve]]
 === Virtuelle Proxmox-Umgebung (Proxmox VE)
 
 Lassen Sie es uns erkunden:
@@ -311,6 +322,7 @@ Proxmox kann sinnvoll sein, wenn:
 
 
 
+[[vmware-cloud-offerings-azure-vmware-solution-google-cloud-vmware-engine-vmware-cloud-on-aws-elastic-vmware-service]]
 === VMware Cloud-Angebote (Azure VMWare Solution, Google Cloud VMware Engine, VMware Cloud on AWS, Elastic VMware Service)
 
 Lassen Sie es uns erkunden:
@@ -356,6 +368,7 @@ Kunden, die VMware Cloud auf einem beliebigen Hyperscaler als Disaster-Recovery-
 
 
 
+[[cloud-native-virtual-machines]]
 === Cloud-native virtuelle Maschinen
 
 
@@ -380,6 +393,7 @@ Lassen Sie es uns erkunden:
 
 
 
+[[azure-local-or-aws-outpost-or-any-other-hci-model]]
 === Azure Local oder AWS Outpost oder jedes andere HCI-Modell
 
 Lassen Sie es uns erkunden:
@@ -411,6 +425,7 @@ Nachteile:
 
 
 
+[[other-hypervisor-options-that-are-being-considered-in-customer-environments]]
 === Weitere Hypervisor-Optionen, die in Kundenumgebungen in Betracht gezogen werden
 
 * *KVM* wird auf ONTAP im Allgemeinen gemäß der übergeordneten Linux-Distribution unterstützt. Informationen zum Referenz-Linux finden Sie einfach im IMT .
@@ -430,10 +445,12 @@ Zusammenfassend lässt sich sagen, dass VMware weiterhin der De-facto-Hypervisor
 
 
 
+[[wicked-fast-100x-faster-migrations]]
 == Unglaublich schnelle (100x schnellere) Migrationen
 
 
 
+[[shift-toolkit]]
 === Shift-Toolkit
 
 Wie oben erläutert, sind Lösungen wie VMware, Microsoft Hyper-V, Proxmox und OpenShift Virtualization zu robusten und zuverlässigen Optionen für Virtualisierungsanforderungen geworden.  Angesichts der dynamischen Geschäftsanforderungen muss auch die Auswahl einer Virtualisierungsplattform anpassungsfähig sein und die sofortige Mobilität virtueller Maschinen wird wichtig.
@@ -451,6 +468,7 @@ NOTE: Voraussetzung für das Shift-Toolkit sind VMs, die auf einem NFS-Volume au
 
 
 
+[[cirrus-data-migrateops]]
 === Cirrus Data MigrateOps
 
 Eine Alternative zum Shift-Toolkit ist eine partnerbasierte Lösung, die auf Blockebenenreplikation basiert.  Cirrus Data kann Workloads nahtlos von herkömmlichen Hypervisoren auf moderne Plattformen migrieren und so flexiblere hybride Workloads, beschleunigte Modernisierungsbemühungen und eine verbesserte Ressourcennutzung ermöglichen. link:https://action.cirrusdata.com/virtualization-optimization#:~:text=Migrate%20from%20leading%20hypervisors%20with%20just%20a%20click.,from%20Amazon%20Web%20Services%20%28AWS%29%20and%20Microsoft%20Azure.["Cirrus Migrate Cloud"] ermöglichen es Unternehmen zusammen mit MigrateOps, den Wechsel von einem Hypervisor zu einem anderen mit einer sicheren, benutzerfreundlichen und zuverlässigen Lösung zu automatisieren.
@@ -459,6 +477,7 @@ Eine Alternative zum Shift-Toolkit ist eine partnerbasierte Lösung, die auf Blo
 
 
 
+[[common-projected-deployment-model-in-a-multi-hypervisor-environment]]
 == Gemeinsames projiziertes Bereitstellungsmodell (in einer Umgebung mit mehreren Hypervisoren)
 
 Ein Kunde hatte eine große virtualisierte Umgebung mit 10.000 VMs (eine Mischung aus Windows- und Linux-Workloads).  Um die Lizenzkosten zu optimieren und die Zukunft der Virtualisierungsinfrastruktur zu vereinfachen, war eine Strategie zur Platzierung mehrerer Hypervisoren und virtueller Maschinen wichtig.  Sie wählten die VM-Platzierungsstrategie basierend auf der Kritikalität der Arbeitslast, dem Betriebssystemtyp, den Leistungsanforderungen, der Hypervisor-Funktionalität und den Lizenzkosten.
@@ -474,6 +493,7 @@ Dieser Multi-Hypervisor-Ansatz gleicht Kosten, Leistung und Flexibilität aus un
 
 
 
+[[conclusion]]
 == Abschluss
 
 Nach der Übernahme von Broadcom müssen sich VMware-Kunden durch eine komplexe Landschaft aus Integration, Leistungsoptimierung und Kostenmanagement navigieren.  NetApp bietet eine leistungsstarke Suite von Tools und Funktionen zur Bewältigung dieser Herausforderungen und sorgt für verbesserte Transparenz, nahtlose Integration, Kosteneffizienz und robuste Sicherheit.  Durch die Nutzung dieser Funktionen können Sie bei VMware bleiben, einen Multi-Vendor-Ansatz ermöglichen und sich auf zukünftige Störungen vorbereiten.

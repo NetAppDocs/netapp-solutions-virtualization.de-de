@@ -1,0 +1,66 @@
+---
+sidebar: sidebar 
+permalink: openshift/osv-deployment-models.html 
+keywords: OpenShift, OCP, Trident, NetApp ONTAP, Red Hat OpenShift, OpenShift Virtualization, CNV, Container Native Virtualization, Red Hat OpenShift Virtualization 
+summary: Red Hat OpenShift-Virtualisierung 
+---
+= Bereitstellungsmodelle für OpenShift/OpenShift Virtualisierung
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+OpenShift Container-Plattform-Bereitstellungsmodelle werden primär nach der Infrastruktur, auf der sie ausgeführt werden (Cloud vs. On-Premises), und danach, wie sie verwaltet werden (durch Red Hat oder den Kunden), kategorisiert. OpenShift Virtualisierung kann auf der OpenShift Container-Plattform installiert werden.
+
+
+
+[[key-deployment-models-include]]
+== Zu den wichtigsten Bereitstellungsmodellen zählen
+
+. **Managed Services (Red Hat Managed)**: In diesem Modell übernimmt Red Hat die Verwaltung der OpenShift Container Platform-Infrastruktur und des Betriebs. Der Kunde ist für die Verwaltung seiner Anwendungen und Workloads auf der Plattform verantwortlich. Beispiele hierfür sind:
++
+.. **Red Hat OpenShift Service on AWS (ROSA)**: Ein verwalteter Dienst, der die einfache Integration mit AWS-Diensten ermöglicht. OpenShift Virtualisierung ist auf EC2 Bare Metal-Instanzen auf AWS installiert.
+.. **Azure Red Hat OpenShift (ARO)**: Dies ist ein verwalteter Dienst auf der Azure Cloud. OpenShift Virtualisierung läuft auf Azure Virtual Machines.
+.. **Red Hat OpenShift Dedicated (OSD)**: Ein vollständig verwalteter Dienst, der auf Google Cloud bereitgestellt und von Red Hat verwaltet wird. OpenShift Virtualisierung wird auf Bare-Metal-Instanzen von Google Cloud bereitgestellt.
+
+
+. **Selbstverwaltete Dienste (vom Kunden verwaltet)**: In diesem Fall wird die OpenShift Container Platform direkt vom Kunden auf der eigenen Infrastruktur bereitgestellt und verwaltet. Die Infrastruktur kann sich entweder in einer Public Cloud oder lokal befinden.
++
+.. **Öffentliche Cloud:** Bereitstellung auf AWS, Azure oder GCP mit entweder Installer-Provisioned Infrastructure (IPI) oder User-Provisioned Infrastructure (UPI)
+.. **Bare Metal:** Direkte Installation auf physischer Hardware.
+.. **Virtualisierung:** Einsatz auf Plattformen wie VMware vSphere.
+
+
+
+
+
+
+[[infrastructure-deployment-options]]
+=== Optionen für die Infrastrukturbereitstellung
+
+. **Vom Installer bereitgestellte Infrastruktur (IPI):** Das Installationsprogramm automatisiert die Bereitstellung von Infrastrukturkomponenten wie Netzwerk und Maschinen.
+. **Benutzerbereitgestellte Infrastruktur (UPI):** Der Benutzer erstellt und verwaltet die Infrastruktur manuell und hat dadurch mehr Kontrolle über die Umgebung.
+
+
+
+
+[[specialized-deployment-models]]
+== Spezialisierte Bereitstellungsmodelle
+
+. **Single-node OpenShift (SNO):** Ein vollständiger OpenShift-Cluster, der auf einer einzelnen physischen oder virtuellen Maschine installiert ist, häufig für Edge Computing verwendet.
+. **Bereitstellung in einer getrennten (Air-gapped) Umgebung:** Bereitstellung in eingeschränkten Netzwerkumgebungen ohne externen Internetzugang.
+. **Red Hat OpenShift Virtualization Engine:** Eine reine Bare-Metal-Virtualisierungsinfrastruktur, speziell entwickelt, um Unternehmen eine zuverlässige Lösung der Enterprise-Klasse für die Bereitstellung, Verwaltung und Skalierung von VMs zu bieten. Ein Teilbereich der OpenShift-Funktionalität, diese Edition von OpenShift richtet sich an Workloads, die ausschließlich aus virtuellen Maschinen bestehen.
+
+
+
+
+[[additional-resources]]
+== Weitere Ressourcen
+
+Ausführliche Informationen zur OpenShift Container-Plattform finden Sie in der Red Hat link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/overview/ocp-overview["Dokumentation hier."]
+
+Vollständige Details zur OpenShift Virtualisierung finden sich in der Red Hat link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/virtualization/index["Dokumentation hier."]

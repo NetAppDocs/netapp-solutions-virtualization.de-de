@@ -47,6 +47,7 @@ Durch Hinzufügen eines Speicher-Backends können Sie einen ONTAP Cluster integr
 
 
 
+[[additional-information]]
 == Weitere Informationen
 
 * Informationen zum Konfigurieren von ONTAP Speichersystemen finden Sie unterlink:https://docs.netapp.com/us-en/ontap["ONTAP 9 Dokumentation"] .

@@ -18,6 +18,7 @@ Mit dem Shift Toolkit lassen sich VMware ESX-virtuelle Festplatten (VMDK) in das
 
 
 
+[[overview]]
 == Überblick
 
 Shift Toolkit unterstützt die Konvertierung virtueller Festplatten auf Festplattenebene zwischen Hypervisoren für die folgenden Formate, mit Unterstützung sowohl für FlexVol und FlexGroup Volumes auf ONTAP:
@@ -39,6 +40,7 @@ Das Shift-Toolkit unterstützt die durchgängige Migration von VMware zu anderen
 
 
 
+[[convert-to-qcow2-format]]
 == In das QCOW2-Format konvertieren
 
 Um die virtuellen Festplatten mit dem NetApp Shift Toolkit in das QCOW2-Format zu konvertieren, führen Sie die folgenden allgemeinen Schritte aus:
@@ -103,6 +105,7 @@ NOTE: Das Shift-Toolkit unterstützt Festplattenkonvertierungen nur für das qco
 
 
 
+[[convert-to-vhdx-format]]
 == In das VHDX-Format konvertieren
 
 Um die virtuellen Festplatten mit dem NetApp Shift Toolkit in das VHDX-Format zu konvertieren, führen Sie die folgenden allgemeinen Schritte aus:
@@ -138,6 +141,7 @@ NOTE: Um die konvertierte VHDX-Festplatte in einer VM zu verwenden, muss die VM 
 
 
 
+[[convert-to-raw-format]]
 == In das RAW-Format konvertieren
 
 Um die virtuellen Festplatten mit dem NetApp Shift Toolkit in das RAW-Format zu konvertieren, führen Sie die folgenden allgemeinen Schritte aus:

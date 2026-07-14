@@ -20,6 +20,7 @@ In diesem Anwendungsfall beschreiben wir das Verfahren zur Verwendung des SnapCe
 
 
 
+[[scenario-overview]]
 == Szenarioübersicht
 
 Dieses Szenario umfasst die folgenden allgemeinen Schritte:
@@ -35,6 +36,7 @@ Dieses Szenario umfasst die folgenden allgemeinen Schritte:
 
 
 
+[[prerequisites]]
 == Voraussetzungen
 
 Dieses Szenario erfordert die folgenden Komponenten und Konfigurationen:
@@ -55,12 +57,14 @@ image:vmware-vcf-asa-108.png["3-2-1-Backup-Strategie"]
 
 
 
+[[deployment-steps]]
 == Bereitstellungsschritte
 
 Führen Sie die folgenden Schritte aus, um das SnapCenter -Plug-in bereitzustellen und damit Sicherungen zu erstellen und VMs und Datenspeicher wiederherzustellen:
 
 
 
+[[deploy-and-use-scv-to-protect-data-in-a-vi-workload-domain]]
 === Bereitstellen und Verwenden von SCV zum Schutz von Daten in einer VI-Workloaddomäne
 
 Führen Sie die folgenden Schritte aus, um SCV bereitzustellen, zu konfigurieren und zum Schutz von Daten in einer VI-Workloaddomäne zu verwenden:
@@ -470,6 +474,7 @@ image:vmware-vcf-asa-092.png["Gastdatei durchsuchen 2"]
 ====
 
 
+[[additional-information]]
 == Weitere Informationen
 
 Informationen zur Konfiguration von VCF finden Sie unter https://techdocs.broadcom.com/us/en/vmware-cis/vcf.html["VMware Cloud Foundation-Dokumentation"] .

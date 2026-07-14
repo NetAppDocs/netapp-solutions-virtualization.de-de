@@ -18,6 +18,7 @@ Mit dem Shift Toolkit Job Monitoring Dashboard können Sie Migrations-, Konverti
 
 
 
+[[job-monitoring-dashboard]]
 == Job-Überwachungs-Dashboard
 
 Das Job-Monitoring-Dashboard bietet eine zentrale Übersicht über alle aktiven und abgeschlossenen Vorgänge innerhalb des Shift Toolkits.  Nutzen Sie dieses Dashboard, um den Fortschritt Ihrer Migrations-, Konvertierungs- und Blueprint-Aufträge zu überwachen.
@@ -35,6 +36,7 @@ Das Dashboard zeigt wichtige Informationen für jeden Job an:
 
 
 
+[[understanding-job-status]]
 == Stellenstatus verstehen
 
 Die intuitive Benutzeroberfläche ermöglicht es Ihnen, den Status aller Vorgänge schnell zu beurteilen und Aufgaben zu identifizieren, die Aufmerksamkeit erfordern.

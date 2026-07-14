@@ -22,6 +22,7 @@ ONTAP -Tools vereinfachen die Einrichtung und Verwaltung von Datenspeichern und 
 
 
 
+[[supported-protocols-for-expanding-storage]]
 == Unterstützte Protokolle zur Speichererweiterung
 
 VCF-Umgebungen können mithilfe mehrerer Speicherprotokolle erweitert werden, die jeweils einzigartige Vorteile und Anwendungsfälle bieten.
@@ -75,6 +76,7 @@ Weitere Informationen zu den Vorteilen von NVMe finden Sie unter https://www.net
 
 
 
+[[use-cases-for-adding-supplemental-storage]]
 == Anwendungsfälle für das Hinzufügen von zusätzlichem Speicher
 
 Die folgenden Anwendungsfälle zeigen, wie mithilfe verschiedener Protokolle und Konfigurationen zusätzlicher Speicher zu VCF-Verwaltungsdomänen und Virtual Infrastructure (VI)-Workloaddomänen hinzugefügt wird.

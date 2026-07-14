@@ -20,6 +20,7 @@ Mithilfe von VMware Cloud Foundation (VCF)-Workloaddomänen können Unternehmen 
 
 
 
+[[introduction]]
 == Einführung
 
 Domänen können unabhängig skaliert werden, bestimmte Konformitäten erfüllen und Multitenancy bieten.  Der Datenschutz für VMware Cloud Foundation (VCF) ist ein entscheidender Aspekt, um die Verfügbarkeit, Integrität und Wiederherstellbarkeit von Daten in der gesamten Verwaltungsdomäne und den Workload-Domänen sicherzustellen.  Das NetApp SnapCenter Plug-in for VMware vSphere (SCV) ist ein leistungsstarkes Tool, das die Datenschutzfunktionen von NetApp in VMware-Umgebungen integriert.  Es vereinfacht die Sicherung, Wiederherstellung und das Klonen von virtuellen VMware vSphere-Maschinen (VMs), die auf NetApp -Speicher gehostet werden.
@@ -28,12 +29,14 @@ Dieses Dokument enthält Bereitstellungsschritte zum Schutz mehrerer VCF-Domäne
 
 
 
+[[audience]]
 == Publikum
 
 Lösungsarchitekten oder Speicheradministratoren, die Datenschutz und Notfallwiederherstellung für VMware VCF-Workloaddomänen sicherstellen.
 
 
 
+[[architecture-overview]]
 == Architekturübersicht
 
 SCV wird als virtuelle Linux-Appliance mithilfe einer OVA-Datei bereitgestellt, um schnelle, platzsparende, absturzkonsistente und VM-konsistente Sicherungs- und Wiederherstellungsvorgänge für VMs, Datenspeicher sowie Dateien und Ordner bereitzustellen.  SCV verwendet eine Remote-Plug-In-Architektur.  Es wurden mehrere SCVs bereitgestellt und auf der VCF-Verwaltungsdomäne vCenter gehostet.  Zwischen SCV- und VCF-Domäne besteht eine Eins-zu-eins-Beziehung, daher ist für die VCF-Verwaltungsdomäne und jede Workloaddomäne ein SCV erforderlich.
@@ -46,6 +49,7 @@ Die 3-2-1-Backup-Regel ist eine Datensicherungsstrategie, die das Erstellen von 
 
 
 
+[[deploy-a-vcf-with-management-domain-and-multiple-workload-domains]]
 == Bereitstellen eines VCF mit Verwaltungsdomäne und mehreren Workloaddomänen
 
 Eine VCF-Workloaddomäne ist eine Gruppe von ESXi-Hosts mit einem oder mehreren vSphere-Clustern, die vom SDDC Manager bereitgestellt werden und anwendungsbereit sind.  In einem VCF-Beispiel unten wurden eine Verwaltungsdomäne und zwei Workloaddomänen bereitgestellt.  Weitere Informationen zur Bereitstellung von VCF mit NetApp -Speicher finden Sie unterlink:vmw-vcf-overview.html["Dokumentation zur NetApp VCF-Bereitstellung."]
@@ -54,6 +58,7 @@ image:vmware-vcf-aff-051.png["VCF: eine Verwaltungsdomäne und zwei Workloaddom�
 
 
 
+[[scv-deployment-configuration-and-restoration-steps]]
 == SCV-Bereitstellung, Konfiguration und Wiederherstellungsschritte
 
 Basierend auf der Anzahl der Workloaddomänen und der Verwaltungsdomäne müssen mehrere SCVs bereitgestellt werden.  Mit zwei Workloaddomänen und einer Verwaltungsdomäne zeigt das folgende Beispiel, dass drei SCVs auf der VCF-Verwaltungsdomäne vCenter bereitgestellt werden.image:vmware-vcf-aff-063.png["Eins zu Eins zwischen VCF-Domäne und SCV"]
@@ -136,6 +141,7 @@ NetApp SnapCenter für VCP Multi-Domain zentralisiert den Datenschutz, reduziert
 
 
 
+[[video-demo-for-protect-vcf-multiple-domains-with-scv]]
 == Videodemo zum Schützen mehrerer VCF-Domänen mit SCV
 
 .Schützen Sie mehrere VMware VCF-Domänen mit NetApp SCV

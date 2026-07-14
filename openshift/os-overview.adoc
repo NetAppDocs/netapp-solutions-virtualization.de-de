@@ -18,6 +18,7 @@ Die Red Hat OpenShift Container Platform vereint Entwicklung und IT-Betrieb auf 
 
 
 
+[[red-hat-openshift-provides-the-following-capabilities]]
 == Red Hat OpenShift bietet die folgenden Funktionen:
 
 * *Self-Service-Bereitstellung* Entwickler können schnell und einfach Anwendungen nach Bedarf mit den Tools erstellen, die sie am häufigsten verwenden, während der Betrieb die volle Kontrolle über die gesamte Umgebung behält.
@@ -37,6 +38,7 @@ image:redhat-openshift-004.png["Abbildung, die einen Eingabe-/Ausgabedialog zeig
 
 
 
+[[deployment-methods-for-red-hat-openshift]]
 == Bereitstellungsmethoden für Red Hat OpenShift
 
 Ab Red Hat OpenShift 4 umfassen die Bereitstellungsmethoden für OpenShift manuelle Bereitstellungen mithilfe von User Provisioned Infrastructure (UPI) für hochgradig angepasste Bereitstellungen oder vollständig automatisierte Bereitstellungen mithilfe von Installer Provisioned Infrastructure (IPI).
@@ -45,6 +47,7 @@ Die IPI-Installationsmethode ist in den meisten Fällen die bevorzugte Methode, 
 
 
 
+[[ipi-installation-of-red-hat-openshift]]
 === IPI-Installation von Red Hat OpenShift
 
 Die Bereitstellung der Installer Provisioned Infrastructure (IPI) von OpenShift umfasst die folgenden allgemeinen Schritte:
@@ -63,6 +66,7 @@ image:redhat-openshift-009.png["Abbildung, die einen Eingabe-/Ausgabedialog zeig
 
 
 
+[[netapp-validated-openshift-deployments]]
 === NetApp validierte OpenShift-Bereitstellungen
 
 NetApp hat die Bereitstellung von Red Hat OpenShift in seinen Laboren mithilfe der IPI-Bereitstellungsmethode (Installer Provisioned Infrastructure) in jeder der folgenden Rechenzentrumsumgebungen getestet und validiert:

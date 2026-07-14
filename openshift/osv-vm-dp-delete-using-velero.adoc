@@ -18,6 +18,7 @@ Löschen Sie Sicherungs- und Wiederherstellungsressourcen für VMs in OpenShift 
 
 
 
+[[deleting-a-backup]]
 == Löschen einer Sicherung
 
 Sie können ein Backup-CR löschen, ohne die Object Storage-Daten zu löschen, indem Sie das OC CLI-Tool verwenden.
@@ -36,6 +37,7 @@ velero backup delete <backup_CR_name> -n <velero_namespace>
 ....
 
 
+[[deleting-a-restore]]
 == Löschen einer Wiederherstellung
 
 Sie können die Wiederherstellungs-CR mit der Velero-CLI löschen

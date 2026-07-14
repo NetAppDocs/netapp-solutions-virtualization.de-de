@@ -18,6 +18,7 @@ Stellen Sie VMware Cloud Foundation 9-Umgebungen mit ONTAP bereit, konvergieren 
 
 
 
+[[deploy-a-new-vcf-9-instance]]
 == Bereitstellen einer neuen VCF 9-Instanz
 
 Verwenden Sie diesen Workflow, um eine saubere VMware Cloud Foundation (VCF) 9.0-Umgebung bereitzustellen.  Nach der Bereitstellung können Sie Workloads migrieren oder mit der Bereitstellung von Anwendungen und Infrastrukturdiensten beginnen.
@@ -127,6 +128,7 @@ Sie können diese Schritte immer wieder verwenden, wenn Sie eine neue Workloaddo
 
 
 
+[[converge-existing-components-into-vcf-9]]
 == Konvergieren Sie vorhandene Komponenten in VCF 9
 
 Möglicherweise verfügen Sie bereits über einige Komponenten der VCF-Flotte und möchten diese lieber wiederverwenden.  Wenn Sie eine vCenter-Instanz wiederverwenden, werden Datenspeicher häufig mit ONTAP Tools bereitgestellt, die als Hauptspeicher für VCF dienen können.
@@ -147,6 +149,7 @@ Möglicherweise verfügen Sie bereits über einige Komponenten der VCF-Flotte un
 
 
 
+[[upgrade-an-existing-vcf-environment-to-vcf-9]]
 == Aktualisieren Sie eine vorhandene VCF-Umgebung auf VCF 9
 
 Aktualisieren Sie eine frühere VCF-Bereitstellung mithilfe des Standard-Upgradeprozesses auf Version 9.0.  Das Ergebnis ist eine VCF-Umgebung mit Version 9.0 und aktualisierten Verwaltungs- und Workloaddomänen.

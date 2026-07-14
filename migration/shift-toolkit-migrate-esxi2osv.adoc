@@ -20,6 +20,7 @@ Das Shift Toolkit ermöglicht die VM-Migration zwischen Virtualisierungsplattfor
 
 
 
+[[before-you-begin]]
 == Bevor Sie beginnen
 
 Bitte vergewissern Sie sich vor Beginn der Migration, dass die folgenden Voraussetzungen erfüllt sind.
@@ -220,6 +221,7 @@ NOTE: Das Vorbereitungsskript verwendet das .msi-Paket, um Treiber und qemu-Gast
 
 
 
+[[step-1-add-the-destination-site-openshift]]
 == Schritt 1: Zielstandort (OpenShift) hinzufügen
 
 Fügen Sie die Zielumgebung OpenShift Virtualization zum Shift Toolkit hinzu.
@@ -282,6 +284,7 @@ NOTE: Quell- und Zielvolume bleiben identisch, da die Formatkonvertierung auf Vo
 
 
 
+[[step-2-create-resource-groups]]
 == Schritt 2: Ressourcengruppen erstellen
 
 Organisieren Sie VMs in Ressourcengruppen, um die Bootreihenfolge und die Bootverzögerungskonfigurationen beizubehalten.
@@ -358,6 +361,7 @@ Die Ressourcengruppe wurde erstellt und ist bereit für die Blueprint-Konfigurat
 
 
 
+[[step-3-create-a-migration-blueprint]]
 == Schritt 3: Erstellen Sie einen Migrationsplan
 
 Erstellen Sie einen Entwurf zur Definition des Migrationsplans, einschließlich Plattformzuordnungen, Netzwerkkonfiguration und VM-Einstellungen.
@@ -484,6 +488,7 @@ image::shift-toolkit-113.png[Blueprint bereit für die Migration]
 ====
 
 
+[[step-4-execute-the-migration]]
 == Schritt 4: Migration ausführen
 
 Den Migrationsworkflow auslösen, um VMs von VMware ESXi zu OpenShift Virtualization zu konvertieren.
@@ -556,6 +561,7 @@ NOTE: Die Überprüfungsoption kann nach Abschluss des Auftrags anhand der Blaup
 
 
 
+[[use-migration-toolkit-for-virtualization-with-shift-toolkit-scripted-approach]]
 == Migration Toolkit für Virtualisierung mit Shift Toolkit (skriptbasierter Ansatz) nutzen
 
 In diesem Abschnitt wird beschrieben, wie das Migration Toolkit for Virtualization (MTV) zusammen mit dem NetApp Shift Toolkit für eine nahtlose Migration zu Red Hat OpenShift Virtualization verwendet wird.
@@ -708,6 +714,7 @@ Nach Abschluss der Migration muss das Klon-Volume getrennt werden. Die Methode h
 
 
 
+[[video-demonstration]]
 == Videodemonstration
 
 Das folgende Video veranschaulicht den in dieser Lösung beschriebenen Prozess.

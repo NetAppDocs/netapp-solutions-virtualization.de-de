@@ -18,6 +18,7 @@ Durch Virtualisierung werden IT-Umgebungen optimiert, was eine effiziente Ressou
 
 
 
+[[overview]]
 == Überblick
 
 Traditionell bestanden Rechenzentren aus physischen Servern, Netzwerken und Speichern, die jeweils bestimmten Aufgaben zugeordnet waren.  Durch diesen Ansatz entstanden Silos von Ressourcen, die häufig kaum genutzt wurden.  Im Kern geht es bei der Virtualisierung darum, physische Ressourcen von den Anforderungen und Funktionen der Organisation zu entkoppeln.  Dies wird durch die Erstellung virtueller Darstellungen der drei wichtigsten Infrastrukturkomponenten erreicht: *Netzwerk*, *Rechner* und *Speicher*.  Durch die Bereitstellung einer virtuellen Infrastruktur können Unternehmen durch diese logischen Konstrukte eine bessere Nutzung der zugrunde liegenden physischen Ressourcen erreichen.
@@ -40,6 +41,7 @@ Weitere Informationen zu NetApp ONTAP finden Sie hier:
 
 
 
+[[network-virtualization]]
 == Netzwerkvirtualisierung
 
 Unter Netzwerkvirtualisierung versteht man die Abstraktion der physischen Netzwerkkomponenten (Switches, Router, Firewalls, Schnittstellen usw.) in logische Konstrukte.  Diese logischen Konstrukte, die unabhängig von der zugrunde liegenden physischen Infrastruktur arbeiten, ermöglichen eine sichere Kommunikation zwischen Clients, Speichern und anderen Komponenten im Netzwerk.  Die Netzwerkvirtualisierung ist für den Geschäftsbetrieb von entscheidender Bedeutung, da sie die gemeinsame Nutzung von Ressourcen und gleichzeitig die Einschränkung des Netzwerkverkehrs gemäß Richtlinien ermöglicht.
@@ -54,6 +56,7 @@ Weitere Informationen zur Netzwerkvirtualisierung finden Sie hier:
 
 
 
+[[compute-virtualization]]
 == Computervirtualisierung
 
 Die Computer- oder Servervirtualisierung ist möglicherweise die bekannteste Form der Virtualisierung.  Bei der Computervirtualisierung ahmen Hypervisoren die Funktionen physischer Server nach und ermöglichen es Betriebsteams, mehrere virtuelle Maschinen auf einem einzigen physischen Knoten auszuführen.  Bei der Computervirtualisierung werden Ressourcen wie Serverspeicher und CPU gemeinsam genutzt.  Diese gemeinsame Nutzung ermöglicht eine Überbelegung der zugrunde liegenden Ressourcen in einem für die eingesetzten Workloads und Anwendungen akzeptablen Maße.
@@ -69,6 +72,7 @@ Weitere Informationen zur Computervirtualisierung finden Sie hier:
 
 
 
+[[storage-virtualization]]
 == Speichervirtualisierung
 
 Ähnlich wie die Netzwerk- und Computervirtualisierung ist die Speichervirtualisierung für ein modernes Rechenzentrum wichtig.  NetApp ONTAP erleichtert die Speichervirtualisierung durch Storage Virtual Machines (SVMs), die Daten an Clients und Hosts bereitstellen.  SVMs sind logische Einheiten, die es ermöglichen, dass Speicherressourcen nicht an physische Medien gebunden sind.  SVMs können basierend auf Arbeitslasttyp, Anwendungsanforderungen und Organisationsgruppen für den Zugriff bereitgestellt werden.
@@ -82,6 +86,7 @@ Weitere Informationen zur Speichervirtualisierung finden Sie hier:
 
 
 
+[[closing]]
 == Schließen
 
 Die hier beschriebenen Komponenten der virtuellen Infrastruktur: Netzwerk, Rechenleistung und Speicher bieten die gleiche Funktionalität wie typische physische Ressourcen, jedoch über Software.  Die Zuweisung virtueller Ressourcen gegenüber physischen Ressourcen beschleunigt die Wertschöpfung und ermöglicht eine richtliniengesteuerte Konfiguration der Ressourcen.  Durch die Kombination von ONTAP mit Computer- und Netzwerkvirtualisierung können Clients und Hosts über eine softwaredefinierte virtuelle Infrastruktur auf Ressourcen zugreifen.

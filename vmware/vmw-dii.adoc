@@ -18,6 +18,7 @@ NetApp Data Infrastructure Insights (ehemals Cloud Insights) ist eine Cloud-basi
 
 
 
+[[monitoring-on-premises-storage-with-data-infrastructure-insights]]
 == Überwachung des lokalen Speichers mit Data Infrastructure Insights
 
 Data Infrastructure Insights funktioniert über die Acquisition Unit-Software, die mit Datensammlern für Assets wie VMware vSphere und NetApp ONTAP Speichersysteme eingerichtet ist.  Diese Collector sammeln Daten und übermitteln sie an Data Infrastructure Insights.  Die Plattform nutzt dann eine Vielzahl von Dashboards, Widgets und Metrikabfragen, um die Daten in aufschlussreiche Analysen zu organisieren, die die Benutzer interpretieren können.
@@ -28,6 +29,7 @@ image:vmware-dii.png["Data Infrastructure Insights"]
 
 
 
+[[solution-deployment-overview]]
 == Übersicht über die Lösungsbereitstellung
 
 Diese Lösung bietet eine Einführung in die Überwachung lokaler VMware vSphere- und ONTAP -Speichersysteme mithilfe von Data Infrastructure Insights.
@@ -45,6 +47,7 @@ Diese Liste enthält die wichtigsten Schritte, die in dieser Lösung behandelt w
 
 
 
+[[prerequisites]]
 == Voraussetzungen
 
 Diese Lösung verwendet die folgenden Komponenten:
@@ -57,10 +60,12 @@ Diese Lösung verwendet die folgenden Komponenten:
 
 
 
+[[solution-deployment]]
 == Lösungsbereitstellung
 
 
 
+[[configure-data-collectors]]
 === Konfigurieren von Datensammlern
 
 Führen Sie die folgenden Schritte aus, um Datenkollektoren für VMware vSphere- und ONTAP -Speichersysteme zu konfigurieren:
@@ -103,6 +108,7 @@ image:vmware-asa-034.png["Collector konfigurieren"]
 ====
 
 
+[[add-annotations-to-assets]]
 === Hinzufügen von Anmerkungen zu Assets
 
 Anmerkungen sind eine nützliche Methode zum Markieren von Assets, sodass sie in den verschiedenen in Cloud Insights verfügbaren Ansichten und Metrikabfragen gefiltert und anderweitig identifiziert werden können.
@@ -129,6 +135,7 @@ image:vmware-asa-037.png["Alle Regeln ausführen"]
 ====
 
 
+[[explore-and-correlate-assets]]
 === Erkunden und Korrelieren von Assets
 
 Cloud Insights zieht logische Schlussfolgerungen über die Assets, die zusammen auf Ihren Speichersystemen und vSphere-Clustern ausgeführt werden.
@@ -167,6 +174,7 @@ image:vmware-asa-043.png["VM-Leistungsmetriken"]
 ====
 
 
+[[use-cloud-insights-to-identify-noisy-neighbors]]
 === Verwenden Sie Cloud Insights , um laute Nachbarn zu identifizieren
 
 Cloud Insights bietet Dashboards, mit denen sich Peer-VMs, die sich negativ auf andere VMs auswirken, die auf demselben Speichervolume ausgeführt werden, problemlos isolieren lassen.
@@ -195,6 +203,7 @@ image:vmware-asa-047.png["Workload-Konflikte"]
 ====
 
 
+[[view-over-and-under-utilized-resources-in-cloud-insights]]
 === Zeigen Sie über- und unterausgelastete Ressourcen in Cloud Insights an
 
 Durch die Anpassung der VM-Ressourcen an die tatsächlichen Arbeitslastanforderungen kann die Ressourcennutzung optimiert werden, was zu Kosteneinsparungen bei Infrastruktur und Cloud-Diensten führt.  Daten in Cloud Insights können angepasst werden, um über- oder unterausgelastete VMs einfach anzuzeigen.
@@ -223,6 +232,7 @@ image:vmware-asa-051.png["Ausgeschaltete VMs"]
 ====
 
 
+[[use-queries-to-isolate-and-sort-metrics]]
 === Verwenden Sie Abfragen, um Metriken zu isolieren und zu sortieren
 
 Die von Cloud Insights erfasste Datenmenge ist recht umfangreich.  Metrikabfragen bieten eine leistungsstarke Möglichkeit, große Datenmengen auf nützliche Weise zu sortieren und zu organisieren.
@@ -243,12 +253,14 @@ image:vmware-asa-053.png["ONTAP Essential – VMware"]
 ====
 
 
+[[conclusion]]
 == Abschluss
 
 Diese Lösung wurde als Einführung in die ersten Schritte mit NetApp Cloud Insights konzipiert und zeigt einige der leistungsstarken Funktionen, die diese Observability-Lösung bietet.  Das Produkt verfügt über Hunderte von Dashboards und Metrikabfragen, sodass Sie sofort loslegen können.  Die Vollversion von Cloud Insights ist als 30-tägige Testversion verfügbar und die Basisversion ist für NetApp -Kunden kostenlos erhältlich.
 
 
 
+[[additional-information]]
 == Weitere Informationen
 
 Weitere Informationen zu den in dieser Lösung vorgestellten Technologien finden Sie in den folgenden zusätzlichen Informationen.

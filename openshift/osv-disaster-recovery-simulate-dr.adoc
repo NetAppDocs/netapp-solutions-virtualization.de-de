@@ -1,0 +1,80 @@
+---
+sidebar: sidebar 
+permalink: openshift/osv-disaster-recovery-simulate-dr.html 
+keywords: OpenShift, OCP, Trident, Trident Protect, NetApp ONTAP, Red Hat OpenShift, OpenShift Virtualization, Red Hat OpenShift Virtualization 
+summary: Red Hat OpenShift-Virtualisierung 
+---
+= Failover einer VM in OpenShift Virtualization Disaster Recovery
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+In diesem Abschnitt wird beschrieben, wie ein Failover einer VM von einem Quell-Cluster auf einen Disaster-Recovery-Ziel-Cluster mithilfe von NetApp Trident Protect und AppMirror durchgeführt werden kann. Dies ist hilfreich zum Testen des Failover-Prozesses sowie für geplante Wartungsarbeiten am Quell-Cluster. Mit diesen Schritten kann sichergestellt werden, dass Ihre VM nach einem Disaster-Recovery-Ereignis mit allen Änderungen im Disaster-Recovery-Ziel-Cluster ausgeführt wird.
+
+
+
+[[failover-without-site-outage-for-openshift-virtualization]]
+== Ausfallsicherung ohne Standortausfall für OpenShift Virtualisierung
+
+In diesem Abschnitt wird beschrieben, wie ein Failover einer VM von einem Quell-Cluster ohne Standortausfall durchgeführt werden kann. Dies ist hilfreich, um den Failover-Prozess zu testen und geplante Wartungsarbeiten am Quell-Cluster durchzuführen. +
+
+Um ein Failover ohne Standortausfall durchzuführen, muss zunächst sichergestellt werden, dass der Quell-Cluster und der Ziel-Cluster wie in den vorherigen Abschnitten beschrieben für die Notfallwiederherstellung eingerichtet sind. Anschließend sind die folgenden Schritte auszuführen:
+
+. Die AppMirror-Beziehung zwischen dem Quell-Cluster und dem Ziel-Cluster wird hergestellt. Wenn die AppMirror-Beziehung hergestellt ist, wird der aktuellste Snapshot in den Ziel-Namespace übertragen. Der PVC wird für die VM im Ziel-Namespace erstellt, jedoch wird das VM-Pod im Ziel-Namespace noch nicht erstellt.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+[source, yaml]
+----
+# application-mirror-relationship.yaml
+apiVersion: protect.trident.netapp.io/v1
+kind: AppMirrorRelationship
+metadata:
+  name: amr1
+spec:
+  desiredState: Established
+  destinationAppVaultRef: ontap-s3-appvault
+  destinationApplicationRef: test-dest-app
+  namespaceMapping:
+  - destination: test-dr-ns-dest
+    source: test-dr-ns
+  recurrenceRule: |-
+    DTSTART:20240901T000200Z
+    RRULE:FREQ=MINUTELY;INTERVAL=5
+  sourceAppVaultRef: ontap-s3-appvault
+  sourceApplicationName: test-source-app
+  sourceApplicationUID: "<application-uid-of-the-source-app>"
+  storageClassName: "sc-nas"
+----
+image:osv-disaster-recovery-009.png["OCP-v AppMirror Beziehung im trident-protect Namensraum"]
+
+image:osv-disaster-recovery-010.png["OCP-v AppMirror-Beziehung im trident-protect Namespace hergestellt"]
+
+
+NOTE: Die AppMirror-Beziehung sollte über die CLI des Ziel-Cluster erstellt werden. Sie sollte mit dem gewünschten Status „Established“ erstellt werden. So wird sichergestellt, dass die neuesten Snapshot-Daten an den Ziel-Cluster repliziert werden.
+
+====
+. Die AppMirror-Beziehung wird hochgestuft. Der gewünschte Status der Beziehung wird auf „Hochgestuft“ geändert, um die VM im Ziel-Namespace zu erstellen. Die VM läuft weiterhin im Quell-Namespace. Die neuesten Snapshot-Daten werden in den Ziel-Cluster repliziert und die VM wird im Ziel-Cluster gestartet. Mit dieser Methode lässt sich ein Failover testen und die VM-Verfügbarkeit aufrechterhalten, ohne dass der gesamte Quell-Cluster außer Betrieb genommen werden muss.
++
+.Beispiel anzeigen
+[%collapsible]
+====
+[source, cli]
+----
+oc patch amr amr1 -n test-dr-ns-dest --type=merge -p '{"spec":{"desiredState":"Promoted"}}'
+----
+image:osv-disaster-recovery-012.png["OCP-v AppMirror Beziehung übernommen"]
+
+[source, cli]
+----
+oc get pod, pvc,vm -n test-dr-ns-dest
+oc get pod, pvc,vm -n test-dr-ns
+----
+====
+

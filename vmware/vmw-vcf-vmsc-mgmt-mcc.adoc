@@ -20,12 +20,14 @@ image:vmw-vcf-vmsc-mgmt-mcc-001.png["VCF-Verwaltungsdomäne mit vMSC, Breite=500
 
 
 
+[[introduction]]
 == Einführung
 
 In dieser Lösung zeigen wir, wie man eine gestreckte VCF-Verwaltungsdomäne mit NFS als Hauptdatenspeicher unter Verwendung von ONTAP MetroCluster implementiert.
 
 
 
+[[scenario-overview]]
 == Szenarioübersicht
 
 Dieses Szenario umfasst die folgenden allgemeinen Schritte:
@@ -40,6 +42,7 @@ Dieses Szenario umfasst die folgenden allgemeinen Schritte:
 
 
 
+[[prerequisites]]
 == Voraussetzungen
 
 Dieses Szenario erfordert die folgenden Komponenten und Konfigurationen:
@@ -77,6 +80,7 @@ Informationen zur Konfiguration von VCF finden Sie unterlink:https://techdocs.br
 
 
 
+[[deployment-steps]]
 == Bereitstellungsschritte
 
 So stellen Sie eine VCF Stretched Management Domain mit NFS als Hauptdatenspeicher bereit:
@@ -98,6 +102,7 @@ Eine Übersicht über den Konvertierungsprozess finden Sie unter https://techdoc
 
 
 
+[[deploy-vsphere-hosts-and-vcenter]]
 === Bereitstellen von vSphere-Hosts und vCenter
 
 Stellen Sie vSphere auf Hosts bereit, indem Sie ISO vom Broadcom-Supportportal herunterladen, oder verwenden Sie die vorhandene Bereitstellungsoption für den vSphere-Host.
@@ -120,6 +125,7 @@ Stellen Sie vCenter auf einem NFS-Datenspeicher bereit.  Stellen Sie sicher, das
 
 
 
+[[create-vsphere-cluster]]
 === vSphere-Cluster erstellen
 
 . Melden Sie sich beim vSphere-Webclient an. Erstellen Sie das DataCenter und den vSphere-Cluster, indem Sie einen der Hosts hinzufügen, auf dem NFS VAAI bereitgestellt ist.  Wir haben uns dafür entschieden, alle Hosts im Cluster mit der Option „Einzelbild“ zu verwalten.  [TIPP] Wählen Sie „Konfiguration auf Clusterebene verwalten“ nicht aus.  Weitere Einzelheiten finden Sie unter https://knowledge.broadcom.com/external/article/373968/vlcm-config-manager-is-enabled-on-this-c.html["NSX-Überlegungen für vSphere-Cluster"] .  Informationen zu vMSC-Best Practices mit ONTAP MetroCluster finden Sie unter https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware_vmsc_design.html#netapp-storage-configuration["vMSC-Design- und Implementierungsrichtlinien"]
@@ -130,6 +136,7 @@ Stellen Sie vCenter auf einem NFS-Datenspeicher bereit.  Stellen Sie sicher, das
 
 
 
+[[convert-vsphere-environment-to-vcf-management-domain]]
 === Konvertieren Sie die vSphere-Umgebung in eine VCF-Verwaltungsdomäne
 
 Der folgende Abschnitt behandelt die Schritte zum Bereitstellen des SDDC-Managers und zum Konvertieren des vSphere 8-Clusters in eine VCF 5.2-Verwaltungsdomäne.  Gegebenenfalls wird für weitere Einzelheiten auf die VMware-Dokumentation verwiesen.

@@ -25,6 +25,7 @@ NOTE: Passwörter werden in Klartextdateien gespeichert und sind nur für den Ro
 video::5b4ae54a-08d2-4f7d-95ec-b22d015f6035[panopto,width=360]
 
 
+[[storage-administrator-tasks]]
 == Aufgaben des Speicheradministrators
 
 Wenn Sie ONTAP noch nicht kennen, verwenden Sie die System Manager Interface, um diese Aufgaben zu erledigen.
@@ -67,6 +68,7 @@ image:proxmox-ontap-smb-004.png["Informationen zur SMB-Freigabe"]
 
 
 
+[[virtualization-administrator-tasks]]
 == Aufgaben des Virtualisierungsadministrators
 
 Führen Sie diese Schritte aus, um die SMB-Freigabe als Speicher in Proxmox VE hinzuzufügen und Multichannel für verbesserte Leistung und Fehlertoleranz zu aktivieren.

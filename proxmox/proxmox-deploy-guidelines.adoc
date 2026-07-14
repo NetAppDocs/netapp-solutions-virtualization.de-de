@@ -20,6 +20,7 @@ Informationen zu unterstützten Speichertypen und Inhaltskompatibilität finden 
 
 
 
+[[network-configuration-guidelines]]
 == Richtlinien zur Netzwerkkonfiguration
 
 Befolgen Sie diese Richtlinien, um die Netzwerkleistung und -zuverlässigkeit zu optimieren:
@@ -34,6 +35,7 @@ Befolgen Sie diese Richtlinien, um die Netzwerkleistung und -zuverlässigkeit zu
 
 
 
+[[storage-configuration-best-practices]]
 == Best Practices für die Speicherkonfiguration
 
 Befolgen Sie diese bewährten Methoden, um Speicherleistung und Skalierbarkeit zu optimieren:
@@ -52,6 +54,7 @@ Befolgen Sie diese bewährten Methoden, um Speicherleistung und Skalierbarkeit z
 
 
 
+[[proxmox-ve-configuration-guidelines]]
 == Proxmox VE-Konfigurationsrichtlinien
 
 Befolgen Sie diese Richtlinien, um Proxmox VE mit NetApp ONTAP Speicher zu optimieren:

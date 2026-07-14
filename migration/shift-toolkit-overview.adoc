@@ -18,6 +18,7 @@ Das NetApp Shift Toolkit ist ein eigenständiges Produkt, das entwickelt wurde, 
 
 
 
+[[use-case]]
 == Anwendungsfall
 
 Jede Organisation erkennt jetzt den Vorteil einer Multi-Hypervisor-Umgebung.  Angesichts der jüngsten Marktveränderungen entscheidet jedes Unternehmen über die beste Vorgehensweise. Dabei wägen sie technische und kommerzielle Risiken ab, einschließlich der Migration von Workload-VMs auf alternative Hypervisoren, konzentrieren sich auf das Erreichen der geschäftlich definierten Ziele und kontrollieren die Abhängigkeit von einem bestimmten Anbieter. Dies ermöglicht es ihnen, hinsichtlich der Lizenzkosten optimiert zu arbeiten und das IT-Budget in den richtigen Bereichen einzusetzen, anstatt für ungenutzte Kerne eines bestimmten Hypervisors Geld auszugeben.  Die Herausforderung bestand jedoch immer in der Migrationszeit und den damit verbundenen Ausfallzeiten.
@@ -26,6 +27,7 @@ Mit dem NetApp Shift-Toolkit ist die Migration virtueller Maschinen (VMs) kein P
 
 
 
+[[toolkit-overview]]
 == Toolkit-Übersicht
 
 Das NetApp Shift Toolkit ist eine benutzerfreundliche Lösung mit grafischer Benutzeroberfläche (GUI), die die Migration virtueller Maschinen (VMs) zwischen verschiedenen Hypervisoren und die Konvertierung virtueller Festplattenformate ermöglicht. Es nutzt die NetApp FlexClone-Technologie, um VM-Festplatten schnell zu konvertieren. Darüber hinaus verwaltet das Toolkit die Erstellung und Konfiguration von Ziel-VMs.
@@ -54,6 +56,7 @@ Das Shift-Toolkit kann heruntergeladen werden.link:https://mysupport.netapp.com/
 
 
 
+[[benefits-of-vm-portability]]
 == Vorteile der VM-Portabilität
 
 ONTAP ist ideal für jeden Hypervisor und in jedem Hyperskalar.  Mit FlexClone -Technologie.  VM-Portabilität in Minuten ist Realität, anstatt auf längere Ausfallzeiten zu warten oder sich mit Passthrough-Optionen zufrieden zu geben.
@@ -68,6 +71,7 @@ Shift-Toolkit:
 
 
 
+[[how-shift-toolkit-works]]
 == So funktioniert das Shift-Toolkit
 
 Zum Zeitpunkt der Konvertierung stellt das Shift-Toolkit eine Verbindung zu VMware ESXi- und Microsoft Hyper-V-Hosts sowie zum gemeinsam genutzten NetApp -Speicher her.  Das Shift-Toolkit nutzt FlexClone , um VM-Festplatten mithilfe von drei wichtigen NetApp Technologien von einem Hypervisor in einen anderen zu konvertieren:
@@ -81,6 +85,7 @@ image::shift-toolkit-002.png[Diagramm zur Funktionsweise des NetApp Shift Toolki
 
 
 
+[[protocols-and-communication-methods]]
 === Protokolle und Kommunikationsmethoden
 
 Das Shift-Toolkit verwendet während Konvertierungs- oder Migrationsvorgängen die folgenden Protokolle.

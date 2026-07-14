@@ -20,6 +20,7 @@ Verwenden Sie den vSphere-Client mit vCenter Single Sign-On, um diese Schritte a
 
 
 
+[[step-1-create-distributed-port-groups-for-iscsi-traffic]]
 == Schritt 1: Erstellen Sie verteilte Portgruppen für iSCSI-Datenverkehr
 
 Führen Sie die folgenden Schritte aus, um für jedes iSCSI-Netzwerk eine neue verteilte Portgruppe zu erstellen.
@@ -72,6 +73,7 @@ image:vmware-vcf-asa-026.png["Uplink1 nach unbenutzt verschieben"]
 
 
 
+[[step-2-create-vmkernel-adapters-on-each-esxi-host]]
 == Schritt 2: Erstellen Sie VMkernel-Adapter auf jedem ESXi-Host
 
 Führen Sie die folgenden Schritte auf jedem ESXi-Host in der Workload-Domäne mithilfe des vSphere-Clients aus.
@@ -130,6 +132,7 @@ image:vmware-vcf-asa-034.png["Überprüfen Sie die VMkernel-Auswahl"]
 
 
 
+[[whats-next]]
 == Wie geht es weiter?
 
 Nachdem Sie das Netzwerk für iSCSI auf allen ESXi-Hosts in der Workloaddomäne konfiguriert haben,link:vmw-vcf-viwld-supp-iscsi-vvols-storage.html["Speicher für iSCSI vVols konfigurieren"] .

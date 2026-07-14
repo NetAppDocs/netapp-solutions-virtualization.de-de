@@ -18,12 +18,14 @@ Entdecken Sie, wie Autonomous Ransomware Protection (ARP) von NetApp ONTAP masch
 
 
 
+[[overview]]
 == Überblick
 
 Ransomware-Bedrohungen entwickeln sich schnell weiter und werden immer ausgefeilter und störender.  Herkömmliche Sicherheitsmaßnahmen können kritische Datenbestände oft nicht schützen.  NetApp ONTAP -Speicher bietet integrierte Sicherheitsfunktionen, die Daten proaktiv schützen.  Wenn eine Sicherheitsverletzung auftritt, liefert ONTAP Echtzeitwarnungen und schnelle Wiederherstellungsoptionen, um Ausfallzeiten zu reduzieren und Datenverluste zu begrenzen.  ONTAP ermöglicht es Kunden, ihre Daten und Anwendungen zu schützen, wiederherzustellen und zu verschieben und so die Widerstandsfähigkeit gegen Ransomware zu stärken.
 
 
 
+[[use-case-protect-vmware-vms-and-its-files]]
 == Anwendungsfall – Schützen Sie VMware-VMs und deren Dateien
 
 Die frühzeitige Erkennung von Ransomware in VMware-Umgebungen ist entscheidend, um ihre Verbreitung zu stoppen und Ausfallzeiten zu minimieren.  Eine effektive Strategie nutzt mehrere Schutzebenen für ESXi-Hosts und virtuelle Gastmaschinen.  Während viele Sicherheitskontrollen zum Aufbau einer starken Verteidigung beitragen, fügt NetApp ONTAP wichtige Sicherheitsvorkehrungen auf Speicherebene hinzu, die den Schutz weiter verstärken.
@@ -34,6 +36,7 @@ Die Sicherung von vSphere-Umgebungen und virtuellen Gastmaschinen erfordert eine
 
 
 
+[[how-ontap-helps]]
 == So hilft ONTAP
 
 ONTAP stärkt den Datenschutz mit mehreren Verteidigungsebenen.  Zu den wichtigsten Funktionen gehören Snapshots, Autonomous Ransomware Protection (ARP), manipulationssichere Snapshots, Multi-Admin-Verifizierung und mehr.  Dieses Dokument konzentriert sich auf die Verbesserungen an ARP, die in Version 9.17.1 eingeführt wurden.
@@ -42,6 +45,7 @@ Sie können ARP auf NAS- oder SAN-Volumes aktivieren, die VMware-Datenspeicher u
 
 
 
+[[arp-feature-evolution]]
 == Entwicklung der ARP-Funktionen
 
 Ab ONTAP Version 9.10.1 ist ARP für ein vorhandenes oder ein neues Volume verfügbar.  In ONTAP Version 9.16.1 können Sie ARP mithilfe von System Manager oder der CLI aktivieren.  Der ARP/AI-Schutz wird sofort aktiv, ohne dass eine Lernphase erforderlich ist.  In Version 9.17.1 unterstützt ARP SAN-Volumes.  Wenn Sie ARP auf einem SAN-Volume aktivieren, überwacht ARP/AI während eines Evaluierungszeitraums kontinuierlich die Daten, um die Eignung der Arbeitslast zu ermitteln und den optimalen Verschlüsselungsschwellenwert für die Erkennung festzulegen.
@@ -55,6 +59,7 @@ NOTE: ARP-Support ist in der ONTAP ONE-Lizenz enthalten.
 
 
 
+[[configure-arp-on-nas-volumes-and-simulating-an-attack-on-a-vm]]
 == Konfigurieren Sie ARP auf NAS-Volumes und simulieren Sie einen Angriff auf eine VM
 
 Erfahren Sie, wie Sie NetApp ONTAP Autonomous Ransomware Protection (ARP) auf NAS- und SAN-Volumes aktivieren, die für VMware-Datenspeicher verwendet werden, und simulieren Sie Ransomware-Angriffe, um zu sehen, wie ARP Bedrohungen erkennt und eine schnelle Wiederherstellung ermöglicht.
@@ -79,6 +84,7 @@ Ausführliche Anleitungen zum Aktivieren von ARP auf NFS-Volumes, die als Datens
 
 
 
+[[configure-arp-on-san-volumes-and-simulating-an-attack-on-a-vm]]
 == Konfigurieren Sie ARP auf SAN-Volumes und simulieren Sie einen Angriff auf eine VM
 
 Wenn ARP auf einem SAN-Volume aktiviert ist, beginnt es mit einer Evaluierungsphase, ähnlich dem Lernmodus, der in NAS-Umgebungen verwendet wird, bevor automatisch in die aktive Erkennung übergegangen wird.
@@ -103,6 +109,7 @@ image::vmw-arp-nfs-vmfs-008.png[Systemmanager – Volume-Sicherheit]
 
 
 
+[[recover-vm-and-its-data-after-a-ransomware-attack]]
 == Wiederherstellen der VM und ihrer Daten nach einem Ransomware-Angriff
 
 Sobald der Angriff anhand der oben beschriebenen Schritte bestätigt wurde, verwenden Sie einen der ARP-Snapshots oder einen anderen Snapshot des Volumes, um die Daten wiederherzustellen.
@@ -117,6 +124,7 @@ Ausführliche Anleitungen finden Sie unterlink:https://docs.netapp.com/us-en/ont
 
 
 
+[[ontap-as-a-defense-layer-for-vmware-and-beyond]]
 == ONTAP als Verteidigungsschicht für VMware und darüber hinaus
 
 Mit nur wenigen Klicks können Unternehmen ihre Datenschutzstrategie nahtlos verbessern.  ONTAP basiert auf fortschrittlichen, auf maschinellem Lernen basierenden Erkennungsmechanismen und führt eine leistungsstarke Verteidigungsebene in VMware-Umgebungen ein.  Dieser intelligente Schutz erkennt nicht nur Bedrohungen frühzeitig, sondern hilft auch, potenzielle Schäden zu mindern, bevor sie eskalieren.

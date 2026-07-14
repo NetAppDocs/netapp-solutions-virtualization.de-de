@@ -18,6 +18,7 @@ Sie können mit VCF 9 neu beginnen oder vorhandene Bereitstellungen wiederverwen
 
 
 
+[[storage-options]]
 == Speicheroptionen
 
 VMware Cloud Foundation mit ONTAP unterstützt eine Vielzahl von Speicherkonfigurationen, um unterschiedliche Anforderungen an Leistung, Skalierbarkeit und Verfügbarkeit zu erfüllen.  In den folgenden Tabellen sind die wichtigsten und zusätzlichen Speicheroptionen zusammengefasst, die für Ihre Umgebung verfügbar sind.
@@ -50,12 +51,14 @@ VMware Cloud Foundation mit ONTAP unterstützt eine Vielzahl von Speicherkonfigu
 |===
 
 
+[[blueprints]]
 == Blaupausen
 
 Die folgenden Blueprints veranschaulichen gängige Bereitstellungsmodelle für VMware Cloud Foundation und ONTAP in verschiedenen Site- und Ressourcenszenarien.
 
 
 
+[[vcf-fleet-in-a-single-site-with-minimal-footprint]]
 === VCF-Flotte an einem einzigen Standort mit minimalem Platzbedarf
 
 Dieser Entwurf dient der Bereitstellung von Management- und Workload-Komponenten in einem einzelnen vSphere-Cluster mit minimalen Ressourcen.  Es unterstützt VMFS- und NFSv3-Principal-Datastores und eine einfache Bereitstellungsoption mit einer Zwei-Knoten-Konfiguration.  Wenn Sie VCF Automation mit dem All Apps Organization-Modell verwenden möchten, benötigen Sie einen zweiten Cluster, um vSphere Supervisor- und NSX Edge-Knoten bereitzustellen.
@@ -71,6 +74,7 @@ Weitere Einzelheiten zu diesem Design finden Sie imlink:https://techdocs.broadco
 
 
 
+[[vcf-fleet-in-a-single-site]]
 === VCF-Flotte an einem einzigen Standort
 
 Dieser Entwurf ist für Kunden mit einem einzigen primären Rechenzentrum gedacht, die auf die Hochverfügbarkeit von Anwendungen angewiesen sind.  Normalerweise handelt es sich dabei um eine einzelne VCF-Umgebung.  Sie können ASA für Block-Workloads und AFF für Datei-/Unified-Workloads verwenden.
@@ -94,6 +98,7 @@ Weitere Einzelheiten zu diesem Entwurf finden Sie imlink:https://techdocs.broadc
 
 
 
+[[vcf-fleet-with-multiple-sites-in-a-single-region]]
 === VCF-Flotte mit mehreren Standorten in einer einzigen Region
 
 Dieses Design ist für Kunden gedacht, die Cloud-ähnliche Dienste mit höherer Verfügbarkeit bereitstellen, indem sie Arbeitslasten auf verschiedene Fehlerdomänen verteilen.
@@ -116,6 +121,7 @@ Weitere Informationen finden Sie imlink:https://techdocs.broadcom.com/us/en/vmwa
 
 
 
+[[vcf-fleet-with-multiple-sites-across-multiple-regions]]
 === VCF-Flotte mit mehreren Standorten in mehreren Regionen
 
 Dieses Design ist für weltweit verteilte Kunden gedacht und bietet Dienste in unmittelbarer Nähe sowie Lösungen zur Notfallwiederherstellung.
@@ -143,6 +149,7 @@ Weitere Informationen finden Sie imlink:https://techdocs.broadcom.com/us/en/vmwa
 
 
 
+[[vcf-fleet-with-multiple-sites-in-a-single-region-plus-additional-regions]]
 === VCF-Flotte mit mehreren Standorten in einer einzigen Region und zusätzlichen Regionen
 
 Dieses Design berücksichtigt sowohl die Verfügbarkeit als auch die Notfallwiederherstellung von VMs und VKS-Anwendungen.

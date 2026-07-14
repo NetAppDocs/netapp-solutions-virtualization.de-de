@@ -12,56 +12,48 @@ indexpage:
     links:
     - title: Informationen zu OpenShift Virtualization
       url: osv-overview.html
-    - title: Speicherbereitstellung für OpenShift
-      url: os-netapp-overview.html
-    - title: NetApp Trident -Speicherintegration
-      url: os-storint-overview.html
-    - title: Bewährte Methoden für die Bereitstellung
-      url: os-osv-bpg.html
+    - title: OpenShift Virtualisierungsbereitstellungsmodelle
+      url: osv-deployment-models.html
     - title: Blogs
       url: "../blogs.html"
     - title: Videos
       url: "../videos/openshift-videos.html"
-  - title: Lokale Bereitstellung
+  - title: Erste Schritte mit Storage und Virtualisierung
     links:
-    - title: Bereitstellungsanforderungen
-      url: osv-deployment-prerequisites.html
+    - title: Erste Schritte mit Storage
+      url: osv-storage-getting-started.html
+    - title: Speicherbereitstellung
+      url: osv-trident-install.html
     - title: Bereitstellen von Red Hat OpenShift Virtualization mit ONTAP
       url: osv-deployment.html
-    - title: Erstellen von VMs
-      url: osv-workflow-create-vm.html
-    - title: Klonen von VMs
-      url: osv-workflow-clone-vm.html
-    - title: Erstellen von VMs aus einem Snapshot
-      url: osv-workflow-vm-from-snapshot.html
-  - title: Migrieren virtueller Maschinen
+    - title: Bereitstellung von VMs
+      url: osv-vm-deployment.html
+    - title: Andere Methoden zum Erstellen von VMs
+      url: osv-vm-deployment-other-methods.html
+    - title: Live Migration von VMs zwischen Clusterknoten
+      url: osv-vm-live-migration.html
+    - title: Speichermigration von VMs zwischen Speicherklassen
+      url: osv-migration-vm-storage.html
+  - title: VMs mit NetApp Speicher schützen
     links:
-    - title: Migrieren Sie VMs von VMware zu einem OpenShift-Cluster
-      url: osv-workflow-vm-migration-mtv.html
-    - title: Migrieren Sie VMs zwischen zwei Clusterknoten
-      url: osv-workflow-vm-live-migration.html
-  - title: Schützen Sie VMs mit Trident und Trident Protect
-    links:
-    - title: Trident installieren
-      url: osv-trident-install.html
+    - title: Backup und Restore mit Trident Protect
+      url: osv-vm-dp-using-tp.html
     - title: Schützen Sie VMs mit Volume Group Snapshots
       url: osv-vm-dp-using-vgs.html
-    - title: Schützen Sie VMs mit Snapshots und Backups
-      url: osv-vm-dp-using-tp.html
-    - title: Einrichten von Failover und Failback
-      url: osv-vm-dr-using-tp.html
-  - title: Schützen Sie VMs mit Tools von Drittanbietern
+    - title: Datensicherung und Wiederherstellung mithilfe von Drittanbietertools
+      url: osv-data-protection-third-party-tools.html
+  - title: Notfallwiederherstellung
     links:
-    - title: Schützen Sie VMs mit OADP und Velero
-      url: osv-vm-dp-using-velero-overview.html
-    - title: Installieren von OADP
-      url: osv-oadp-installation.html
-    - title: Sichern Sie VMs mit Velero
-      url: osv-vm-dp-using-velero.html
-    - title: Wiederherstellen von VMs mit Velero
-      url: osv-vm-restore-using-velero.html
-    - title: Löschen von Backups und Wiederherstellungen
-      url: osv-vm-dp-delete-using-velero.html
+    - title: Anforderungen und Überlegungen zur DR
+      url: osv-disaster-recovery-requirements.html
+    - title: Quellcluster Setup für DR
+      url: osv-disaster-recovery-source-cluster-setup.html
+    - title: Zielcluster-Einrichtung für DR
+      url: osv-disaster-recovery-target-cluster-setup.html
+    - title: Notfallwiederherstellung – Manuelle DR
+      url: osv-disaster-recovery-simulate-dr.html
+    - title: Ausfallsicherung, Echtzeit-DR
+      url: osv-disaster-recovery-failback.html
   - title: Überwachen Sie VMs mit Data Infrastructure Insights
     links:
     - title: Über Data Infrastructure Insights

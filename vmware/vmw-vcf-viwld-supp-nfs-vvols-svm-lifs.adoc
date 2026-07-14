@@ -59,6 +59,7 @@ image:vmware-vcf-asa-004.png["SVM-Konto aktivieren und abschließen"]
 
 
 
+[[whats-next]]
 == Wie geht es weiter?
 
 Nach dem Erstellen der SVM und LIFslink:vmw-vcf-viwld-supp-nfs-vvols-network.html["Konfigurieren des Netzwerks für NFS auf ESXi-Hosts"] .

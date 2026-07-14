@@ -18,6 +18,7 @@ Konfigurieren Sie den Logical Volume Manager (LVM)-Datenspeicher für die gemein
 
 
 
+[[initial-virtualization-administrator-tasks]]
 == Erste Aufgaben des Virtualisierungsadministrators
 
 Führen Sie diese ersten Schritte durch, um OpenNebula-Hosts für die iSCSI-Konnektivität vorzubereiten und die notwendigen Informationen für den Speicheradministrator zu sammeln.
@@ -73,6 +74,7 @@ image:opennebula-ontap-iscsi-001.png["iscsi-Schnittstellendetails"]
 
 
 
+[[final-virtualization-administrator-tasks]]
 == Abschließende Aufgaben des Virtualisierungsadministrators
 
 Führen Sie diese Aufgaben aus, um die iSCSI LUN als gemeinsam genutzten LVM-Datenspeicher in OpenNebula zu konfigurieren.

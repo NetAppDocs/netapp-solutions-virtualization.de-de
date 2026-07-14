@@ -18,6 +18,7 @@ Konfigurieren Sie Logical Volume Manager (LVM) für einen gemeinsam genutzten Da
 
 
 
+[[initial-virtualization-administrator-tasks]]
 == Erste Aufgaben des Virtualisierungsadministrators
 
 Führen Sie diese ersten Schritte durch, um OpenNebula-Hosts für die NVMe/FC-Konnektivität vorzubereiten und die notwendigen Informationen für den Speicheradministrator zu sammeln.
@@ -53,6 +54,7 @@ nvme show-hostnqn
 
 
 
+[[storage-administrator-tasks]]
 == Aufgaben des Speicheradministrators
 
 Wenn Sie ONTAP noch nicht kennen, nutzen Sie den System Manager für eine bessere Benutzererfahrung.
@@ -67,6 +69,7 @@ Wenn Sie ONTAP noch nicht kennen, nutzen Sie den System Manager für eine besser
 
 
 
+[[final-virtualization-administrator-tasks]]
 == Abschließende Aufgaben des Virtualisierungsadministrators
 
 Führen Sie diese Aufgaben aus, um den NVMe-Namespace als gemeinsam genutzten LVM-Speicher in OpenNebula zu konfigurieren.

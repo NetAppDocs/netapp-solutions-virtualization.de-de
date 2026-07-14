@@ -31,6 +31,7 @@ NOTE: Bei einigen VMs, die mit externen Management-Tools wie VCF Automation, vSp
 
 
 
+[[network-requirements]]
 == Netzwerkanforderungen
 
 .VM-Migration mit vMotion
@@ -52,6 +53,7 @@ TIP: Stellen Sie sicher, dass mindestens zwei aktive Hochgeschwindigkeits-Uplink
 ====
 
 
+[[vm-migration-scenarios]]
 == VM-Migrationsszenarien
 
 vMotion wird häufig verwendet, um die VMs unabhängig von ihrem Energiezustand zu migrieren.  Weitere Überlegungen und Migrationsverfahren für bestimmte Szenarien finden Sie weiter unten.
@@ -426,6 +428,7 @@ TIP: Wenn sich die Quell-VM auf einem Block-vVol-Datenspeicher befindet, kann si
 ====
 
 
+[[vm-template-migration-scenarios]]
 == Szenarien für die Migration von VM-Vorlagen
 
 VM-Vorlagen können von vCenter Server oder einer Inhaltsbibliothek verwaltet werden.  Die Verteilung von VM-Vorlagen, OVF- und OVA-Vorlagen und anderen Dateitypen erfolgt durch Veröffentlichung in der lokalen Inhaltsbibliothek und Remote-Inhaltsbibliotheken können diese abonnieren.
@@ -508,6 +511,7 @@ NOTE: Weitere Informationen zu VM-Vorlagen in der Inhaltsbibliothek finden Sie u
 ====
 
 
+[[use-cases]]
 == Anwendungsfälle
 
 .Migration von Speichersystemen von Drittanbietern (einschließlich vSAN) zu ONTAP -Datenspeichern.
@@ -541,6 +545,7 @@ NOTE: Um die Netzwerkkommunikation mit vorhandenen VMs auf anderen Clustern im Q
 ====
 
 
+[[additional-resources]]
 == Weitere Ressourcen
 
 * https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vcenter-and-host-management-8-0/migrating-virtual-machines-host-management.html["Migration virtueller vSphere-Maschinen"]

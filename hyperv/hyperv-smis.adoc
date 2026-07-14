@@ -20,6 +20,7 @@ Diese umfassende Lösung bietet eine standardisierte Schnittstelle für die Spei
 
 
 
+[[introduction]]
 == Einführung
 
 Die NetApp Storage Management Initiative Specification (SMI-S) ist ein leistungsstarkes Tool zum Verwalten und Überwachen von Speichersystemen.  NetApp SMI-S nutzt die Web-Based Enterprise Management (WBEM)-Protokolle, um eine einheitliche Schnittstelle für verschiedene Verwaltungsaufgaben bereitzustellen, einschließlich der Handhabung von LUNs, Volumes, CIMOM-Konfigurationseinstellungen und CIM-Serverbenutzern.
@@ -28,6 +29,7 @@ SCVMM ist eine umfassende Verwaltungslösung für virtualisierte Rechenzentren. 
 
 
 
+[[benefits-of-using-netapp-smi-s-provider-with-scvmm]]
 === Vorteile der Verwendung von NetApp SMI-S Provider mit SCVMM
 
 Durch die Integration von NetApp SMI-S Provider mit SCVMM können Unternehmen Speicherressourcen in einem virtualisierten Rechenzentrum effektiver verwalten, indem sie eine standardisierte Schnittstelle für die Speicherverwaltung bereitstellen.
@@ -43,6 +45,7 @@ image:hyperv-smis-001.png["NetApp SMI-S mit Hyper-V-Architektur"]
 
 
 
+[[get-ready-for-smi-s-provider-deployment]]
 == Machen Sie sich bereit für die Bereitstellung des SMI-S-Providers
 
 Eine nahtlose Integration mit vorhandenen Speichersystemen erfordert die ordnungsgemäße Installation und Konfiguration des NetApp SMI-S Provider.
@@ -61,6 +64,7 @@ Eine nahtlose Integration mit vorhandenen Speichersystemen erfordert die ordnung
 
 
 
+[[smi-s-virtual-machine-hardware-requirements]]
 === Hardwareanforderungen für virtuelle SMI-S-Maschinen
 
 Die folgende Tabelle zeigt die Hardwareanforderungen der NetApp SMI-S-Provider-VM.
@@ -69,6 +73,7 @@ image:hyperv-smis-002.png["Hardwareanforderungen des SMI-S-Anbieters"]
 
 
 
+[[install-smi-s-provider]]
 === SMI-S-Provider installieren
 
 Bevor Sie mit der Bereitstellung des SMI-S-Anbieters beginnen, müssen Sie Microsoft Hyper-V mit SCVMM und NetApp 9 über dem FAS oder AFF Speichersystem bereitstellen.  Es ist wichtig, die befehlsbasierte Schnittstelle zu verstehen, um verschiedene Verwaltungsaufgaben auszuführen, überprüfenlink:https://docs.netapp.com/us-en/smis-provider/concept-smi-s-provider-commands-overview.html["NetApp SMI-S Provider Befehle."]
@@ -87,6 +92,7 @@ Best Practice: NetApp empfiehlt die Verwendung eines dedizierten Windows-Servers
 
 
 
+[[connect-smi-s-provider-with-scvmm]]
 === Verbinden Sie den SMI-S-Anbieter mit SCVMM
 
 Um ein Remote-Speichergerät in SCVMM hinzuzufügen und eine Verbindung zu einem SMI-S-Anbieter herzustellen, müssen Sie sicherstellen, dass die folgenden Voraussetzungen und Schritte erfüllt sind:
@@ -114,6 +120,7 @@ Bei der Installation des SMI-S-Providers wird ein veraltetes Zertifikat platzier
 
 
 
+[[provisioning-storage-with-scvmm-using-an-smi-s-provider]]
 === Bereitstellen von Speicher mit SCVMM unter Verwendung eines SMI-S-Anbieters
 
 SCVMM verwendet den SMI-S-Provider zur Interaktion mit Speichersystemen, sodass Sie Speicherressourcen direkt von SCVMM aus erstellen und verwalten können.
@@ -135,12 +142,14 @@ SCVMM verwendet den SMI-S-Provider zur Interaktion mit Speichersystemen, sodass 
 
 
 
+[[logs-and-traces]]
 == Protokolle und Ablaufverfolgungen
 
 Sie können konfigurieren, wie SMI-S Provider Protokolle und Ablaufverfolgungsdateien verwaltet, z. B. indem Sie die Ebenen der zu protokollierenden Nachrichten und das Verzeichnis angeben, in dem die Protokolle gespeichert werden.  Sie geben außerdem die zu verfolgenden Komponenten, das Ziel, in das die Ablaufverfolgungsmeldungen geschrieben werden, die Ablaufverfolgungsebene und den Speicherort der Ablaufverfolgungsdatei an.
 
 
 
+[[logs-setting]]
 === Protokolleinstellungen
 
 Standardmäßig werden alle Systemmeldungen protokolliert und die Systemmeldungsprotokolle befinden sich im Protokollverzeichnis des Verzeichnisses, in dem NetApp SMI-S Provider installiert ist.  Sie können den Speicherort und die Ebene der Systemmeldungen ändern, die in das CIM-Serverprotokoll geschrieben werden.
@@ -169,6 +178,7 @@ image:hyperv-smis-012.png["Trace-Einstellung"]
 
 
 
+[[conclusion]]
 == Abschluss
 
 Der NetApp SMI-S Provider ist ein unverzichtbares Tool für Speicheradministratoren und bietet eine standardisierte, effiziente und umfassende Lösung für die Verwaltung und Überwachung von Speichersystemen.  Durch die Verwendung branchenüblicher Protokolle und Schemata wird die Kompatibilität sichergestellt und die Komplexität der Speichernetzwerkverwaltung vereinfacht.

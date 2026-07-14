@@ -18,6 +18,7 @@ summary: Überprüfen Sie die Anforderungen zum Hinzufügen eines iSCSI-Datenspe
 
 
 
+[[infrastructure-requirements]]
 == Infrastrukturanforderungen
 
 Stellen Sie sicher, dass die folgenden Komponenten und Konfigurationen vorhanden sind.
@@ -28,6 +29,7 @@ Stellen Sie sicher, dass die folgenden Komponenten und Konfigurationen vorhanden
 
 
 
+[[recommended-iscsi-network-design]]
 == Empfohlenes iSCSI-Netzwerkdesign
 
 Sie sollten vollständig redundante Netzwerkdesigns für iSCSI konfigurieren.  Das folgende Diagramm zeigt ein Beispiel einer redundanten Konfiguration, die Fehlertoleranz für Speichersysteme, Switches, Netzwerkadapter und Hostsysteme bietet. Weitere Informationen finden Sie in der NetApplink:https://docs.netapp.com/us-en/ontap/san-config/index.html["SAN-Konfigurationsreferenz"] für weitere Informationen.
@@ -41,6 +43,7 @@ TIP: In Situationen, in denen mehrere VMkernel-Adapter im selben IP-Netzwerk kon
 
 
 
+[[whats-next]]
 == Wie geht es weiter?
 
 Nach der Überprüfung der Bereitstellungsanforderungen,link:vmw-vcf-mgmt-supplemental-iscsi-svm-lifs.html["Erstellen Sie die SVM und LIFs"] .

@@ -18,6 +18,7 @@ Stellen Sie Amazon FSx for NetApp ONTAP bereit, um VMs zu Amazon EC2 zu migriere
 
 
 
+[[configure-fsx-ontap-and-cirrus-data-for-migration-operations]]
 == Konfigurieren Sie FSx ONTAP und Cirrus Data für Migrationsvorgänge
 
 Das https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/getting-started-step1.html["Schritt-für-Schritt-Anleitung zur Bereitstellung"] zeigt, wie man ein FSx ONTAP Volume zu einer VPC hinzufügt.  Da diese Schritte sequentiell ablaufen, stellen Sie sicher, dass sie in der richtigen Reihenfolge ausgeführt werden.
@@ -91,6 +92,7 @@ Nachdem die Integrationen hinzugefügt wurden, ist es an der Zeit, Hosts beim Pr
 
 
 
+[[host-registration-scenario]]
 == Hostregistrierungsszenario
 
 Gast-VMs von VMware, die sich auf vCenter im lokalen Rechenzentrum befinden:
@@ -233,6 +235,7 @@ image:migrate-ec2-fsxn-013.png["Bild des Abschlusses der Cirrus-Datenmigration"]
 
 
 
+[[post-migration-verification]]
 == Überprüfung nach der Migration
 
 Sehen wir uns die migrierte Amazon EC2-Instance mit dem Windows Server-Betriebssystem und die folgenden abgeschlossenen Schritte an:

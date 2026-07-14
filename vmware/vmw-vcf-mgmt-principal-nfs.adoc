@@ -18,6 +18,7 @@ In diesem Anwendungsfall beschreiben wir das Verfahren zur Verwendung eines vorh
 
 
 
+[[introduction]]
 == Einführung
 
 Gegebenenfalls verweisen wir auf externe Dokumentationen zu den Schritten, die im SDDC Manager von VCF ausgeführt werden müssen, und verweisen auf die Schritte, die sich speziell auf den Teil zur Speicherkonfiguration beziehen.
@@ -32,6 +33,7 @@ NOTE: Diese Lösung ist für ONTAP -Plattformen anwendbar, die NFS-Speicher unte
 
 
 
+[[prerequisites]]
 == Voraussetzungen
 
 In diesem Szenario werden die folgenden Komponenten und Konfigurationen verwendet:
@@ -49,10 +51,12 @@ Informationen zur Konfiguration von VCF finden Sie unterlink:https://docs.vmware
 
 
 
+[[deployment-steps]]
 == Bereitstellungsschritte
 
 
 
+[[management-domain-default-cluster]]
 === Verwaltungsdomäne – Standardcluster
 
 NFS-Prinzipalspeicher auf dem ursprünglichen Cluster wird nur mit dem VCF-Brownfield-Importtool unterstützt.  Wenn VCF mit dem Cloud Builder-Tool (bis Version 5.2.x) bereitgestellt wird, wird nur VSAN unterstützt.
@@ -61,6 +65,7 @@ Weitere Informationen zur Verwendung einer vorhandenen vSphere-Umgebung finden S
 
 
 
+[[management-domain-additional-cluster]]
 === Verwaltungsdomäne – Zusätzlicher Cluster
 
 Der zusätzliche vSphere-Cluster in der Verwaltungsdomäne kann mit den folgenden Optionen bereitgestellt werden:
@@ -72,6 +77,7 @@ Der zusätzliche vSphere-Cluster in der Verwaltungsdomäne kann mit den folgende
 
 
 
+[[additional-information]]
 == Weitere Informationen
 
 Informationen zur Konfiguration von ONTAP Speichersystemen finden Sie imlink:https://docs.netapp.com/us-en/ontap["ONTAP 9 Dokumentation"] Center.

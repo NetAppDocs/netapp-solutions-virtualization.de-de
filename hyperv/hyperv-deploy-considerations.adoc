@@ -18,6 +18,7 @@ Um optimale Leistung und Zuverlässigkeit bei der Bereitstellung von Microsoft H
 
 
 
+[[right-sizing-the-storage]]
 == Die richtige Größe des Speichers
 
 Stellen Sie vor der Bereitstellung der Arbeitslast oder der Migration vom vorhandenen Hypervisor sicher, dass die Arbeitslast so dimensioniert ist, dass sie die erforderliche Leistung bietet.  Dies lässt sich einfach durch das Sammeln von Leistungsdaten für jede einzelne VM erreichen, die Statistiken für CPU (verwendet/bereitgestellt), Speicher (verwendet/bereitgestellt), Speicher (bereitgestellt/genutzt), Netzwerkdurchsatz und Latenz sowie eine Aggregation der Lese-/Schreib-IOPs, des Durchsatzes und der Blockgröße sammelt.  Diese Parameter sind für eine erfolgreiche Bereitstellung und die richtige Dimensionierung des Speicherarrays und der Workload-Hosts zwingend erforderlich.
@@ -30,6 +31,7 @@ Stellen Sie vor der Bereitstellung der Arbeitslast oder der Migration vom vorhan
 
 
 
+[[enhance-virtual-machine-performance]]
 == Verbessern Sie die Leistung virtueller Maschinen
 
 Wählen Sie die richtige Menge an RAM und vCPUs für optimale Leistung und schließen Sie mehrere Festplatten an einen einzigen virtuellen SCSI-Controller an.  Die Verwendung von festem VHDx wird weiterhin als primäre Wahl für virtuelle Datenträger für Bereitstellungen empfohlen und es gibt keine Einschränkungen für die Verwendung jeglicher Art von virtuellen VHDX-Datenträgern.
@@ -42,6 +44,7 @@ Wählen Sie die richtige Menge an RAM und vCPUs für optimale Leistung und schli
 
 
 
+[[smb3-0-design-and-consideration]]
 == SMB3.0-Design und -Überlegungen
 
 SMB 3.0-Dateifreigaben können als gemeinsam genutzter Speicher für Hyper-V verwendet werden. ONTAP unterstützt unterbrechungsfreie Vorgänge über SMB-Freigaben für Hyper-V. Hyper-V kann SMB-Dateifreigaben zum Speichern von Dateien virtueller Maschinen wie Konfigurationen, Snapshots und VHD-Dateien (Virtual Hard Disk) verwenden.  Verwenden Sie dedizierte ONTAP CIFS SVM für SMB3.0-basierte Freigaben für Hyper-V. Die zum Speichern der Dateien der virtuellen Maschine verwendeten Volumes müssen mit Volumes im NTFS-Sicherheitsstil erstellt werden.  Für die Konnektivität zwischen Hyper-V-Hosts und dem NetApp Array wird ein 10-GB-Netzwerk empfohlen, sofern eines verfügbar ist.  Bei einer 1-GB-Netzwerkkonnektivität empfiehlt NetApp die Erstellung einer Schnittstellengruppe, die aus mehreren 1-GB-Ports besteht.  Verbinden Sie jede Netzwerkkarte, die SMB-Multichannel bereitstellt, mit ihrem dedizierten IP-Subnetz, sodass jedes Subnetz einen einzelnen Pfad zwischen Client und Server bereitstellt.
@@ -63,6 +66,7 @@ SMB 3.0-Dateifreigaben können als gemeinsam genutzter Speicher für Hyper-V ver
 
 
 
+[[provisioning-smb-volume]]
 == Bereitstellen eines SMB-Volumes
 
 . Stellen Sie sicher, dass die erforderlichen CIFS-Serveroptionen auf der Storage Virtual Machine (SVM) aktiviert sind.
@@ -89,6 +93,7 @@ Weitere Informationen finden Sie unterlink:https://docs.netapp.com/us-en/ontap/s
 
 
 
+[[block-protocol-design-and-consideration]]
 == Entwurf und Berücksichtigung des Blockprotokolls
 
 *Wichtige Punkte*
@@ -106,6 +111,7 @@ Weitere Informationen finden Sie unterlink:https://docs.netapp.com/us-en/ontap/s
 
 
 
+[[provisioning-iscsi-volume]]
 == Bereitstellung eines ISCSI-Volumes
 
 Stellen Sie zum Bereitstellen des ISCSI-Volumes sicher, dass die folgenden Voraussetzungen erfüllt sind.
@@ -168,6 +174,7 @@ Führen Sie die folgenden Schritte aus, um eine hochverfügbare virtuelle Maschi
 
 
 
+[[fast-provisioning-of-virtual-disks-using-odx-feature]]
 == Schnelle Bereitstellung virtueller Festplatten mit der ODX-Funktion
 
 Die ODX-Funktion in ONTAP ermöglicht das Erstellen von Kopien von Master-VHDXs durch einfaches Kopieren einer vom ONTAP Speichersystem gehosteten Master-VHDX-Datei.  Da bei einer ODX-fähigen Kopie keine Daten über das Netzwerkkabel übertragen werden, erfolgt der Kopiervorgang auf der NetApp Speicherseite und kann daher bis zu sechs- bis achtmal schneller sein.  Zu den allgemeinen Überlegungen für eine schnelle Bereitstellung gehören auf Dateifreigaben gespeicherte, mit Sysprep vorbereitete Master-Images und regelmäßige Kopiervorgänge, die von den Hyper-V-Hostmaschinen initiiert werden.
@@ -178,12 +185,14 @@ Die ODX-Funktion in ONTAP ermöglicht das Erstellen von Kopien von Master-VHDXs 
 
 
 
+[[performance-optimization]]
 == Leistungsoptimierung
 
 Obwohl die empfohlene Anzahl von VMs pro CSV subjektiv ist, bestimmen zahlreiche Faktoren die optimale Anzahl von VMs, die auf jedem CSV- oder SMB-Volume platziert werden können.  Obwohl die meisten Administratoren nur die Kapazität berücksichtigen, ist die Menge der gleichzeitig an die VHDx gesendeten E/A-Vorgänge einer der wichtigsten Faktoren für die Gesamtleistung.  Die einfachste Möglichkeit zur Leistungssteuerung besteht darin, die Anzahl der virtuellen Maschinen zu regulieren, die auf jedem CSV oder Share platziert werden.  Wenn die gleichzeitigen E/A-Muster der virtuellen Maschine zu viel Datenverkehr an das CSV oder die Freigabe senden, füllen sich die Festplattenwarteschlangen und es kommt zu einer höheren Latenz.
 
 
 
+[[smb-volume-and-csv-sizing]]
 == SMB-Volume und CSV-Größenbestimmung
 
 Stellen Sie sicher, dass die Lösung durchgängig ausreichend dimensioniert ist, um Engpässe zu vermeiden. Wenn ein Volume für Hyper-V-VM-Speicherzwecke erstellt wird, empfiehlt es sich, ein Volume zu erstellen, das nicht größer als erforderlich ist.  Durch die richtige Dimensionierung der Volumes wird verhindert, dass versehentlich zu viele virtuelle Maschinen auf dem CSV platziert werden, und die Wahrscheinlichkeit von Ressourcenkonflikten wird verringert.  Jedes Cluster Shared Volume (CSV) unterstützt eine oder mehrere VMs.  Die Anzahl der auf einem CSV zu platzierenden VMs wird durch die Arbeitslast und Geschäftspräferenzen sowie durch die Verwendung von ONTAP Speicherfunktionen wie Snapshots und Replikation bestimmt.  Das Platzieren mehrerer VMs auf einem CSV ist in den meisten Bereitstellungsszenarien ein guter Ausgangspunkt.  Passen Sie diesen Ansatz für bestimmte Anwendungsfälle an, um Leistungs- und Datenschutzanforderungen zu erfüllen.
@@ -192,6 +201,7 @@ Da Volumes und VHDx-Größen problemlos erhöht werden können, ist es nicht erf
 
 
 
+[[migration]]
 == Migration
 
 Einer der häufigsten Anwendungsfälle unter den aktuellen Marktbedingungen ist die Migration.  Kunden können VMM Fabric oder andere Migrationstools von Drittanbietern verwenden, um VMs zu migrieren.  Diese Tools verwenden eine Kopie auf Hostebene, um Daten von der Quellplattform auf die Zielplattform zu verschieben. Dies kann je nach Anzahl der virtuellen Maschinen, die migriert werden sollen, zeitaufwändig sein.

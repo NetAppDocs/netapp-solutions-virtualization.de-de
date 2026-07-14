@@ -18,6 +18,7 @@ Konfigurieren Sie Logical Volume Manager (LVM) für gemeinsam genutzten Speicher
 
 
 
+[[initial-virtualization-administrator-tasks]]
 == Erste Aufgaben des Virtualisierungsadministrators
 
 Führen Sie diese ersten Schritte durch, um die Proxmox VE-Hosts für die NVMe/FC-Konnektivität vorzubereiten und die notwendigen Informationen für den Speicheradministrator zu sammeln.
@@ -37,6 +38,7 @@ nvme show-hostnqn
 
 
 
+[[storage-administrator-tasks]]
 == Aufgaben des Speicheradministrators
 
 Wenn Sie ONTAP noch nicht kennen, nutzen Sie den System Manager für eine bessere Benutzererfahrung.
@@ -64,6 +66,7 @@ image:proxmox-ontap-nvme-fc-002.png["Anti-Ransomware-Status"]
 
 
 
+[[final-virtualization-administrator-tasks]]
 == Abschließende Aufgaben des Virtualisierungsadministrators
 
 Führen Sie diese Aufgaben aus, um den NVMe-Namespace als gemeinsam genutzten LVM-Speicher in Proxmox VE zu konfigurieren.

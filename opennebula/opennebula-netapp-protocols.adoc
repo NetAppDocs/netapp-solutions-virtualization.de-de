@@ -25,6 +25,7 @@ NOTE: Bei Verwendung von LVM mit SAN-Protokollen (FC, iSCSI, NVMe-oF) kann die V
 
 
 
+[[choose-a-storage-protocol]]
 == Wählen Sie ein Speicherprotokoll.
 
 Wählen Sie das Protokoll aus, das Ihrer Umgebung und Ihren Anforderungen entspricht:

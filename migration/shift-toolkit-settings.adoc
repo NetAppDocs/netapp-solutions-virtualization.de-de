@@ -22,6 +22,7 @@ image::shift-toolkit-250.png[Einstellungssymbol in der Shift Toolkit-Symbolleist
 
 
 
+[[credential-security-service-provider-credssp]]
 == Credential Security Service Provider (CredSSP)
 
 Das Shift Toolkit verwendet Credential Security Service Provider (CredSSP), um die Übertragung von Anmeldeinformationen während des Konvertierungsprozesses zu verwalten.  Der Shift-Server führt Skripte auf dem Gastbetriebssystem der zu konvertierenden VM aus und übergibt die Anmeldeinformationen über einen „Double-Hop“ vom Shift-Server über den Hyper-V-Server an das Gastbetriebssystem.
@@ -30,6 +31,7 @@ image::shift-toolkit-251.png[CredSSP-Konfigurationseinstellungen]
 
 
 
+[[configure-the-shift-server-as-a-credssp-client]]
 === Konfigurieren Sie den Shift-Server als CredSSP-Client
 
 Der Assistent für erweiterte Einstellungen konfiguriert den Shift-Server automatisch als CredSSP-Client, sodass dieser Anmeldeinformationen an die Hyper-V-Server delegieren kann.
@@ -56,6 +58,7 @@ Aktivieren Sie diese Richtlinie und fügen Sie Folgendes hinzu `wsman/fqdn-of-hy
 
 
 
+[[configure-the-hyper-v-server-as-a-credssp-server]]
 === Konfigurieren Sie den Hyper-V-Server als CredSSP-Server.
 
 Verwenden Sie die `Enable-WSManCredSSP` Cmdlet auf dem Hyper-V-Server, um ihn als CredSSP-Server zu konfigurieren, damit er Anmeldeinformationen vom Shift-Server empfangen kann.
@@ -73,6 +76,7 @@ Enable-WSManCredSSP -Role server
 
 
 
+[[logging-and-debugging]]
 == Protokollierung und Debugging
 
 Das Shift Toolkit beinhaltet eine standardmäßige Protokollierung mit einer Aufbewahrungsfrist von 30 Tagen.  Die Protokollierung kann auf Anfrage des Supports zu Fehlerbehebungszwecken in den Debug-Modus umgeschaltet werden.
@@ -81,6 +85,7 @@ image::shift-toolkit-252.png[Protokollierungskonfigurationseinstellungen]
 
 
 
+[[swagger]]
 == Stolzieren
 
 Über die Swagger-Seite in den erweiterten Einstellungen können Sie mit den REST-APIs des Shift Toolkits interagieren.
@@ -93,6 +98,7 @@ image::shift-toolkit-254.png[API-Ressourcenkategorien]
 
 
 
+[[authentication-and-setup-apis]]
 === Authentifizierungs- und Einrichtungs-APIs
 
 Verwenden Sie diese APIs, um Verbindungen herzustellen, Benutzer zu verwalten und die Authentifizierung für den Shift Toolkit-Server zu konfigurieren.
@@ -145,6 +151,7 @@ Verwaltung von Mandantenkonfigurationen:
 
 
 
+[[infrastructure-management-apis]]
 === APIs für das Infrastrukturmanagement
 
 Nutzen Sie diese APIs, um Ihre Quell- und Zielumgebungen zu konfigurieren und zu ermitteln.
@@ -182,6 +189,7 @@ VMs und Ressourcen in Quell- und Zielumgebungen ermitteln und inventarisieren:
 
 
 
+[[vm-and-resource-management-apis]]
 === VM- und Ressourcenverwaltungs-APIs
 
 Nutzen Sie diese APIs, um VMs und Ressourcen für die Migration zu inventarisieren, zu organisieren und zu verwalten.
@@ -220,6 +228,7 @@ Organisieren Sie VMs für die Migration in Schutzgruppen:
 
 
 
+[[migration-and-recovery-apis]]
 === Migrations- und Wiederherstellungs-APIs
 
 Nutzen Sie diese APIs, um Migrationen durchzuführen, die Einhaltung von Vorschriften zu überwachen und Wiederherstellungsvorgänge zu verwalten.
@@ -270,6 +279,7 @@ Migrations- und Wiederherstellungsvorgänge durchführen und verwalten:
 
 
 
+[[automation-apis]]
 === Automatisierungs-APIs
 
 Nutzen Sie diese APIs, um die Funktionalität von Shift Toolkit zu erweitern und zu automatisieren.
@@ -286,6 +296,7 @@ Zugriff auf und Ausführung von Automatisierungsskripten:
 
 
 
+[[script-block-and-automation]]
 == Skriptblock und Automatisierung
 
 Der Skriptblock innerhalb des Shift Toolkits bietet Beispielcode, der Ihnen hilft, Funktionen mithilfe interner und externer APIs zu automatisieren, zu integrieren und zu entwickeln.  Im Abschnitt „Codebeispiele“ können Sie Beispiele durchsuchen und herunterladen, die vom Automatisierungsteam des Shift Toolkit und Mitgliedern der Community geschrieben wurden.  Nutzen Sie diese Beispiele, um mit Automatisierungs-, Verwaltungs- oder Integrationsaufgaben zu beginnen.
@@ -304,6 +315,7 @@ Ziel des Skriptblocks ist es, Beispielskripte für den Start am ersten Tag und d
 
 
 
+[[email-notifications-and-alerts]]
 == E-Mail-Benachrichtigungen und Warnmeldungen
 
 Konfigurieren Sie E-Mail-Benachrichtigungen, um Warnungen über Ermittlungs-, Konvertierungs- oder Migrationsaufträge an bestimmte Empfänger zu senden.  Es stehen auch UI-Benachrichtigungen (Warnungen innerhalb der Benutzeroberfläche) zur Verfügung, die 7 Tage lang gespeichert werden.
@@ -337,6 +349,7 @@ NOTE: In dieser Version werden für die E-Mail-Benachrichtigung die grundlegende
 
 
 
+[[abort-and-revert-capabilities]]
 == Abbruch- und Rückgängigmachungsfunktionen
 
 Das Shift Toolkit bietet die Möglichkeit, einen laufenden Job in jedem Schritt des Arbeitsablaufs abzubrechen.  Wenn ein Auftrag abgebrochen wird, werden alle verwaisten Komponenten automatisch bereinigt, einschließlich:
@@ -350,6 +363,7 @@ Da das Shift Toolkit die Quell-VM in keiner Weise verändert, ist ein Rollback u
 
 
 
+[[verify-migration]]
 == Migration überprüfen
 
 Das Shift-Toolkit bietet nun eine Überprüfungsoption auf Blueprint-Ebene, die aktiviert wird, nachdem der Migrationsstatus als „Erfolgreich“ oder „Teilweise fehlgeschlagen“ markiert wurde. Nach erfolgreichem Abschluss startet die Überprüfungsoption einen neuen Auftrag und prüft die VM-Einstellungen gemäß den Blueprint-Zuordnungen. Der Status des Überprüfungs-Migrationsauftrags wird in der Auftragsüberwachung angezeigt und die Details können durch Klicken auf den Auftrag und Auswahl von „Protokolle anzeigen“ eingesehen werden.
@@ -366,6 +380,7 @@ image::shift-toolkit-472.png[Migrationsauftragsliste überprüfen]
 
 
 
+[[split-workflow]]
 == Aufteilung des Workflows
 
 Der Split-Workflow (nur anwendbar auf OpenShift-Migrations-Blueprints mit dem ONTAP NAS-Treiber) erkennt automatisch die den VMs zugeordneten Volumes sowie deren entsprechende FlexClone-Volumes.
@@ -389,6 +404,7 @@ image::shift-toolkit-474.png[Arbeitsfortschritt des Split-Workflows]
 
 
 
+[[advanced-hypervisor-settings]]
 == Erweiterte Hypervisor-Einstellungen
 
 Das Shift Toolkit enthält erweiterte Hypervisor-Einstellungen für Migrationsaufträge auf Zielhypervisoren. Mithilfe dieser Einstellungen können Migrationsadministratoren die benötigten Funktionen für jede VM-Migrationswelle aktivieren. Das Shift Toolkit liest die Einstellungen zur Laufzeit, sodass jeder Auftrag die ausgewählten Optionen beim Start anwendet.

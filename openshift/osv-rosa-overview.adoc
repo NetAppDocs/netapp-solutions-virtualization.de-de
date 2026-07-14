@@ -20,6 +20,7 @@ Wir werden uns auch mit der Verbindung zur virtuellen Maschine mithilfe der Gast
 
 
 
+[[prerequisites]]
 == Voraussetzungen
 
 * link:https://signin.aws.amazon.com/signin?redirect_uri=https://portal.aws.amazon.com/billing/signup/resume&client_id=signup["AWS-Konto"]
@@ -39,6 +40,7 @@ Ab der Trident Version 25.02 können Sie die Worker-Knoten des ROSA-Clusters (od
 
 
 
+[[initial-setup]]
 == Ersteinrichtung
 
 Richten Sie das Trident-Backend, die Speicherklasse und die VolumeSnapshotClass ein.  Sie können sich auf dielink:osv-trident-install.html["Trident -Installationsabschnitt"] für Details.
@@ -99,6 +101,7 @@ Stellen Sie sicher, dass die Speicherklasse und die Volume-Snapshot-Klasse als S
 
 
 
+[[create-a-vm-from-the-template]]
 === **Erstellen Sie eine VM aus der Vorlage**
 
 Verwenden Sie die Webkonsole, um eine VM aus einer Vorlage zu erstellen.  Erstellen Sie über die RedHat OpenShiftService-Konsole auf AWS eine virtuelle Maschine.  Auf dem Cluster sind Vorlagen verfügbar, die zum Erstellen der VM verwendet werden können.  Im Screenshot unten wählen wir Fedora VM aus dieser Liste aus.  Geben Sie der VM einen Namen und klicken Sie dann auf **Virtuelle Maschine anpassen**.  Wählen Sie die Registerkarte **Datenträger** und klicken Sie auf **Datenträger hinzufügen**.  Ändern Sie den Namen der Festplatte vorzugsweise in einen aussagekräftigen Namen und stellen Sie sicher, dass als Speicherklasse **trident-csi** ausgewählt ist.  Klicken Sie auf **Speichern**.  Klicken Sie auf **Virtuelle Maschine erstellen**
@@ -117,6 +120,7 @@ image:redhat-openshift-ocpv-rosa-008.png["OCP-v VM läuft"]
 
 
 
+[[review-all-the-objects-created-for-the-vm]]
 === **Überprüfen Sie alle für die VM erstellten Objekte**
 
 Die Speicherplatten.image:redhat-openshift-ocpv-rosa-009.png["OCP-v-Speicherplatten"]
@@ -135,6 +139,7 @@ Hier sehen wir die beiden mit dem VM-Pod verknüpften Volumes und die beiden ihn
 
 
 
+[[connect-to-the-vm]]
 === **Verbindung zur VM herstellen**
 
 Klicken Sie auf die Schaltfläche „Webkonsole öffnen“ und melden Sie sich mit den Gastanmeldeinformationen an.image:redhat-openshift-ocpv-rosa-016.png["OCP-v VM-Verbindung"]

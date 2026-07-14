@@ -15,6 +15,7 @@ Stellen Sie ONTAP tools for VMware vSphere 10 bereit und stellen Sie einen NFS-D
 
 
 
+[[step-1-deploy-ontap-tools-for-vmware-vsphere]]
 == Schritt 1: ONTAP tools for VMware vSphere bereitstellen
 
 In diesem Schritt werden ONTAP Tools in einer Nicht-HA-Konfiguration bereitgestellt. Weitere Informationen zur Bereitstellung von HA- und Nicht-HA-Konfigurationen finden Sie unter https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/deploy/ontap-tools-deployment.html["Bereitstellen von ONTAP tools for VMware vSphere"] .
@@ -71,6 +72,7 @@ image::vmware-vcf-import-nfs-003.png[Vorlage anpassen]
 
 
 
+[[step-2-configure-ontap-tools]]
 == Schritt 2: ONTAP -Tools konfigurieren
 
 Nachdem die ONTAP -Tools-VM installiert und hochgefahren wurde, fügen Sie die vCenter-Server und die ONTAP Speichersysteme hinzu, die Sie verwalten möchten.
@@ -102,6 +104,7 @@ TIP: Um die vollständige Verwaltung aller SVMs im Speichersystem zu ermögliche
 
 
 
+[[step-3-provision-the-nfs-datastore]]
 == Schritt 3: Bereitstellen des NFS-Datenspeichers
 
 ONTAP -Tools integrieren Funktionen in die gesamte vSphere-Client-Benutzeroberfläche. In diesem Schritt wird ein NFS-Datenspeicher von der Speicherinventarseite bereitgestellt.
@@ -149,6 +152,7 @@ image::vmware-vcf-import-nfs-009.png[Zusammenfassungsseite]
 
 
 
+[[whats-next]]
 == Wie geht es weiter?
 
 Nachdem Sie ONTAP -Tools bereitgestellt und den NFS-Datenspeicher bereitgestellt haben,link:vmw-vcf-mgmt-nfs-conversion.html["Konvertieren Sie den vSphere-Cluster in eine VCF-Verwaltungsdomäne"] .

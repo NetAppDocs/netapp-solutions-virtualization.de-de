@@ -18,6 +18,7 @@ Konfigurieren Sie das Shift Toolkit, um die Migration oder Konvertierung von VMs
 
 
 
+[[run-shift-toolkit]]
 == Run Shift-Toolkit
 
 * Greifen Sie über den Browser auf die Benutzeroberfläche des Shift-Toolkits zu, indem Sie Folgendes eingeben: `http://<IP address specified during installation>:3001`
@@ -50,12 +51,14 @@ image::shift-toolkit-052.png[Screenshot der NetApp Endbenutzer-Lizenzvereinbarun
 
 
 
+[[shift-toolkit-configuration]]
 == Shift Toolkit-Konfiguration
 
 Sobald Speicher und Konnektivität sowohl zum Quell- als auch zum Ziel-Hypervisor ordnungsgemäß konfiguriert sind, beginnen Sie mit der Konfiguration des Shift-Toolkits, um die Migration oder Konvertierung der virtuellen Maschinen in das entsprechende Format mithilfe der FlexClone -Funktionalität zu automatisieren.
 
 
 
+[[add-sites]]
 === Sites hinzufügen
 
 Im ersten Schritt müssen die Quell- und anschließend die Ziel-Hypervisor-Details (sowohl Hypervisoren als auch Speicher) zum Shift-Toolkit hinzugefügt werden.  Öffnen Sie das Shift-Toolkit in einem unterstützten Browser, verwenden Sie den Standardbenutzernamen und das Standardpasswort und klicken Sie auf „Sites hinzufügen“.
@@ -175,6 +178,7 @@ Der nächste Schritt besteht darin, die erforderlichen VMs in ihren Migrationsgr
 
 
 
+[[resource-groupings]]
 === Ressourcengruppierungen
 
 Nachdem die Plattformen hinzugefügt wurden, gruppieren Sie die VMs, die Sie migrieren oder in Ressourcengruppen konvertieren möchten.  Mit den Ressourcengruppen des Shift-Toolkits können Sie abhängige VMs in logische Gruppen gruppieren, die ihre Startreihenfolgen und Startverzögerungen enthalten.
@@ -256,6 +260,7 @@ NOTE: Falls Sie die Ressourcengruppe ändern müssen, um virtuelle Maschinen hin
 
 
 
+[[blueprints]]
 === Blaupausen
 
 Für die Migration oder Konvertierung virtueller Maschinen ist ein Plan erforderlich. Wählen Sie aus der Dropdown-Liste die Quell- und Ziel-Hypervisor-Plattformen aus und wählen Sie die Ressourcengruppen aus, die in diesen Entwurf aufgenommen werden sollen, zusammen mit der Gruppierung, wie Anwendungen eingeschaltet werden sollen (d. h. Domänencontroller, dann Tier-1, dann Tier-2 usw.). Diese werden oft auch als Migrationspläne bezeichnet. Um den Entwurf zu definieren, navigieren Sie zur Registerkarte „Entwürfe“ und klicken Sie auf „Neuen Entwurf erstellen“.

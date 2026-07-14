@@ -18,6 +18,7 @@ Verwenden Sie das PowerShell-Skript, um VMs mithilfe der FlexClone -Technologie 
 
 
 
+[[powershell-script]]
 == Powershell-Skript
 
 [source, powershell]

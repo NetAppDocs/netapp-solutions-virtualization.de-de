@@ -19,6 +19,7 @@ PBS unterstützt verschiedene Speicher-Backends, darunter lokaler Speicher, NFS,
 
 
 
+[[solution-architecture]]
 == Lösungsarchitektur
 
 Die Lösung umfasst folgende Komponenten:

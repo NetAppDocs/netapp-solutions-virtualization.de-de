@@ -20,6 +20,7 @@ Führen Sie die folgenden Schritte auf dem VI-Workload-Domänencluster mithilfe 
 
 
 
+[[step-1-create-distributed-port-groups-for-nvmetcp-traffic]]
 == Schritt 1: Erstellen Sie verteilte Portgruppen für NVME/TCP-Verkehr
 
 Führen Sie die folgenden Schritte aus, um für jedes NVMe/TCP-Netzwerk eine neue verteilte Portgruppe zu erstellen.
@@ -81,6 +82,7 @@ image:vmware-vcf-asa-079.png["Uplink 1 nach unbenutzt verschieben"]
 
 
 
+[[step-2-create-the-vmkernel-adapters-on-each-esxi-host]]
 == Schritt 2: Erstellen Sie die VMkernel-Adapter auf jedem ESXi-Host
 
 Erstellen Sie die VMkernel-Adapter auf jedem ESXi-Host in der Workload-Domäne.
@@ -139,6 +141,7 @@ image:vmware-vcf-asa-098.png["Überprüfen Sie die VMkernel-Auswahl"]
 
 
 
+[[step-3-add-nvmetcp-adapter]]
 == Schritt 3: NVMe/TCP-Adapter hinzufügen
 
 Auf jedem ESXi-Host im Workload-Domänencluster muss für jedes eingerichtete NVMe/TCP-Netzwerk, das für Speicherverkehr vorgesehen ist, ein NVMe/TCP-Softwareadapter installiert sein.
@@ -199,6 +202,7 @@ image:vmware-vcf-asa-103.png["NVMe-Namespace unter Geräten aufgeführt"]
 
 
 
+[[whats-next]]
 == Wie geht es weiter?
 
 Nach der Netzwerkkonfigurationlink:vmw-vcf-viwld-supp-nvme-storage.html["Speicher für NVMe vVols konfigurieren"] .

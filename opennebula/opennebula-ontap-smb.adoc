@@ -23,6 +23,7 @@ NOTE: Passwörter werden in Klartextdateien gespeichert und sind nur für den Ro
 
 
 
+[[storage-administrator-tasks]]
 == Aufgaben des Speicheradministrators
 
 Wenn Sie ONTAP noch nicht kennen, verwenden Sie die System Manager Interface, um diese Aufgaben zu erledigen.
@@ -65,6 +66,7 @@ image:opennebula-ontap-smb-004.png["Informationen zur SMB-Freigabe"]
 
 
 
+[[virtualization-administrator-tasks]]
 == Aufgaben des Virtualisierungsadministrators
 
 Führen Sie diese Aufgaben aus, um die SMB-Freigabe als Datenspeicher in OpenNebula hinzuzufügen und den Multichannel-Modus für verbesserte Leistung und Fehlertoleranz zu aktivieren.

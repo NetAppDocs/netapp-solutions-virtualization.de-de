@@ -20,12 +20,14 @@ Hier sind einige der wichtigsten Vorteile von NetApp Storage für End User Compu
 
 
 
+[[support-for-windows-and-linux-virtual-desktops]]
 == Unterstützung für virtuelle Windows- und Linux-Desktops
 
 NetApp Speicherlösungen unterstützen sowohl Windows- als auch Linux-virtuelle Desktops, sodass Unternehmen das Betriebssystem wählen können, das am besten zu ihren Anforderungen passt. Diese Flexibilität kann Unternehmen dabei helfen, ihre EUC-Bereitstellungen zu optimieren und ihren Endbenutzern ein besseres Benutzererlebnis zu bieten. Dieselbe Dateifreigabe kann sowohl für Windows- als auch für Linux-virtuelle Desktops verwendet werden und bietet den Benutzern ein konsistentes Erlebnis, unabhängig davon, welches Betriebssystem sie verwenden. SMB- und NFS-Protokolle werden unterstützt, was eine nahtlose Integration in die bestehende Infrastruktur ermöglicht.
 
 
 
+[[secure-multi-tenancy]]
 == Sichere Mandantenfähigkeit
 
 NetApp Speicherlösungen bieten sichere Mandantenfähigkeit und ermöglichen es Organisationen, Daten und Ressourcen für verschiedene Benutzer und Gruppen sicher zu isolieren. Dies kann Organisationen helfen, die Sicherheit zu erhöhen und das Risiko von Datenverletzungen in ihren EUC-Umgebungen zu reduzieren. Mit den sicheren Mandantenfähigkeitsfunktionen von NetApp können Organisationen sicherstellen, dass Daten sicher und effizient gespeichert werden, während Benutzern gleichzeitig der Zugriff auf ihre Dateien und Daten von jedem Gerät und überall ermöglicht wird. SVM fungiert wie eine virtuelle Storage Appliance und bietet jedem Mandanten eine sichere und isolierte Umgebung, während gleichzeitig eine effiziente Ressourcenauslastung und Verwaltung ermöglicht wird.
@@ -40,6 +42,7 @@ ONTAP ermöglicht es, Quoten für Dateifreigaben und Home-Verzeichnisse festzule
 
 
 
+[[high-performance-and-scalability]]
 == Hohe Leistungsfähigkeit und Skalierbarkeit
 
 NetApp Speicherlösungen sind darauf ausgelegt, hohe Leistung und Skalierbarkeit für EUC-Umgebungen zu bieten. Mit den Speicherlösungen von NetApp können Unternehmen ihre EUC-Bereitstellungen optimieren und ihren Endbenutzern ein besseres Benutzererlebnis bieten. Die Speicherlösungen von NetApp sind darauf ausgelegt, die Anforderungen von EUC-Umgebungen zu erfüllen, indem sie hohe Leistung und Skalierbarkeit bieten, um eine große Anzahl von Benutzern und Anwendungen zu unterstützen. Mit den Speicherlösungen von NetApp können Unternehmen ihre EUC-Bereitstellungen bei Bedarf problemlos skalieren und so sicherstellen, dass sie den Anforderungen ihrer Benutzer und Anwendungen beim Wachstum gerecht werden.
@@ -52,6 +55,7 @@ Die ONTAP WideLink Funktion ermöglicht es Unternehmen, einen globalen Namensrau
 
 
 
+[[data-protection-and-disaster-recovery]]
 == Datenschutz und Notfallwiederherstellung
 
 NetApp Snapshots bieten eine leistungsstarke Lösung für Datenschutz und Notfallwiederherstellung in EUC-Umgebungen. Mit der Snapshot Technologie von NetApp können Unternehmen speichereffiziente, zeitpunktgenaue Kopien ihrer Daten erstellen, sodass sie sich schnell von Datenverlust oder -beschädigung erholen können. Dies kann Unternehmen helfen, Ausfallzeiten zu minimieren und sicherzustellen, dass ihre Endbenutzer weiterhin ohne Unterbrechung auf ihre Desktops und Anwendungen zugreifen können. Mit der Snapshot Technologie von NetApp können Unternehmen ganz einfach Snapshots ihrer Daten erstellen und verwalten, was ein leistungsstarkes Werkzeug für Datenschutz und Notfallwiederherstellung in ihren EUC-Umgebungen darstellt.
@@ -64,6 +68,7 @@ FlexCache bietet eine leistungsstarke Caching-Lösung für EUC-Umgebungen und er
 
 
 
+[[vsphere-integration]]
 == vSphere Integration
 
 NetApp Storage unterstützt VAAI (vStorage APIs für Array-Integration), wodurch bestimmte Speicheroperationen auf das Speichersystem ausgelagert werden können, was die Leistung verbessert und die Last auf den vSphere Hosts reduziert. Mit der VAAI-Unterstützung von NetApp können Unternehmen ihre EUC-Bereitstellungen optimieren und ihren Endbenutzern eine schnellere Bereitstellung und bessere Leistung bieten. VAAI-Unterstützung ist sowohl für NFS- als auch für Blockprotokolle verfügbar und ermöglicht so eine nahtlose Integration in bestehende Infrastrukturen.
@@ -74,6 +79,7 @@ NFS nConnect ermöglicht die Einrichtung mehrerer Verbindungen zwischen dem vSph
 
 
 
+[[data-services-and-management]]
 == Datendienste und -Management
 
 NetApp Console bietet Datendienste zur Ermittlung, Abbildung und Profilierung Ihrer Daten, um Governance- und Compliance-Anforderungen zu erfüllen. Mit NetApp Console können Unternehmen ihre Daten einfach der passenden Speicherklasse zuordnen und so ihre Speicherressourcen optimieren sowie Leistungs- und Kostenanforderungen erfüllen. Die Kopier- und Synchronisierungsfunktion ermöglicht eine effiziente Datenmobilität zwischen den Standorten und bietet ein leistungsstarkes Werkzeug für die Datenverwaltung in EUC-Umgebungen. Mit NetApp Console können Unternehmen ihre Daten in ihren EUC-Umgebungen einfach verwalten und optimieren und so ihren Endbenutzern ein besseres Benutzererlebnis bieten.

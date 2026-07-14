@@ -13,6 +13,7 @@ summary: Um NFS vVols in einer VMware Cloud Foundation VI-Workloaddomäne bereit
 
 
 
+[[infrastructure-requirements]]
 == Infrastrukturanforderungen
 
 Stellen Sie sicher, dass die folgenden Komponenten und Konfigurationen vorhanden sind.
@@ -24,6 +25,7 @@ Stellen Sie sicher, dass die folgenden Komponenten und Konfigurationen vorhanden
 
 
 
+[[recommended-nfs-network-design]]
 == Empfohlenes NFS-Netzwerkdesign
 
 Konfigurieren Sie redundante Netzwerkdesigns für NFS, um Fehlertoleranz für Speichersysteme, Switches, Netzwerkadapter und Hostsysteme bereitzustellen.  Es ist üblich, NFS je nach den Architekturanforderungen mit einem einzelnen Subnetz oder mehreren Subnetzen bereitzustellen.
@@ -32,6 +34,7 @@ Konfigurieren Sie redundante Netzwerkdesigns für NFS, um Fehlertoleranz für Sp
 
 
 
+[[additional-information]]
 == Weitere Informationen
 
 * Ausführliche Informationen speziell zu VMware vSphere finden Sie unter https://www.vmware.com/docs/vmw-best-practices-running-nfs-vmware-vsphere["Best Practices für die Ausführung von NFS mit VMware vSphere"] .
@@ -44,6 +47,7 @@ Diese Dokumentation veranschaulicht den Vorgang zum Erstellen einer neuen SVM un
 
 
 
+[[whats-next]]
 == Wie geht es weiter?
 
 Nach Prüfung der Anforderungenlink:vmw-vcf-viwld-supp-nfs-vvols-svm-lifs.html["Erstellen Sie die SVM und LIFs"] .

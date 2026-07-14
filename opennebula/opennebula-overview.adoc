@@ -18,6 +18,7 @@ OpenNebula ist eine Open-Source-Cloud-Management-Plattform zur Verwaltung hetero
 
 
 
+[[overview]]
 == Überblick
 
 OpenNebula bietet eine umfassende Auswahl an Funktionen zur Verwaltung des gesamten Lebenszyklus von virtuellen Maschinen und Containern, einschließlich Bereitstellung, Überwachung, Skalierung und Außerbetriebnahme. Es unterstützt eine breite Palette von Speicher- und Netzwerkoptionen und ist somit flexibel für verschiedene Anwendungsfälle einsetzbar.
@@ -32,6 +33,7 @@ OpenNebula hat eine modulare Architektur, die eine einfache Integration mit Tool
 
 
 
+[[frontend-user-interface]]
 == Frontend-Benutzeroberfläche
 
 OpenNebula bietet eine webbasierte Benutzeroberfläche namens Sunstone, mit der Benutzer ihre virtuellen Maschinen und Container einfach verwalten können. Die Oberfläche ist intuitiv und benutzerfreundlich, sodass sowohl Administratoren als auch Endbenutzer einfach navigieren und Aufgaben ausführen können. Standardmäßig läuft sie auf Port 2616. Persistente Daten werden in einer Backend-Datenbank gespeichert, die entweder SQLite (Standard für geringe Arbeitslasten) oder MySQL/MariaDB (für Produktionsumgebungen) sein kann. Mehrere Instanzen von Frontend-Servern können bereitgestellt werden, um hohe Verfügbarkeit und Lastverteilung zu gewährleisten.
@@ -46,6 +48,7 @@ Die Federation-Funktionen ermöglichen es, mehrere OpenNebula-Instanzen (Zonen) 
 
 
 
+[[compute]]
 == Berechnen
 
 OpenNebula unterstützt KVM für virtuelle Maschinen und LXC für Linux-Container. Unterstützte Betriebssysteme sind Ubuntu, Debian, RHEL und AlmaLinux. Virtuelle Maschinen können aus vorkonfigurierten Vorlagen oder benutzerdefinierten Images bereitgestellt werden. Ein Satz virtueller Maschinen (Dienst) kann ebenfalls mithilfe von Dienstvorlagen bereitgestellt werden. OneFlow ermöglicht die Definition und Verwaltung mehrschichtiger Anwendungen, die aus mehreren miteinander verbundenen virtuellen Maschinen bestehen. OneGate ermöglicht die Kommunikation mit dem OpenNebula-Backend aus den virtuellen Maschinen heraus und erlaubt erweiterte Überwachungs- und Verwaltungsfunktionen.
@@ -75,6 +78,7 @@ OpenNebula unterstützt NVIDIA vGPU und MIG (Multi Instance GPU) für virtuelle 
 
 
 
+[[storage]]
 == Storage
 
 OpenNebula bietet vier Arten von Datastores zur Verwaltung von Speicherressourcen: System-, Image-, Datei- und Backup-Datastores. System-Datastores werden verwendet, um die Festplatten und Konfigurationsdateien virtueller Maschinen zu speichern. Image-Datastores werden verwendet, um Images, ISOs und Datenträger virtueller Maschinen zu speichern. Datei-Datastores werden verwendet, um Dateien zu speichern, auf die virtuelle Maschinen zugreifen können. Backup-Datastores werden verwendet, um Backups von virtuellen Maschinen und deren Daten zu speichern.
@@ -102,6 +106,7 @@ Trident CSI-Treiber wird verwendet, um ein persistentes Volume auf Kubernetes-Cl
 
 
 
+[[network]]
 == Netzwerk
 
 OpenNebula lässt sich in bestehende Netzwerkinfrastruktur integrieren, um Netzwerkfunktionen für virtuelle Maschinen und Container bereitzustellen. Es unterstützt verschiedene Netzwerkmodelle, darunter Linux bridge, 802.1Q VLAN, VXLAN und Open vSwitch Netzwerke. Für VPC-ähnliche Netzwerke kann VXLAN mit EVPN verwendet werden, um Mandantennetzwerke zu isolieren.
@@ -120,6 +125,7 @@ Virtuelle Router können eingesetzt werden, um Routing- und NAT-Dienste für vir
 
 
 
+[[monitoring-and-operations]]
 == Überwachung und Betrieb
 
 OpenNebula umfasst ein umfassendes Überwachungssystem, das Echtzeit-Einblicke in die Leistung und den Zustand der Cloud-Infrastruktur bietet. Es erfasst Metriken von Hypervisoren, virtuellen Maschinen, Speicher- und Netzwerkkomponenten, sodass Administratoren die Ressourcenauslastung überwachen und potenzielle Probleme identifizieren können.
@@ -142,6 +148,7 @@ https://github.com/OpenNebula/one-swap["OneSwap-Tool"] ermöglicht die Migration
 
 
 
+[[data-protection]]
 == Datensicherung
 
 OpenNebula bietet Unterstützung für Backups mit rsync, restic und Veeam. Die Veeam-Integration ist nur mit der Enterprise Edition verfügbar. Backup-Datenspeicher werden verwendet, um Backups von virtuellen Maschinen und deren Daten zu speichern. Backup-Aufträge können so geplant werden, dass sie in bestimmten Intervallen ausgeführt werden und so sicherstellen, dass virtuelle Maschinen regelmäßig gesichert werden.

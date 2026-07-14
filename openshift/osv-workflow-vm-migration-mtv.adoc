@@ -30,6 +30,7 @@ Bei dieser Art der Migration werden die meisten Daten während der Vorkopierphas
 ====
 
 
+[[video-demonstration]]
 == Videodemonstration
 
 Das folgende Video zeigt eine Demonstration der Kaltmigration einer RHEL-VM von VMware zu OpenShift Virtualization unter Verwendung der Speicherklasse ontap-san für persistenten Speicher.
@@ -38,6 +39,7 @@ Das folgende Video zeigt eine Demonstration der Kaltmigration einer RHEL-VM von 
 video::bac58645-dd75-4e92-b5fe-b12b015dc199[panopto,width=360]
 
 
+[[migration-of-vm-from-vmware-to-openshift-virtualization-using-migration-toolkit-for-virtualization]]
 == Migration von VMs von VMware zu OpenShift Virtualization mit dem Migration Toolkit for Virtualization
 
 In diesem Abschnitt erfahren Sie, wie Sie mit dem Migration Toolkit for Virtualization (MTV) virtuelle Maschinen von VMware zu OpenShift Virtualization migrieren, das auf der OpenShift Container-Plattform ausgeführt und mithilfe von Trident in den NetApp ONTAP -Speicher integriert ist.
@@ -48,10 +50,12 @@ image:rh-os-n-use-case-vm-migration-using-mtv.png["Abbildung, die einen Eingabe-
 
 
 
+[[prerequisites-for-the-sample-migration]]
 === Voraussetzungen für die Beispielmigration
 
 
 
+[[on-vmware]]
 === **Auf VMware**
 
 * Eine RHEL 9-VM mit RHEL 9.3 und den folgenden Konfigurationen wurde installiert:
@@ -80,6 +84,7 @@ NOTE: Stellen Sie sicher, dass Sie den PostgreSQL-Server starten und den Dienst 
 
 
 
+[[on-openshift-cluster]]
 === **Auf OpenShift-Cluster**
 
 Vor der Installation von MTV wurden folgende Installationen durchgeführt:
@@ -92,6 +97,7 @@ Vor der Installation von MTV wurden folgende Installationen durchgeführt:
 
 
 
+[[install-mtv]]
 === Installieren von MTV
 
 Jetzt können Sie das Migration Toolkit für Virtualisierung (MTV) installieren.  Beachten Sie die beigefügten Anweisungenlink:https://access.redhat.com/documentation/en-us/migration_toolkit_for_virtualization/2.5/html/installing_and_using_the_migration_toolkit_for_virtualization/installing-the-operator["hier,"] für Hilfe bei der Installation.
@@ -137,6 +143,7 @@ image:rh-os-n-use-case-vm-migration-mtv-plan-ready.png["Abbildung, die einen Ein
 
 
 
+[[perform-cold-migration]]
 === Durchführen einer Cold Migration
 
 Durch Klicken auf *Start* wird eine Reihe von Schritten ausgeführt, um die Migration der VM abzuschließen.
@@ -149,6 +156,7 @@ Sie können sich bei der virtuellen Maschine anmelden und den Inhalt der Posgres
 
 
 
+[[perform-warm-migration]]
 === Warme Migration durchführen
 
 Um eine Warmmigration durchzuführen, müssen Sie nach dem Erstellen eines Migrationsplans wie oben gezeigt die Planeinstellungen bearbeiten, um den Standardmigrationstyp zu ändern.  Klicken Sie auf das Bearbeitungssymbol neben der Kaltmigration und schalten Sie die Schaltfläche um, um sie auf Warmmigration umzustellen.  Klicken Sie auf **Speichern**.  Klicken Sie nun auf **Start**, um die Migration zu starten.

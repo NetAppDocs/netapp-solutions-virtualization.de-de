@@ -6,6 +6,7 @@ Diese Migration ermöglicht eine nahtlose Integration, verbesserten Datenschutz 
 
 
 
+[[use-cases]]
 == Anwendungsfälle
 
 Wenn Sie eine Migration auf ONTAP gestützte Datenspeicher in Erwägung ziehen, stehen Ihnen hinsichtlich Quelle und Ziel zahlreiche Migrationsoptionen zur Verfügung.

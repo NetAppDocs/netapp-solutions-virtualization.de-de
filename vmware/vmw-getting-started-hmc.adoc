@@ -18,6 +18,7 @@ Entdecken Sie, wie NetApp und VMware hybride Multicloud-Setups optimieren, indem
 
 
 
+[[introduction]]
 == Einführung
 
 Dieser Ansatz ermöglicht es Unternehmen, Workloads problemlos zu migrieren, die Ressourcennutzung zu optimieren und konsistente Vorgänge in beiden Umgebungen aufrechtzuerhalten.
@@ -26,6 +27,7 @@ Weitere Informationen zu Hybrid-Cloud-Szenarien mit VMware und NetApp finden Sie
 
 
 
+[[vmware-deployment-scenarios-with-netapp]]
 == VMware-Bereitstellungsszenarien mit NetApp
 
 In diesem Abschnitt werden verschiedene Bereitstellungsoptionen für VMware-Umgebungen in lokalen und öffentlichen Clouds beschrieben.  Jeder der Cloud-Anbieter unterstützt einen VMware Software Defined Data Center (SDDC)- und/oder VMware Cloud Foundation (VCF)-Stack innerhalb seiner jeweiligen öffentlichen Cloud-Angebote.

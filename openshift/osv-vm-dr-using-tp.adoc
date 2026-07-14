@@ -18,6 +18,7 @@ Richten Sie mit Trident Protect die Notfallwiederherstellung für VMs in OpenShi
 
 
 
+[[prerequisites]]
 == Voraussetzungen
 
 * Trident muss installiert sein.  Backend- und Speicherklassen müssen erstellt werden, bevor OpenShift Virtualization mithilfe des OpenShift Virtualization-Operators auf dem Cluster installiert wird.
@@ -32,6 +33,7 @@ image:redhat-openshift-ocpv-tp-003.png["OCP-v VM im Source-NS-Namespace installi
 
 
 
+[[create-appvault-using-ontap-s3]]
 == Erstellen Sie AppVault mit ONTAP S3
 
 Dieser Abschnitt zeigt, wie man ein AppVault-Objekt in Trident Protect mithilfe von ONTAP S3-Objektspeicher einrichtet.
@@ -97,6 +99,7 @@ image:redhat-openshift-ocpv-tp-002.png["OCP-v AppVault im trident-protect-Namesp
 
 
 
+[[create-a-trident-protect-app-for-the-vm]]
 == Erstellen Sie eine Trident Protect App für die VM
 
 Erstellen Sie eine benutzerdefinierte App-Ressource im Namespace, in dem sich die VM befindet.
@@ -111,6 +114,7 @@ image:redhat-openshift-ocpv-tp-004.png["OCP-v-App im Source-NS-Namespace"]
 
 
 
+[[create-a-trident-protect-app-for-the-disaster-recovery-vm-in-a-new-namespace]]
 == Erstellen Sie eine Trident Protect-App für die Disaster Recovery-VM in einem neuen Namespace
 
 [source, CLI]
@@ -122,6 +126,7 @@ image:redhat-openshift-ocpv-tp-005.png["OCP-v-App im Source-NS-Namespace"]
 
 
 
+[[create-an-appmirror-schedule-in-the-source-namespace]]
 == Erstellen Sie einen AppMirror-Zeitplan im Quellnamespace
 
 Erstellen Sie mithilfe des YAML wie gezeigt einen Zeitplan für AppMirror.  Dadurch werden Snapshots nach dem Zeitplan (alle 5 Minuten) erstellt und 2 Snapshots gespeichert
@@ -153,6 +158,7 @@ image:redhat-openshift-ocpv-tp-007.png["Snapshot erstellt"]
 
 
 
+[[create-an-appmirror-relationship-in-the-dr-namespace]]
 == Erstellen Sie eine AppMirror-Beziehung im DR-Namespace
 
 Erstellen Sie eine Appmirror-Beziehung im Disaster Recovery-Namespace.  Setzen Sie den gewünschten Status auf „Etabliert“.
@@ -195,6 +201,7 @@ image:redhat-openshift-ocpv-tp-012.png["PVC wird im Zielnamespace erstellt"]
 
 
 
+[[promote-the-relationship-to-failover]]
 == Fördern Sie die Beziehung zum Failover
 
 Ändern Sie den gewünschten Status der Beziehung in „Promoted“, um die VM im DR-Namespace zu erstellen.  Die VM wird weiterhin im Quellnamespace ausgeführt.
@@ -213,6 +220,7 @@ image:redhat-openshift-ocpv-tp-016.png["VM in Quell-NS läuft noch"]
 
 
 
+[[establish-the-relationship-again-to-failback]]
 == Stellen Sie die Beziehung erneut zu Failback her
 
 Ändern Sie den gewünschten Status der Beziehung in „Etabliert“.  Die VM wird im DR-Namespace gelöscht.  Das PVC ist weiterhin im DR-Namespace vorhanden.  Die VM wird weiterhin im Quellnamespace ausgeführt.  Die ursprüngliche Beziehung vom Quellnamespace zu DR ns wird hergestellt. .
@@ -231,6 +239,7 @@ image:redhat-openshift-ocpv-tp-020.png["POD und PVC in der Quelle ns bleibt weit
 
 
 
+[[video-demonstration]]
 == Videodemonstration
 
 Das folgende Video zeigt eine Demonstration der Implementierung eines Disaster Recovery-Szenarios für eine OpenShift-VM mit Trident Protect

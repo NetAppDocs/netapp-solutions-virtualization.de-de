@@ -24,6 +24,7 @@ Wenn Sie ONTAP noch nicht kennen, verwenden Sie die System Manager Interface, um
 video::f6c9aba3-b070-45d6-8048-b22e001acfd4[panopto,width=360]
 
 
+[[storage-administrator-tasks]]
 == Aufgaben des Speicheradministrators
 
 Führen Sie diese Aufgaben aus, um NFS-Speicher auf ONTAP für die Verwendung mit Proxmox VE bereitzustellen.
@@ -59,6 +60,7 @@ image:proxmox-ontap-nfs-003.png["NFS-Volume-Informationen"]
 
 
 
+[[virtualization-administrator-tasks]]
 == Aufgaben des Virtualisierungsadministrators
 
 Führen Sie diese Schritte aus, um das NFS-Volume als Speicher in Proxmox VE hinzuzufügen und nConnect oder Session Trunking für eine verbesserte Leistung zu konfigurieren.

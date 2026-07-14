@@ -18,6 +18,7 @@ Konfigurieren Sie den iSCSI vVols Speicher in einer VI-Workload-Domäne mithilfe
 
 
 
+[[step-1-deploy-ontap-tools-for-vmware-vsphere]]
 == Schritt 1: ONTAP tools for VMware vSphere bereitstellen
 
 Für VI-Workloaddomänen werden ONTAP Tools im VCF-Verwaltungscluster installiert, aber beim vCenter registriert, das der VI-Workloaddomäne zugeordnet ist.
@@ -87,6 +88,7 @@ image:vmware-vcf-asa-035.png["OTV-Vorlage 2 anpassen"]
 
 
 
+[[step-2-add-a-storage-system]]
 == Schritt 2: Ein Speichersystem hinzufügen
 
 Führen Sie die folgenden Schritte aus, um mithilfe von ONTAP -Tools ein Speichersystem hinzuzufügen.
@@ -131,6 +133,7 @@ image:vmware-vcf-asa-017.png["Cluster-Zertifikat autorisieren"]
 
 
 
+[[step-3-create-a-storage-capability-profile-in-ontap-tools]]
 == Schritt 3: Erstellen Sie ein Speicherkapazitätsprofil in ONTAP -Tools
 
 Speicherleistungsprofile beschreiben die Funktionen, die ein Speicherarray oder Speichersystem bietet.  Sie enthalten Definitionen der Dienstqualität und werden zur Auswahl von Speichersystemen verwendet, die die im Profil definierten Parameter erfüllen.  Es kann eines der bereitgestellten Profile verwendet oder es können neue erstellt werden.
@@ -197,6 +200,7 @@ image:vmware-vcf-asa-040.png["Zusammenfassung für SCP"]
 
 
 
+[[step-4-create-a-vvols-datastore-in-ontap-tools]]
 == Schritt 4: Erstellen Sie einen vVols -Datenspeicher in ONTAP -Tools
 
 Führen Sie die folgenden Schritte aus, um einen vVols Datenspeicher in ONTAP -Tools zu erstellen.
@@ -250,6 +254,7 @@ image:vmware-vcf-asa-045.png["Zusammenfassungsseite"]
 
 
 
+[[additional-information]]
 == Weitere Informationen
 
 * Informationen zur Konfiguration von ONTAP -Speichersystemen finden Sie unterlink:https://docs.netapp.com/us-en/ontap["ONTAP 9 Dokumentation"^] .

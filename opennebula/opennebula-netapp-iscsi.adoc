@@ -18,6 +18,7 @@ Konfigurieren Sie OpenNebula Datenspeicher mithilfe des iSCSI-Protokolls mit Net
 
 
 
+[[initial-virtualization-administrator-tasks]]
 == Erste Aufgaben des Virtualisierungsadministrators
 
 Führen Sie diese ersten Schritte durch, um OpenNebula-Hosts für die iSCSI-Konnektivität vorzubereiten und die notwendigen Informationen für den Speicheradministrator zu sammeln.
@@ -62,6 +63,7 @@ cat /etc/iscsi/initiator.name
 
 
 
+[[storage-administrator-tasks]]
 == Aufgaben des Speicheradministrators
 
 Wenn Sie ONTAP noch nicht kennen, nutzen Sie den System Manager für eine bessere Benutzererfahrung.
@@ -93,6 +95,7 @@ NETAPP_TARGET="iqn.1992-08.com.netapp:sn.85c23687d5d911f086c4d039eac4d4b3:vs.6"
  TIP: System Manager displays the UUID in the URL when viewing the resource details.
 
 
+[[final-virtualization-administrator-tasks]]
 == Abschließende Aufgaben des Virtualisierungsadministrators
 
 Führen Sie diese Aufgaben aus, um den iSCSI-Datenspeicher auf OpenNebula zu konfigurieren.

@@ -20,6 +20,7 @@ Führen Sie die folgenden Schritte auf dem VI Workload Domain-Cluster mithilfe d
 
 
 
+[[step-1-create-a-distributed-port-group-for-nfs-traffic]]
 == Schritt 1: Erstellen einer verteilten Portgruppe für NFS-Verkehr
 
 Führen Sie die folgenden Schritte aus, um eine neue verteilte Portgruppe für das Netzwerk zur Übertragung von NFS-Verkehr zu erstellen.
@@ -64,6 +65,7 @@ image:vmware-vcf-aff-038.png["DPG - Team-Uplinks"]
 
 
 
+[[step-2-create-a-vmkernel-adapter-on-each-esxi-host]]
 == Schritt 2: Erstellen Sie auf jedem ESXi-Host einen VMkernel-Adapter
 
 Erstellen Sie auf jedem ESXi-Host in der Workload-Domäne einen VMkernel-Adapter.
@@ -114,6 +116,7 @@ image:vmware-vcf-aff-041.png["Überprüfen Sie die VMkernel-Auswahl"]
 
 
 
+[[whats-next]]
 == Wie geht es weiter?
 
 Nachdem Sie die Netzwerkkonfiguration für NFS auf allen ESXi-Hosts in der Workloaddomäne durchgeführt haben,link:vmw-vcf-viwld-supp-nfs-vvols-storage.html["Speicher für NFS vVols konfigurieren"] .

@@ -18,6 +18,7 @@ Dieser Abschnitt behandelt die Erstellung eines VMFS-Datenspeichers mit dem Fibr
 
 
 
+[[what-you-need]]
 == Voraussetzungen
 
 * Die grundlegenden Fähigkeiten, die zum Verwalten einer vSphere-Umgebung und ONTAP erforderlich sind
@@ -51,6 +52,7 @@ Dieser Abschnitt behandelt die Erstellung eines VMFS-Datenspeichers mit dem Fibr
 
 
 
+[[provision-a-vmfs-datastore]]
 == Bereitstellen eines VMFS-Datenspeichers
 
 * Überprüfen Sie die Kompatibilität mit dem https://mysupport.netapp.com/matrix["Interoperabilitätsmatrix-Tool (IMT)"] .
@@ -59,6 +61,7 @@ Dieser Abschnitt behandelt die Erstellung eines VMFS-Datenspeichers mit dem Fibr
 
 
 
+[[ontap-tasks]]
 == ONTAP -Aufgaben
 
 . link:https://docs.netapp.com/us-en/ontap-cli-98/system-license-show.html["Überprüfen Sie die ONTAP -Lizenz für FCP."]
@@ -86,6 +89,7 @@ Dieser Abschnitt behandelt die Erstellung eines VMFS-Datenspeichers mit dem Fibr
 
 
 
+[[vmware-vsphere-tasks]]
 == VMware vSphere-Aufgaben
 
 . Stellen Sie sicher, dass HBA-Treiber installiert sind.  Von VMware unterstützte HBAs verfügen über sofort einsatzbereite Treiber und sollten in derlink:++https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/7-0/vsphere-storage-7-0/getting-started-with-a-traditional-storage-model-in-vsphere-environment/supported-storage-adapters/view-storage-adapters-available-on-an-esxi-host.html++["Informationen zum Speicheradapter"] .

@@ -34,6 +34,7 @@ NOTE: Trident unterstützt Volume Group Snapshots nur für das iSCSI-Protokoll i
 
 
 
+[[step-1-install-openshift-4-19-and-enable-featuregate-for-volume-group-snapshots]]
 == Schritt 1: Installieren Sie OpenShift 4.19 und aktivieren Sie FeatureGate für Volume Group Snapshots
 
 Installieren Sie den OpenShift 4.19-Cluster mit Kubernetes Version 1.32.  Diese Version hebt die Volume Group Snapshot-Funktion auf den Beta-Status.  Spätere Versionen von OpenShift können Kubernetes-Versionen über v1.32 enthalten, die diese Funktion ebenfalls unterstützen.
@@ -58,6 +59,7 @@ image:redhat-openshift-ocpv-vgs-002.png["Aktivieren Sie VolumeGroupSnapshot Feat
 
 
 
+[[step-2-install-and-configure-trident-25-06-for-volume-group-snapshots]]
 == Schritt 2: Installieren und konfigurieren Sie Trident 25.06 für Volume Group Snapshots
 
 Die Volume Group Snapshot-Funktion wird von Trident nur für das iSCSI-Protokoll in Trident 25.06 unterstützt.  HINWEIS: Sie müssen Trident Version 25.06.1 installieren, um das iSCSI-Protokoll auf OpenShift Cluster 4.19 zu aktivieren.
@@ -176,6 +178,7 @@ image:redhat-openshift-ocpv-vgs-006.png["Volume Group Snapshot-Klasse"]
 
 
 
+[[step-3-install-openshift-virtualization-and-create-a-test-vm-with-multiple-disks]]
 == Schritt 3: Installieren Sie OpenShift Virtualization und erstellen Sie eine Test-VM mit mehreren Festplatten
 
 Installieren Sie den OpenShift Virtualization Operator, um VM-Verwaltungsfunktionen in Ihrem Cluster zu aktivieren.  Erstellen Sie nach der Installation eine Test-VM mit mehreren persistenten Datenträgern, um die Snapshot-Funktionalität der Volume-Gruppe zu demonstrieren.
@@ -207,6 +210,7 @@ image:redhat-openshift-ocpv-vgs-009.png["VM-Datenträger"]
 
 
 
+[[step-4-label-vm-disks-for-group-snapshot-protection]]
 == Schritt 4: VM-Datenträger für den Gruppen-Snapshot-Schutz kennzeichnen
 
 Snapshots von Volumegruppen verwenden Label-Selektoren, um zu identifizieren, welche PVCs zusammengehören. So wird sichergestellt, dass alle zugehörigen VM-Datenträger gleichzeitig zum gleichen Zeitpunkt erfasst werden.
@@ -274,6 +278,7 @@ image:redhat-openshift-ocpv-vgs-011.png["ONTAP Konsistenzgruppe"]
 
 
 
+[[step-5-restore-vm-disks-from-snapshots]]
 == Schritt 5: Wiederherstellen von VM-Datenträgern aus Snapshots
 
 Dieser Schritt überprüft, ob die Snapshots bei Bedarf VM-Daten erfolgreich wiederherstellen können.  Nehmen wir an, wir hätten verloren die `sample.txt` Datei von jeder der beiden Datenfestplatten.

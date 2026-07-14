@@ -17,6 +17,7 @@ Führen Sie die folgenden Schritte auf dem VCF-Verwaltungsdomänencluster mithil
 
 
 
+[[step-1-deploy-ontap-tools-for-vmware-vsphere]]
 == Schritt 1: ONTAP tools for VMware vSphere bereitstellen
 
 ONTAP tools for VMware vSphere (OTV) werden als VM-Appliance bereitgestellt und bieten eine integrierte vCenter-Benutzeroberfläche zur Verwaltung des ONTAP Speichers.
@@ -84,6 +85,7 @@ image:vmware-vcf-asa-035.png["OTV-Vorlage 2 anpassen"]
 
 
 
+[[step-2-add-a-storage-system]]
 == Schritt 2: Ein Speichersystem hinzufügen
 
 Führen Sie die folgenden Schritte aus, um mithilfe von ONTAP -Tools ein Speichersystem hinzuzufügen.
@@ -125,6 +127,7 @@ image:vmware-vcf-asa-017.png["Cluster-Zertifikat autorisieren"]
 
 
 
+[[optional-migrate-management-vms-to-the-iscsi-datastore]]
 == Optional: Migrieren Sie Management-VMs in den iSCSI-Datenspeicher
 
 In Fällen, in denen Sie zum Schutz der VCF-Verwaltungs-VMs lieber ONTAP Speicher verwenden möchten, migrieren Sie die VMs mit vMotion in den neu erstellten iSCSI-Datenspeicher.
@@ -168,6 +171,7 @@ image:vmware-vcf-asa-021.png["Bereich „Kürzliche Aufgaben“ des vSphere-Clie
 
 
 
+[[additional-information]]
 == Weitere Informationen
 
 * Informationen zur Konfiguration von ONTAP -Speichersystemen finden Sie unterlink:https://docs.netapp.com/us-en/ontap["ONTAP 9 Dokumentation"^] .

@@ -18,6 +18,7 @@ In diesem Anwendungsfall beschreiben wir das Verfahren zum Konfigurieren eines N
 
 
 
+[[benefits-of-nfs]]
 == Vorteile von NFS
 
 *Einfachheit und Benutzerfreundlichkeit:* NFS lässt sich unkompliziert einrichten und verwalten und ist daher eine ausgezeichnete Wahl für Umgebungen, in denen eine schnelle und einfache Dateifreigabe erforderlich ist.
@@ -32,6 +33,7 @@ Weitere Informationen zur Verwendung von Fibre Channel mit NetApp -Speichersyste
 
 
 
+[[scenario-overview]]
 == Szenarioübersicht
 
 Dieses Szenario umfasst die folgenden allgemeinen Schritte:
@@ -51,6 +53,7 @@ NOTE: Diese Lösung ist für ONTAP -Plattformen anwendbar, die NFS-Speicher unte
 
 
 
+[[prerequisites]]
 == Voraussetzungen
 
 In diesem Szenario werden die folgenden Komponenten und Konfigurationen verwendet:
@@ -75,6 +78,7 @@ Weitere Informationen zur Verwendung von NFS mit vSphere-Clustern finden Sie iml
 
 
 
+[[deployment-steps]]
 == Bereitstellungsschritte
 
 Führen Sie die folgenden Schritte aus, um eine VI-Workload-Domäne mit einem NFS-Datenspeicher als Hauptspeicher bereitzustellen:
@@ -294,12 +298,14 @@ Eine Schritt-für-Schritt-Anleitung zur Bereitstellung des NetApp NFS Plug-ins f
 ====
 
 
+[[video-demo-for-this-solution]]
 == Videodemo für diese Lösung
 
 .NFS-Datenspeicher als Hauptspeicher für VCF-Workload-Domänen
 video::9b66ac8d-d2b1-4ac4-a33c-b16900f67df6[panopto,width=360]
 
 
+[[additional-information]]
 == Weitere Informationen
 
 Informationen zur Konfiguration von ONTAP Speichersystemen finden Sie imlink:https://docs.netapp.com/us-en/ontap["ONTAP 9 Dokumentation"] Center.

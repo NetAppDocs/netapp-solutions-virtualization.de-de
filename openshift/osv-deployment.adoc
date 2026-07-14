@@ -4,7 +4,7 @@ permalink: openshift/osv-deployment.html
 keywords: OpenShift, OCP, Trident, NetApp ONTAP, Red Hat OpenShift, OpenShift Virtualization, CNV, Container Native Virtualization, Red Hat OpenShift Virtualization 
 summary: Red Hat OpenShift-Virtualisierung mit NetApp ONTAP 
 ---
-= Bereitstellen von Red Hat OpenShift Virtualization mit ONTAP
+= Voraussetzungen für die Bereitstellung von Red Hat OpenShift Virtualization mit ONTAP
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,6 +14,61 @@ summary: Red Hat OpenShift-Virtualisierung mit NetApp ONTAP
 
 
 [role="lead"]
+Die Voraussetzungen und weiteren Details zur Bereitstellung der OpenShift Virtualisierung mit ONTAP Speichersystemen werden aufgeführt.
+
+
+
+[[prerequisites]]
+== Voraussetzungen
+
+* Ein Red Hat OpenShift-Cluster (neuer als Version 4.6), installiert auf einer Bare-Metal-Infrastruktur mit RHCOS-Worker-Knoten
+* Führen Sie Machine Health Checks durch, um HA für VMs aufrechtzuerhalten
+* Ein NetApp ONTAP -Cluster mit SVM, das mit dem richtigen Protokoll konfiguriert ist.
+* Trident auf dem OpenShift-Cluster installiert
+* Eine erstellte Trident Backend-Konfiguration
+* Eine auf dem OpenShift-Cluster konfigurierte StorageClass mit Trident als Provisioner
+* Eine Trident VolumeSnapshotClass, die auf dem OpenShift-Cluster mit Trident als Provisionierer konfiguriert ist
+* Trident StorageClass ist als Standard für den OpenShift Cluster oder OpenShift Virtualisierung konfiguriert.
+
+
+Die oben genannten Trident -Voraussetzungen finden Sie unterlink:osv-trident-install.html["Trident -Installationsabschnitt"] für Details.
+
+* Cluster-Admin-Zugriff auf den Red Hat OpenShift-Cluster
+* Administratorzugriff auf NetApp ONTAP -Cluster
+* Eine Admin-Workstation mit installierten und zu $PATH hinzugefügten Tridentctl- und OC-Tools
+
+
+Da die OpenShift Virtualisierung von einem auf dem OpenShift Cluster installierten Operator verwaltet wird, entsteht zusätzlicher Aufwand für Arbeitsspeicher, CPU und Speicher, der bei der Planung der Hardwareanforderungen für den Cluster berücksichtigt werden muss. Siehe die Dokumentation link:https://docs.openshift.com/container-platform/4.7/virt/install/preparing-cluster-for-virt.html#virt-cluster-resource-requirements_preparing-cluster-for-virt["hier,"] für weitere Details.
+
+Optional kann auch eine Teilmenge der OpenShift-Cluster-Knoten für das Hosting der OpenShift Virtualization-Operatoren, Controller und VMs durch die Konfiguration von Knotenplatzierungsregeln festgelegt werden. Zur Konfiguration von Knotenplatzierungsregeln für OpenShift Virtualization wird auf die Dokumentation verwiesen link:https://docs.openshift.com/container-platform/4.7/virt/install/virt-specifying-nodes-for-virtualization-components.html["hier,"].
+
+Für den Speicher, der die OpenShift-Virtualisierung unterstützt, empfiehlt NetApp eine dedizierte StorageClass, die Speicher von einem bestimmten Trident Backend anfordert, das wiederum von einer dedizierten SVM unterstützt wird.  Dadurch wird ein gewisses Maß an Mandantenfähigkeit hinsichtlich der Daten aufrechterhalten, die für VM-basierte Workloads auf dem OpenShift-Cluster bereitgestellt werden.
+
+
+
+[[netapp-trident-csi-storage-profiles-volume-access-modes-for-openshift-virtualization]]
+== NetApp Trident CSI, Speicherprofile, Datenträgerzugriffsmodi für OpenShift Virtualisierung
+
+In OpenShift Virtualization sind Bootquellen Festplattenabbilder, die zur Bereitstellung virtueller Maschinen (VMs) anhand von Vorlagen verwendet werden. Sie werden typischerweise als DataVolumes oder Persistent Volume Claims (PVCs) im Namespace openshift-virtualization-os-images gespeichert. Damit OpenShift Virtualization ordnungsgemäß funktioniert, sind vor der Installation von OpenShift Virtualization mit dem Operator zwei Speicherkonfigurationsaufgaben obligatorisch:
+
+. Sie müssen eine Standard-StorageClass für den Cluster konfigurieren. Andernfalls kann OpenShift Virtualization Boot-Quellabbilder nicht automatisch importieren.
+. Sie müssen Speicherprofile konfigurieren, wenn Ihr Speicheranbieter von CDI nicht erkannt wird. Ein Speicherprofil stellt empfohlene Speichereinstellungen basierend auf der zugehörigen StorageClass bereit. Eine der wichtigsten Funktionen von StorageProfile ist die Definition von Klonstrategien für eine StorageClass. Dadurch wird festgelegt, wie Volumes geklont werden (z. B. mithilfe von Snapshots, CSI-Klonen oder hostgestützten Kopien), wobei Leistung und Ressourcennutzung entsprechend den Fähigkeiten des zugrunde liegenden Speicheranbieters optimiert werden. Der Trident CSI driver wird von CDI erkannt, und ein Standard-Speicherprofil wird automatisch für jede im Cluster erstellte Trident StorageClass angelegt. Die Klonstrategie für dieses Standard-Speicherprofil ist auf Snapshot festgelegt, was die empfohlene Klonstrategie für den Trident CSI driver ist. Die VolumeSnapshotClass und StorageClass für Trident müssen erstellt und die StorageClass als Standard festgelegt werden, bevor OpenShift Virtualization installiert wird. Dadurch wird sichergestellt, dass die Boot-Quellabbilder als VolumeSnapshots im Namespace openshift-virtualization-os-images verfügbar sind, sodass VMs effizient und fehlerfrei bereitgestellt werden können.
+
+
+Für bestimmte unterstützte Betriebssysteme (wie RHEL, Fedora oder CentOS) stellt OpenShift Virtualization automatisch Bootquellen bereit und aktualisiert diese. Diese werden heruntergeladen, wenn OpenShift Virtualization installiert wird, und sie werden automatisch verwaltet und auf die neueste Betriebssystemversion aktualisiert. Wenn ein Betriebssystem nicht automatisch bereitgestellt wird, muss ein Administrator ein benutzerdefiniertes Image manuell vorbereiten und anhängen. Bei Verwendung von NetApp Trident als CSI ergeben sich folgende zusätzliche Vorteile:
+
+. Die Boot-Quellabbilder werden als Snapshots im Namespace openshift-virtualization-os-images verfügbar sein. Wenn VMs bereitgestellt werden, wird das Boot-Abbild aus dem Snapshot geklont, was das Starten der VM deutlich beschleunigt.
+. Ein Speicherprofil wird für jede erstellte Trident StorageClass automatisch angelegt und ist automatisch mit der Klonstrategie auf Snapshot konfiguriert. Der Zugriffsmodus ist auf ReadWriteMany gesetzt. Eine manuelle Konfiguration ist nicht erforderlich.
+
+
+Es ist äußerst wichtig, dass Sie eine Trident StorageClass und eine Trident VolumeSnapshotClass erstellen und diese als Standard festlegen, bevor Sie die OpenShift Virtualization in Ihrem Cluster installieren. Dadurch wird sichergestellt, dass die Boot-Quellimages als VolumeSnapshots im Namespace openshift-virtualization-os-images verfügbar sind, sodass VMs effizient und fehlerfrei bereitgestellt werden können.
+
+Ein weiterer Vorteil der Verwendung von Trident CSI: . In OpenShift Virtualization müssen die Boot-Disks der VMs über RWX-Zugriffsmodi verfügen, um eine Live-Migration der VMs durchzuführen. Trident unterstützt den Zugriffsmodus **ReadWriteMany** für Volumes, die mit NAS-Protokollen bereitgestellt werden, sowie mit SAN-Protokollen (wenn volumeMode auf Block und nicht auf FileSystem gesetzt ist). Für die Boot-Disk kann eines der beiden Protokolle verwendet werden. Das Storage-Profile-Objekt wird automatisch auf Basis der StorageClass-Einstellungen konfiguriert, und die Zugriffsmodi der Boot-Disk werden bei der Bereitstellung der VMs entsprechend festgelegt.
+
+Nachdem Sie die Trident StorageClass als Standard für den Cluster festgelegt haben, können Sie zusätzliche StorageClasses für Trident mit unterschiedlichen Parametern erstellen, die von OpenShift Virtualization automatisch erkannt werden, wobei entsprechende Speicherprofile für sie erstellt werden. Anschließend kann die zu verwendende StorageClass für die Bootdisk und die Datendisks der VM in der VM-Definition angegeben werden.
+
+Die Installation der OpenShift Virtualisierung auf dem OpenShift Cluster ist ein unkomplizierter Vorgang mithilfe des OpenShift Virtualization Operators, der im OpenShift OperatorHub verfügbar ist. Detaillierte Schritte zur Installation der OpenShift Virtualisierung sind in der Dokumentation zu finden link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/virtualization/installing["hier,"].
+
 Installieren Sie OpenShift Virtualization auf einem Red Hat OpenShift Bare-Metal-Cluster.  Dieses Verfahren umfasst die Anmeldung mit Cluster-Administratorzugriff, die Navigation zum OperatorHub und die Installation des OpenShift Virtualization-Operators.
 
 . Melden Sie sich mit Cluster-Admin-Zugriff beim Red Hat OpenShift Bare-Metal-Cluster an.

@@ -18,6 +18,7 @@ Stellen Sie VMs in OpenShift Virtualization mit Velero und der OpenShift API for
 
 
 
+[[prerequisites]]
 == Voraussetzungen
 
 Um eine Wiederherstellung aus einer Sicherung durchzuführen, gehen wir davon aus, dass der Namespace, in dem sich die virtuelle Maschine befand, versehentlich gelöscht wurde.

@@ -18,6 +18,7 @@ Die Konvertierung einer vSphere-Umgebung mit vorhandenen Fibre Channel- oder NFS
 
 
 
+[[solution-overview]]
 == Lösungsübersicht
 
 Diese Lösung zeigt, wie vorhandene FC- oder NFS-Datenspeicher in vSphere zum Hauptspeicher werden, wenn der Cluster in eine VCF-Verwaltungsdomäne konvertiert wird.
@@ -28,6 +29,7 @@ Diese Integration verbessert nicht nur die Ressourcennutzung, sondern vereinfach
 
 
 
+[[architecture-overview]]
 == Architekturübersicht
 
 Die Architektur der ONTAP -Tools lässt sich nahtlos in VMware-Umgebungen integrieren und nutzt ein modulares und skalierbares Framework, das die ONTAP -Tool-Dienste, das vSphere-Plug-in und REST-APIs umfasst, um eine effiziente Speicherverwaltung, Automatisierung und Datensicherung zu ermöglichen.
@@ -38,6 +40,7 @@ image::vmware-vcf-import-nfs-010.png[ONTAP -Toolarchitektur]
 
 
 
+[[supported-solutions-for-converting-a-vsphere-environment]]
 == Unterstützte Lösungen zum Konvertieren einer vSphere-Umgebung
 
 Die technischen Details zum Konvertieren einer vCenter-Instanz finden Sie in den folgenden Lösungen.
@@ -48,6 +51,7 @@ Die technischen Details zum Konvertieren einer vCenter-Instanz finden Sie in den
 
 
 
+[[additional-information]]
 == Weitere Informationen
 
 * Videodemos dieser Lösungen finden Sie unterlink:../videos/vmware-videos.html#vmware-datastore-provisioning-with-ontap["Bereitstellung von VMware-Datenspeichern mit ONTAP"] .

@@ -18,6 +18,7 @@ Verwenden Sie SnapMirror Active Sync, um eine synchrone, bidirektionale Replikat
 
 
 
+[[introduction]]
 == Einführung
 
 Ab ONTAP 9.15.1 unterstützt SnapMirror Active Sync symmetrische Active/Active-Bereitstellungen und ermöglicht Lese- und Schreib-E/A-Vorgänge von beiden Kopien einer geschützten LUN mit bidirektionaler synchroner Replikation.  Ein Windows Stretch Cluster ist eine Erweiterung der Windows Failover Cluster-Funktion, die sich über mehrere geografische Standorte erstreckt, um hohe Verfügbarkeit und Notfallwiederherstellung zu gewährleisten.  Mit SnapMirror Active Sync Symmetric Active/Active und Cluster-Anwendungen wie Windows Failover Clustering können wir eine kontinuierliche Verfügbarkeit für geschäftskritische Microsoft Hyper-V-Anwendungen erreichen, um bei unerwarteten Vorfällen RTO und RPO von Null zu erreichen.  Diese Lösung bietet die folgenden Vorteile:
@@ -32,6 +33,7 @@ Dieses Dokument dokumentiert die synchrone bidirektionale Replikation der SnapMi
 
 
 
+[[use-cases]]
 == Anwendungsfälle
 
 Im Falle einer Störung wie beispielsweise eines Cyberangriffs, eines Stromausfalls oder einer Naturkatastrophe erfordert eine global vernetzte Geschäftsumgebung eine schnelle Wiederherstellung geschäftskritischer Anwendungsdaten ohne Datenverlust.  Diese Anforderungen sind in Bereichen wie dem Finanzwesen und der Einhaltung gesetzlicher Vorschriften wie der Datenschutz-Grundverordnung (DSGVO) noch höher.  Setzen Sie eine symmetrische Aktiv/Aktiv-Konfiguration ein, um Daten zwischen geografisch verteilten Standorten zu replizieren, lokalen Zugriff auf Daten zu ermöglichen und die Kontinuität bei regionalen Ausfällen sicherzustellen.
@@ -55,6 +57,7 @@ SnapMirror Active Sync bietet Flexibilität mit benutzerfreundlicher Granularit�
 
 
 
+[[solution-architecture]]
 == Lösungsarchitektur
 
 Der Microsoft Stretch-Cluster verfügt an jedem Standort über zwei Hyper-V-Knoten.  Diese beiden Knoten teilen sich den NetApp -Speicher und verwenden SnapMirror Active Sync Symmetric Active-Active, um die Volumes zwischen den beiden Standorten zu replizieren. Eine Konsistenzgruppe stellt sicher, dass alle Volumes eines Datensatzes stillgelegt und zum exakt gleichen Zeitpunkt erneut gesichert werden.  Dies bietet einen datenkonsistenten Wiederherstellungspunkt über alle Volumes hinweg, die den Datensatz unterstützen.  Der ONTAP Mediator empfängt Integritätsinformationen zu verbundenen ONTAP Clustern und -Knoten, koordiniert die Kommunikation zwischen beiden und ermittelt, ob jeder Knoten/Cluster fehlerfrei und betriebsbereit ist.
@@ -76,6 +79,7 @@ image:hyperv-smas-001.png["Abbildung, die einen Eingabe-/Ausgabedialog zeigt ode
 
 
 
+[[install-a-microsoft-stretch-failover-cluster]]
 === Installieren eines Microsoft Stretch Failoverclusters
 
 Sie können Windows Admin Center, PowerShell oder die Server Manager-Konsole verwenden, um die Failoverclustering-Funktion und die zugehörigen PowerShell-Cmdlets zu installieren.  Ausführliche Informationen zu Voraussetzungen und Schritten finden Sie unter „Erstellen eines Failoverclusters“.
@@ -127,6 +131,7 @@ image:hyperv-smas-005.png["Abbildung, die einen Eingabe-/Ausgabedialog zeigt ode
 
 
 
+[[create-intercluster-peering]]
 === Intercluster-Peering erstellen
 
 Sie müssen Peer-Beziehungen zwischen Quell- und Zielclustern erstellen, bevor Sie Snapshot-Kopien mit SnapMirror replizieren können.
@@ -143,6 +148,7 @@ image:hyperv-smas-007.png["Abbildung, die einen Eingabe-/Ausgabedialog zeigt ode
 
 
 
+[[configure-mediator-with-ontap]]
 === Mediator mit ONTAP konfigurieren
 
 Der ONTAP Mediator empfängt Integritätsinformationen zu verbundenen ONTAP Clustern und -Knoten, koordiniert die Kommunikation zwischen beiden und ermittelt, ob jeder Knoten/Cluster fehlerfrei und betriebsbereit ist.  SM-as ermöglicht die Replikation von Daten auf das Ziel, sobald sie auf das Quellvolume geschrieben werden.  Der Mediator muss in der dritten Fehlerdomäne eingesetzt werden. Voraussetzungen
@@ -218,6 +224,7 @@ image:hyperv-smas-010.png["Abbildung, die einen Eingabe-/Ausgabedialog zeigt ode
 
 
 
+[[configure-symmetric-activeactive-protection]]
 === Konfigurieren Sie den symmetrischen Aktiv/Aktiv-Schutz
 
 Konsistenzgruppen erleichtern die Verwaltung der Anwendungsarbeitslast, indem sie einfach zu konfigurierende lokale und Remote-Schutzrichtlinien sowie gleichzeitige absturz- oder anwendungskonsistente Snapshot-Kopien einer Sammlung von Volumes zu einem bestimmten Zeitpunkt bereitstellen.  Weitere Einzelheiten finden Sie unterlink:https://docs.netapp.com/us-en/ontap/consistency-groups/index.html["Übersicht über Konsistenzgruppen"] .  Für dieses Setup verwenden wir eine einheitliche Konfiguration.
@@ -240,6 +247,7 @@ image:hyperv-smas-012.png["Abbildung, die einen Eingabe-/Ausgabedialog zeigt ode
 
 
 
+[[perform-cluster-failover-validation-test]]
 === Durchführen eines Cluster-Failover-Validierungstests
 
 Wir empfehlen Ihnen, geplante Failover-Tests durchzuführen, um eine Clustervalidierungsprüfung durchzuführen. Die SQL-Datenbanken oder jegliche Clustersoftware auf beiden Sites – die primäre oder gespiegelte Site – sollten während der Tests weiterhin zugänglich sein.
@@ -286,6 +294,7 @@ Beachten Sie bei den Tests Folgendes:
 
 
 
+[[summary]]
 == Zusammenfassung
 
 SnapMirror Active Sync kann dazu beitragen, dass Anwendungsdaten mehrerer Standorte, beispielsweise MSSQL und Oracle, aktiv zugänglich und auf beiden Standorten synchronisiert sind.  Wenn ein Fehler auftritt, werden Anwendungen sofort auf die verbleibende aktive Site umgeleitet, ohne dass Daten oder Zugriff verloren gehen.

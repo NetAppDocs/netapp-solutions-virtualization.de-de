@@ -18,6 +18,7 @@ In diesem Szenario zeigen wir, wie man einen VMFS-Datenspeicher mit Fiber Channe
 
 
 
+[[benefits-of-fibre-channel]]
 == Vorteile von Fibre Channel
 
 *Hohe Leistung:* FC bietet Hochgeschwindigkeitsdatenübertragungsraten und ist daher ideal für Anwendungen, die einen schnellen und zuverlässigen Zugriff auf große Datenmengen erfordern.
@@ -32,6 +33,7 @@ Weitere Informationen zur Verwendung von Fibre Channel mit NetApp -Speichersyste
 
 
 
+[[scenario-overview]]
 == Szenarioübersicht
 
 Der VCF-Zusatzdatenspeicher wird im Rahmen der Day-2-Operationen mithilfe von vCenter bereitgestellt.  Dieses Szenario umfasst die folgenden allgemeinen Schritte:
@@ -44,6 +46,7 @@ Der VCF-Zusatzdatenspeicher wird im Rahmen der Day-2-Operationen mithilfe von vC
 
 
 
+[[prerequisites]]
 == Voraussetzungen
 
 Dieses Szenario erfordert die folgenden Komponenten und Konfigurationen:
@@ -66,6 +69,7 @@ Weitere Informationen zur Verwendung von VMFS mit ONTAP Speichersystemen finden 
 
 
 
+[[deployment-steps-for-management-domain]]
 == Bereitstellungsschritte für die Verwaltungsdomäne
 
 Führen Sie die folgenden Schritte aus, um ONTAP Tools bereitzustellen und damit einen VMFS-Datenspeicher in der VCF-Verwaltungsdomäne zu erstellen:
@@ -77,6 +81,7 @@ Führen Sie die folgenden Schritte aus, um ONTAP Tools bereitzustellen und damit
 
 
 
+[[deployment-steps-for-vi-workload-domain]]
 == Bereitstellungsschritte für die VI-Workloaddomäne
 
 Führen Sie die folgenden Schritte aus, um ONTAP Tools bereitzustellen und damit einen VMFS-Datenspeicher in der VCF VI-Workloaddomäne zu erstellen:
@@ -88,6 +93,7 @@ Führen Sie die folgenden Schritte aus, um ONTAP Tools bereitzustellen und damit
 
 
 
+[[additional-information]]
 == Weitere Informationen
 
 Informationen zur Konfiguration von ONTAP Speichersystemen finden Sie imlink:https://docs.netapp.com/us-en/ontap["ONTAP 9 Dokumentation"] Center.
@@ -96,6 +102,7 @@ Informationen zur Konfiguration von VCF finden Sie unterlink:https://techdocs.br
 
 
 
+[[video-demo-for-this-solution]]
 == Videodemo für diese Lösung
 
 .VMFS(FC)-Datenspeicher als zusätzlicher Speicher für die VCF-Verwaltungsdomäne

@@ -20,6 +20,7 @@ image:vmware-vcf-asa-mgmt-stretchcluster-001.png["Einzelne Instanz – mehrere V
 
 
 
+[[scenario-overview]]
 == Szenarioübersicht
 
 Die Stretch-Cluster-Lösung kann auf einem Standardcluster oder einem zusätzlichen Cluster in VCF-Verwaltungs- oder Workloaddomänen implementiert werden.  VMFS auf FC wird sowohl auf dem Hauptdatenspeicher als auch auf zusätzlichen Datenspeichern unterstützt.  VMFS auf iSCSI wird nur mit zusätzlichen Datenspeichern unterstützt.  Informationen zur Unterstützung von VMFS auf NVMe-oF mit SnapMirror Active Sync erhalten Sie bei IMT .
@@ -60,6 +61,7 @@ NOTE: Wenn der Cluster erweitert oder verkleinert wird, muss die Host-Cluster-Be
 ====
 
 
+[[additional-information]]
 == Weitere Informationen
 
 Informationen zur Konfiguration von ONTAP Speichersystemen finden Sie imlink:https://docs.netapp.com/us-en/ontap["ONTAP 9 Dokumentation"] Center.
@@ -68,6 +70,7 @@ Informationen zur Konfiguration von VCF finden Sie unterlink:https://techdocs.br
 
 
 
+[[video-demo-for-this-solution]]
 == Videodemo für diese Lösung
 
 .Stretch-Cluster für VCF mit ONTAP -Tools

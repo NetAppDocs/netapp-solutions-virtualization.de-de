@@ -18,6 +18,7 @@ summary: Um NVMe vVols in einer VMware Cloud Foundation VI-Workloaddomäne berei
 
 
 
+[[infrastructure-requirements]]
 == Infrastrukturanforderungen
 
 * Ein ONTAP AFF oder ASA -Speichersystem mit physischen Datenports auf Ethernet-Switches, die für den Speicherverkehr vorgesehen sind.
@@ -27,6 +28,7 @@ summary: Um NVMe vVols in einer VMware Cloud Foundation VI-Workloaddomäne berei
 
 
 
+[[recommended-nvmetcp-network-design]]
 == Empfohlenes NVMe/TCP-Netzwerkdesign
 
 NetApp empfiehlt vollständig redundante Netzwerkdesigns für NVMe/TCP. Das folgende Diagramm zeigt ein Beispiel einer redundanten Konfiguration, die Fehlertoleranz für Speichersysteme, Switches, Netzwerkadapter und Hostsysteme bietet.
@@ -37,6 +39,7 @@ Konfigurieren Sie für Multipathing und Failover über mehrere Pfade mindestens 
 
 
 
+[[whats-next]]
 == Wie geht es weiter?
 
 Nach der Überprüfung der Bereitstellungsanforderungen,link:vmw-vcf-viwld-supp-nvme-svm-lifs.html["Erstellen Sie die SVM und LIFs"] .

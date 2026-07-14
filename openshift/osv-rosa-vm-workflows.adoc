@@ -26,6 +26,7 @@ image:redhat-openshift-ocpv-rosa-023.png["OCP-v VM-Neustartdateien"]
 
 
 
+[[vm-live-migration]]
 == VM-Livemigration
 
 In diesem Abschnitt führen wir eine VM-Livemigration durch und untersuchen dann den Inhalt der Festplatten.  Unter Livemigration versteht man den Vorgang, eine laufende virtuelle Maschine (VM) von einem physischen Host auf einen anderen Host zu verschieben, ohne den normalen Betrieb zu stören oder Ausfallzeiten oder andere negative Auswirkungen für den Endbenutzer zu verursachen.  Die Live-Migration gilt als wichtiger Schritt bei der Virtualisierung.  Es ermöglicht die Verschiebung einer gesamten VM mit laufendem Betriebssystem (OS), Arbeitsspeicher, Speicherplatz und Netzwerkkonnektivität von ihrem aktuellen Knoten zum Ziel.  Im Folgenden sehen wir, wie eine Live-Migration der VM vom aktuellen Knoten auf einen neuen Knoten durchgeführt wird.
@@ -48,6 +49,7 @@ Die mit dem VM-Pod verknüpften Volumes sind ebenfalls dieselben (2 PVCs) wie zu
 
 
 
+[[demo-video]]
 == Demo-Video
 
 .Live-Migration virtueller Maschinen in OpenShift Virtualization auf ROSA mit Amazon FSx for NetApp ONTAP

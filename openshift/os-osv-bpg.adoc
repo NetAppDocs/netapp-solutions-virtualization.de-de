@@ -174,9 +174,9 @@ NOTE: Weitere Informationen zu Best Practices für die Speicherkonfiguration und
 [[openshift-virtualization-tuning-scaling-guide]]
 == **OpenShift-Virtualisierung – Handbuch zur Optimierung und Skalierung**
 
-Red Hat hat dokumentiertlink:https://docs.openshift.com/container-platform/latest/scalability_and_performance/recommended-performance-scale-practices/recommended-control-plane-practices.html["Empfehlungen und Einschränkungen zur Skalierung von OpenShift-Clustern"] .
+Red Hat hat link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/scalability_and_performance/recommended-performance-and-scalability-practices-2["Empfehlungen und Einschränkungen zur Skalierung von OpenShift-Clustern"] dokumentiert.
 
-Darüber hinaus haben sie auch dokumentiertlink:https://access.redhat.com/articles/6994974]["Optimierungshandbuch für die OpenShift-Virtualisierung"] Undlink:https://access.redhat.com/articles/6571671["Unterstützte Grenzwerte für OpenShift Virtualization 4.x"] .
+Darüber hinaus haben sie auch link:https://access.redhat.com/articles/6994974["Optimierungshandbuch für die OpenShift-Virtualisierung"] und link:https://access.redhat.com/articles/6571671["Unterstützte Grenzwerte für OpenShift Virtualization 4.x"] dokumentiert.
 
 
 NOTE: Für den Zugriff auf die oben genannten Inhalte ist ein aktives Red Hat-Abonnement erforderlich.
@@ -185,7 +185,7 @@ Der Tuning-Leitfaden enthält Informationen zu vielen Tuning-Parametern, darunte
 
 * Optimieren von Parametern zum Erstellen vieler VMs gleichzeitig oder in großen Stapeln
 * Live-Migration von VMs
-* link:https://docs.openshift.com/container-platform/latest/virt/vm_networking/virt-dedicated-network-live-migration.html["Konfigurieren eines dedizierten Netzwerks für die Livemigration"]
+* link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/virtualization/live-migration#virt-configuring-secondary-network-vm-live-migration_virt-configuring-cross-cluster-live-migration-network["Konfigurieren eines dedizierten Netzwerks für die Livemigration"]
 * Anpassen einer VM-Vorlage durch Einfügen eines Workload-Typs
 
 

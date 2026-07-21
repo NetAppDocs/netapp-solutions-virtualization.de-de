@@ -61,7 +61,7 @@ image:redhat-openshift-008.png["Abbildung, die einen Eingabe-/Ausgabedialog zeig
 +
 image:redhat-openshift-009.png["Abbildung, die einen Eingabe-/Ausgabedialog zeigt oder schriftlichen Inhalt darstellt"]
 
-. Folgen Sie denlink:https://docs.openshift.com/container-platform/4.7/installing/index.html["Installationsanweisungen"] von Red Hat zur Bereitstellung in der Umgebung Ihrer Wahl.
+. Befolgen Sie die von Red Hat bereitgestellten link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.22#Install["Installationsanweisungen"] Anweisungen, um die Bereitstellung in Ihrer gewünschten Umgebung durchzuführen.
 
 
 

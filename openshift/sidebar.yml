@@ -29,6 +29,8 @@ entries:
 - title: Datensicherung
   pdf-filename: Red Hat OpenShift Virtualization-Datenschutz
   entries:
+  - title: Backup und Wiederherstellung mit der NetApp Console
+    url: "/openshift/osv-data-protection-console-br.html"
   - title: Backup und Restore mit Trident Protect
     url: "/openshift/osv-vm-dp-using-tp.html"
   - title: Schützen Sie VMs mit Volume Group Snapshots

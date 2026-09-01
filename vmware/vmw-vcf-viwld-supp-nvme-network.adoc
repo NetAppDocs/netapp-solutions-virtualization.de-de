@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: vmware/vmw-vcf-viwld-supp-nvme-network.html 
 keywords: netapp, vmware, cloud, foundation, vcf, aff, all-flash, nfs, vvol, vvols, array, ontap tools, otv, sddc, iscsi 
-summary: 'Konfigurieren Sie die Vernetzung für NVMe over TCP (NVMe/TCP)-Speicher auf ESXi-Hosts in einer VI-Workloaddomäne.  Sie erstellen verteilte Portgruppen für NVMe-Verkehr, richten VMkernel-Adapter auf jedem ESXi-Host ein und fügen einen NVMe/TCP-Adapter hinzu, um zuverlässige Konnektivität und Multipathing zu ermöglichen.' 
+summary: 'Die Netzwerkkonfiguration für NVMe over TCP (NVMe/TCP) Storage auf vSphere Hosts in einer Workload-Domäne wird vorgenommen. Verteilte Portgruppen für NVMe-Datenverkehr werden erstellt, VMkernel-Adapter auf jedem vSphere Host eingerichtet und ein NVMe/TCP-Adapter hinzugefügt, um zuverlässige Konnektivität und Multipathing zu gewährleisten.' 
 ---
-= Konfigurieren Sie das Netzwerk für NVMe/TCP auf ESXi-Hosts in einer VCF VI-Workloaddomäne
+= Netzwerkkonfiguration für NVMe/TCP auf vSphere Hosts in einer VCF Workload-Domäne
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,14 +14,14 @@ summary: 'Konfigurieren Sie die Vernetzung für NVMe over TCP (NVMe/TCP)-Speiche
 
 
 [role="lead"]
-Konfigurieren Sie die Vernetzung für NVMe over TCP (NVMe/TCP)-Speicher auf ESXi-Hosts in einer VI-Workloaddomäne.  Sie erstellen verteilte Portgruppen für NVMe-Verkehr, richten VMkernel-Adapter auf jedem ESXi-Host ein und fügen einen NVMe/TCP-Adapter hinzu, um zuverlässige Konnektivität und Multipathing zu ermöglichen.
+Die Netzwerkkonfiguration für NVMe over TCP (NVMe/TCP) Storage auf vSphere Hosts in einer Workload-Domäne wird vorgenommen. Verteilte Portgruppen für NVMe-Datenverkehr werden erstellt, VMkernel-Adapter auf jedem vSphere Host eingerichtet und ein NVMe/TCP-Adapter hinzugefügt, um zuverlässige Konnektivität und Multipathing zu gewährleisten.
 
-Führen Sie die folgenden Schritte auf dem VI-Workload-Domänencluster mithilfe des vSphere-Clients aus. In diesem Fall wird vCenter Single Sign-On verwendet, sodass der vSphere-Client sowohl für die Verwaltungs- als auch für die Workloaddomänen gleich ist.
+Die folgenden Schritte werden auf dem Workload-Domänencluster mit dem vSphere Client durchgeführt. In diesem Fall wird vCenter Single Sign-On verwendet, sodass der vSphere Client sowohl für die Management- als auch für die Workload-Domänen gemeinsam ist.
 
 
 
 [[step-1-create-distributed-port-groups-for-nvmetcp-traffic]]
-== Schritt 1: Erstellen Sie verteilte Portgruppen für NVME/TCP-Verkehr
+== Schritt 1: Verteilte Portgruppen für NVMe/TCP-Datenverkehr erstellen
 
 Führen Sie die folgenden Schritte aus, um für jedes NVMe/TCP-Netzwerk eine neue verteilte Portgruppe zu erstellen.
 
@@ -82,13 +82,13 @@ image:vmware-vcf-asa-079.png["Uplink 1 nach unbenutzt verschieben"]
 
 
 
-[[step-2-create-the-vmkernel-adapters-on-each-esxi-host]]
-== Schritt 2: Erstellen Sie die VMkernel-Adapter auf jedem ESXi-Host
+[[step-2-create-the-vmkernel-adapters-on-each-vsphere-host]]
+== Schritt 2: Die VMkernel-Adapter auf jedem vSphere Host erstellen
 
-Erstellen Sie die VMkernel-Adapter auf jedem ESXi-Host in der Workload-Domäne.
+Die VMkernel-Adapter werden auf jedem vSphere Host in der Workload-Domäne erstellt.
 
 .Schritte
-. Navigieren Sie vom vSphere-Client zu einem der ESXi-Hosts im Workload-Domäneninventar.  Wählen Sie auf der Registerkarte *Konfigurieren* *VMkernel-Adapter* aus und klicken Sie zum Starten auf *Netzwerk hinzufügen...*.
+. Vom vSphere Client aus zu einem der vSphere Hosts im Inventar der Workload-Domäne navigieren. Auf der Registerkarte *Konfigurieren* die Option *VMkernel-Adapter* auswählen und auf *Netzwerk hinzufügen...* klicken, um zu starten.
 +
 .Beispiel anzeigen
 [%collapsible]
@@ -142,13 +142,13 @@ image:vmware-vcf-asa-098.png["Überprüfen Sie die VMkernel-Auswahl"]
 
 
 [[step-3-add-nvmetcp-adapter]]
-== Schritt 3: NVMe/TCP-Adapter hinzufügen
+=== Schritt 3: NVMe/TCP-Adapter hinzufügen
 
-Auf jedem ESXi-Host im Workload-Domänencluster muss für jedes eingerichtete NVMe/TCP-Netzwerk, das für Speicherverkehr vorgesehen ist, ein NVMe/TCP-Softwareadapter installiert sein.
+Jeder vSphere-Host im Workload-Domänencluster muss über einen NVMe/TCP-Softwareadapter für jedes eingerichtete, dem Speicherdatenverkehr gewidmete NVMe/TCP-Netzwerk verfügen.
 
 Führen Sie die folgenden Schritte aus, um NVMe/TCP-Adapter zu installieren und die NVMe-Controller zu ermitteln.
 
-. Navigieren Sie im vSphere-Client zu einem der ESXi-Hosts im Workload-Domänencluster.  Klicken Sie auf der Registerkarte *Konfigurieren* im Menü auf *Speicheradapter*.
+. Im vSphere Client zu einem der vSphere Hosts im Workload-Domänencluster navigieren. Auf der Registerkarte *Konfigurieren* im Menü *Speicheradapter* auswählen.
 . Wählen Sie im Dropdown-Menü *Softwareadapter hinzufügen* die Option *NVMe over TCP-Adapter hinzufügen*.
 +
 .Beispiel anzeigen

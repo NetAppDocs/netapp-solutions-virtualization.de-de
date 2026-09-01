@@ -2,26 +2,26 @@
 sidebar: sidebar 
 permalink: vmware/vmw-vcf-viwld-supp-iscsi-vvols-network.html 
 keywords: netapp, vmware, cloud, foundation, vcf, aff, all-flash, nfs, vvol, vvols, array, ontap tools, otv, sddc, iscsi 
-summary: Konfigurieren Sie die Vernetzung für iSCSI-Speicher auf ESXi-Hosts in einer VI-Workloaddomäne.  Sie erstellen verteilte Portgruppen für iSCSI-Verkehr und richten VMkernel-Adapter mithilfe des vSphere-Clients ein, um zuverlässige Konnektivität und Multipathing zu ermöglichen. 
+summary: Netzwerkfunktionen für iSCSI-Speicher auf vSphere Hosts in einer Workload-Domäne konfigurieren. Verteilte Portgruppen für iSCSI-Datenverkehr werden erstellt und VMkernel-Adapter mithilfe des vSphere Clients eingerichtet, um zuverlässige Konnektivität und Multipathing zu gewährleisten. 
 ---
-= Konfigurieren Sie das Netzwerk für iSCSI auf ESXi-Hosts in einer VCF VI-Workloaddomäne
-:hardbreaks:
+= Netzwerkkonfiguration für iSCSI auf vSphere Hosts in einer VCF Workload-Domäne
 :allow-uri-read: 
-:nofooter: 
-:icons: font
-:linkattrs: 
-:imagesdir: ../media/
 
+
+
+
+[[configure-networking-for-iscsi-on-vsphere-hosts-in-a-vcf-workload-domain]]
+== Netzwerkkonfiguration für iSCSI auf vSphere Hosts in einer VCF Workload-Domäne
 
 [role="lead"]
-Konfigurieren Sie die Vernetzung für iSCSI-Speicher auf ESXi-Hosts in einer VI-Workloaddomäne.  Sie erstellen verteilte Portgruppen für iSCSI-Verkehr und richten VMkernel-Adapter mithilfe des vSphere-Clients ein, um zuverlässige Konnektivität und Multipathing zu ermöglichen.
+Netzwerkfunktionen für iSCSI-Speicher auf vSphere Hosts in einer Workload-Domäne konfigurieren. Verteilte Portgruppen für iSCSI-Datenverkehr werden erstellt und VMkernel-Adapter mithilfe des vSphere Clients eingerichtet, um zuverlässige Konnektivität und Multipathing zu gewährleisten.
 
-Verwenden Sie den vSphere-Client mit vCenter Single Sign-On, um diese Schritte auf dem VI Workload Domain-Cluster auszuführen.  Derselbe vSphere-Client verwaltet sowohl die Verwaltungs- als auch die Workload-Domänen.
+Der vSphere Client kann zusammen mit vCenter Single Sign-On verwendet werden, um diese Schritte im Workload-Domänen-Cluster durchzuführen. Der gleiche vSphere Client verwaltet sowohl die Management- als auch die Workload-Domänen.
 
 
 
 [[step-1-create-distributed-port-groups-for-iscsi-traffic]]
-== Schritt 1: Erstellen Sie verteilte Portgruppen für iSCSI-Datenverkehr
+=== Schritt 1: Erstellen Sie verteilte Portgruppen für iSCSI-Datenverkehr
 
 Führen Sie die folgenden Schritte aus, um für jedes iSCSI-Netzwerk eine neue verteilte Portgruppe zu erstellen.
 
@@ -73,10 +73,10 @@ image:vmware-vcf-asa-026.png["Uplink1 nach unbenutzt verschieben"]
 
 
 
-[[step-2-create-vmkernel-adapters-on-each-esxi-host]]
-== Schritt 2: Erstellen Sie VMkernel-Adapter auf jedem ESXi-Host
+[[step-2-create-vmkernel-adapters-on-each-vsphere-host]]
+=== Schritt 2: VMkernel-Adapter auf jedem vSphere-Host erstellen
 
-Führen Sie die folgenden Schritte auf jedem ESXi-Host in der Workload-Domäne mithilfe des vSphere-Clients aus.
+Die folgenden Schritte sind auf jedem vSphere Host in der Workload-Domäne mit dem vSphere Client auszuführen.
 
 .Schritte
 . Navigieren Sie vom vSphere-Client zu einem der ESXi-Hosts im Workload-Domäneninventar. Wählen Sie auf der Registerkarte *Konfigurieren* *VMkernel-Adapter* aus und klicken Sie zum Starten auf *Netzwerk hinzufügen...*.
@@ -133,6 +133,6 @@ image:vmware-vcf-asa-034.png["Überprüfen Sie die VMkernel-Auswahl"]
 
 
 [[whats-next]]
-== Wie geht es weiter?
+=== Wie geht es weiter?
 
-Nachdem Sie das Netzwerk für iSCSI auf allen ESXi-Hosts in der Workloaddomäne konfiguriert haben,link:vmw-vcf-viwld-supp-iscsi-vvols-storage.html["Speicher für iSCSI vVols konfigurieren"] .
+Nachdem die Netzwerkkonfiguration für iSCSI auf allen vSphere Hosts in der Workload-Domäne abgeschlossen istlink:vmw-vcf-viwld-supp-iscsi-vvols-storage.html["Speicher für iSCSI vVols konfigurieren"].

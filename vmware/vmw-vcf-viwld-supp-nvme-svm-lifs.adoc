@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: vmware/vmw-vcf-viwld-supp-nvme-svm-lifs.html 
 keywords: netapp, vmware, cloud, foundation, vcf, aff, all-flash, nfs, vvol, vvols, array, ontap tools, otv, sddc, iscsi 
-summary: 'Erstellen Sie eine Storage Virtual Machine (SVM) mit mehreren logischen Schnittstellen (LIFs), um iSCSI-Konnektivität für VMware Cloud Foundation-Verwaltungsdomänen bereitzustellen.  Sie konfigurieren die SVM mit NVMe-Protokollunterstützung und richten mehrere LIFs über separate Ethernet-Netzwerke ein, um Multipathing und Failover für optimale Leistung und Verfügbarkeit zu ermöglichen.' 
+summary: 'Eine Storage Virtual Machine (SVM) mit mehreren Logical Interfaces (LIFs) stellt NVMe/TCP-Konnektivität für VMware Cloud Foundation Workload-Domänen bereit. Die SVM wird mit NVMe-Protokollunterstützung konfiguriert und mehrere LIFs werden über separate Ethernet-Netzwerke eingerichtet, sodass Multipathing und Failover für optimale Leistung und Verfügbarkeit möglich sind.' 
 ---
-= Erstellen Sie SVM und LIFs und den NVMe-Namespace für NVMe/TCP vVols Datenspeicher in einer VCF VI-Workloaddomäne
+= SVM und LIFs sowie den NVMe Namespace für NVMe/TCP-Datastores in einer VMware Cloud Foundation Workload-Domäne erstellen
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -64,10 +64,10 @@ image:vmware-vcf-asa-004.png["SVM-Konto aktivieren und abschließen"]
 
 NVMe-Namespaces sind analog zu LUNs für iSCSi oder FC. Sie müssen den NVMe-Namespace erstellen, bevor ein VMFS-Datenspeicher vom vSphere-Client bereitgestellt werden kann.
 
-Um den NVMe-Namespace zu erstellen, rufen Sie den NVMe Qualified Name (NQN) von jedem ESXi-Host im Cluster ab.  ONTAP verwendet den NQN, um die Zugriffskontrolle für den Namespace bereitzustellen.
+Um den NVMe Namespace zu erstellen, wird der NVMe Qualified Name (NQN) von jedem vSphere Host im Cluster benötigt. ONTAP verwendet den NQN zur Zugriffskontrolle für den Namespace.
 
 .Schritte
-. Öffnen Sie eine SSH-Sitzung mit einem ESXi-Host im Cluster, um dessen NQN zu erhalten.  Verwenden Sie den folgenden Befehl aus der CLI:
+. Öffnen Sie eine SSH-Sitzung mit einem vSphere Host im Cluster, um dessen NQN zu erhalten. Folgender Befehl kann in der Befehlszeile verwendet werden:
 +
 [source, cli]
 ----
@@ -81,7 +81,7 @@ Es sollte eine Ausgabe ähnlich dem folgenden Beispiel angezeigt werden:
 ----
 Host NQN: nqn.2014-08.com.netapp.sddc:nvme:vcf-wkld-esx01
 ----
-. Notieren Sie den NQN für jeden ESXi-Host im Cluster.
+. Den NQN für jeden vSphere Host im Cluster notieren.
 . Navigieren Sie im ONTAP System Manager im linken Menü zu *NVMe-Namespaces* und klicken Sie zum Starten auf *+ Hinzufügen*.
 +
 .Beispiel anzeigen
@@ -91,7 +91,7 @@ image:vmware-vcf-asa-093.png["Klicken Sie auf +Hinzufügen, um den NVMe-Namespac
 
 ====
 . Geben Sie auf der Seite *NVMe-Namespace hinzufügen* ein Namenspräfix, die Anzahl der zu erstellenden Namespaces, die Größe des Namespaces und das Host-Betriebssystem ein, das auf den Namespace zugreifen wird.
-. Erstellen Sie im Abschnitt *Host-NQN* eine durch Kommas getrennte Liste der NQNs, die zuvor von den ESXi-Hosts erfasst wurden, die auf die Namespaces zugreifen werden.
+. Im Abschnitt *Host NQN* eine durch Kommas getrennte Liste der zuvor von den vSphere Hosts gesammelten NQNs erstellen, die auf die Namespaces zugreifen werden.
 . Klicken Sie auf *Weitere Optionen*, um zusätzliche Elemente zu konfigurieren, beispielsweise die Snapshot-Schutzrichtlinie.
 . Klicken Sie abschließend auf *Speichern*, um den NVMe-Namespace zu erstellen.
 +
@@ -108,4 +108,4 @@ image:vmware-vcf-asa-093.png["Klicken Sie auf +Hinzufügen, um den NVMe-Namespac
 [[whats-next]]
 == Wie geht es weiter?
 
-Nach dem Erstellen der SVM und LIFslink:vmw-vcf-viwld-supp-nvme-network.html["Konfigurieren Sie das Netzwerk für NVMe/TCP (NVMe/TCP) vVols"] .
+Nach der Erstellung der SVM und LIFs, link:vmw-vcf-viwld-supp-nvme-network.html["Netzwerk für NVMe/TCP (NVMe/TCP) konfigurieren"].

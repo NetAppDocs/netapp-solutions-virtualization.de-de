@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: vmware/vmw-vcf-viwld-supp-nvme.html 
 keywords: netapp, vmware, cloud, foundation, vcf, aff, all-flash, nfs, vvol, vvols, array, ontap tools, otv, sddc, iscsi 
-summary: 'Beginnen Sie mit dem Hinzufügen eines NVMe over TCP (NVMe/TCP)-Datenspeichers als zusätzlichen Speicher für eine VMware Cloud Foundation (VCF) Virtual Infrastructure (VI)-Workloaddomäne.  Sie richten eine NVMe/TCP-fähige Storage Virtual Machine (SVM) und LIFs ein, erstellen NVMe-Namespaces, konfigurieren das ESXi-Host-Netzwerk und stellen einen VMFS-Datenspeicher bereit.' 
+summary: 'Beginnen Sie mit dem Hinzufügen eines NVMe-over-TCP-Datenspeichers (NVMe/TCP) als zusätzlichen Speicher für eine VMware Cloud Foundation (VCF) Workload-Domäne. Es wird eine NVMe/TCP-fähige Storage Virtual Machine (SVM) und LIFs eingerichtet, NVMe-Namespaces werden erstellt, das vSphere Host-Netzwerk wird konfiguriert und ein VMFS-Datenspeicher bereitgestellt.' 
 ---
-= Bereitstellungsworkflow zum Hinzufügen von vVols NVMe-Datenspeichern als zusätzlicher Speicher in einer VI-Workloaddomäne
+= Bereitstellungsworkflow für das Hinzufügen von vVols NVMe-Datenspeichern als zusätzlichem Speicher in einer Workload-Domäne
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,11 +14,11 @@ summary: 'Beginnen Sie mit dem Hinzufügen eines NVMe over TCP (NVMe/TCP)-Datens
 
 
 [role="lead"]
-Beginnen Sie mit dem Hinzufügen von NVMe/TCP vVols -Datenspeichern als zusätzlichen Speicher für eine VMware Cloud Foundation (VCF) Virtual Infrastructure (VI)-Workloaddomäne.  Sie überprüfen die Bereitstellungsanforderungen, richten NVMe/TCP-fähige SVMs und LIFs ein, konfigurieren das ESXi-Host-Netzwerk und stellen den NVMe/TCP-Datenspeicher bereit.
+Hier finden Sie Informationen zum Hinzufügen von NVMe/TCP vVols Datenspeichern als ergänzenden Speicher für eine VMware Cloud Foundation (VCF) Workload-Domäne. Es werden die Bereitstellungsanforderungen erläutert, NVMe/TCP-fähige SVMs und LIFs eingerichtet, die vSphere Host-Netzwerkkonfiguration vorgenommen und der NVMe/TCP vVol Datenspeicher bereitgestellt.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Eins"]link:vmw-vcf-viwld-supp-nvme-requirements.html["Überprüfen der Bereitstellungsanforderungen"]
 [role="quick-margin-para"]
-Überprüfen Sie die Anforderungen zum Bereitstellen eines NVMe/TCP-Datenspeichers in einer VMware Cloud Foundation VI-Workloaddomäne.
+Die Anforderungen für die Bereitstellung eines NVMe/TCP-Datenspeichers in einer VMware Cloud Foundation Workload-Domäne sollten geprüft werden.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Zwei"]link:vmw-vcf-viwld-supp-nvme-svm-lifs.html["Erstellen Sie die SVM und LIFs sowie den NVMe-Namespace"]
 [role="quick-margin-para"]
@@ -26,8 +26,18 @@ Erstellen Sie eine virtuelle Speichermaschine mit logischen Schnittstellen und d
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Drei"]link:vmw-vcf-viwld-supp-nvme-network.html["Konfigurieren des Netzwerks"]
 [role="quick-margin-para"]
-Erstellen Sie verteilte Portgruppen und VMkernel-Adapter auf den ESXi-Hosts für die VI-Workloaddomäne.
+Verteilte Portgruppen und VMkernel-Adapter auf den vSphere Hosts für die VCF Workload-Domäne erstellen.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Vier"]link:vmw-vcf-viwld-supp-nvme-storage.html["Konfigurieren des Speichers"]
 [role="quick-margin-para"]
 Stellen Sie den NVMe/TCP-Datenspeicher bereit.
+
+
+
+[[video-demo-for-this-solution]]
+== Videodemo für diese Lösung
+
+.Zusätzlicher Datastore mit NVMe/TCP
+video::f85530ec-ff24-4c7d-abb4-b49b0176402c[panopto,width=360]
+.Zusätzlicher Datenspeicher mit NVMe/FC
+video::b2b16a35-05cd-49c9-a91a-b4ac0127813d[panopto,width=360]

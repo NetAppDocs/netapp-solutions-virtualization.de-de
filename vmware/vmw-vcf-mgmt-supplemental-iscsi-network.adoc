@@ -1,17 +1,17 @@
 ---
 sidebar: sidebar 
 permalink: vmware/vmw-vcf-mgmt-supplemental-iscsi-network.html 
-keywords: netapp, vmware, cloud, foundation, vcf, iscsi, network, esxi 
-summary: Konfigurieren Sie iSCSI-Netzwerke auf ESXi-Hosts in VMware Cloud Foundation-Verwaltungsdomänen, um die Konnektivität zu ONTAP -Speichersystemen zu ermöglichen.  Sie erstellen verteilte Portgruppen mit VLAN-Trennung, konfigurieren Uplink-Teaming für Redundanz und richten VMkernel-Adapter auf jedem ESXi-Host ein, um dedizierte iSCSI-Pfade für Failover-Funktionen einzurichten. 
+keywords: netapp, vmware, cloud, foundation, vcf, iscsi, network, vSphere 
+summary: Die iSCSI-Netzwerkkonfiguration auf vSphere Hosts in VMware Cloud Foundation Management-Domänen ermöglicht die Anbindung an ONTAP Speichersysteme. Verteilte Portgruppen mit VLAN-Trennung werden erstellt, Uplink-Teaming für Redundanz konfiguriert und VMkernel-Adapter auf jedem vSphere Host eingerichtet, um dedizierte iSCSI-Pfade für Failover-Funktionen bereitzustellen. 
 ---
-= Konfigurieren Sie das Netzwerk für iSCSI auf ESXi-Hosts in einer VCF-Verwaltungsdomäne
+= Netzwerkkonfiguration für iSCSI auf vSphere Hosts in einer VCF Management-Domäne
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-Konfigurieren Sie iSCSI-Netzwerke auf ESXi-Hosts in VMware Cloud Foundation-Verwaltungsdomänen, um die Konnektivität zu ONTAP -Speichersystemen zu ermöglichen.  Sie erstellen verteilte Portgruppen mit VLAN-Trennung, konfigurieren Uplink-Teaming für Redundanz und richten VMkernel-Adapter auf jedem ESXi-Host ein, um dedizierte iSCSI-Pfade für Failover-Funktionen einzurichten.
+Die iSCSI-Netzwerkkonfiguration auf vSphere Hosts in VMware Cloud Foundation Management-Domänen ermöglicht die Anbindung an ONTAP Speichersysteme. Verteilte Portgruppen mit VLAN-Trennung werden erstellt, Uplink-Teaming für Redundanz konfiguriert und VMkernel-Adapter auf jedem vSphere Host eingerichtet, um dedizierte iSCSI-Pfade für Failover-Funktionen bereitzustellen.
 
 Führen Sie diese Schritte mithilfe des vSphere-Clients auf dem VCF-Verwaltungsdomänencluster aus.
 
@@ -70,10 +70,10 @@ image:vmware-vcf-asa-026.png["Uplink1 nach unbenutzt verschieben"]
 
 
 
-[[step-2-create-vmkernel-adapters-on-each-esxi-host]]
-== Schritt 2: Erstellen Sie VMkernel-Adapter auf jedem ESXi-Host
+[[step-2-create-vmkernel-adapters-on-each-vsphere-host]]
+== Schritt 2: VMkernel-Adapter auf jedem vSphere-Host erstellen
 
-Erstellen Sie VMkernel-Adapter auf jedem ESXi-Host in der Verwaltungsdomäne.
+VMkernel-Adapter auf jedem vSphere Host in der Verwaltungsdomäne erstellen.
 
 .Schritte
 . Navigieren Sie vom vSphere-Client zu einem der ESXi-Hosts im Workload-Domäneninventar. Wählen Sie auf der Registerkarte *Konfigurieren* *VMkernel-Adapter* aus und klicken Sie zum Starten auf *Netzwerk hinzufügen...*.
@@ -132,4 +132,4 @@ image:vmware-vcf-asa-034.png["Überprüfen Sie die VMkernel-Auswahl"]
 [[whats-next]]
 == Wie geht es weiter?
 
-Nachdem Sie das Netzwerk für iSCSI auf allen ESXi-Hosts in der Workloaddomäne konfiguriert haben,link:vmw-vcf-mgmt-supplemental-iscsi-storage.html["Konfigurieren des Speichers für iSCSI auf ESXi-Hosts"] .
+Nachdem die Netzwerkkonfiguration für iSCSI auf allen vSphere Hosts in der Managementdomäne eingerichtet wurdelink:vmw-vcf-mgmt-supplemental-iscsi-storage.html["Speicher für iSCSI auf vSphere-Hosts konfigurieren"].

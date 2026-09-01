@@ -2,20 +2,20 @@
 sidebar: sidebar 
 permalink: vmware/vmw-vcf-viwld-supp-iscsi-vvols.html 
 keywords: netapp, vmware, cloud, foundation, vcf, aff, all-flash, nfs, vvol, vvols, array, ontap tools, otv, sddc, iscsi 
-summary: 'Beginnen Sie mit der Konfiguration eines vVols -Datenspeichers mit iSCSI für zusätzlichen Speicher in einer VMware Cloud Foundation (VCF) Virtual Infrastructure (VI)-Workloaddomäne.  Sie erstellen die SVM und LIFs, richten das iSCSI-Netzwerk ein, stellen ONTAP tools for VMware vSphere bereit und stellen den vVols Datenspeicher bereit.' 
+summary: 'Die Konfiguration eines vVols Datenspeichers mit iSCSI für zusätzlichen Speicher in einer VMware Cloud Foundation (VCF) Workload-Domäne wird eingeleitet. Die SVM und LIFs werden erstellt, das iSCSI-Netzwerk eingerichtet, ONTAP tools for VMware vSphere bereitgestellt und der vVols Datenspeicher bereitgestellt.' 
 ---
-= Bereitstellungsworkflow zum Hinzufügen eines iSCSI vVols Datenspeichers als zusätzlichen Speicher in einer VI-Workloaddomäne
+= Bereitstellungsworkflow zum Hinzufügen eines iSCSI vVols Datenspeichers als zusätzlichen Speicher in einer Workload-Domäne
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-Beginnen Sie mit der Konfiguration eines iSCI vVols -Datenspeichers als zusätzlichen Speicher in einer VMware Cloud Foundation (VCF) Virtual Infrastructure (VI)-Workloaddomäne.  Sie erstellen die SVM und LIFs, richten das iSCSI-Netzwerk ein, stellen ONTAP tools for VMware vSphere bereit und konfigurieren den Speicher.
+Die Konfiguration eines iSCSI vVols Datastores als zusätzlicher Speicher in einer VMware Cloud Foundation (VCF) Workload-Domäne wird gestartet. Dabei werden die SVM und LIFs erstellt, das iSCSI-Netzwerk eingerichtet, ONTAP tools for VMware vSphere bereitgestellt und der Speicher konfiguriert.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Eins"]link:vmw-vcf-viwld-supp-iscsi-vvols-requirements.html["Überprüfen der Bereitstellungsanforderungen"]
 [role="quick-margin-para"]
-Überprüfen Sie die Anforderungen zum Bereitstellen von iSCSI vVols in einer VMware Cloud Foundation VI-Workloaddomäne.
+Die Anforderungen für die Bereitstellung von iSCSI vVols in einer VMware Cloud Foundation Workload-Domäne werden dargestellt.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Zwei"]link:vmw-vcf-viwld-supp-iscsi-vvols-svm-lifs.html["Erstellen Sie die SVM und LIFs"]
 [role="quick-margin-para"]
@@ -23,7 +23,7 @@ Erstellen Sie eine SVM mit mehreren LIFs für iSCSI-Verkehr.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Drei"]link:vmw-vcf-viwld-supp-iscsi-vvols-network.html["Konfigurieren des Netzwerks"]
 [role="quick-margin-para"]
-Richten Sie das Netzwerk für iSCSI auf ESXi-Hosts ein.
+Netzwerkkonfiguration für iSCSI auf vSphere Hosts.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Vier"]link:vmw-vcf-viwld-supp-iscsi-vvols-storage.html["Konfigurieren des Speichers"]
 [role="quick-margin-para"]

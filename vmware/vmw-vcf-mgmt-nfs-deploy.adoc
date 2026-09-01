@@ -2,16 +2,16 @@
 sidebar: sidebar 
 permalink: vmware/vmw-vcf-mgmt-nfs-deploy.html 
 keywords: netapp, vmware, cloud, foundation, vcf, aff, all-flash, nfs, array, ontap tools, otv, sddc, sddc manager, ontap tools, ontap tools 10 
-summary: Stellen Sie ONTAP tools for VMware vSphere 10 bereit und stellen Sie einen NFS-Datenspeicher bereit, um eine nahtlose Integration mit VMware Cloud Foundation zu ermöglichen.  Sie stellen ONTAP -Tools bereit, konfigurieren Speicher-Backends und erstellen einen NFS-Datenspeicher, um die Konvertierung eines vSphere 8-Clusters in eine VCF-Verwaltungsdomäne zu unterstützen. 
+summary: ONTAP tools für VMware vSphere 10 werden bereitgestellt und ein NFS-Datenspeicher wird bereitgestellt, um die nahtlose Integration mit VMware Cloud Foundation zu ermöglichen. ONTAP tools werden bereitgestellt, Speicher-Backends konfiguriert und ein NFS-Datenspeicher erstellt, um die Konvergenz eines vCenter zu einer VCF-Management-Domäne zu unterstützen. 
 ---
-= Stellen Sie ONTAP -Tools bereit und stellen Sie einen NFS-Datenspeicher für die Konvertierung der VCF-Verwaltungsdomäne bereit.
+= ONTAP tools bereitstellen und NFS-Datenspeicher für die VCF-Management-Domäne bereitstellen
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-Stellen Sie ONTAP tools for VMware vSphere 10 bereit und stellen Sie einen NFS-Datenspeicher bereit, um eine nahtlose Integration mit VMware Cloud Foundation zu ermöglichen.  Sie stellen ONTAP -Tools bereit, konfigurieren Speicher-Backends und erstellen einen NFS-Datenspeicher, um die Konvertierung eines vSphere 8-Clusters in eine VCF-Verwaltungsdomäne zu unterstützen.
+ONTAP tools für VMware vSphere 10 werden bereitgestellt und ein NFS-Datenspeicher wird bereitgestellt, um die nahtlose Integration mit VMware Cloud Foundation zu ermöglichen. ONTAP tools werden bereitgestellt, Speicher-Backends konfiguriert und ein NFS-Datenspeicher erstellt, um die Konvergenz eines vCenter zu einer VCF-Management-Domäne zu unterstützen.
 
 
 
@@ -27,7 +27,7 @@ In diesem Schritt werden ONTAP Tools in einer Nicht-HA-Konfiguration bereitgeste
 .Beispiel anzeigen
 [%collapsible]
 ====
-image::vmware-vcf-import-nfs-001.png[Bereitstellen einer OVF-Vorlage]
+image::vmw-vcf-mgmt-nfs-deploy-001.png[Bereitstellen einer OVF-Vorlage]
 
 ====
 . Führen Sie in der *OVF-Vorlage bereitstellen* die folgenden Schritte aus:
@@ -44,7 +44,7 @@ image::vmware-vcf-import-nfs-001.png[Bereitstellen einer OVF-Vorlage]
 .Beispiel anzeigen
 [%collapsible]
 ====
-image::vmware-vcf-import-nfs-002.png[Konfiguration – Bereitstellungstyp]
+image::vmw-vcf-mgmt-nfs-deploy-002.png[Konfiguration – Bereitstellungstyp]
 
 ====
 . Wählen Sie auf der Seite *Speicher auswählen* den Datenspeicher aus, auf dem die VM installiert werden soll, und klicken Sie auf *Weiter*.
@@ -62,7 +62,7 @@ image::vmware-vcf-import-nfs-002.png[Konfiguration – Bereitstellungstyp]
 .Beispiel anzeigen
 [%collapsible]
 ====
-image::vmware-vcf-import-nfs-003.png[Vorlage anpassen]
+image::vmw-vcf-mgmt-nfs-deploy-003.png[Vorlage anpassen]
 
 ====
 
@@ -84,7 +84,7 @@ Nachdem die ONTAP -Tools-VM installiert und hochgefahren wurde, fügen Sie die v
 .Beispiel anzeigen
 [%collapsible]
 ====
-image::vmware-vcf-import-nfs-004.png[Open ONTAP -Tools]
+image::vmw-vcf-mgmt-nfs-deploy-004.png[Open ONTAP -Tools]
 
 ====
 . Navigieren Sie im linken Menü zu *Storage Backends* und klicken Sie auf *Hinzufügen*, um auf das Fenster *Storage Backend hinzufügen* zuzugreifen.
@@ -93,7 +93,7 @@ image::vmware-vcf-import-nfs-004.png[Open ONTAP -Tools]
 .Beispiel anzeigen
 [%collapsible]
 ====
-image::vmware-vcf-import-nfs-005.png[Speicher-Backend hinzufügen]
+image::vmw-vcf-mgmt-nfs-deploy-005.png[Speicher-Backend hinzufügen]
 
 ====
 +
@@ -116,7 +116,7 @@ ONTAP -Tools integrieren Funktionen in die gesamte vSphere-Client-Benutzeroberfl
 .Beispiel anzeigen
 [%collapsible]
 ====
-image::vmware-vcf-import-nfs-006.png[Erstellen eines Datenspeichers]
+image::vmw-vcf-mgmt-nfs-deploy-006.png[Erstellen eines Datenspeichers]
 
 ====
 . Wählen Sie im Assistenten *Datenspeicher erstellen* den Typ des zu erstellenden Datenspeichers aus.  Optionen sind NFS oder VMFS.
@@ -125,7 +125,7 @@ image::vmware-vcf-import-nfs-006.png[Erstellen eines Datenspeichers]
 .Beispiel anzeigen
 [%collapsible]
 ====
-image::vmware-vcf-import-nfs-007.png[Name und Protokoll]
+image::vmw-vcf-mgmt-nfs-deploy-007.png[Name und Protokoll]
 
 ====
 . Wählen Sie auf der Seite *Speicher* die ONTAP -Speicherplattform und die Storage Virtual Machine (SVM) aus. Sie können hier auch alle verfügbaren benutzerdefinierten Exportrichtlinien auswählen. Klicken Sie auf *Weiter*, um fortzufahren.
@@ -133,19 +133,19 @@ image::vmware-vcf-import-nfs-007.png[Name und Protokoll]
 .Beispiel anzeigen
 [%collapsible]
 ====
-image::vmware-vcf-import-nfs-008.png[Speicherseite]
+image::vmw-vcf-mgmt-nfs-deploy-008.png[Speicherseite]
 
 ====
 . Wählen Sie auf der Seite *Speicherattribute* das zu verwendende Speicheraggregat aus. Klicken Sie auf *Weiter*, um fortzufahren.
 . Überprüfen Sie die Informationen auf der Seite *Zusammenfassung* und klicken Sie auf *Fertig*, um den Bereitstellungsprozess zu starten.
 +
-ONTAP -Tools erstellen ein Volume auf dem ONTAP Speichersystem und mounten es als NFS-Datenspeicher auf allen ESXi-Hosts im Cluster.
+ONTAP tools erstellt ein Volume auf dem ONTAP Speichersystem und bindet es als NFS-Datenspeicher an alle vSphere Hosts im Cluster ein.
 
 +
 .Beispiel anzeigen
 [%collapsible]
 ====
-image::vmware-vcf-import-nfs-009.png[Zusammenfassungsseite]
+image::vmw-vcf-mgmt-nfs-deploy-009.png[Zusammenfassungsseite]
 
 ====
 
@@ -155,4 +155,4 @@ image::vmware-vcf-import-nfs-009.png[Zusammenfassungsseite]
 [[whats-next]]
 == Wie geht es weiter?
 
-Nachdem Sie ONTAP -Tools bereitgestellt und den NFS-Datenspeicher bereitgestellt haben,link:vmw-vcf-mgmt-nfs-conversion.html["Konvertieren Sie den vSphere-Cluster in eine VCF-Verwaltungsdomäne"] .
+Nachdem Sie ONTAP tools bereitgestellt und den NFS-Datenspeicher eingerichtet haben, link:vmw-vcf-mgmt-nfs-converge.html["den vSphere Cluster in die VCF Management-Domäne zusammenführen"].

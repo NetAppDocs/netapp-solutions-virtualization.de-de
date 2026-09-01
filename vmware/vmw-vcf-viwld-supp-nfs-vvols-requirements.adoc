@@ -2,14 +2,14 @@
 sidebar: sidebar 
 permalink: vmware/vmw-vcf-viwld-supp-nfs-vvols-requirements.html 
 keywords: netapp, vmware, cloud, foundation, vcf, aff, all-flash, nfs, vvol, vvols, array, ontap tools, otv, sddc 
-summary: Um NFS vVols in einer VMware Cloud Foundation VI-Workloaddomäne bereitzustellen, benötigen Sie ein vollständig konfiguriertes ONTAP AFF oder ASA Speichersystem, eine vollständige VCF-Verwaltungsdomäne und eine vorhandene VI-Workloaddomäne.  Überprüfen Sie das empfohlene Netzwerkdesign und die Infrastrukturanforderungen, um eine zuverlässige und leistungsstarke Speicherintegration sicherzustellen. 
+summary: Für die Bereitstellung von NFS vVols in einer VMware Cloud Foundation Workload-Domäne wird ein vollständig konfiguriertes ONTAP AFF oder ASA Speichersystem, eine abgeschlossene VCF Management-Domäne und eine bestehende VI Workload-Domäne benötigt. Die empfohlenen Netzwerkdesign- und Infrastrukturanforderungen sollten geprüft werden, um eine zuverlässige und leistungsstarke Speicherintegration sicherzustellen. 
 ---
-= Bereitstellungsanforderungen für das Hinzufügen von NFS- vVols in einer VI-Workloaddomäne
+= Bereitstellungsanforderungen für das Hinzufügen von NFS vVols in einer Workload-Domäne
 :allow-uri-read: 
 
 
 [role="lead"]
-Überprüfen Sie das empfohlene Netzwerkdesign und die Infrastrukturanforderungen zum Bereitstellen von NFS vVols in einer VMware Cloud Foundation VI-Workloaddomäne.  Sie benötigen ein vollständig konfiguriertes ONTAP AFF oder ASA Speichersystem, eine vollständige VCF-Verwaltungsdomäne und eine vorhandene VI-Workloaddomäne.
+Die empfohlenen Netzwerkdesign- und Infrastrukturanforderungen für die Bereitstellung von NFS vVols in einer VMware Cloud Foundation Workload-Domäne werden dargestellt. Ein vollständig konfiguriertes ONTAP AFF oder ASA Storage-System, eine abgeschlossene VCF Management-Domäne und eine bestehende Workload-Domäne sind erforderlich.
 
 
 
@@ -20,7 +20,7 @@ Stellen Sie sicher, dass die folgenden Komponenten und Konfigurationen vorhanden
 
 * Ein ONTAP AFF oder FAS Speichersystem mit physischen Datenports auf Ethernet-Switches, die für den Speicherverkehr vorgesehen sind.
 * Die Bereitstellung der VCF-Verwaltungsdomäne ist abgeschlossen und auf den vSphere-Client kann zugegriffen werden.
-* Zuvor wurde eine VI-Workloaddomäne bereitgestellt.
+* Eine Workload Domain wurde bereits bereitgestellt.
 
 
 

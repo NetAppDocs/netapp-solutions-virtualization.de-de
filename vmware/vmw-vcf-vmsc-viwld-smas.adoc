@@ -4,7 +4,7 @@ permalink: vmware/vmw-vcf-vmsc-viwld-smas.html
 keywords: netapp, vmware, cloud, foundation, vcf, asa, all-flash, array, ontap tools, otv, sddc, iscsi 
 summary:  
 ---
-= Konfigurieren eines Stretch-Clusters für eine VI-Workloaddomäne mit SnapMirror Active Sync
+= Konfiguration eines Stretch-Clusters für eine Workload-Domäne mit SnapMirror active sync (SAN und NAS)
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,39 +14,49 @@ summary:
 
 
 [role="lead"]
-In diesem Anwendungsfall beschreiben wir das Verfahren zum Konfigurieren eines Stretch-Clusters für eine Virtual Infrastructure (VI)-Workload-Domäne unter Verwendung von SnapMirror Active Sync mit ONTAP tools for VMware vSphere.  Dieses Verfahren umfasst das Erstellen einer VCF-Workload-Domäne mit VMFS auf Fibre Channel, das Registrieren des vCenter mit ONTAP Tools, das Registrieren von Speichersystemen und das Schützen des vSphere-Clusters.
+In diesem Anwendungsfall wird die Vorgehensweise zur Konfiguration eines Stretch-Clusters für eine Workload-Domäne unter Verwendung von SnapMirror active sync mit ONTAP tools for VMware vSphere dargestellt (ONTAP tools 10.6 unterstützt FC und iSCSI). ONTAP unterstützt SnapMirror active sync sowohl für SAN (mit iSCSI, Fibre Channel und NVMe over Fabrics) als auch für NAS (NFSv3 und NFSv4.1).
 
-image:vmware-vcf-asa-mgmt-stretchcluster-001.png["Einzelne Instanz – mehrere Verfügbarkeitszonen"]
+image:vmw-vcf-vmsc-viwld-smas-001.png["Stretch Cluster für VCF mit SnapMirror Active Sync"]
 
+Für SAN werden sowohl uniforme als auch nicht-uniforme gestreckte Clusterkonfigurationen unterstützt. Im Fall von NAS handelt es sich um eine Aktiv/Passiv-Konfiguration mit ONTAP 9.19.1.
+
+[NOTE]
+====
+Die Host-Proximity-Einstellungen werden in Verbindung mit der Multipath-Konfiguration verwendet, um die optimale Pfadauswahl für den Speicherdatenverkehr sicherzustellen. Die Host-Proximity-Einstellungen werden bei SCSI auf der Initiatorgruppe und bei NVMe-oF auf dem Subsystem konfiguriert. Beispielsweise hat der Host in einer Uniform Host Access-Konfiguration Zugriff auf beide Speichersysteme im Stretched Cluster. In der Multipath-Konfiguration werden die optimalen und nicht optimalen Pfade anhand der Host-Proximity-Einstellungen konfiguriert.
+
+====
 
 
 [[scenario-overview]]
 == Szenarioübersicht
 
-Die Datenspeicher in der VCF-Workload-Domäne können mit SnapMirror Active Sync geschützt werden, um eine Stretch-Cluster-Lösung bereitzustellen.  Der Schutz wird auf vSphere-Clusterebene aktiviert und alle ONTAP Blockdatenspeicher im Cluster werden geschützt.
+Die Datenspeicher in der VCF Workload-Domäne können mit SnapMirror active sync geschützt werden, um eine Stretch Cluster-Lösung bereitzustellen. Der Schutz erfolgt auf Datenspeicher-Ebene (Konsistenzgruppe) für SAN und auf SVM-Ebene für NAS.
+
+
+
+[[prerequisites]]
+== Voraussetzungen
 
 .Hauptspeicher in der Workloaddomäne
 [%collapsible%open]
 ====
-Die Workloaddomäne kann entweder durch Importieren mit dem VCF-Importtool oder durch Bereitstellen mit dem SDDC-Manager erstellt werden.  Die Bereitstellung mit dem SDDC-Manager bietet mehr Netzwerkoptionen als das Importieren einer vorhandenen Umgebung.
+Die Workload-Domäne kann entweder durch Import oder durch Erstellung mit dem VCF Ops Tool erstellt werden.
 
-. Erstellen Sie eine Workload-Domäne mit VMFS auf FC
+. Eine Workload-Domäne mit einem beliebigen unterstützten Protokoll erstellen.
 . link:https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/add-vcenter.html["Registrieren Sie das Workload-Domänen-vCenter beim ONTAP Tools-Manager, um das vCenter-Plugin bereitzustellen"]
 . link:https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/add-storage-backend.html["Registrieren Sie Speichersysteme auf ONTAP -Tools"]
-. link:https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/protect-cluster.html["Schützen Sie den vSphere-Cluster"]
+. Für iSCSI- und FC-Datenspeicher siehe link:https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/protect/protect-multiple-ds.html["Der vSphere Datenspeicher wird mit ONTAP Tools geschützt"]
+. Für NVMe-oF und NFS Datenspeicher zeigt das folgende Video die Schritte zum Schutz der Datenspeicher auf der Workload-Domäne mit SnapMirror active sync.
 
-
-
-NOTE: Wenn der Cluster erweitert oder verkleinert wird, muss die Host-Cluster-Beziehung in den ONTAP Tools für den Cluster aktualisiert werden, um die an der Quelle oder dem Ziel vorgenommenen Änderungen anzuzeigen.
 
 ====
 .Zusätzlicher Speicher in der Workloaddomäne
 [%collapsible%open]
 ====
-Sobald die Workload-Domäne betriebsbereit ist, können mithilfe von ONTAP -Tools zusätzliche Datenspeicher erstellt werden, die die Erweiterung der Konsistenzgruppe auslösen.
+Sobald die Workload-Domäne eingerichtet und betriebsbereit ist, können mithilfe von ONTAP Tools zusätzliche Datenspeicher erstellt und geschützt werden. Weitere Informationen zu SnapMirror active sync finden sich unter https://docs.netapp.com/us-en/ontap/snapmirror-active-sync/index.html#benefits["Informationen zu ONTAP SnapMirror Active Sync"]
 
 
-TIP: Wenn ein vSphere-Cluster geschützt ist, sind alle Datenspeicher im Cluster geschützt.
+TIP: Mit ONTAP tools 10.6 und höher können die Datenspeicher auf der Workload-Domäne mit SnapMirror active sync geschützt werden. Die Schritte zum Schutz der Datenspeicher auf der Workload-Domäne mit SnapMirror active sync sind in der folgenden Videodemonstration zu sehen.
 
 ====
 
@@ -63,5 +73,9 @@ Informationen zur Konfiguration von VCF finden Sie unterlink:https://techdocs.br
 [[video-demo-for-this-solution]]
 == Videodemo für diese Lösung
 
-.Stretch-Cluster für VCF mit ONTAP -Tools
-video::569a91a9-2679-4414-b6dc-b25d00ff0c5a[panopto,width=360]
+.Stretch Cluster für VCF mit SnapMirror Active Sync iSCSI unter Verwendung von ONTAP tools
+video::4c21ee83-dc11-43bf-a9af-b4ac014aaa0e[panopto,width=360]
+.Stretch Cluster für VCF mit SnapMirror Active Sync NVMe/TCP
+video::f85530ec-ff24-4c7d-abb4-b49b0176402c[panopto,width=360]
+.Stretch Cluster für VCF mit SnapMirror Active Sync NAS
+video::76549cac-a1e3-4471-acf5-b49c00eebcf7[panopto,width=360]

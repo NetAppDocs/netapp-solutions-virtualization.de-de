@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: vmware/vmw-vcf-viwld-supp-nvme-requirements.html 
 keywords: netapp, vmware, cloud, foundation, vcf, aff, all-flash, nfs, vvol, vvols, array, ontap tools, otv, sddc, iscsi 
-summary: Um NVMe vVols in einer VMware Cloud Foundation VI-Workloaddomäne bereitzustellen, benötigen Sie ein vollständig konfiguriertes ONTAP AFF oder ASA Speichersystem, eine vollständige VCF-Verwaltungsdomäne und eine vorhandene VI-Workloaddomäne.  Überprüfen Sie das empfohlene Netzwerkdesign und die Infrastrukturanforderungen, um eine zuverlässige und leistungsstarke Speicherintegration sicherzustellen. 
+summary: Für die Bereitstellung eines NVMe/TCP Datenspeichers in einer VMware Cloud Foundation Workload-Domäne ist ein vollständig konfiguriertes ONTAP AFF oder ASA Storage-System, eine abgeschlossene VCF Management-Domäne und eine bestehende Workload-Domäne erforderlich. Die empfohlenen Netzwerkdesign- und Infrastrukturanforderungen sollten überprüft werden, um eine zuverlässige, leistungsstarke Speicherintegration sicherzustellen. 
 ---
-= Bereitstellungsanforderungen für NVMe vVols in einer VI-Workloaddomäne
+= Bereitstellungsanforderungen für NVMe/TCP Datenspeicher in einer VMware Cloud Foundation Workloaddomäne
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: Um NVMe vVols in einer VMware Cloud Foundation VI-Workloaddomäne berei
 
 
 [role="lead"]
-Überprüfen Sie das empfohlene Netzwerkdesign und die Infrastrukturanforderungen zum Bereitstellen von NVMe vVols in einer VMware Cloud Foundation VI-Workloaddomäne.  Sie benötigen ein vollständig konfiguriertes ONTAP AFF oder ASA Speichersystem, eine bereitgestellte VCF-Verwaltungsdomäne und eine vorhandene VI-Workloaddomäne.
+Die empfohlenen Netzwerkdesign- und Infrastrukturanforderungen für die Bereitstellung eines NVMe/TCP Datenspeichers in einer VMware Cloud Foundation Workload-Domäne werden dargestellt. Ein vollständig konfiguriertes ONTAP AFF oder ASA Speichersystem, eine bereitgestellte VCF Management-Domäne und eine bestehende Workload-Domäne sind erforderlich.
 
 
 
@@ -23,7 +23,7 @@ summary: Um NVMe vVols in einer VMware Cloud Foundation VI-Workloaddomäne berei
 
 * Ein ONTAP AFF oder ASA -Speichersystem mit physischen Datenports auf Ethernet-Switches, die für den Speicherverkehr vorgesehen sind.
 * Die Bereitstellung der VCF-Verwaltungsdomäne ist abgeschlossen und auf den vSphere-Client kann zugegriffen werden.
-* Zuvor wurde eine VI-Workloaddomäne bereitgestellt.
+* Eine Workload Domain wurde bereits bereitgestellt.
 
 
 

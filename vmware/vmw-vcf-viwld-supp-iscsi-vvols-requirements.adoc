@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: vmware/vmw-vcf-viwld-supp-iscsi-vvols-requirements.html 
 keywords: netapp, vmware, cloud, foundation, vcf, aff, all-flash, nfs, vvol, vvols, array, ontap tools, otv, sddc, iscsi 
-summary: Um iSCSI vVols in einer VMware Cloud Foundation VI-Workloaddomäne bereitzustellen, benötigen Sie ein vollständig konfiguriertes ONTAP AFF oder ASA Speichersystem, eine vollständige VCF-Verwaltungsdomäne und eine vorhandene VI-Workloaddomäne.  Überprüfen Sie das empfohlene Netzwerkdesign und die Infrastrukturanforderungen, um eine zuverlässige und leistungsstarke Speicherintegration sicherzustellen. 
+summary: Für die Bereitstellung von iSCSI vVols in einer VMware Cloud Foundation Workload-Domäne wird ein vollständig konfiguriertes ONTAP AFF oder ASA Speichersystem, eine abgeschlossene VCF Management-Domäne und eine bestehende Workload-Domäne benötigt. Die empfohlenen Netzwerkdesign- und Infrastrukturanforderungen sollten überprüft werden, um eine zuverlässige und leistungsstarke Speicherintegration sicherzustellen. 
 ---
-= Bereitstellungsanforderungen für iSCSI- vVols in einer VI-Workloaddomäne
+= Bereitstellungsanforderungen für iSCSI vVols in einer Workload-Domäne
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: Um iSCSI vVols in einer VMware Cloud Foundation VI-Workloaddomäne bere
 
 
 [role="lead"]
-Überprüfen Sie das empfohlene Netzwerkdesign und die Infrastrukturanforderungen zum Bereitstellen von iSCSI vVols in einer VMware Cloud Foundation VI-Workloaddomäne.  Sie benötigen ein vollständig konfiguriertes ONTAP AFF oder ASA Speichersystem, eine vollständige VCF-Verwaltungsdomäne und eine vorhandene VI-Workloaddomäne.
+Die empfohlenen Netzwerkdesign- und Infrastrukturanforderungen für die Bereitstellung von iSCSI vVols in einer VMware Cloud Foundation Workload-Domäne werden dargestellt. Ein vollständig konfiguriertes ONTAP AFF oder ASA Storage-System, eine abgeschlossene VCF Management-Domäne und eine bestehende Workload-Domäne sind erforderlich.
 
 
 
@@ -25,7 +25,7 @@ Stellen Sie sicher, dass die folgenden Komponenten und Konfigurationen vorhanden
 
 * Ein ONTAP AFF oder ASA -Speichersystem mit physischen Datenports auf Ethernet-Switches, die für den Speicherverkehr vorgesehen sind.
 * Die Bereitstellung der VCF-Verwaltungsdomäne ist abgeschlossen und auf den vSphere-Client kann zugegriffen werden.
-* Zuvor wurde eine VI-Workloaddomäne bereitgestellt.
+* Eine Workload Domain wurde bereits bereitgestellt.
 
 
 
@@ -35,14 +35,14 @@ Stellen Sie sicher, dass die folgenden Komponenten und Konfigurationen vorhanden
 
 Sie sollten vollständig redundante Netzwerkdesigns für iSCSI konfigurieren.  Das folgende Diagramm zeigt ein Beispiel einer redundanten Konfiguration.  Es bietet Fehlertoleranz für Speichersysteme, Switches, Netzwerkadapter und Hostsysteme.  Weitere Informationen finden Sie in der NetApplink:https://docs.netapp.com/us-en/ontap/san-config/index.html["SAN-Konfigurationsreferenz"^] .
 
-image:vmware-vcf-asa-074.png["NVMe-TCP-Netzwerkdesign"]
+image:vmware-vcf-asa-074.png["iSCSI-Netzwerkdesign"]
 
 {nbsp}
 
 Erstellen Sie für Multipathing und Failover über mehrere Pfade mindestens zwei LIFs pro Speicherknoten in separaten Ethernet-Netzwerken für alle SVMs in iSCSI-Konfigurationen.
 
 
-NOTE: In Situationen, in denen mehrere VMkernel-Adapter im selben IP-Netzwerk konfiguriert sind, verwenden Sie die Software-iSCSI-Portbindung auf den ESXi-Hosts, um sicherzustellen, dass ein Lastenausgleich zwischen den Adaptern erfolgt. Siehe KB-Artikellink:https://knowledge.broadcom.com/external/article?legacyId=2038869["Überlegungen zur Verwendung der Software-iSCSI-Portbindung in ESX/ESXi"^] .
+NOTE: In Situationen, in denen mehrere VMkernel-Adapter im selben IP-Netzwerk konfiguriert sind, wird die Software-iSCSI-Portbindung auf den ESXi-Hosts verwendet, damit ein Lastausgleich zwischen den Adaptern erfolgt. Siehe KB-Artikel link:https://knowledge.broadcom.com/external/article?legacyId=2038869["Überlegungen zur Verwendung der Software-iSCSI-Portbindung im vSphere Host"^].
 
 
 

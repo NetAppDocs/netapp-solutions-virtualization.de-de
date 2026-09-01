@@ -1,0 +1,47 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-vcf-mgmt-vmfs.html 
+keywords: netapp, vmware, cloud, foundation, vcf, asa, aff, all-flash, fc, array, ontap tools, otv, sddc, sddc manager, ontap tools, ontap tools 10 
+summary: Ein bestehender vSphere Cluster mit unterstützten NetApp ONTAP VMFS Datastores wird in eine VMware Cloud Foundation Management-Domäne konvergiert. Die Konfigurationsanforderungen werden überprüft, ONTAP tools bereitgestellt und VMFS Datastores bereitgestellt; das VCF Installer Tool wird verwendet, um den Cluster zu validieren und zu konvergieren. 
+---
+= Bereitstellungsworkflow für die Konvergenz von vCenter Serverinstanzen zur VCF-Management-Domäne mit VMFS-Datenspeichern
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Einen bestehenden vSphere Cluster mit NetApp ONTAP VMFS Datenspeichern in eine VMware Cloud Foundation Management-Domäne konvergieren. Die Konfigurationsanforderungen werden überprüft, ONTAP tools bereitgestellt und VMFS Datenspeicher provisioniert. Mit dem VCF Installer Tool lassen sich die vorhandenen Komponenten validieren und nutzen, erforderliche neue Komponenten bereitstellen und die Plattform konfigurieren.
+
+Dieser Workflow wird auch verwendet, um beliebige unterstützte VMFS-Datastores als Principal Storage für die VCF-Management-Domäne zu nutzen.
+
+Einen Überblick über den Konvertierungsprozess bietet die VMware-Dokumentation: https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-9-0-and-later/9-1/deployment/converging-your-existing-vsphere-infrastructure-to-a-vcf-or-vvf-platform-.html["Konvergieren bestehender virtueller Infrastruktur zu einer VCF"].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Eins"]link:vmw-vcf-mgmt-vmfs-requirements.html["Überprüfen der Konfigurationsanforderungen"]
+[role="quick-margin-para"]
+Die wichtigsten Anforderungen für die Konvergenz von vCenter Serverinstanzen zu VCF Management-Domänen unter Verwendung von VMFS-Datenspeichern werden dargestellt.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Zwei"]link:vmw-vcf-mgmt-vmfs-deploy.html["ONTAP tools bereitstellen und einen unterstützten VMFS-Datenspeicher bereitstellen"]
+[role="quick-margin-para"]
+ONTAP tools für VMware vSphere bereitstellen und einen unterstützten VMFS-Datenspeicher bereitstellen.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Drei"]link:vmw-vcf-mgmt-vmfs-converge.html["Konvergieren vSphere Cluster zur VCF Management-Domäne"]
+[role="quick-margin-para"]
+Mit dem VCF Installer Tool lassen sich vorhandene Komponenten validieren, wiederverwenden und neue Komponenten bereitstellen, aus denen die VCF Management-Domäne besteht.
+
+
+
+[[reference-video]]
+== Referenzvideo:
+
+.iSCSI Multipath mit AFF und ASA r2
+video::62c2a66c-1a07-4284-bc7b-b4ac00e9aeea[panopto,width=360]
+.Zusätzlicher Datastore mit NVMe/TCP
+video::f85530ec-ff24-4c7d-abb4-b49b0176402c[panopto,width=360]
+.Zusätzlicher Datenspeicher mit NVMe/FC
+video::b2b16a35-05cd-49c9-a91a-b4ac0127813d[panopto,width=360]
+.Zusätzlicher Datenspeicher mit FC
+video::96311abf-aa45-4ce9-984b-b4b001005bab[panopto,width=360]

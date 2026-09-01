@@ -4,14 +4,14 @@ permalink: vmware/vmw-vcf-viwld-mgmt-supp-fc.html
 keywords: netapp, vmware, cloud, foundation, vcf, asa, all-flash, array, ontap tools, otv, sddc, fc 
 summary:  
 ---
-= VMFS auf FC als zusätzlicher Speicher für VI-Workload- und Managementdomänen mit ONTAP Tools für VMware
-:hardbreaks:
+= VMFS auf FC als zusätzlicher Speicher für VCF Workload- und Management-Domänen mit ONTAP tools for VMware
 :allow-uri-read: 
-:nofooter: 
-:icons: font
-:linkattrs: 
-:imagesdir: ../media/
 
+
+
+
+[[vmfs-on-fc-as-supplemental-storage-for-vcf-workload-and-management-domains-using-ontap-tools-for-vmware]]
+== VMFS auf FC als zusätzlicher Speicher für VCF Workload- und Management-Domänen mit ONTAP tools for VMware
 
 [role="lead"]
 In diesem Szenario zeigen wir, wie man einen VMFS-Datenspeicher mit Fiber Channel(FC)-Backend für Verwaltungs- und Workloaddomänen unter Verwendung von ONTAP -Tools bereitstellt.
@@ -19,7 +19,7 @@ In diesem Szenario zeigen wir, wie man einen VMFS-Datenspeicher mit Fiber Channe
 
 
 [[benefits-of-fibre-channel]]
-== Vorteile von Fibre Channel
+=== Vorteile von Fibre Channel
 
 *Hohe Leistung:* FC bietet Hochgeschwindigkeitsdatenübertragungsraten und ist daher ideal für Anwendungen, die einen schnellen und zuverlässigen Zugriff auf große Datenmengen erfordern.
 
@@ -34,12 +34,12 @@ Weitere Informationen zur Verwendung von Fibre Channel mit NetApp -Speichersyste
 
 
 [[scenario-overview]]
-== Szenarioübersicht
+=== Szenarioübersicht
 
-Der VCF-Zusatzdatenspeicher wird im Rahmen der Day-2-Operationen mithilfe von vCenter bereitgestellt.  Dieses Szenario umfasst die folgenden allgemeinen Schritte:
+Der VCF Supplemental Datastore wird im Rahmen von Day-2-Operations mit vCenter bereitgestellt. Dieses Szenario umfasst die folgenden Schritte auf hoher Ebene:
 
 * Bereitstellung von ONTAP -Tools in der Verwaltungsdomäne
-* Registrieren Sie VI-Workload-vCenter-Server bei ONTAP -Tools
+* Workload-vCenter-Server bei ONTAP tools registrieren
 * Definieren Sie das Storage-Backend im ONTAP -Tools-Plugin für VMware vSphere
 * Bereitstellen von VMFS auf FC-Transport
 
@@ -47,7 +47,7 @@ Der VCF-Zusatzdatenspeicher wird im Rahmen der Day-2-Operationen mithilfe von vC
 
 
 [[prerequisites]]
-== Voraussetzungen
+=== Voraussetzungen
 
 Dieses Szenario erfordert die folgenden Komponenten und Konfigurationen:
 
@@ -70,7 +70,7 @@ Weitere Informationen zur Verwendung von VMFS mit ONTAP Speichersystemen finden 
 
 
 [[deployment-steps-for-management-domain]]
-== Bereitstellungsschritte für die Verwaltungsdomäne
+=== Bereitstellungsschritte für die Verwaltungsdomäne
 
 Führen Sie die folgenden Schritte aus, um ONTAP Tools bereitzustellen und damit einen VMFS-Datenspeicher in der VCF-Verwaltungsdomäne zu erstellen:
 
@@ -81,12 +81,12 @@ Führen Sie die folgenden Schritte aus, um ONTAP Tools bereitzustellen und damit
 
 
 
-[[deployment-steps-for-vi-workload-domain]]
-== Bereitstellungsschritte für die VI-Workloaddomäne
+[[deployment-steps-for-workload-domain]]
+=== Bereitstellungsschritte für die Workload Domain
 
-Führen Sie die folgenden Schritte aus, um ONTAP Tools bereitzustellen und damit einen VMFS-Datenspeicher in der VCF VI-Workloaddomäne zu erstellen:
+Zur Bereitstellung von ONTAP tools und zur Erstellung eines VMFS-Datenspeichers in der VCF Workload-Domäne sind die folgenden Schritte erforderlich:
 
-* link:https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/add-vcenter.html["Registrieren Sie VI Workload vCenter, um das vCenter-Plugin zu aktivieren"]
+* link:https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/add-vcenter.html["Arbeitslast vCenter registrieren, um das vCenter Plugin zu aktivieren"]
 * link:https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/add-storage-backend.html["Definieren Sie das Speicher-Backend mithilfe der vSphere-Clientschnittstelle"]
 * link:https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/create-datastore.html["Bereitstellen von VMFS auf FC"]
 
@@ -94,7 +94,7 @@ Führen Sie die folgenden Schritte aus, um ONTAP Tools bereitzustellen und damit
 
 
 [[additional-information]]
-== Weitere Informationen
+=== Weitere Informationen
 
 Informationen zur Konfiguration von ONTAP Speichersystemen finden Sie imlink:https://docs.netapp.com/us-en/ontap["ONTAP 9 Dokumentation"] Center.
 
@@ -105,5 +105,5 @@ Informationen zur Konfiguration von VCF finden Sie unterlink:https://techdocs.br
 [[video-demo-for-this-solution]]
 == Videodemo für diese Lösung
 
-.VMFS(FC)-Datenspeicher als zusätzlicher Speicher für die VCF-Verwaltungsdomäne
-video::3135c36f-3a13-4c95-aac9-b2a0001816dc[panopto,width=360]
+.Zusätzlicher Datenspeicher mit FC
+video::96311abf-aa45-4ce9-984b-b4b001005bab[panopto,width=360]

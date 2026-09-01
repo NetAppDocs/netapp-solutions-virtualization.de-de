@@ -4,7 +4,7 @@ permalink: vmware/vmw-vcf-viwld-supp-fc.html
 keywords: netapp, vmware, cloud, foundation, vcf, asa, all-flash, array, ontap tools, otv, sddc, fc 
 summary:  
 ---
-= Fügen Sie einen FC-basierten VMFS-Datenspeicher als zusätzlichen Speicher zu einer VI-Workload-Domäne hinzu
+= Einen FC-basierten VMFS-Datenspeicher als zusätzlichen Speicher zu Workload-Domänen hinzufügen
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary:
 
 
 [role="lead"]
-In diesem Anwendungsfall beschreiben wir das Verfahren zum Konfigurieren eines VMFS-Datenspeichers mit Fiber Channel (FC) als zusätzlichen Speicher für eine VMware Cloud Foundation (VCF) Virtual Infrastructure (VI)-Workloaddomäne.  Dieses Verfahren fasst die Bereitstellung von ONTAP Tools für VMware vSphere, die Registrierung des VI-Workload-vCenter-Servers, die Definition des Speicher-Backends und die Bereitstellung des FC-Datenspeichers zusammen.
+In diesem Anwendungsfall wird die Vorgehensweise zur Konfiguration eines VMFS-Datenspeichers mit Fiber Channel (FC) als zusätzlichem Speicher für eine VMware Cloud Foundation (VCF) Workload-Domäne dargestellt. Diese Vorgehensweise fasst die Bereitstellung von ONTAP tools for VMware vSphere, die Registrierung des Workload vCenter Servers, die Definition des Storage-Backends und die Bereitstellung des FC-Datenspeichers zusammen.
 
 .Bevor Sie beginnen
 Stellen Sie sicher, dass die folgenden Komponenten und Konfigurationen vorhanden sind.
@@ -33,9 +33,9 @@ Stellen Sie sicher, dass die folgenden Komponenten und Konfigurationen vorhanden
 
 ====
 .Schritte
-. Registrieren Sie das VI-Workload-vCenter, indem Sie den Anweisungen in der Dokumentation zu den ONTAP tools for VMware vSphere folgen:link:https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/add-vcenter.html["VI-Workload vCenter registrieren"] .
+. Die Workload-Domäne vCenter wird gemäß den Anweisungen in der ONTAP tools for VMware vSphere Dokumentation registriert: link:https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/add-vcenter.html["Arbeitslast vCenter registrieren"].
 +
-Durch die Registrierung des VI-Workload-vCenter wird das vCenter-Plugin aktiviert.
+Die Registrierung des Workload-Domänenservers vCenter ermöglicht das vCenter-Plugin.
 
 . Fügen Sie mithilfe der vSphere-Clientschnittstelle ein Speicher-Backend hinzu, indem Sie den Anweisungen in der Dokumentation zu den ONTAP tools for VMware vSphere folgen:link:https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/add-storage-backend.html["Definieren Sie das Speicher-Backend mithilfe der vSphere-Clientschnittstelle"] .
 +
@@ -46,11 +46,18 @@ Durch Hinzufügen eines Speicher-Backends können Sie einen ONTAP Cluster integr
 
 
 
+[[reference-video]]
+== Referenzvideo
+
+.Zusätzlicher Datenspeicher mit FC
+video::96311abf-aa45-4ce9-984b-b4b001005bab[panopto,width=360]
+
+
 [[additional-information]]
 == Weitere Informationen
 
 * Informationen zur Konfiguration von ONTAP Speichersystemen finden Sie imlink:https://docs.netapp.com/us-en/ontap["ONTAP 9 Dokumentation"^] .
-* Informationen zur Konfiguration von VCF finden Sie imlink:https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-5-2-and-earlier/5-2.html["VMware Cloud Foundation-Dokumentation"^] .
+* Informationen zur Konfiguration von VCF sind in der link:https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-9-0-and-later/9-1.html["VMware Cloud Foundation-Dokumentation"^]Dokumentation enthalten.
 * Informationen zur Konfiguration von Fibre Channel auf ONTAP Speichersystemen finden Sie im https://docs.netapp.com/us-en/ontap/san-management/index.html["SAN-Speicherverwaltung"^] in der ONTAP 9-Dokumentation.
 * Informationen zur Verwendung von VMFS mit ONTAP Speichersystemen finden Sie imlink:vmw-vmfs-deploy.html["Bereitstellungshandbuch für VMFS"] .
 * Videodemos dieser Lösung finden Sie unterlink:../videos/vmware-videos.html#vmware-datastore-provisioning-with-ontap["Bereitstellung von VMware-Datenspeichern"] .

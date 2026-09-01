@@ -49,31 +49,31 @@ entries:
     url: "/vmware/vmw-vcf-deployment.html"
   - title: VCF 9 DR mit NetApp Disaster Recovery
     url: "/vmware/vmw-vcf-disaster-recovery-nfs.html"
-  - title: Konvertieren Sie vorhandene vSphere-Cluster in VCF
+  - title: Bestehende vSphere Cluster in VCF zusammenführen
     entries:
-    - title: Informationen zur Konvertierung bestehender vSphere-Cluster zu VCF
+    - title: Informationen zur Zusammenführung bestehender vSphere Cluster zu VCF
       url: "/vmware/vmw-vcf-migrate.html"
-    - title: Vorhandenen vSphere-Cluster mit NFS-Datenspeichern konvertieren
+    - title: Vorhandenen vSphere Cluster mit NFS-Datenspeichern zusammenführen
       url: "/vmware/vmw-vcf-mgmt-nfs.html"
-    - title: Vorhandenen vSphere-Cluster mit FC-Datenspeichern konvertieren
-      url: "/vmware/vmw-vcf-mgmt-fc.html"
+    - title: Bestehenden vSphere Cluster mit VMFS-Datenspeichern zusammenführen
+      url: "/vmware/vmw-vcf-mgmt-vmfs.html"
   - title: Bereitstellen von VCF mit Hauptspeicher
     entries:
     - title: Informationen zur Bereitstellung von Hauptspeicher
       url: "/vmware/vmw-vcf-provision.html"
-    - title: Bereitstellen von Verwaltungsdomänen mit FC
+    - title: Bereitstellungsverwaltungsdomäne mit FC
       url: "/vmware/vmw-vcf-mgmt-principal-fc.html"
-    - title: Bereitstellen von Verwaltungsdomänen mit NFS
+    - title: Management-Domäne mit NFS bereitstellen
       url: "/vmware/vmw-vcf-mgmt-principal-nfs.html"
-    - title: Bereitstellen von VI-Workloaddomänen mit FC
+    - title: Workload-Domains mit FC bereitstellen
       url: "/vmware/vmw-vcf-viwld-principal-fc.html"
-    - title: Bereitstellen von VI-Workloaddomänen mit NFS
+    - title: Workload-Domänen mit NFS bereitstellen
       url: "/vmware/vmw-vcf-viwld-principal-nfs.html"
   - title: Erweitern Sie VCF mit zusätzlichem Speicher
     entries:
     - title: Informationen zur Speichererweiterung
       url: "/vmware/vmw-vcf-expand.html"
-    - title: Erweitern Sie Verwaltungsdomänen mit iSCSI
+    - title: Managementdomäne mit iSCSI erweitern
       entries:
       - title: Bereitstellungsworkflow
         url: "/vmware/vmw-vcf-mgmt-supplemental-iscsi.html"
@@ -85,9 +85,9 @@ entries:
         url: "/vmware/vmw-vcf-mgmt-supplemental-iscsi-network.html"
       - title: Konfigurieren des Speichers
         url: "/vmware/vmw-vcf-mgmt-supplemental-iscsi-storage.html"
-    - title: Erweitern Sie Verwaltungsdomänen mit FC
+    - title: Verwaltungsbereich mit FC erweitern
       url: "/vmware/vmw-vcf-mgmt-supplemental-fc.html"
-    - title: Erweitern Sie VI-Workload-Domänen mit vVols iSCSI
+    - title: VCF Workload-Domänen mit vVols iSCSI erweitern
       entries:
       - title: Bereitstellungsworkflow
         url: "/vmware/vmw-vcf-viwld-supp-iscsi-vvols.html"
@@ -99,7 +99,7 @@ entries:
         url: "/vmware/vmw-vcf-viwld-supp-iscsi-vvols-network.html"
       - title: Konfigurieren des Speichers
         url: "/vmware/vmw-vcf-viwld-supp-iscsi-vvols-storage.html"
-    - title: Erweitern Sie VI-Workload-Domänen mit vVols NFS
+    - title: VCF Workload-Domänen mit vVols NFS erweitern
       entries:
       - title: Bereitstellungsworkflow
         url: "/vmware/vmw-vcf-viwld-supp-nfs-vvols.html"
@@ -111,7 +111,7 @@ entries:
         url: "/vmware/vmw-vcf-viwld-supp-nfs-vvols-network.html"
       - title: Konfigurieren des Speichers
         url: "/vmware/vmw-vcf-viwld-supp-nfs-vvols-storage.html"
-    - title: Erweitern Sie VI-Workloaddomänen mit NVMe/TCP
+    - title: VCF Workload-Domänen mit NVMe/TCP erweitern
       entries:
       - title: Bereitstellungsworkflow
         url: "/vmware/vmw-vcf-viwld-supp-nvme.html"
@@ -123,7 +123,7 @@ entries:
         url: "/vmware/vmw-vcf-viwld-supp-nvme-network.html"
       - title: Konfigurieren des Speichers
         url: "/vmware/vmw-vcf-viwld-supp-nvme-storage.html"
-    - title: Erweitern Sie VI-Workloaddomänen mit FC
+    - title: VCF Workload-Domänen mit FC erweitern
       url: "/vmware/vmw-vcf-viwld-supp-fc.html"
   - title: Schützen Sie VCF mit SnapCenter
     entries:
@@ -141,11 +141,11 @@ entries:
       url: "/vmware/vmw-vcf-protect-vmsc.html"
     - title: Konfigurieren Sie Verwaltungsdomänen mit MetroCluster
       url: "/vmware/vmw-vcf-vmsc-mgmt-mcc.html"
-    - title: Konfigurieren von VI-Workloaddomänen mit MetroCluster
+    - title: Workload-Domänen mit MetroCluster konfigurieren
       url: "/vmware/vmw-vcf-vmsc-viwld-mcc.html"
-    - title: Konfigurieren Sie Verwaltungsdomänen mit SnapMirror Active Sync
+    - title: Verwaltungsdomänen mit SnapMirror Active Sync (SAN und NAS) konfigurieren
       url: "/vmware/vmw-vcf-vmsc-mgmt-smas.html"
-    - title: Konfigurieren Sie VI-Workload-Domänen mit SnapMirror Active Sync
+    - title: Workload-Domänen mit SnapMirror Active Sync (SAN und NAS) konfigurieren
       url: "/vmware/vmw-vcf-vmsc-viwld-smas.html"
   - title: Migrieren Sie VMs von vSphere
     url: "/vmware/migrate-vms-to-ontap-datastore.html"

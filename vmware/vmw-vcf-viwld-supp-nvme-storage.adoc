@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: vmware/vmw-vcf-viwld-supp-nvme-storage.html 
 keywords: netapp, vmware, cloud, foundation, vcf, aff, all-flash, nfs, vvol, vvols, array, ontap tools, otv, sddc, iscsi 
-summary: 'Konfigurieren Sie NVMe over TCP (NVMe/TCP) vVols -Speicher in einer VI-Workloaddomäne.  Sie stellen ONTAP Tools bereit, registrieren ein Speichersystem, erstellen ein Speicherfähigkeitsprofil und stellen einen vVols Datenspeicher im vSphere-Client bereit.' 
+summary: 'NVMe over TCP (NVMe/TCP) Datenspeicher in einer VMware Cloud Foundation Workload-Domäne konfigurieren. ONTAP tools werden bereitgestellt, ein Speichersystem registriert, ein Speicherfähigkeitsprofil erstellt und ein NVMe/TCP-Datenspeicher im vSphere Client bereitgestellt.' 
 ---
-= Konfigurieren Sie den NVMe/TCP vVols -Speicher in einer VCF VI-Workloaddomäne
+= Konfiguration eines NVMe/TCP Datenspeichers in einer VCF Workload-Domäne
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: 'Konfigurieren Sie NVMe over TCP (NVMe/TCP) vVols -Speicher in einer VI
 
 
 [role="lead"]
-Konfigurieren Sie NVMe/TCP vVols -Speicher in einer VMware Cloud Foundation VI-Workloaddomäne.  Sie stellen ONTAP Tools bereit, registrieren ein Speichersystem, erstellen ein Speicherfähigkeitsprofil und stellen einen vVols Datenspeicher im vSphere-Client bereit.
+NVMe/TCP-Datenspeicher in einer VMware Cloud Foundation Workload-Domäne konfigurieren. ONTAP tools bereitstellen, ein Speichersystem registrieren, ein Speicherfähigkeitsprofil erstellen und einen NVMe/TCP-Datenspeicher im vSphere Client bereitstellen.
 
 .Schritte
 . Navigieren Sie im vSphere-Client zu einem der ESXi-Hosts im Workload-Domänencluster. Wählen Sie im Menü *Aktionen* die Option *Speicher > Neuer Datenspeicher...*.
@@ -22,11 +22,11 @@ Konfigurieren Sie NVMe/TCP vVols -Speicher in einer VMware Cloud Foundation VI-W
 .Beispiel anzeigen
 [%collapsible]
 ====
-image:vmware-vcf-asa-104.png["NVMe/TCP-Adapter hinzufügen"]
+image:vmware-vcf-asa-104.png["NVMe/TCP Datenspeicher hinzufügen"]
 
 ====
 . Wählen Sie im Assistenten *Neuer Datenspeicher* als Typ *VMFS* aus. Klicken Sie auf *Weiter*, um fortzufahren.
-. Geben Sie auf der Seite *Namens- und Geräteauswahl* einen Namen für den Datenspeicher ein und wählen Sie den NVMe-Namespace aus der Liste der verfügbaren Geräte aus.
+. Auf der Seite *Name und Geräteauswahl* einen Namen für den Datenspeicher angeben und den NVMe/TCP Namespace aus der Liste der verfügbaren Geräte auswählen.
 +
 .Beispiel anzeigen
 [%collapsible]
@@ -62,5 +62,5 @@ image:vmware-vcf-asa-107.png["Mit dem Datenspeicher verbundene Hosts"]
 * Weitere Informationen zur Konfiguration von SAN für Redundanz finden Sie imlink:https://docs.netapp.com/us-en/ontap/san-config/index.html["NetApp SAN-Konfigurationsreferenz"^] .
 * Weitere Informationen zu NVMe-Designüberlegungen für ONTAP Speichersysteme finden Sie unterlink:https://docs.netapp.com/us-en/ontap/nvme/support-limitations.html["NVMe-Konfiguration, -Unterstützung und -Einschränkungen"^] .
 * Informationen zur Konfiguration von ONTAP Speichersystemen finden Sie imlink:https://docs.netapp.com/us-en/ontap["ONTAP 9 Dokumentation"^] .
-* Informationen zur Konfiguration von VCF finden Sie imlink:https://techdocs.broadcom.com/us/en/vmware-cis/vcf.html["VMware Cloud Foundation-Dokumentation"^] .
+* Informationen zur Konfiguration von VCF sind in der link:https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-9-0-and-later/9-1.html["VMware Cloud Foundation-Dokumentation"^]Dokumentation enthalten.
 

@@ -47,11 +47,18 @@ Durch Hinzufügen eines Speicher-Backends können Sie einen ONTAP Cluster integr
 
 
 
+[[reference-video]]
+== Referenzvideo
+
+.Zusätzlicher Datenspeicher mit FC
+video::96311abf-aa45-4ce9-984b-b4b001005bab[panopto,width=360]
+
+
 [[additional-information]]
 == Weitere Informationen
 
 * Informationen zum Konfigurieren von ONTAP Speichersystemen finden Sie unterlink:https://docs.netapp.com/us-en/ontap["ONTAP 9 Dokumentation"] .
-* Informationen zur Konfiguration von VCF finden Sie imlink:https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-5-2-and-earlier/5-2.html["VMware Cloud Foundation-Dokumentation"] .
+* Informationen zur Konfiguration von VCF sind in der link:https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-9-0-and-later/9-1.html["VMware Cloud Foundation-Dokumentation"]Dokumentation zu finden.
 * Informationen zur Konfiguration von Fibre Channel auf ONTAP Speichersystemen finden Sie in der ONTAP 9-Dokumentation. https://docs.netapp.com/us-en/ontap/san-management/index.html["SAN-Speicherverwaltung"] .
 * Weitere Informationen zur Verwendung von VMFS mit ONTAP Speichersystemen finden Sie imlink:vmw-vmfs-deploy.html["Bereitstellungshandbuch für VMFS"] .
 * Videodemos dieser Lösung finden Sie unterlink:../videos/vmware-videos.html#vmware-datastore-provisioning-with-ontap["Bereitstellung von VMware-Datenspeichern"] .

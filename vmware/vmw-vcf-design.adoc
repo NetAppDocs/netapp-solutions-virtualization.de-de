@@ -31,6 +31,9 @@ VMware Cloud Foundation mit ONTAP unterstützt eine Vielzahl von Speicherkonfigu
 | ASA A-Serie und C-Serie | Ja | Nein 
 
 
+| AFX | Nein | Ja 
+
+
 | AFF A-Serie und C-Serie | Ja | Ja 
 
 
@@ -42,6 +45,9 @@ VMware Cloud Foundation mit ONTAP unterstützt eine Vielzahl von Speicherkonfigu
 
 
 | ASA A-Serie und C-Serie | Ja | Ja | Ja | Nein | Nein 
+
+
+| AFX | Nein | Nein | Nein | Ja | Ja 
 
 
 | AFF A-Serie und C-Serie | Ja | Ja | Ja | Ja | Ja 
@@ -61,7 +67,7 @@ Die folgenden Blueprints veranschaulichen gängige Bereitstellungsmodelle für V
 [[vcf-fleet-in-a-single-site-with-minimal-footprint]]
 === VCF-Flotte an einem einzigen Standort mit minimalem Platzbedarf
 
-Dieser Entwurf dient der Bereitstellung von Management- und Workload-Komponenten in einem einzelnen vSphere-Cluster mit minimalen Ressourcen.  Es unterstützt VMFS- und NFSv3-Principal-Datastores und eine einfache Bereitstellungsoption mit einer Zwei-Knoten-Konfiguration.  Wenn Sie VCF Automation mit dem All Apps Organization-Modell verwenden möchten, benötigen Sie einen zweiten Cluster, um vSphere Supervisor- und NSX Edge-Knoten bereitzustellen.
+Dieser Entwurf dient der Bereitstellung von Management- und Workload-Komponenten in einem einzelnen vSphere Cluster mit minimalem Ressourcenaufwand. Es werden VMFS- und NFSv3-Principal-Datastores sowie eine einfache Bereitstellungsoption mit einer Zwei-Knoten-Konfiguration unterstützt.
 
 image::vmw-vcf-design-001.png[VCF-Flotte an einem einzigen Standort mit minimalem Platzbedarf]
 
@@ -70,7 +76,7 @@ Um den Ressourcenverbrauch zu minimieren, verwenden Sie nach Möglichkeit eine v
 
 NOTE: Wenn Ihnen die Ressourcen fehlen, um VCF zu erkunden, bieten viele Cloud-Anbieter VCF als Service an und ONTAP ist als First-Party-Service von Cloud-Anbietern verfügbar.
 
-Weitere Einzelheiten zu diesem Design finden Sie imlink:https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-9-0-and-later/9-0/design/blueprints/vcf-fleet-basic-management-design.html["Technische Dokumentation von Broadcom zur VCF-Flotte an einem einzigen Standort mit minimalem Platzbedarf"] .
+Weitere Details zu diesem Design sind unter link:https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-9-0-and-later/9-1/design/design-blueprints-for/infrastructure-modernization/vcf-fleet-in-a-single-site-with-minimal-footprint-blueprint.html["Technische Dokumentation von Broadcom zur VCF-Flotte an einem einzigen Standort mit minimalem Platzbedarf"] zu finden.
 
 
 
@@ -92,9 +98,9 @@ Eine einzelne Instanz von ONTAP Tools im HA-Modus kann alle vCenter in der VCF-F
 video::e7cf90b9-2744-404b-9831-b33f00164626[panopto]
 Sie müssen das SnapCenter Plug-in auf jeder vCenter-Instanz bereitstellen, um VM und Datastore zu schützen.
 
-Die auf Speicherrichtlinien basierende Verwaltung wird mit vSphere Supervisor verwendet, um VMs von VKS zu hosten.  Tags werden zentral bei VCF Ops verwaltet.  NetApp Trident CSI wird mit VKS zum Schutz von Anwendungssicherungen mithilfe nativer Array-Funktionen verwendet.  Wenn Sie vSphere CSI verwenden, werden persistente Volumedetails in der VCF-Automatisierung angezeigt.
+Die speicherrichtlinienbasierte Verwaltung wird zusammen mit vSphere Supervisor zur Steuerung der Control-VMs von VKS verwendet. Tags werden zentral in VCF Ops verwaltet. NetApp Trident CSI wird mit VKS für den Anwendungssicherungsschutz unter Verwendung nativer Array-Funktionen eingesetzt. Bei Verwendung von vSphere CSI werden Details zu persistenten Volumes sowohl in vCenter als auch in VCF Automation angezeigt.
 
-Weitere Einzelheiten zu diesem Entwurf finden Sie imlink:https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-9-0-and-later/9-0/design/blueprints/vcf-fleet-management-design-with-multiple-availability-zones.html["Technische Dokumentation von Broadcom zur VCF-Flotte an einem einzigen Standort"] .
+Weitere Einzelheiten zu diesem Entwurf sind unter link:https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-9-0-and-later/9-1/design/design-blueprints-for/infrastructure-modernization/vcf-fleet-in-a-single-site-blueprint.html["Technische Dokumentation von Broadcom zur VCF-Flotte an einem einzigen Standort"] zu finden.
 
 
 
@@ -105,19 +111,19 @@ Dieses Design ist für Kunden gedacht, die Cloud-ähnliche Dienste mit höherer 
 
 Für VMFS-Datenspeicher bietet SnapMirror Active Sync eine Active-Active-Speichereinheit zur Verwendung mit vSphere Metro Storage Cluster.  Der einheitliche Zugriffsmodus bietet transparentes Speicher-Failover, während der nicht einheitliche Zugriffsmodus bei einem Fehlerdomänenfehler einen Neustart der VM erfordert.
 
-Für NFS-Datenspeicher gewährleistet ONTAP MetroCluster mit vSphere Metro Storage Cluster eine hohe Verfügbarkeit. Ein Mediator vermeidet Split-Brain-Szenarien und kann jetzt auf der NetApp Console gehostet werden.
+Für NFS-Datenspeicher sorgt SnapMirror Active Sync für NAS (mit ONTAP 9.19.1 und höher) oder ONTAP MetroCluster mit vSphere Metro Storage Cluster für Hochverfügbarkeit. Ein Mediator verhindert Split-Brain-Szenarien und kann nun auf der NetApp Console gehostet werden.
 
 VM-Platzierungsregeln steuern VMs innerhalb derselben Fehlerdomäne für Managementdomänenkomponenten.
 
 image::vmw-vcf-design-003.png[VCF-Flotte mit mehreren Standorten in einer einzigen Region]
 
-ONTAP -Tools bieten eine Benutzeroberfläche zum Einrichten aktiver SnapMirror -Synchronisierungsbeziehungen.  Speichersysteme beider Fehlerdomänen müssen in ONTAP -Tools und im SnapCenter Plug-in for VMware vSphere registriert werden.
+ONTAP tools bieten eine Benutzeroberfläche zum Einrichten von SnapMirror Aktiv/Aktiv-Synchronisierungsbeziehungen für iSCSI und FC. Storage-Systeme beider Fehlerdomänen müssen in ONTAP tools und im SnapCenter Plug-in für VMware vSphere registriert sein.
 
 Sie können 3-2-1-Backup-Richtlinien mit NetApp Backup and Recovery for VMs über SnapMirror und SnapMirror to Cloud implementieren. Sie können Wiederherstellungen von jedem der drei Standorte aus durchführen.
 
-Trident Protect oder NetApp Backup and Recovery für Kubernetes schützen VKS-Clusteranwendungen.
+Trident Protect oder NetApp Console Backup and Recovery für Kubernetes schützt VKS Cluster-Anwendungen.
 
-Weitere Informationen finden Sie imlink:https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-9-0-and-later/9-0/design/blueprints/vsphere-only-to-vcf-fleet-upgrade-blueprint.html["Technische Dokumentation von Broadcom zur VCF-Flotte mit mehreren Standorten in einer einzigen Region"] .
+Weitere Informationen sind im link:https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-9-0-and-later/9-1/design/design-blueprints-for/infrastructure-modernization/vcf-fleet-with-multiple-sites-in-a-single-region-blueprint.html["Technische Dokumentation von Broadcom zur VCF-Flotte mit mehreren Standorten in einer einzigen Region"] zu finden.
 
 
 
@@ -126,26 +132,29 @@ Weitere Informationen finden Sie imlink:https://techdocs.broadcom.com/us/en/vmwa
 
 Dieses Design ist für weltweit verteilte Kunden gedacht und bietet Dienste in unmittelbarer Nähe sowie Lösungen zur Notfallwiederherstellung.
 
-Die Notfallwiederherstellung für VMs kann mit VMware Live Site Recovery oder NetApp Disaster Recovery verwaltet werden. ONTAP -Tools bieten den SRA (Storage Replication Adapter) zur Orchestrierung von Speichervorgängen mit ONTAP.
+Die Notfallwiederherstellung für VMs kann mit VMware Protect and Recovery oder NetApp Console Disaster Recovery verwaltet werden. ONTAP tools bieten den SRA (Storage Replication Adapter) zur Orchestrierung von Speicheroperationen mit ONTAP.
 
-[cols="4,2,2"]
+[cols="4,2,2,2"]
 |===
-| Produktfamilie | SnapMirror aktive Synchronisierung | MetroCluster 
+| Produktfamilie | SnapMirror aktive Synchronisierung | SnapMirror Active Sync für NAS | MetroCluster 
 
 
-| ASA A-Serie und C-Serie | Ja | Ja 
+| ASA A-Serie und C-Serie | Ja | Nein | Ja 
 
 
-| AFF A-Serie und C-Serie | Ja | Ja 
+| AFX | Nein | Ja | NA 
 
 
-| FAS | Nein | Ja 
+| AFF A-Serie und C-Serie | Ja | Ja | Ja 
+
+
+| FAS | Nein | Nein | Ja 
 |===
 image::vmw-vcf-design-004.png[VCF-Flotte mit mehreren Standorten in mehreren Regionen]
 
 ONTAP -Tools bieten eine Benutzeroberfläche für die Einrichtung der Datenspeicherreplikation. Die NetApp Console kann auch zur Replikation zwischen Speicherarrays verwendet werden. Das SnapCenter Plug-in for VMware vSphere nutzt vorhandene SnapMirror -Beziehungen für SnapShots.
 
-Weitere Informationen finden Sie imlink:https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-9-0-and-later/9-0/design/blueprints/blueprint-4.html["Technische Dokumentation von Broadcom zur VCF-Flotte mit mehreren Standorten in mehreren Regionen"] .
+Weitere Informationen sind im link:https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-9-0-and-later/9-1/design/design-blueprints-for/infrastructure-modernization/vcf-fleet-with-multiple-sites-across-multiple-regions-blueprint.html["Technische Dokumentation von Broadcom zur VCF-Flotte mit mehreren Standorten in mehreren Regionen"] zu finden.
 
 
 
@@ -154,10 +163,10 @@ Weitere Informationen finden Sie imlink:https://techdocs.broadcom.com/us/en/vmwa
 
 Dieses Design berücksichtigt sowohl die Verfügbarkeit als auch die Notfallwiederherstellung von VMs und VKS-Anwendungen.
 
-ASA, AFF und FAS unterstützen diese Designoption.
+ASA, AFX, AFF und FAS unterstützen diese Designoption.
 
 image::vmw-vcf-design-005.png[VCF-Flotte mit mehreren Standorten in einer einzelnen Region und zusätzlichen Regionen]
 
 Sie können ONTAP Tools oder die NetApp Console verwenden, um die Replikationsbeziehung einzurichten.
 
-Weitere Informationen finden Sie im link:https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-9-0-and-later/9-0/design/blueprints/blueprint-5.html["Technische Dokumentation von Broadcom zur VCF-Flotte mit mehreren Standorten in einer einzelnen Region und zusätzlichen Regionen"] .
+Weitere Informationen sind in der link:https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-9-0-and-later/9-1/design/design-blueprints-for/infrastructure-modernization/vcf-fleet-with-multiple-sites-in-a-single-region-plus-additional-region-blueprint.html["Technische Dokumentation von Broadcom zur VCF-Flotte mit mehreren Standorten in einer einzelnen Region und zusätzlichen Regionen"] zu finden.

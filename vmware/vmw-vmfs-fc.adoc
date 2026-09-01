@@ -94,3 +94,11 @@ Führen Sie die folgenden Schritte aus, um einen VMFS-Datenspeicher bereitzustel
 . Überprüfen Sie, ob HBA-Treiber installiert sind.  Von VMware unterstützte HBAs verfügen über sofort einsatzbereite Treiber und sollten in derlink:++https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/7-0/vsphere-storage-7-0/getting-started-with-a-traditional-storage-model-in-vsphere-environment/supported-storage-adapters/view-storage-adapters-available-on-an-esxi-host.html++["Informationen zum Speicheradapter"] .
 . link:++https://docs.netapp.com/vapp-98/topic/com.netapp.doc.vsc-iag/GUID-D7CAD8AF-E722-40C2-A4CB-5B4089A14B00.html++["Bereitstellen eines VMFS-Datenspeichers mit ONTAP Tools"] .
 
+
+
+
+[[reference-video]]
+== Referenzvideo
+
+.Zusätzlicher Datenspeicher mit FC
+video::96311abf-aa45-4ce9-984b-b4b001005bab[panopto,width=360]

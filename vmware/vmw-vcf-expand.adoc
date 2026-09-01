@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: vmware/vmw-vcf-expand.html 
-keywords: vmware, vcf, expand, supplemental, storage 
-summary: 'VMware Cloud Foundation (VCF) unterstützt eine breite Palette zusätzlicher Speicheroptionen zur Erweiterung des Speichers in VCF-Verwaltungsdomänen und Workloaddomänen der virtuellen Infrastruktur (VI).' 
+keywords: vmware, vcf, expand, supplemental, storage, workload 
+summary: 'VMware Cloud Foundation (VCF) unterstützt eine breite Palette zusätzlicher Speicheroptionen, um den Speicher auf VCF Managementdomänen und Workload Domänen zu erweitern.' 
 ---
 = Erfahren Sie mehr über die Speichererweiterung für eine VCF-Umgebung mithilfe von zusätzlichem Speicher
 :hardbreaks:
@@ -14,7 +14,7 @@ summary: 'VMware Cloud Foundation (VCF) unterstützt eine breite Palette zusätz
 
 
 [role="lead"]
-VMware Cloud Foundation (VCF) unterstützt eine breite Palette zusätzlicher Speicheroptionen zur Erweiterung des Speichers in VCF-Verwaltungsdomänen und Workloaddomänen der virtuellen Infrastruktur (VI).
+VMware Cloud Foundation (VCF) unterstützt eine breite Palette zusätzlicher Speicheroptionen, um den Speicher auf VCF Managementdomänen und Workload Domänen zu erweitern.
 
 Die ONTAP tools for VMware vSphere bieten eine effiziente Lösung für diese Erweiterung, indem sie NetApp -Speicher nahtlos in die VCF-Umgebung integrieren.
 
@@ -27,12 +27,12 @@ ONTAP -Tools vereinfachen die Einrichtung und Verwaltung von Datenspeichern und 
 
 VCF-Umgebungen können mithilfe mehrerer Speicherprotokolle erweitert werden, die jeweils einzigartige Vorteile und Anwendungsfälle bieten.
 
-Sie können die folgenden Protokolle verwenden, um den Speicher in VCF-Verwaltungsdomänen und VI-Workloaddomänen zu erweitern.  Wählen Sie die beste Option für Ihre Umgebung, um zusätzlichen Speicher nahtlos in Ihre VCF-Bereitstellung zu integrieren.
+Sie können die folgenden Protokolle verwenden, um den Speicher in VCF Management-Domänen und Workload-Domänen zu erweitern. Die beste Option für Ihre Umgebung ermöglicht die nahtlose Integration von zusätzlichem Speicher in Ihre VCF-Bereitstellung.
 
 .iSCSI
 Blockbasiertes Protokoll, das Standard-Ethernet-Netzwerke verwendet.  Ideal für Umgebungen, die hohe Leistung, Flexibilität und kostengünstige Skalierung erfordern.
 
-iSCSI wird häufig für VMFS-Datenspeicher verwendet und unterstützt erweiterte ONTAP -Funktionen wie Snapshots und Klonen.
+iSCSI wird häufig für VMFS-Datenspeicher verwendet und unterstützt erweiterte ONTAP-Funktionen wie Snapshots und Klonen. ONTAP 9.19.1 und höher unterstützen die symmetrische Aktiv/Aktiv-Konfiguration auch auf AFF-Systemen. Anfangs war diese Funktion nur auf ASA-Systemen verfügbar.
 
 * *Hohe Leistung:* Bietet hohe Leistung für schnelle, effiziente Datenübertragungsraten und geringe Latenz.  Ideal für anspruchsvolle Unternehmensanwendungen und virtualisierte Umgebungen.
 * *Einfache Verwaltung:* Vereinfacht die Speicherverwaltung durch die Verwendung vertrauter IP-basierter Tools und Protokolle.
@@ -43,6 +43,8 @@ Weitere Informationen zur Verwendung von iSCSI mit NetApp -Speichersystemen find
 
 .Fibre Channel (FC)
 Hochgeschwindigkeitsprotokoll mit geringer Latenz, das dedizierte FC-Netzwerke verwendet.  FC wird für unternehmenskritische Workloads bevorzugt, die Zuverlässigkeit, dedizierte Bandbreite und robuste Fehlerkorrektur erfordern.  Es wird häufig für VMFS-Datenspeicher in Unternehmensumgebungen verwendet.
+
+ONTAP 9.19.1 und höher unterstützen die symmetrische Aktiv/Aktiv-Konfiguration auch auf AFF Systemen. Anfangs war diese Funktion nur auf ASA Systemen verfügbar.
 
 * *Hohe Leistung:* FC bietet Hochgeschwindigkeitsdatenübertragungsraten und ist daher ideal für Anwendungen, die einen schnellen und zuverlässigen Zugriff auf große Datenmengen erfordern.
 * *Geringe Latenz:* Sehr geringe Latenz, die für leistungssensible Anwendungen wie Datenbanken und virtualisierte Umgebungen entscheidend ist.
@@ -58,18 +60,20 @@ Dateibasiertes Protokoll, das die einfache gemeinsame Nutzung und Verwaltung von
 NFS-Datenspeicher werden von ONTAP und vSphere sowohl für Verwaltungs- als auch für Workload-Domänen unterstützt.
 
 * *Einfachheit und Benutzerfreundlichkeit:* NFS lässt sich unkompliziert einrichten und verwalten und ist daher eine ausgezeichnete Wahl für Umgebungen, in denen eine schnelle und einfache Dateifreigabe erforderlich ist.
-* *Skalierbarkeit:* Die Architektur von ONTAP ermöglicht eine effiziente Skalierung von NFS und unterstützt wachsende Datenanforderungen ohne wesentliche Änderungen an der Infrastruktur.
+* *Skalierbarkeit:* Die Architektur von ONTAP ermöglicht eine effiziente Skalierung von NFS und unterstützt wachsende Datenanforderungen ohne wesentliche Änderungen an der Infrastruktur. FlexGroup zusammen mit pNFS kann verwendet werden, um NFS-Datenspeicher auf Petabyte-Größen zu skalieren.
 * *Flexibilität:* NFS unterstützt eine breite Palette von Anwendungen und Workloads und ist daher vielseitig für verschiedene Anwendungsfälle geeignet, einschließlich virtualisierter Umgebungen.
 
 
 Weitere Informationen finden Sie im link:vmw-vvf-overview.html["NFS v3-Referenzhandbuch für vSphere 8"] .
 
-.NVMe/TCP
-Modernes Protokoll, das über TCP/IP hohe Leistung und geringe Latenz über Standard-Ethernet-Netzwerke bietet.  NVMe/TCP ist ideal für anspruchsvolle Anwendungen und umfangreiche Datenvorgänge und bietet Skalierbarkeit und Kosteneffizienz ohne spezielle Hardware.
+.NVMe-oF
+Modernes Protokoll, das hohe Leistung und geringe Latenz über Standard-Ethernet-Netzwerke mittels TCP/IP bietet. NVMe-oF (NVMe over Fabrics) ist ideal für anspruchsvolle Anwendungen und groß angelegte Datenoperationen und bietet Skalierbarkeit und Kosteneffizienz, ohne dass spezielle Hardware erforderlich ist.
+
+ONTAP 9.19.1 und höher unterstützen die symmetrische Aktiv/Aktiv-Konfiguration auch auf AFF Systemen. Anfangs war diese Funktion nur auf ASA Systemen verfügbar.
 
 * *Hohe Leistung:* Bietet außergewöhnliche Leistung mit geringer Latenz und hohen Datenübertragungsraten.  Dies ist für anspruchsvolle Anwendungen und umfangreiche Datenoperationen von entscheidender Bedeutung.
 * *Skalierbarkeit:* Unterstützt skalierbare Konfigurationen, sodass IT-Administratoren ihre Infrastruktur bei steigendem Datenbedarf nahtlos erweitern können.
-* *Kostengünstig:* Läuft über Standard-Ethernet-Switches und ist in TCP-Datagrammen gekapselt. Zur Durchführung ist keine spezielle Ausrüstung erforderlich.
+* Kostengünstig: Läuft über Standard-Ethernet-Switches und ist in TCP-Datagramme gekapselt. Keine spezielle Ausrüstung für die Implementierung erforderlich. NVMe-oF über TCP ist weit verbreitet.
 
 
 Weitere Informationen zu den Vorteilen von NVMe finden Sie unter https://www.netapp.com/data-storage/nvme/what-is-nvme/["Was ist NVME?"] .

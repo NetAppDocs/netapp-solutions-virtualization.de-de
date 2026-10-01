@@ -41,6 +41,7 @@ In diesem Szenario werden die folgenden Komponenten und Konfigurationen verwende
 * NetApp -Speichersystem mit einer Storage Virtual Machine (SVM), die für die Zulassung von FC-Verkehr konfiguriert ist.
 * Auf dem FC-Fabric wurden logische Schnittstellen (LIF) erstellt, die den FC-Verkehr übertragen sollen und mit der SVM verknüpft sind.
 * Zoning wurde so konfiguriert, dass auf FC-Switches für Host-HBAs und Speicherziele ein einzelnes Initiator-Ziel-Zoning verwendet wird.
+* Auf einem der vSphere Hosts im Cluster wird ein VMFS Datenspeicher (mit FC LUN) erstellt.
 
 
 Informationen zur Konfiguration von ONTAP Speichersystemen finden Sie imlink:https://docs.netapp.com/us-en/ontap["ONTAP 9 Dokumentation"] Center.
@@ -70,6 +71,13 @@ Zur Erweiterung der Managementdomäne um einen zusätzlichen Cluster siehe  http
 
 Auf hoher Ebene sind die Schritte zum Hinzufügen eines zusätzlichen Clusters zur Managementdomäne wie folgt: * Sicherstellen, dass die Hosts in Betrieb genommen und die Netzwerkpools in vCenter konfiguriert sind. * Die LUN wird auf dem ONTAP Storage-System bereitgestellt und den Hosts im zusätzlichen Cluster zugewiesen. * Neue SDDC-Cluster-Erstellung in der Managementdomäne auf vCenter und dem Assistenten folgen, um den zusätzlichen Cluster zur Managementdomäne hinzuzufügen.
 
+
+
+[[reference-video]]
+== Referenzvideo
+
+.Primärer Datenspeicher mit FC
+video::9c51101c-292b-41ef-8dd5-b4cf0131dd62[panopto,width=360]
 
 
 [[additional-information]]

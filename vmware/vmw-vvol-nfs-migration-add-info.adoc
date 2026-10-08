@@ -1,0 +1,46 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-vvol-nfs-migration-add-info.html 
+keywords: netapp, vmware, vvol, vvols, ONTAP tools, nfs, flexgroup, resources 
+summary: Weitere Informationen zur Migration von vVols Datastores zu NFS-Datastores in VMware vSphere Umgebungen mit ONTAP. 
+---
+= Zusätzliche Ressourcen für die Migration von vVols zu NFS-Datenspeichern
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Weitere Informationen zur Migration von vVols Datastores zu NFS-Datastores in VMware vSphere Umgebungen mit ONTAP.
+
+
+
+[[netapp-documentation]]
+== NetApp Dokumentation
+
+* link:https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vsphere-overview.html["VMware vSphere mit ONTAP Best Practices Guide"^]
+* link:https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vsphere-datastores-nfs.html["NFS-Datenspeicher"^]
+* link:https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vvols-overview.html["vVols mit ONTAP"^]
+* link:https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vsphere-settings.html["Empfohlener ESXi-Host und andere ONTAP -Einstellungen"^]
+* link:vmw-nfs-otv10.html["Konfigurieren Sie NFS-Datenspeicher für vSphere 8 mit ONTAP tools for VMware vSphere"]
+* link:vmw-vsphere8-nfs-nconnect.html["Verwenden Sie nConnect auf NFS v3-Datenspeichern, um die Datenspeicherleistung zu verbessern"]
+* link:migrate-vms-to-ontap-datastore.html["Migrieren Sie VMs von VMware vSphere zu ONTAP -Datenspeichern"]
+* link:https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/index.html["ONTAP tools for VMware vSphere Dokumentation"^]
+* link:https://docs.netapp.com/us-en/nfs-plugin-vmware-vaai/index.html["NetApp NFS Plug-in for VMware VAAI Dokumentation"^]
+* link:https://docs.netapp.com/us-en/sc-plugin-vmware-vsphere/index.html["SnapCenter Plug-in for VMware vSphere Dokumentation"^]
+* link:https://docs.netapp.com/us-en/ontap/flexgroup/index.html["ONTAP FlexGroup Volumes-Dokumentation"^]
+* link:https://docs.netapp.com/us-en/ontap/nfs-admin/index.html["ONTAP NFS-Dokumentation"^]
+
+
+
+
+[[vmware-documentation]]
+== VMware Dokumentation
+
+* link:https://knowledge.broadcom.com/external/article?articleId=401070["Einstellung von VMware vSphere Virtual Volumes (vVols) in VCF 9.0 und VVF 9.0"^]
+* link:https://knowledge.broadcom.com/external/article/313464/support-for-nconnect-feature-added-in-es.html["Unterstützung für die nConnect Funktion in NFS Client - ESXi"^]
+* link:https://configmax.broadcom.com["VMware Konfigurationsmaxima"^]
+

@@ -1,0 +1,29 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmw-vvol-nfs-migration-integ-tools.html 
+keywords: netapp, vmware, nfs, ontap, tools, integration, vaai, snapcenter, sra, disaster recovery 
+summary: Informationen zu den ONTAP Integrationstools zum Managen und Sichern von NFS-Datastores in VMware Umgebungen, einschließlich ONTAP tools for VMware vSphere, des NFS VAAI Plug-ins und des SnapCenter Plug-in for VMware vSphere. 
+---
+= ONTAP Integrationstools für NFS Datastores in VMware Umgebungen
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Hier erhalten Sie Informationen zu den ONTAP Integrationstools zum Managen, Überwachen und Sichern von NFS-Datastores in VMware-Umgebungen, darunter ONTAP tools for VMware vSphere, das NFS-VAAI-Plug-in und das SnapCenter Plug-in for VMware vSphere.
+
+NetApp bietet die folgenden Tools zum managen und Schützen von NFS-Datenspeichern in VMware-Umgebungen:
+
+* *link:https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/index.html["ONTAP tools for VMware vSphere"^]*: Integriert ONTAP Management in den vSphere Client für Provisionierung, Überwachung und Verwaltung von NFS-Datastores und wendet die empfohlenen ESXi Hosteinstellungen an.
+* *link:https://docs.netapp.com/us-en/nfs-plugin-vmware-vaai/index.html["NetApp NFS Plug-in für VMware VAAI"^]*: Lagert Storage Vorgänge wie das Klonen auf ONTAP aus, verbessert die Performance und reduziert die Last auf ESXi Hosts.
+* *link:https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/protect/enable-storage-replication-adapter.html["Storage Replication Adapter (SRA)"^]*: Integriert sich in VMware Live Site Recovery (ehemals VMware Site Recovery Manager), um die Notfallwiederherstellung mithilfe der ONTAP SnapMirror Replikation zu orchestrieren.
+* *link:vmw-dr-gs.html["NetApp Disaster Recovery"]*: Orchestriert die Notfallwiederherstellung von VMs auf NFS-Datenspeichern aus der NetApp Console.
+* *link:https://docs.netapp.com/us-en/sc-plugin-vmware-vsphere/index.html["SnapCenter Plug-in for VMware vSphere"^]*: Bietet absturzkonsistente und VM-konsistente Sicherung und Wiederherstellung für VMs auf NFS-Datenspeichern.
+* *link:https://docs.netapp.com/us-en/data-infrastructure-insights/index.html["Einblicke in die NetApp Data Infrastructure Insights"^]*: Bietet Transparenz hinsichtlich der Performance und des Systemstatus von ONTAP Storage und der VMware Infrastruktur.
+
+
+Diese Tools optimieren den Betrieb, verbessern die Performance und bieten Datensicherung für NFS-Datastores in VMware-Umgebungen.

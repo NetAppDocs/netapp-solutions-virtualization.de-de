@@ -19,7 +19,7 @@ Greifen Sie auf zusätzliche Ressourcen zu, die weitere Informationen zur Unters
 * https://docs.netapp.com/["NetApp Dokumentation"^]
 * https://docs.netapp.com/us-en/trident/index.html["Trident -Dokumentation"^]
 * https://access.redhat.com/documentation/en-us/openshift_container_platform/4.7/["Red Hat OpenShift-Dokumentation"^]
-* https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/16.1/["Dokumentation zur Red Hat OpenStack Platform"^]
+* https://docs.redhat.com/en/documentation/red_hat_openstack_platform/16.1["Dokumentation zur Red Hat OpenStack Platform"^]
 * https://access.redhat.com/documentation/en-us/red_hat_virtualization/4.4/["Red Hat Virtualization-Dokumentation"^]
 * https://docs.vmware.com["VMware vSphere-Dokumentation"^]
 

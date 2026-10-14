@@ -140,7 +140,7 @@ image:rh-os-n-use-case-ocpv-tp-dp-007.png["VM, Pods und PVC erstellt"]
 .App erstellen
 [%collapsible]
 ====
-**Erstellen Sie eine Trident Protect-App für die VM**
+**Erstellen Sie eine Trident Protect App für die VM**
 
 Im Beispiel verfügt der Demo-Namespace über eine VM und alle Ressourcen des Namespace werden beim Erstellen der App einbezogen.
 

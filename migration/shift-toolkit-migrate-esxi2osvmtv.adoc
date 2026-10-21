@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: migration/shift-toolkit-migrate-esxi2osvmtv.html 
 keywords: netapp, vmware, esxi, vm, migration, openshift, virtualization, redhat, osv, mtv 
-summary: Migrieren Sie VMs von VMware ESXi zu Red Hat OpenShift Virtualization mithilfe des Shift Toolkit und des Migration Toolkit für Virtualisierung. 
+summary: 'Die Migration von VMs von VMware ESXi zu Red Hat OpenShift Virtualization erfolgt mithilfe des Migration Toolkit for Virtualization (MTV) und des NetApp Shift toolkit. Dieses Verfahren umfasst die Erstellung eines Migrationsplans in MTV und die Verwendung des Shift toolkit zur Konvertierung von VM-Festplatten, damit VMs schnell zu OpenShift Virtualization migriert werden.' 
 ---
 = Migrieren Sie VMs von VMware ESXi zu Red Hat OpenShift Virtualization mithilfe des Shift Toolkits und des Migration Toolkits für Virtualisierung.
 :hardbreaks:
@@ -14,7 +14,7 @@ summary: Migrieren Sie VMs von VMware ESXi zu Red Hat OpenShift Virtualization m
 
 
 [role="lead"]
-Dieser Abschnitt beschreibt, wie das Migration Toolkit for Virtualization (MTV) und das NetApp Shift Toolkit eine nahtlose Migration zu Red Hat OpenShift Virtualization ermöglichen und bietet eine Schritt-für-Schritt-Anleitung für den Übergang zu OpenShift Virtualization unter Verwendung der Konvertierungsfunktionen des Migration Toolkit for Virtualization und des Shift Toolkit.
+Die Migration von VMs von VMware ESXi zu Red Hat OpenShift Virtualization erfolgt mithilfe des Migration Toolkit for Virtualization (MTV) und des NetApp Shift toolkit. Dieses Verfahren umfasst die Erstellung eines Migrationsplans in MTV und die Verwendung des Shift toolkit zur Konvertierung von VM-Festplatten, damit VMs schnell zu OpenShift Virtualization migriert werden.
 
 
 
@@ -55,21 +55,20 @@ NOTE: Wenn VMDKs in einem qtree platziert werden, verwendet Shift Toolkit den ON
 
 
 
-[[step-1-create-migration-plans-using-migration-toolkit-for-virtualization]]
-== Schritt 1: Migrationspläne mithilfe des Migration Toolkit für Virtualisierung erstellen
+[[step-1-create-migration-plans]]
+== Schritt 1: Migrationspläne erstellen
 
-. Um die blitzschnelle Konvertierung von VMs zu nutzen, besteht der erste Schritt darin, mithilfe von MTV einen Migrationsplan für die VMs zu erstellen.link:https://docs.redhat.com/en/documentation/migration_toolkit_for_virtualization/2.3/html/installing_and_using_the_migration_toolkit_for_virtualization/migrating-vms-web-console["Webkonsole"] oder dielink:https://docs.redhat.com/en/documentation/migration_toolkit_for_virtualization/2.0/html/installing_and_using_the_migration_toolkit_for_virtualization/migrating-virtual-machines-to-virt_mtv#migrating-virtual-machines-cli_mtv["Befehlszeile"] Die
-+
+Um die blitzschnelle Konvertierung von VMs zu nutzen, besteht der erste Schritt darin, mit MTV einen Migrationsplan für die VMs über das link:https://docs.redhat.com/en/documentation/migration_toolkit_for_virtualization/2.3/html/installing_and_using_the_migration_toolkit_for_virtualization/migrating-vms-web-console["Webkonsole"] oder das link:https://docs.redhat.com/en/documentation/migration_toolkit_for_virtualization/2.0/html/installing_and_using_the_migration_toolkit_for_virtualization/migrating-virtual-machines-to-virt_mtv#migrating-virtual-machines-cli_mtv["Befehlszeile"] zu erstellen.
+
 
 NOTE: Der Plan sollte im Voraus erstellt werden, um sicherzustellen, dass die Einstellungen für die Aufrechterhaltung der IP-Adresse von MTV konfiguriert werden.
 
+.Schritte
+. Loggen Sie sich in die MTV-Webkonsole ein.
+. Quell- und Zielanbieter hinzufügen
+. Erstellen Sie einen Migrationsplan im Ziel-Namespace
 +
-.Verfahren
-.. Loggen Sie sich in die MTV-Webkonsole ein.
-.. Quell- und Zielanbieter hinzufügen
-.. Erstellen Sie einen Migrationsplan im Ziel-Namespace
-+
-*** Nachdem die Provider konfiguriert wurden, erstellen Sie einen Migrationsplan und wählen Sie die entsprechenden Quell- und Ziel-Provider im Ziel-Namespace aus.
+** Nachdem die Provider konfiguriert wurden, erstellen Sie einen Migrationsplan und wählen Sie die entsprechenden Quell- und Ziel-Provider im Ziel-Namespace aus.
 +
 .Beispiel anzeigen
 [%collapsible]
@@ -86,9 +85,9 @@ image::shift-toolkit-401.png[Quell- und Zielanbieter]
 ====
 
 
-.. Wählen Sie die zu migrierenden VMs aus.
+. Wählen Sie die zu migrierenden VMs aus.
 +
-*** Identifizieren und wählen Sie die virtuellen Maschinen aus, die in die Migration einbezogen werden sollen.
+** Identifizieren und wählen Sie die virtuellen Maschinen aus, die in die Migration einbezogen werden sollen.
 +
 .Beispiel anzeigen
 [%collapsible]
@@ -98,9 +97,9 @@ image::shift-toolkit-402.png[VMs auswählen]
 ====
 
 
-.. Netzwerk- und Speicherzuordnungen konfigurieren
+. Netzwerk- und Speicherzuordnungen konfigurieren
 +
-*** Entweder wählen Sie vorhandene Zuordnungen aus oder erstellen neue, um Quellnetzwerke und -speicher mit der Zielumgebung abzustimmen.
+** Entweder wählen Sie vorhandene Zuordnungen aus oder erstellen neue, um Quellnetzwerke und -speicher mit der Zielumgebung abzustimmen.
 +
 .Beispiel anzeigen
 [%collapsible]
@@ -117,9 +116,9 @@ image::shift-toolkit-404.png[Speicherkarte]
 ====
 
 
-.. Migrationstyp auswählen
+. Migrationstyp auswählen
 +
-*** Behalten Sie zunächst den Standardmigrationstyp bei; dieser wird während des Migrationsprozesses aktualisiert, um den Konvertierungstyp widerzuspiegeln.
+** Behalten Sie zunächst den Standardmigrationstyp bei; dieser wird während des Migrationsprozesses aktualisiert, um den Konvertierungstyp widerzuspiegeln.
 +
 .Beispiel anzeigen
 [%collapsible]
@@ -129,9 +128,9 @@ image::shift-toolkit-405.png[Migrationstyp]
 ====
 
 
-.. Standardoptionen beibehalten
+. Standardoptionen beibehalten
 +
-*** Die Standardeinstellungen beibehalten. Wählen Sie außerdem die Option zum Beibehalten der statischen IP-Adresse und geben Sie den gewünschten Zustand der VM nach der Migration an.
+** Die Standardeinstellungen beibehalten. Wählen Sie außerdem die Option zum Beibehalten der statischen IP-Adresse und geben Sie den gewünschten Zustand der VM nach der Migration an.
 +
 .Beispiel anzeigen
 [%collapsible]
@@ -141,9 +140,9 @@ image::shift-toolkit-406.png[Zusätzliche Einrichtung]
 ====
 
 
-.. Überprüfen und abschließen
+. Überprüfen und abschließen
 +
-*** Überprüfen Sie alle Einstellungen sorgfältig und klicken Sie dann auf „Fertigstellen“, um den Migrationsplan zu erstellen.
+** Überprüfen Sie alle Einstellungen sorgfältig und klicken Sie dann auf „Fertigstellen“, um den Migrationsplan zu erstellen.
 +
 .Beispiel anzeigen
 [%collapsible]
@@ -155,8 +154,16 @@ image::shift-toolkit-407.png[Überprüfen und Erstellen]
 
 
 
-. Sobald der Migrationsplan erstellt ist, kopieren Sie den Namen des Migrationsplans und gehen Sie zur Shift Toolkit-Benutzeroberfläche.
-. Fügen Sie die Quell- und Ziel-Hypervisoren hinzu. Folgen Sie diesem Linklink:https://docs.netapp.com/us-en/netapp-solutions-virtualization/migration/shift-toolkit-migrate-esxi2osv.html#step-1-add-the-destination-site-openshift["Websites erstellen"]
+
+
+[[step-2-create-a-blueprint-in-shift-toolkit]]
+== Schritt 2: Erstellen eines Blueprint im Shift toolkit
+
+Nach dem Erstellen des Migrationsplans in MTV erfolgt in der Shift toolkit UI das Hinzufügen der Quell- und Zielstandorte sowie das Erstellen eines Blueprint aus dem Plan.
+
+.Schritte
+. Sie kopieren den Namen des Migrationsplans und wechseln zur Shift toolkit UI.
+. Quell- und Ziel-Hypervisoren hinzufügen. Diesem Link link:https://docs.netapp.com/us-en/netapp-solutions-virtualization/migration/shift-toolkit-migrate-esxi2osv.html#step-1-add-the-destination-site-openshift["Websites erstellen"] folgen.
 +
 
 NOTE: Der im Shift Toolkit konfigurierte Endpunkt muss dem Format entsprechen, das beim Hinzufügen über die MTV-Konsole verwendet wurde. Wurde beispielsweise der Quell- oder Zielendpunkt mithilfe eines FQDN hinzugefügt, muss im Shift Toolkit derselbe FQDN verwendet werden.
@@ -216,7 +223,17 @@ NOTE: Volumes können auch direkt importiert werden, ohne dass ein Klon erstellt
 image::shift-toolkit-412.png[VM-Details]
 
 ====
-. Sobald dies erledigt ist, erstellen Sie den Bauplan.
+. Nach der Überprüfung der Blaupauseneinstellungen erfolgt das Speichern mit **Blaupause erstellen**.
+
+
+
+
+[[step-3-run-the-migration]]
+== Schritt 3: Ausführung der Migration
+
+Nach dem Erstellen des Blueprints lässt sich die Migration über das Shift Toolkit auslösen und überwachen, bis MTV meldet, dass der Plan abgeschlossen ist.
+
+.Schritte
 . Die Migration wird durch Anklicken der Migrationsoption im Blueprint ausgelöst.
 +
 
@@ -274,19 +291,30 @@ image::shift-toolkit-418.png[Linux-VM nach der Migration]
 
 NOTE: Dies zeigt, wie das Shift-Toolkit zusammen mit MTV die Migration blitzschnell vereinfacht. In diesem Beispiel wurden 2 VMs mit insgesamt 12 TB migriert. Der gesamte Vorgang war in etwa 8-10 Minuten abgeschlossen.
 
-+
-.Was geschieht hinter den Kulissen?
-In den folgenden Abschnitten werden die Schritte beschrieben, die durch die Shift Toolkit APIs und MTV ausgelöst werden, um VMDK-Dateien zu konvertieren und virtuelle Maschinen auf der OpenShift-Plattform zu erstellen. Dieser Arbeitsablauf bleibt gleich, egal ob er über die Shift Toolkit-Benutzeroberfläche oder über Skripte innerhalb der Shift Toolkit-Skriptblöcke initiiert wird.
 
 
 
-.VMDK konvertieren
+
+[[whats-happening-behind-the-scenes]]
+== Was geschieht hinter den Kulissen
+
+Die folgenden Abschnitte beschreiben die Schritte, die durch Shift Toolkit APIs und MTV ausgelöst werden, um VMDK-Dateien zu konvertieren und virtuelle Maschinen auf der OpenShift Plattform zu erstellen. Dieser Workflow bleibt konsistent, unabhängig davon, ob er über die Shift Toolkit Benutzeroberfläche oder mithilfe von Skripten innerhalb von Shift Toolkit Script Blocks initiiert wird.
+
+
+
+[[convert-vmdk]]
+=== VMDK konvertieren
+
 Das Shift-Toolkit findet automatisch die VMDKs, die zu jeder VM gehören, einschließlich der primären Boot-Disk.
 
 
 NOTE: Wenn mehrere VMDK-Dateien vorhanden sind, wird jede VMDK-Datei konvertiert.
 
-.Konfiguration des Volumenimport- und Migrationsplans
+
+
+[[volume-import-and-migration-plan-configuration]]
+=== Konfiguration des Volumenimport- und Migrationsplans
+
 Shift Toolkit verwendet Trident CSI, um Volumes als PVCs in den Cluster zu importieren. Jedes PVC-Manifest ist mit spezifischen Etiketten und Anmerkungen versehen, um sicherzustellen, dass MTV sie erkennt:
 
 * Labels
@@ -307,22 +335,25 @@ Zusätzlich werden die Berechtigungen für die Datei disk.img aktualisiert. Die 
 * "owner": { "id": 107 },"group": { "id": 107 },"mode": "0655"
 
 
-Wichtige Hinweise:
-
+.Wichtige Hinweise
 * Gabelstapler prüft auf vmID und vmUUID im PVC.
 * Forklift verwendet den Datenträgernamen (VMDK-Pfad) für forklift.konveyor.io/disk-source.
 * Die Anzahl der importierten PVCs muss mit der Anzahl der der Quell-VM zugeordneten Festplatten übereinstimmen. Wenn beispielsweise eine VM drei VMDKs hat, aber vier PVCs mit übereinstimmenden IDs importiert wurden, aktualisiert MTV den Migrationsplanstatus nicht auf „Bereit zum Starten“.
 
 
-Sobald diese Schritte abgeschlossen sind, patcht Shift Toolkit die Migrationsplan-YAML-Datei, damit MTV erkennt, dass PVCs direkt verwendet werden sollen, wodurch der Datenbefüllungsprozess (der normalerweise zeitaufwändig ist) umgangen wird. Die gepatchte YAML-Datei enthält:
+Nach Abschluss dieser Schritte ändert Shift Toolkit die YAML-Datei des Migrationsplans, sodass MTV erkennt, dass PVCs direkt verwendet werden sollen und der Datenbefüllungs-Pod-Prozess (der üblicherweise zeitaufwändig ist) umgangen wird. Die geänderte YAML-Datei enthält Folgendes:
 
 * Ziel-Namespace: Standard
 * Typ: Konvertierung
 * Lagerung: {}
 
 
-.Migrationsprozess starten
-Sobald die Konfiguration abgeschlossen ist, wird MTV aufgerufen, um die Migration zu starten. Die Benutzeroberfläche zeigt den Migrationstyp als „Kalt“ an, aber basierend auf der YAML-Spezifikation für die Konvertierung validiert MTV jede PVC anhand der zugehörigen vmID und vmUUID, ordnet sie entsprechend zu und initialisiert dann die Migration. Beispiel anzeigen
+
+
+[[start-migration-process]]
+=== Migrationsprozess starten
+
+Nach Abschluss der Konfiguration wird MTV aufgerufen, um die Migration zu starten. Die Benutzeroberfläche zeigt den Migrationstyp als „Cold“ an, basierend auf der YAML-Spezifikation für die Konvertierung validiert MTV jedoch jede PVC anhand der zugehörigen vmID und vmUUID, ordnet sie entsprechend zu und initialisiert anschließend die Migration. .Beispiel anzeigen
 
 [%collapsible]
 ====
@@ -335,3 +366,10 @@ NOTE: VMs werden im Rahmen des Projekts „Standard“ für virtuelle Maschinen 
 Shift Toolkit beschleunigt die Migration, indem es den Prozess vereinfacht, Ausfallzeiten minimiert und den Bedarf an ESXi-Hostzugriff oder VDDK-basierten Ansätzen eliminiert.
 
 Nach Abschluss der Migration muss das Klon-Volume getrennt werden. Die Methode hängt von der ONTAP Version ab: Klon-Teilung wird für ONTAP 9.17.1 und höher verwendet, während für frühere Versionen vol move eingesetzt wird. Ein Skript zum Starten des Trennvorgangs befindet sich im Ordner „Post migrate“ innerhalb des bereitgestellten ZIP-Pakets.
+
+.Was kommt als Nächstes
+Nach Abschluss der Migration muss jedes Klon-Volume getrennt werden. Die Trennmethode hängt von der ONTAP Version ab: Klon-Teilung wird für ONTAP 9.17.1 und höher verwendet, während für frühere Versionen vol move zum Einsatz kommt.
+
+Für schnellere PVC-Aufteilungen nach der Migration sollte der Quell-NFS-Datenspeicher maximal 5 TB groß sein. Größere Volumes sind zwar möglich, aber bei der Erstellung von 200–300 Klonen für VM-Migrationen sind kleinere Volumes ideal, um die Aufteilung schneller abzuschließen.
+
+Sowohl Klon-Teilung als auch Vol Move sind Hintergrundoperationen und beeinträchtigen die Produktions-Workloads während ihrer Ausführung nicht. Ein Skript zum Starten des Trennungsprozesses ist im Widget *Post Migrate Detach* im NetApp Console Automation Catalog verfügbar.

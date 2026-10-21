@@ -312,6 +312,8 @@ image::shift_migration_completed.png[Migrationsplan erfolgreich abgeschlossen]
 .Was kommt als Nächstes
 Nach Abschluss der Migration muss jedes Klon-Volume getrennt werden. Die Trennmethode hängt von der ONTAP Version ab: Klon-Teilung wird für ONTAP 9.17.1 und höher verwendet, während für frühere Versionen vol move zum Einsatz kommt.
 
+Für schnellere PVC-Aufteilungen nach der Migration sollte der Quell-NFS-Datenspeicher maximal 5 TB groß sein. Größere Volumes sind zwar möglich, aber bei der Erstellung von 200–300 Klonen für VM-Migrationen sind kleinere Volumes ideal, um die Aufteilung schneller abzuschließen.
+
 Sowohl Klon-Teilung als auch Vol Move sind Hintergrundoperationen und beeinträchtigen die Produktions-Workloads während ihrer Ausführung nicht. Ein Skript zum Starten des Trennungsprozesses ist im Widget *Post Migrate Detach* im NetApp Console Automation Catalog verfügbar.
 
 

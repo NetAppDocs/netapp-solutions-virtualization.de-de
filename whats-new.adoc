@@ -15,6 +15,25 @@ Informieren Sie sich über Neuigkeiten zu Virtualisierungslösungen.
 
 
 
+[[14-october-2026]]
+== 14. Oktober 2026
+
+* Business Continuity Lösung für Proxmox VE mit ONTAP SnapMirror active sync hinzugefügt.
++
+** link:proxmox/proxmox-business-continuity.html["Informationen zur Geschäftskontinuität von Proxmox VE mit SnapMirror active sync"]
++
+Es wird erläutert, wie ein Proxmox VE Stretch-Cluster mit SnapMirror active sync für NAS den Betrieb von VMs auch bei einem Storage- oder Standortausfall mit einem RPO von null aufrechterhält. Enthalten sind Designüberlegungen zu corosync und QDevice, Optionen für ONTAP Mediator und ONTAP Cloud Mediator, VIP LIFs mit BGP für Layer-3-Netzwerke sowie ein Vergleich mit MetroCluster.
+
+** link:proxmox/proxmox-active-sync-nas-config.html["Konfiguration der Geschäftskontinuität von Proxmox VE mit NAS Storage"]
++
+Die Konfiguration des Mediators, der Schutz der NFS SVM, der Aufbau des Stretch-Clusters mit einem QDevice, die Provisionierung von gemeinsam genutztem NFS Storage sowie die Einrichtung von HA und VM-Backups mit Storage Manager für Proxmox.
+
+
+
+
+
+
+
 [[21-august-2026]]
 == 21. August 2026
 

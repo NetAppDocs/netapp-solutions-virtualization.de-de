@@ -59,8 +59,25 @@ Wenn Sie ONTAP noch nicht kennen, nutzen Sie den System Manager für eine besser
 +
 image:proxmox-ontap-iscsi-001.png["iscsi-Schnittstellendetails"]
 
-. Erstellen Sie eine igroup und füllen Sie die Host-iSCSI-Initiatoren.
-. Erstellen Sie die LUN mit der gewünschten Größe auf der SVM und stellen Sie sie der im vorherigen Schritt erstellten igroup zur Verfügung. Stellen Sie sicher, dass der Anti-Ransomware-Schutz auf der Registerkarte „Sicherheit“ für ASA -Systeme aktiviert ist. Bei AFF/ FAS -Systemen muss sichergestellt werden, dass der Anti-Ransomware-Schutz auf der Registerkarte „Sicherheit“ des Volumes aktiviert ist.
+. Eine Initiatorgruppe mit dem auf  `linux` gesetzten OS-Typ erstellen und die Host-iSCSI-Initiatoren hinzufügen.
++
+Da Proxmox VE auf Debian Linux basiert, ist für Initiatorgruppen, die Proxmox VE Host-Initiatoren enthalten, der  `linux`OS-Typ zu wählen. In System Manager wird *Linux* als Host-Betriebssystem ausgewählt. Bei Verwendung der ONTAP CLI kommt der folgende Befehl zum Einsatz.
+
++
+[source, cli]
+----
+lun igroup create -vserver <svm_name> -igroup <igroup_name> -protocol iscsi -ostype linux -initiator <host_iqn_1>,<host_iqn_2>
+----
+. Die LUN mit dem auf  `linux` festgelegten OS-Typ und der gewünschten Größe auf der SVM erstellen und der im vorherigen Schritt erstellten Initiatorgruppe zuweisen. Sicherstellen, dass der Anti-Ransomware-Schutz auf der Registerkarte „Sicherheit“ für ASA Systeme aktiviert ist. Bei AFF/FAS Systemen sicherstellen, dass der Anti-Ransomware-Schutz auf der Registerkarte „Sicherheit“ für das Volume aktiviert ist.
++
+Im System Manager ist *Linux* als Host-Betriebssystem zu wählen. Bei Verwendung der ONTAP CLI sind die folgenden Befehle zu verwenden.
+
++
+[source, cli]
+----
+lun create -vserver <svm_name> -path /vol/<volume_name>/<lun_name> -size <size> -ostype linux
+lun mapping create -vserver <svm_name> -path /vol/<volume_name>/<lun_name> -igroup <igroup_name>
+----
 +
 image:proxmox-ontap-iscsi-002.png["iscsi-lun-details"]
 

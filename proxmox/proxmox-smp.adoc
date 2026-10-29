@@ -152,7 +152,7 @@ Zum Beispiel: `https://10.61.187.117:4001`
 
 
 
-. Öffnen Sie einen Webbrowser und greifen Sie auf die SMP-Benutzeroberfläche zu, indem Sie  `http://<IP address specified during installation>:4001` eingeben
+. Öffnen Sie einen Webbrowser und greifen Sie auf die SMP-Benutzeroberfläche zu, indem Sie  `https://<IP address specified during installation>:4001` eingeben
 +
 .SMP-Anmeldebildschirm anzeigen
 [%collapsible]
@@ -160,6 +160,10 @@ Zum Beispiel: `https://10.61.187.117:4001`
 image::proxmox-smp-image4.png[SMP-Anmeldebildschirm]
 
 ====
+. Die Anmeldung bei SMP erfolgt mit dem Standardbenutzernamen `admin` und dem Passwort `admin`.
++
+Bei entsprechender Aufforderung erfolgt die Änderung des Standardpassworts. Dieselben Standardanmeldeinformationen gelten auch bei der Installation von SMP mit Shift toolkit.
+
 +
 .SMP-Startseite anzeigen
 [%collapsible]

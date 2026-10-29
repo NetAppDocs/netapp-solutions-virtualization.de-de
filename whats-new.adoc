@@ -15,8 +15,13 @@ Informieren Sie sich über Neuigkeiten zu Virtualisierungslösungen.
 
 
 
-[[14-october-2026]]
-== 14. Oktober 2026
+[[22-october-2026]]
+== 22. Oktober 2026
+
+* Der empfohlene ONTAP OS Typ für NVMe Namespaces, NVMe Subsysteme, LUNs und Initiatorgruppen zur Verwendung mit Proxmox VE wurde hinzugefügt.
++
+** link:proxmox/proxmox-ontap.html["Bereitstellen von ONTAP -Speicher für die virtuelle Proxmox-Umgebung"] == 14. Oktober 2026
+
 
 * Business Continuity Lösung für Proxmox VE mit ONTAP SnapMirror active sync hinzugefügt.
 +

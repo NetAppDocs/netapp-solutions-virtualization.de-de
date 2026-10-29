@@ -1,0 +1,81 @@
+---
+sidebar: sidebar 
+permalink: nutanix/nutanix-attach-storage.html 
+keywords: nutanix, prism element, prism central, external storage, ontap, nfs, storage container, attach 
+summary: Mithilfe von Prism Element können Sie ONTAP NFS-Volumes als Storage-Container an einen Nutanix Compute-Cluster anhängen. 
+---
+= Anbindung von ONTAP NFS Storage an einen Nutanix Compute-Cluster
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Nachdem Sie die ONTAP Volumes provisioniert und die Konnektivität konfiguriert haben, können Sie Prism Element oder Prism Central verwenden, um die ONTAP NFS Volumes als Storage-Container an den Nutanix Compute-Cluster anzuhängen.
+
+.Bevor Sie beginnen
+Es muss sichergestellt sein, dass die folgenden Voraussetzungen erfüllt sind:
+
+* Der ONTAP Cluster bzw. die SVM ist vom Nutanix Cluster aus erreichbar.
+* Eine gültige ONTAP Management-LIF (IP-Adresse oder FQDN) ist verfügbar.
+* Die entsprechenden ONTAP Zugangsdaten sind verfügbar.
+* Die erforderlichen Exportpfade für FlexVol, qtree oder Ordner wurden erstellt und für den NFS-Zugriff konfiguriert.
+
+
+.Schritte
+. Anmeldung bei der Prism Element Managementplattform.
+. Im Hauptmenü können Sie *Storage* auswählen und anschließend auf *+ Attach External Storage* klicken.
+. Auf der Seite *Ersteinrichtung* werden die verfügbaren Informationen geprüft; anschließend erfolgt ein Klick auf *Weiter*.
++
+image:nutanix-attach-001.png["Assistent zum Anschließen von externem Storage, Seite „Ersteinrichtung“"]
+
+. Auf der Seite *Connection Details* wählen Sie *NetApp ONTAP* als externen Storage-Anbieter aus; anschließend geben Sie die folgenden Werte ein:
++
+** *IP-Adresse (IPv4) oder FQDN*: Management-LIF-Adresse oder FQDN des ONTAP Clusters oder der SVM.
+** *Benutzername*: Eingabe des Benutzernamens des ONTAP Servicekontos.
+** *Passwort*: Das Passwort des Dienstkontos ist einzugeben.
++
+Klicken Sie auf *Weiter*.
+
++
+image:nutanix-attach-002.png["Assistent zum Anschließen von externem Storage, Seite „Verbindungsdetails“"]
+
+
+
+. Auf der Seite *Speicherdetails* können Sie unter *Externer Speichername* einen eindeutigen Namen für das ONTAP Storage-System angeben, unter *Exportpfad* einen oder mehrere Storage-Exportpfade eingeben und anschließend auf *Hinzufügen* klicken.
++
+
+NOTE: Unterstützte Exportpfade umfassen FlexVol und qtree-Exportpfade.
+
++
+image:nutanix-attach-003.png["Assistent zum Anschließen von externem Storage, Seite „Storage-Details“ mit Auswahl des Exportpfads für das Service-Volume"]
+
+. Dann folgt ein Klick auf *Attach*.
++
+Das System verbindet den ONTAP Storage mit dem Nutanix-Cluster. Sie können Fortschritts- und Statusinformationen unter *Tasks* in Prism Element überwachen.
+
++
+image:nutanix-attach-004.png["Assistent zum Anhängen von External Storage, Seite „Storage-Details“ mit den ausgewählten Exportpfaden und ihrer Kapazität"]
+
++
+
+NOTE: Die `nconnect` Option wird in den Mount-Optionen verwendet.
+
+
+
+[NOTE]
+====
+* Der erste während der Konfiguration hinzugefügte Exportpfad wird automatisch als Standard-Storage-Container festgelegt und als *Default Container* gekennzeichnet.
+* NetApp empfiehlt die Verwendung mehrerer FlexVol Volumes als Storage-Container, um VM-Workloads zu verteilen und die Kapazitätsauslastung auszugleichen.
+* Für Metadaten Services (Management) sollte ein dediziertes Volume verwendet werden.
+* Exportpfade können entfernt werden, sofern sie nicht dem Cluster Services Volume (Metadaten) oder dem Standard-Storage-Container zugewiesen sind.
+* Externer Storage kann nicht entfernt werden, solange er an einen Nutanix Compute-Cluster angeschlossen ist.
+* An einen Nutanix Compute-Cluster kann nur ein externes ONTAP Storage-System angeschlossen werden.
+* Nutanix empfiehlt bis zu 128 VMs pro Knoten, bis zu 32 Knoten und bis zu 4.800 von AOS replizierte vDisks zwischen DR Clustern (kombinierte asynchrone und synchrone Replikationen).
+
+
+====
+Nach dem Anschließen des Storage können Sie Prism Central auf der Nutanix Cloud Infrastructure (NCI) Plattform einsetzen, um Cluster-Management- und Konfigurationsaufgaben durchzuführen. Sie können ONTAP Storage auch über Prism Central anbinden.

@@ -1,0 +1,155 @@
+---
+sidebar: sidebar 
+permalink: nutanix/nutanix-deploy-cluster.html 
+keywords: nutanix, ahv, aos, foundation central, cluster, deploy, ontap, netapp 
+summary: Das Deployment eines Nutanix Compute-Clusters erfolgt mithilfe von Foundation Central; anschließend wird er mit NetApp ONTAP Storage verbunden. 
+---
+= Einsetzen eines Nutanix Compute-Clusters mit ONTAP Storage
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Beschrieben wird das Deployment eines Nutanix Compute Clusters, der Storage von NetApp ONTAP nutzt. Dazu gehören der Download der AOS- und AHV-Installationspakete, die Einrichtung von Foundation Central, das Imaging und Onboarding der Compute-Knoten, die Erstellung des Clusters und anschließend die Anbindung an ONTAP Storage.
+
+.Schritte
+. *Herunterladen der AOS und AHV Installationspakete.*
++
+Weitere Informationen finden sich in link:https://portal.nutanix.com/page/documents/details?targetId=AHV-Admin-Guide-v11_2:ahv-ahv-installer-download-t.html["Herunterladen der AOS und AHV Installationspakete"^].
+
+. *Foundation Central einrichten.*
++
+Nutanix Foundation Central (FCA) ist das empfohlene Deployment Tool zum Erstellen von Images der unterstützten OEM-Server und zum Erstellen des Nutanix Compute Clusters.
+
++
+.. Der Download des Foundation Installationspakets und das Einsetzen der Foundation VM sind erforderlich.
+.. Das link:https://portal.nutanix.com/page/documents/details?targetId=Foundation-Central-Appliance-v1_11:v1-setup-fca-t.html["Einrichtung von Foundation Central"^] ist zu vervollständigen.
+.. Falls erforderlich, erfolgt eine Aktualisierung der Management-IP-Adresse und der Netzwerkeinstellungen.
+.. Der Zugriff auf die Foundation Central Weboberfläche erfolgt über die konfigurierte IP-Adresse.
++
+
+NOTE: Falls das Foundation Central Deployment fehlschlägt, sollten Sie sich bei der FCA VM anmelden,  `k3d cluster delete fccluster` ausführen und den Einrichtungsprozess anschließend erneut starten.
+
++
+Weitere Informationen finden sich in link:https://portal.nutanix.com/page/documents/details?targetId=Field-Installation-Guide:fie-foundation-vm-install-on-workstation-t.html["Installation der Foundation VM"^].
+
+
+
+. *Hochladen der Installationsabbilder für AOS und AHV.*
++
+Mit Foundation Central image management sind folgende Aufgaben möglich:
+
++
+.. Die AOS- und AHV-Images in Foundation Central hochladen.
+.. Es ist sicherzustellen, dass die Images für das Deployment verfügbar sind.
+
+
+. *Rechenknoten erkennen und abbilden.*
++
+Eine der folgenden Optionen steht zur Auswahl.
+
++
+*Option A: Hardwareanbieter (empfohlen)*
+
++
+Mit einem link:https://portal.nutanix.com/page/documents/details?targetId=Foundation-Central-Appliance-v2_3_0_1:v2-bare-metal-install-workflow-c.html["Hardwareanbieter"^] lassen sich Knotenabbildung und Onboarding automatisieren.
+
++
+.. Konfiguration einer Hardwareanbieterverbindung mit HPE iLO oder Dell iDRAC.
+.. Automatische Ermittlung der Zielserver.
+.. Auswahl der hochgeladenen AOS- und AHV-Images.
+.. Die direkte Bereitstellung eines Images auf den Knoten über Foundation Central ist möglich.
++
+*Option B: Manuelles Imaging*
+
++
+Wenn die Erkennung des Hardwareanbieters nicht verfügbar ist, kommt link:https://portal.nutanix.com/page/documents/details?targetId=Foundation-Central-Appliance-v2_3_0_1:v2-manual-workflow-c.html["manuelle Bildgebung"^] zum Einsatz.
+
++
+Vor Beginn sollten die folgenden Voraussetzungen erfüllt sein:
+
++
+*** Der UEFI-Bootmodus ist aktiviert.
+*** Secure Boot ist deaktiviert.
+*** Die Out-of-Band-Netze (OOB) und Datennetze sind erreichbar.
+*** Zwischen den Hosts und Foundation Central besteht keine Zeitabweichung.
+*** Für jeden Host steht eine AHV IP-Adresse zur Verfügung.
++
+
+NOTE: Dem Standard-VLAN sollten keine IP-Adressen aus einem Subnetz zugewiesen werden, das sich mit dem Adressraum 192.168.5.0/24 überschneidet.
+
+
+
+.. Erstellung sicherer Claim-Token.
+.. Die AHV-Installations-ISO wird auf jedem Rechenknoten eingebunden.
+.. AHV manuell starten und installieren.
+
+
+. *Einbindung der Knoten.*
++
+Beim Onboarding werden die erkannten Server bei der Foundation Central Appliance registriert und für Workflows zur Erstellung von Images oder Clustern vorbereitet.
+
++
+.. Auszuwählen sind die ermittelten AHV-Hosts.
+.. Beginn des Onboarding-Prozesses.
+.. Es ist zu überprüfen, ob alle Knoten im Knoteninventar angezeigt werden.
++
+Nach Abschluss des Onboardings sind die Hosts bereit für die Clustererstellung.
+
+
+
+. *Erstellen des Nutanix Clusters.*
++
+.. Auswahl der eingebundenen Knoten.
+.. Anschließend wird *Cluster erstellen* ausgewählt.
+.. Angabe der Clusterkonfigurationsinformationen.
+.. Die IP-Adressen der Controller-VMs (CVM) werden bei entsprechender Aufforderung eingegeben.
++
+Der Workflow zur Clustererstellung umfasst folgende Schritte:
+
++
+*** Setzt die CVMs ein.
+*** Installation von AOS.
+*** Konfiguriert Cluster-Services.
+*** Führt Validierungsprüfungen durch.
++
+image:nutanix-deploy-001.png["Prism Element Startseite eines neu erstellten Nutanix Clusters, auf dem AHV ausgeführt wird"]
+
++
+
+NOTE: Es darf keine Zeitabweichung zwischen den Knoten vorliegen. Fehler bei der Uhrzeitsynchronisation können dazu führen, dass das Cluster Deployment fehlschlägt und der Prozess neu gestartet werden muss.
+
+
+
+
+
+. *Verbindung von ONTAP Storage mit dem Nutanix Compute-Cluster.*
++
+Nachdem der Nutanix Cluster betriebsbereit ist, sind folgende Schritte auszuführen:
+
++
+.. Die Konnektivität zwischen allen AHV Hosts und den ONTAP NFS Daten LIFs ist zu überprüfen.
+.. Hinzufügen der ONTAP NFS Exporte zum Nutanix Cluster.
+.. Das Einbinden der exportierten FlexVol NFS-Freigaben.
+.. Überprüfung des Zugriffs zum lesen/schreiben.
+.. Transparenz und Verfügbarkeit des Datastore bestätigen.
++
+Sie können den eingebundenen NFS Storage für Folgendes verwenden:
+
++
+*** Workloads virtueller Maschinen
+*** Image-Repositories
+*** Vorlagen
+*** Anwendungsdaten
++
+Die detaillierte Vorgehensweise ist unter link:nutanix-attach-storage.html["Anbindung von ONTAP NFS Storage an einen Nutanix Compute-Cluster"] beschrieben.
+
+
+
+
+
+

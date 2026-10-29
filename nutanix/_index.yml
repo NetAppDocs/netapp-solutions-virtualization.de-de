@@ -1,0 +1,32 @@
+---
+indexpage:
+  title: NetApp Nutanix Virtualisierungslösungen
+  summary: Die NetApp Nutanix Virtualisierungslösungen demonstrieren, wie NetApp ONTAP
+    als externer NFS-Storage für Nutanix Cloud Platform verwendet werden kann, um
+    Rechenleistung und Storage unabhängig voneinander zu skalieren.
+  lead: Die NetApp Nutanix Virtualisierungslösungen demonstrieren, wie NetApp ONTAP
+    als externer NFS-Storage für Nutanix Cloud Platform verwendet werden kann, um
+    Rechenleistung und Storage unabhängig voneinander zu skalieren.
+  tiles:
+  - title: Erste Schritte
+    links:
+    - title: Informationen zu Nutanix mit ONTAP Storage
+      url: nutanix-overview.html
+    - title: Nutanix Cloud Platform Dokumentation
+      url: https://portal.nutanix.com/
+  - title: Nutanix mit ONTAP einsetzen
+    links:
+    - title: Bereitstellen
+      url: nutanix-connectivity.html
+    - title: Deployment eines Nutanix Compute-Clusters
+      url: nutanix-deploy-cluster.html
+    - title: Konfiguration von ONTAP Volumes und Berechtigungen
+      url: nutanix-ontap-storage.html
+    - title: ONTAP NFS Storage anbinden
+      url: nutanix-attach-storage.html
+  - title: Planen und schützen
+    links:
+    - title: Datensicherung, Disaster Recovery und Einschränkungen
+      url: nutanix-data-protection.html
+    - title: Dimensionierung von ONTAP Storage für Nutanix AHV-Migrationen
+      url: nutanix-sizing.html

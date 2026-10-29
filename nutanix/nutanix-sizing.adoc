@@ -1,0 +1,105 @@
+---
+sidebar: sidebar 
+permalink: nutanix/nutanix-sizing.html 
+keywords: nutanix, ahv, ontap, sizing, migration, vmware, iops, capacity, vmdc 
+summary: Bei der Migration von VMware-Workloads zu Nutanix AHV mit ONTAP als externem Storage lassen sich die Nutanix AHV Rechenleistung und der NetApp ONTAP Storage unabhängig voneinander dimensionieren. 
+---
+= Dimensionierung von ONTAP Storage für Nutanix AHV-Migrationen
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Bei der Migration von VMware Workloads zu Nutanix AHV mit NetApp ONTAP externem Storage werden Rechenleistung und Storage unabhängig voneinander dimensioniert. Die Dimensionierung der Nutix Rechenleistung bestimmt die erforderliche Anzahl und Konfiguration der AHV Knoten, einschließlich der Ressourcen, die von der Controller VM (CVM) auf jedem Knoten verwendet werden. Die ONTAP Dimensionierung berücksichtigt Storage Kapazität, Performance und Verfügbarkeit.
+
+
+
+[[discover-vmware-workload-requirements]]
+== Ermittlung von VMware Workload-Anforderungen
+
+Erfassung von 30 bis 90 Tagen an Performance-Daten auf VM-Ebene aus VMware vCenter, einschließlich:
+
+* *Compute*: vCPU, CPU-Auslastung, Speicherzuweisung und maximaler Speicherbedarf.
+* *Speicherkapazität*: Bereitgestellter und belegter Speicherplatz.
+* *Storage Performance*: Lesen/Schreiben-IOPS, Lesen/Schreiben-Durchsatz, durchschnittliche I/O-Größe und Latenz.
+* *Arbeitslastmuster*: Spitzenzeiten, gleichzeitige Workloads und die Verteilung von lesen/schreiben.
+
+
+Maßgeblich ist die gemessene durchschnittliche I/O-Größe für die zu dimensionierenden Workloads. Es gibt keine einheitliche Blockgröße wie beispielsweise 8 KiB oder 16 KiB, die für jeden Nutanix Workload angenommen werden sollte.
+
+
+
+[[size-nutanix-compute]]
+== Nutanix Compute dimensionieren
+
+Die Berechnung link:https://sizer.nutanix.com/["AHV Knotenanforderungen"^] erfolgt anhand des gesamten CPU- und Speicherbedarfs der VMs. Dabei sind die für die CVM auf jedem Knoten reservierte CPU und der reservierte Speicher sowie die CPU-Überprovisionierung, die Hochverfügbarkeitsanforderungen und das erwartete Wachstum zu berücksichtigen. Die von Nutanix empfohlenen CVM-Ressourcenreservierungen sind so anzuwenden, dass sie in der verfügbaren Kapazität jedes Knotens berücksichtigt sind.
+
+Die Anforderungen an CPU und Arbeitsspeicher sind separat zu berechnen. Der höhere Wert bestimmt die anfänglichen Clusteranforderungen. Die resultierende Konfiguration ist anhand der Nutanix-Dimensionierungsrichtlinien und HA-Anforderungen zu validieren.
+
+
+
+[[size-ontap-storage-performance]]
+== Dimensionierung der ONTAP Storage Performance
+
+Mit den folgenden Schritten lassen sich die IOPS-, Durchsatz-, Latenz- und Controller-Anforderungen für Ihre Workloads ermitteln.
+
+. *Berechnung der gesamten Workload-IOPS.*
++
+Die Lese- und Schreib-IOPS aller VMs sollten über gemeinsame Zeitintervalle hinweg aggregiert werden, um tatsächliche gleichzeitige Spitzen zu identifizieren. Dabei sollte die beobachtete Gesamtnachfrage verwendet werden, anstatt anzunehmen, dass jede VM ihre individuelle Spitzenlast gleichzeitig erreicht. Für die Erfassung der Statistiken auf VM-Festplattenebene eignen sich link:https://docs.netapp.com/us-en/netapp-solutions-virtualization/vmware/vmw-getting-started-vmdc.html["NetApp Virtual Machine Data Collector (VMDC)"^], Live Optics oder beliebige Überwachungstools.
+
++
+Beispielhaftes Workload-Profil:
+
++
+** Anzahl der VMs: 500
+** Durchschnittliche IOPS pro VM: 100
+** Durchschnittliche IOPS des Aggregats: 50.000
+** Beobachtete Spitzen-IOPS: 100.000
+** Lesen/Schreiben-Verhältnis: 70% / 30%
+** Durchschnittliche I/O-Größe: Gemessen anhand von Arbeitslastdaten
+
+
+. *Berechnung des Durchsatzes.*
++
+Sofern verfügbar, empfiehlt sich die Verwendung des gemessenen lesen/schreiben-Durchsatzes. Andernfalls lässt er sich anhand der gemessenen I/O-Größe schätzen:
+
++
+`Throughput = IOPS × Average I/O Size`
+
++
+Wenn sich die I/O-Größen unterscheiden, ist eine separate Berechnung des Lese- und Schreibdurchsatzes erforderlich.
+
+. *Latenzanforderungen festlegen.*
++
+Die Zielvorgaben basieren auf historischer VMware Performance und Applikationsanforderungen. Beispielhafte Zielwerte wären 5 ms oder weniger für allgemeine VMs, 2 ms oder weniger für performancekritische Applikationen und unter einer Millisekunde für einige kritische Datenbanken. Dies sind Serviceziele, keine garantierten ONTAP Performancelevel. Die endgültigen Anforderungen sollten die SLAs der Applikationen widerspiegeln.
+
+. *Wachstum der Workloads berücksichtigen.*
++
+Zu berücksichtigen sind das erwartete Wachstum sowie die Bewertung von Performance-Schwankungen, Hintergrundvorgängen und Snapshot-Aktivität. Beispielsweise ergibt ein Wachstum von 30 % bei einer Basisleistung von 100.000 IOPS einen prognostizierten Bedarf von 130.000 IOPS.
+
+. *Auswahl der ONTAP Controller.*
++
+Die Auswahl einer AFF Plattform erfolgt auf Grundlage der erforderlichen lesen/schreiben IOPS bei Ziellatenz, Durchsatz und Netzwerkbandbreite, I/O-Charakteristika, Storage Effizienz, Hintergrundverarbeitung, Failover Performance und des erwarteten Wachstums. Zur Validierung der Konfiguration dienen von NetApp unterstützte Sizing-Tools und Plattform-Performance-Daten. IOPS allein reichen für die Controller-Auswahl nicht aus.
+
+
+
+
+
+[[size-ontap-capacity]]
+== Dimensionierung der ONTAP Kapazität
+
+Die Kapazität wird anhand des belegten VMware-Festplattenspeichers, des prognostizierten Wachstums, der Snapshot-Aufbewahrungsdauer und der erwarteten Storage-Effizienz geschätzt. Ein Storage-Effizienz-Verhältnis von 2:1 kann als Planungsannahme verwendet werden, die tatsächlichen Ergebnisse variieren jedoch je nach Workload und Konfiguration. Die Snapshot- und Schutzkapazität sollte auf Grundlage der vorgesehenen Aufbewahrungsdauer und der Änderungsraten der Workloads berechnet werden, anstatt einen willkürlichen Zuschlag anzusetzen.
+
+Beispielhafte Kapazitätsberechnung:
+
+* 500 VMs × 100 GiB belegt: 48,8 TiB logisch
+* Nach 30 % Workload-Wachstum: 63,5 TiB logisch
+* Geschätzte physische Daten bei einer Effizienz von 2:1: 31,7 TiB
+* Geschätzte installierte nutzbare Kapazität bei 80% Auslastung: 39,7 TiB
+
+
+Der Wert von 80 % Auslastung reserviert Kapazität. Dabei handelt es sich nicht um einen zusätzlichen Betriebs-Overhead von 20 %. Die Annahmen zur Datenreduktion, zur nutzbaren Kapazität und zum Plattform-Overhead sind mit einem NetApp Lösungsarchitekten oder einem autorisierten NetApp Partner zu validieren. Diese können das ONTAP System mit NetApp Fusion dimensionieren und die Anforderungen an Kapazität, Performance und Verfügbarkeit bestätigen.

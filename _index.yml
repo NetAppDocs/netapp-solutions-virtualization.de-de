@@ -30,6 +30,8 @@ indexpage:
       url: "/vmware/index.html"
     - title: Microsoft Hyper-V
       url: hyperv/index.html
+    - title: Nutanix Cloud Platform
+      url: "/nutanix/index.html"
     - title: Red Hat OpenShift-Virtualisierung
       url: "/openshift/index.html"
     - title: Virtuelle Proxmox-Umgebung

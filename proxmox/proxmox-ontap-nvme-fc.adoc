@@ -44,7 +44,15 @@ nvme show-hostnqn
 Wenn Sie ONTAP noch nicht kennen, nutzen Sie den System Manager für eine bessere Benutzererfahrung.
 
 . Stellen Sie sicher, dass die SVM mit aktiviertem NVMe-Protokoll verfügbar ist. Siehe link:https://docs.netapp.com/us-en/ontap/san-admin/create-nvme-namespace-subsystem-task.html["NVMe-Aufgaben in der ONTAP 9-Dokumentation"]Die
-. Erstellen Sie den NVMe-Namespace.
+. Den NVMe Namespace mit dem auf  `linux` gesetzten OS-Typ erstellen.
++
+Da Proxmox VE auf Debian Linux basiert, kommt für die Namespaces, auf die Proxmox VE Hosts zugreifen, der `linux` Betriebssystemtyp zum Einsatz. Im System Manager erfolgt die Auswahl von *Linux* als Host-Betriebssystem. Bei Verwendung der ONTAP CLI ist `-ostype linux` anzugeben.
+
++
+[source, cli]
+----
+vserver nvme namespace create -vserver <svm_name> -path /vol/<volume_name>/<namespace_name> -size <size> -ostype linux
+----
 +
 .Beispiel anzeigen
 [%collapsible]
@@ -52,7 +60,17 @@ Wenn Sie ONTAP noch nicht kennen, nutzen Sie den System Manager für eine besser
 image:proxmox-ontap-nvme-fc-001.png["Erstellung eines NVMe-Namespaces"]
 
 ====
-. Erstellen Sie das Subsystem und weisen Sie Host-NQNs zu (bei Verwendung der CLI). Folgen Sie dem oben angegebenen Link.
+. Erstellen des Subsystems mit auf  `linux` festgelegtem Host-OS-Typ, Zuweisen der Host-NQNs und Erfassen des Namespace für das Subsystem.
++
+Der System Manager erstellt das Subsystem, wenn Sie den Namespace erstellen und *Linux* als Host-Betriebssystem auswählen. Bei Verwendung der ONTAP CLI kommen die folgenden Befehle zum Einsatz.
+
++
+[source, cli]
+----
+vserver nvme subsystem create -vserver <svm_name> -subsystem <subsystem_name> -ostype linux
+vserver nvme subsystem host add -vserver <svm_name> -subsystem <subsystem_name> -host-nqn <host_nqn>
+vserver nvme subsystem map add -vserver <svm_name> -subsystem <subsystem_name> -path /vol/<volume_name>/<namespace_name>
+----
 . Stellen Sie sicher, dass der Anti-Ransomware-Schutz auf der Registerkarte „Sicherheit“ aktiviert ist.
 +
 .Beispiel anzeigen

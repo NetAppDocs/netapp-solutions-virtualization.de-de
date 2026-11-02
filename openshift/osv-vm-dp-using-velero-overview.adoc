@@ -18,7 +18,7 @@ OpenShift API for Data Protection (OADP) mit Velero bietet Sicherungs-, Wiederhe
 
 Virtuelle Maschinen in der OpenShift-Virtualisierungsumgebung sind containerisierte Anwendungen, die in den Worker-Knoten Ihrer OpenShift-Containerplattform ausgeführt werden. Es ist wichtig, die VM-Metadaten sowie die persistenten Datenträger der VMs zu schützen, damit Sie sie wiederherstellen können, wenn sie verloren gehen oder beschädigt werden.
 
-Die persistenten Festplatten der OpenShift Virtualization VMs können durch ONTAP Speicher gesichert werden, der in den OpenShift-Cluster integriert ist, indemlink:https://docs.netapp.com/us-en/trident/["Trident CSI"] . In diesem Abschnitt verwenden wirlink:https://docs.openshift.com/container-platform/4.14/backup_and_restore/application_backup_and_restore/installing/installing-oadp-ocs.html["OpenShift-API für Datenschutz (OADP)"] zur Durchführung von Backups von VMs inklusive der Datenvolumes auf
+Die persistenten Datenträger der OpenShift Virtualization VMs können mit ONTAP Storage gesichert werden, das unter Verwendung von link:https://docs.netapp.com/us-en/trident/["Trident CSI"] in den OpenShift Cluster integriert ist. In diesem Abschnitt verwenden wir link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.14/html/backup_and_restore/oadp-application-backup-and-restore#installing-oadp["OpenShift-API für Datenschutz (OADP)"], um die Sicherung von VMs einschließlich ihrer Daten-Volumes auf
 
 * ONTAP Objektspeicher
 * StorageGrid
@@ -46,4 +46,4 @@ OADP 1.3 ist im Operator Hub des OpenShift-Clusters 4.12 und höher verfügbar. 
 * ONTAP 9.12
 
 
-link:https://docs.netapp.com/us-en/trident/["Trident CSI"] link:https://docs.openshift.com/container-platform/4.14/backup_and_restore/application_backup_and_restore/installing/installing-oadp-ocs.html["OpenShift-API für Datenschutz (OADP)"] link:https://velero.io/["Velero"]
+link:https://docs.netapp.com/us-en/trident/["Trident CSI"] link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.14/html/backup_and_restore/oadp-application-backup-and-restore#installing-oadp["OpenShift-API für Datenschutz (OADP)"] link:https://velero.io/["Velero"]

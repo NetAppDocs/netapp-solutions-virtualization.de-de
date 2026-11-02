@@ -26,7 +26,7 @@ Um eine Wiederherstellung aus einer Sicherung durchzuführen, gehen wir davon au
 .Wiederherstellen im selben Namespace
 [%collapsible%open]
 ====
-Um die Wiederherstellung aus der gerade erstellten Sicherung durchzuführen, müssen wir eine benutzerdefinierte Wiederherstellungsressource (CR) erstellen. Wir müssen ihm einen Namen geben, den Namen des Backups angeben, aus dem wir wiederherstellen möchten, und die RestorePVs auf „true“ setzen. Weitere Parameter können wie in der Abbildung gezeigt eingestellt werden.link:https://docs.openshift.com/container-platform/4.14/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/restoring-applications.html["Dokumentation"] . Klicken Sie auf die Schaltfläche „Erstellen“.
+Zum Wiederherstellen aus der Sicherung, die soeben erstellt wurde, muss eine benutzerdefinierte Restore Ressource (CR) erstellt werden. Dafür müssen ein Name, der Name der Sicherung, aus der wiederhergestellt werden soll, und restorePVs mit dem Wert true angegeben werden. Weitere Parameter können wie in der link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.14/html/backup_and_restore/oadp-application-backup-and-restore#oadp-backing-up["Dokumentation"] gezeigt festgelegt werden. Anschließend wird die Schaltfläche Create ausgewählt.
 
 image:redhat-openshift-oadp-restore-001.png["Wiederherstellungs-CR erstellen"]
 

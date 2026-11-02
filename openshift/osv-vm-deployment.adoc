@@ -49,7 +49,7 @@ Normalerweise wird beim Bereitstellen der VM-Festplatten der Blockzugriffsmodus 
 Um die Erstellung der virtuellen Maschine anzupassen, nachdem Sie die Betriebssystemvorlage ausgewählt haben, klicken Sie auf „Virtuelle Maschine anpassen“ statt auf „Schnell erstellen“.
 
 . Wenn für das ausgewählte Betriebssystem eine Startquelle konfiguriert ist, können Sie auf *Parameter der virtuellen Maschine anpassen* klicken.
-. Wenn für das ausgewählte Betriebssystem keine Startquelle konfiguriert ist, müssen Sie diese konfigurieren.  Details zu den dargestellten Verfahren finden Sie in derlink:https://docs.openshift.com/container-platform/4.14/virt/virtual_machines/creating_vms_custom/virt-creating-vms-from-custom-images-overview.html["Dokumentation"] .
+. Wenn für das ausgewählte Betriebssystem keine Startquelle konfiguriert ist, müssen Sie diese konfigurieren. Einzelheiten zu den im link:https://docs.redhat.com/en/documentation/openshift_container_platform/4.14/html/virtualization/virtual-machines#virt-creating-vms-from-custom-images-overview["Dokumentation"] gezeigten Verfahren finden Sie dort.
 . Nachdem Sie die Startdiskette konfiguriert haben, können Sie auf *Parameter der virtuellen Maschine anpassen* klicken.
 . Sie können die VM über die Registerkarten auf dieser Seite anpassen.  Klicken Sie beispielsweise auf die Registerkarte *Datenträger* und dann auf *Datenträger hinzufügen*, um der VM einen weiteren Datenträger hinzuzufügen.
 . Klicken Sie auf „Virtuelle Maschine erstellen“, um die virtuelle Maschine zu erstellen. Dadurch wird im Hintergrund ein entsprechender Pod gestartet.

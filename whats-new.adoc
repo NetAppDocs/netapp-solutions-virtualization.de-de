@@ -15,6 +15,18 @@ Informieren Sie sich über Neuigkeiten zu Virtualisierungslösungen.
 
 
 
+[[5-november-2026]]
+== 5. November 2026
+
+* Es wurden Hinweise hinzugefügt, dass NFS v4.2 Sparse-Dateioperationen für Proxmox VE NFS Storage deaktiviert bleiben.
++
+** link:proxmox/proxmox-ontap-nfs.html["Konfigurieren Sie NFS-Speicher für Proxmox VE"]
+
+
+
+
+
+
 [[22-october-2026]]
 == 22. Oktober 2026
 
